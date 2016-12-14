@@ -1,25 +1,21 @@
-module.exports = {
-  "parser": 'babel-eslint',
+{
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
   "env": {
     "browser": true,
-    "commonjs": true,
-    "es6": true,
     "node": true
   },
-  "syntax_map": {
-  	"JavaScript (Babel)": "javascript",
-	},
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "jsx": true
-    },
-    "sourceType": "module"
-  },
-  "plugins": [ "react" ],
+  "parser": "babel-eslint",
   "rules": {
-    "quotes": ["error","single"],
-    "no-console": ["warn", { "allow": ["info", "error"] }]
-  }
-};
+    "quotes": [2, "single"],
+    "strict": [2, "never"],
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2
+  },
+  "plugins": [
+    "react"
+  ]
+}
