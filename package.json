@@ -3,15 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.0.2",
-    "mz": "^2.4.0",
-    "react-scripts": "0.2.1",
-    "supertest-as-promised": "^4.0.0"
+    "react-scripts": "^0.8.4"
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "classnames": "^2.2.5",
     "express": "^4.14.0",
     "morgan": "^1.7.0",
     "react": "^15.2.1",

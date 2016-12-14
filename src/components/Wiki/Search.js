@@ -1,13 +1,15 @@
 import React from 'react'
 import axios from 'axios'
+import createFragment from 'react-addons-create-fragment'
 import WikiArticle from './WikiArticle'
+import './style.css'
 
 export default class Search extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			value: '',
-			data: {}
+			data: []
 		}
 		this.handleChange = this.handleChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,20 +23,24 @@ export default class Search extends React.Component {
 		let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${text}&utf8=&format=json`
 		axios.get(url)
 			.then(function(res) {
-				console.log(res.data.query.search)
-				this.setState({data: 'yo'})
-			})
+				console.log(this.state)
+				this.setState({data: res.data.query.search})
+				console.log(typeof(this.state))
+			}.bind(this))
 			.catch(function(err) {
 				console.log(err)
 			})
 	}
 	render() {
+		console.log('this is state ', this.state.data)
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit} action="" method="GET">
 					<input type="text" value={this.state.value || ''} onChange={this.handleChange} placeholder="Search..." />
-					<img src="../../img/magGlass.png" onClick={this.handleSubmit} alt="search" width="20px" height="20px" />
+					<img className="icon" src="../../img/magGlass.png" onClick={this.handleSubmit} alt="search" width="20px" height="20px" />
 				</form>
+				<WikiArticle 
+					snippets={this.state.data} />
 			</div>
 		)
 	}
