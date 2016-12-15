@@ -1,19 +1,28 @@
-// server/app.js
-const express = require('express');
-const morgan = require('morgan');
-const path = require('path');
+var path = require('path');
+var webpack = require('webpack');
+var express = require('express');
+var devMiddleware = require('webpack-dev-middleware');
+var hotMiddleware = require('webpack-hot-middleware');
+var config = require('./webpack.config');
 
-const app = express();
+var app = express();
+var compiler = webpack(config);
 
-// Setup logger
-app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
+app.use(devMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+  historyApiFallback: true,
+}));
 
-// Serve static assets
-app.use(express.static(path.resolve(__dirname, '..', 'build')));
+app.use(hotMiddleware(compiler));
 
-// Always return the main index.html, so react-router render the route in the client
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-module.exports = app;
+app.listen(3000, function (err) {
+  if (err) {
+    return console.error(err);
+  }
+
+  console.log('Listening at http://localhost:3000/');
+});

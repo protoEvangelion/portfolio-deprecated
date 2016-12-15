@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios'
-import createFragment from 'react-addons-create-fragment'
 import WikiArticle from './WikiArticle'
 import './style.css'
+
 
 export default class Search extends React.Component {
 	constructor(props) {
@@ -37,10 +37,9 @@ export default class Search extends React.Component {
 			<div>
 				<form onSubmit={this.handleSubmit} action="" method="GET">
 					<input type="text" value={this.state.value || ''} onChange={this.handleChange} placeholder="Search..." />
-					<img className="icon" src="../../img/magGlass.png" onClick={this.handleSubmit} alt="search" width="20px" height="20px" />
+					<img className="icon" src={require('./magGlass.png')} onClick={this.handleSubmit} alt="search" width="20px" height="20px" />
 				</form>
-				<WikiArticle 
-					snippets={this.state.data} />
+				<WikiArticle snippets={this.state.data} />
 			</div>
 		)
 	}

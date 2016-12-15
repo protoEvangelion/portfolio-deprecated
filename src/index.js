@@ -1,29 +1,26 @@
-// index.js
-import { AppContainer } from 'react-hot-loader'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { browserHistory } from 'react-router'
+import { AppContainer } from 'react-hot-loader';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/Wiki';
 
-import Routes from './routes';
-
-import './index.css';
-const root = document.getElementById('root')
-
+const root = document.getElementById('root');
 ReactDOM.render(
   <AppContainer>
-		<Routes history={browserHistory} />  
+    <App />
   </AppContainer>,
   root
 );
 
 if (module.hot) {
-	module.hot.accept('./routes', () => {
-		const NextApp = require('./routes').default
-		ReactDOM.render(
-			<AppContainer>
-				<NextApp />
-			</AppContainer>,
-			root
-		)
-	})
+  module.hot.accept('./components/Wiki', () => {
+    // If you use Webpack 2 in ES modules mode, you can
+    // use <App /> here rather than require() a <NextApp />.
+    const NextApp = require('./components/Wiki').default;
+    ReactDOM.render(
+      <AppContainer>
+         <NextApp />
+      </AppContainer>,
+      root
+    );
+  });
 }

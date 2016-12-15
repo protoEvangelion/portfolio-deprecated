@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './Button'
 import Search from './Search'
 
-class WikiApp extends React.Component {
+class App extends React.Component {
 	render() {
 		return (
 			<div>
@@ -13,4 +13,4 @@ class WikiApp extends React.Component {
 	}
 }
 
-export default WikiApp
+export default App
