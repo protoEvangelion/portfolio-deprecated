@@ -70,24 +70,24 @@ form input {
   -ms-border-radius: 30px;
   border-radius: 30px;
   border-color: #00ffc0;
+  margin-bottom: 30px;
   font-family: Courgette, Verdana, Geneva, sans-serif;
   height: auto;
   font-size: 1.5em; }
 
-.searchContent > div {
+.snippet {
   background: #343d46;
   width: 90%;
   height: auto;
   padding: 20px;
   margin: 10px auto;
-  display: none;
   color: white;
   box-shadow: 0;
   -webkit-transition: box-shadow 0.5s;
   -moz-transition: box-shadow 0.5s;
   -o-transition: box-shadow 0.5s;
   transition: box-shadow 0.5s; }
-  .searchContent > div:hover {
+.snippet:hover {
     -webkit-transition: box-shadow 0.5s;
     -moz-transition: box-shadow 0.5s;
     -o-transition: box-shadow 0.5s;

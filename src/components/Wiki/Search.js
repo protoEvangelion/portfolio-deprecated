@@ -24,6 +24,7 @@ export default class Search extends React.Component {
 		axios.get(url)
 			.then(function(res) {
 				console.log(this.state)
+
 				this.setState({data: res.data.query.search})
 				console.log(typeof(this.state))
 			}.bind(this))
@@ -39,7 +40,7 @@ export default class Search extends React.Component {
 					<input type="text" value={this.state.value || ''} onChange={this.handleChange} placeholder="Search..." />
 					<img className="icon" src={require('./magGlass.png')} onClick={this.handleSubmit} alt="search" width="20px" height="20px" />
 				</form>
-				<WikiArticle snippets={this.state.data} />
+				<WikiArticle snippets={JSON.stringify(this.state.data)}/>
 			</div>
 		)
 	}
