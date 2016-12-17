@@ -2,6 +2,13 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Courgette, Verdana, Geneva, sans-serif;
   text-align: center; }
 
+#one {
+	background: url("magGlass.png") no-repeat;
+	background-size: 100% auto;
+	height: 50px;
+	width: 50px;
+}
+
 a .tealButton {
   background: #00ffc0;
   -webkit-border-radius: 30px;
