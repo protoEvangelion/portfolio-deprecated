@@ -7,7 +7,7 @@ const root = document.getElementById('root');
 
 export const Root = () => (
 	<BrowserRouter>
-			<Match exactly pattern="/" component={App} />
+			<Match exactly pattern="/" component={Wiki} />
 	</BrowserRouter>
 )
 

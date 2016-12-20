@@ -1,5 +1,5 @@
-const { resolve } = require('path');
-const webpack = require('webpack');
+const { resolve } = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: [
@@ -13,25 +13,29 @@ module.exports = {
     publicPath: '/',
   },
   context: resolve(__dirname, '../src'),
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
 	    {
 	      test: /\.(js|jsx)$/,
-	      include: resolve(__dirname, '../src'),
+	      include: [resolve(__dirname, '../src'),resolve(__dirname)],
 	      use: 'babel-loader',
 	    },
 			{ 
 				test: /\.css$/, 
-				use: 'style-loader!css-loader'},
+				loaders: [
+          'style-loader',
+          'css-loader',
+        ] 
+			},
 			{ 
 	    	test: /\.(png|jpg)$/,
-	    	use: 'url'
+	    	use: 'url-loader'
 	    }
     ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
   ]
 }
