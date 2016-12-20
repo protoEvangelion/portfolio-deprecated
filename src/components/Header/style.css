@@ -1,0 +1,25 @@
+div {
+	display: inline-block;
+}
+
+#wikiPic {
+	background: url("randomWiki.png") no-repeat;
+	background-size: 100% auto;
+	height: 100px;
+	width: 100px;
+}
+
+#quotePic {
+	background: url("quotePump.png") no-repeat;
+	background-size: 100% auto;
+	height: 100px;
+	width: 100px;
+}
+
+#weatherPic {
+	background: url("weather.png") no-repeat;
+	background-size: 100% auto;
+	height: 100px;
+	width: 100px;
+}
+
