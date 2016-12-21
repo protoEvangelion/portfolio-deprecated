@@ -6,7 +6,6 @@ class Home extends React.Component {
 		return (
 			<div>
 				<Header />
-				<h2>Apps will display here</h2>
 			</div>
 		)
 	}

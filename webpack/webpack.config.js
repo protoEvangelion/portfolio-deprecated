@@ -10,10 +10,9 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: resolve(__dirname),
-    publicPath: '/',
+    publicPath: 'http://localhost:3000/',
   },
   context: resolve(__dirname, '../src'),
-  devtool: 'source-map',
   module: {
     rules: [
 	    {
@@ -23,14 +22,11 @@ module.exports = {
 	    },
 			{ 
 				test: /\.css$/, 
-				loaders: [
-          'style-loader',
-          'css-loader',
-        ] 
+				use: ['style-loader','css-loader'] 
 			},
 			{ 
 	    	test: /\.(png|jpg)$/,
-	    	use: 'url-loader'
+	    	use: 'url-loader?limit=500000',
 	    }
     ]
   },
