@@ -1,12 +1,13 @@
 import React from 'react'
 import Button from './Button'
 import Search from './Search'
+import Header from '../Header'
 
 class Wiki extends React.Component {
 	render() {
 		return (
 			<div>
-				<p>Ryan</p>
+				<Header />
 				<Button />
 				<Search />
 			</div>

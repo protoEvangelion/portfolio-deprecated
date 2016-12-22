@@ -26,7 +26,11 @@ module.exports = {
 			},
 			{ 
 	    	test: /\.(png|jpg)$/,
-	    	use: 'url-loader?limit=500000',
+	    	use: 'url-loader',
+	    	options: {
+	    		limit: 100000
+	    	},
+	    	include: resolve(__dirname, '../src')
 	    }
     ]
   },

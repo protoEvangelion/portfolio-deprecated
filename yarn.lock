@@ -461,6 +461,10 @@ babel-plugin-react-css-modules@^1.1.0:
     postcss-modules-values "^1.2.2"
     postcss-scss "^0.4.0"
 
+babel-plugin-styled-components-selector@^1.0.20:
+  version "1.0.20"
+  resolved "https://registry.yarnpkg.com/babel-plugin-styled-components-selector/-/babel-plugin-styled-components-selector-1.0.20.tgz#103a2e5261df5edd2ef6d2962d106e255c44984a"
+
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-async-functions/-/babel-plugin-syntax-async-functions-6.13.0.tgz#cad9cad1191b5ad634bf30ae0872391e0647be95"
