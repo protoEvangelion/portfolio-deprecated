@@ -4,6 +4,10 @@ import { AppContainer as Hot } from 'react-hot-loader'
 
 import { Root } from '../src'
 
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+
 const render = () => {
   ReactDOM.render(
   	<Hot>
