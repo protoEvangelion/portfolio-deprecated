@@ -5,6 +5,10 @@ import Wiki from './components/Wiki'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+
 const root = document.getElementById('root');
 
 export const Root = () => (
@@ -17,4 +21,9 @@ export const Root = () => (
 	</BrowserRouter>
 )
 
-if (!module.hot) render(<Root />, root)
+if (!module.hot) render(
+	<Provider store={store}>
+		<Root />
+	</Provider>, 
+	root
+)
