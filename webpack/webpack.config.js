@@ -3,6 +3,7 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: [
+    'babel-polyfill',
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
     resolve(__dirname, 'hotReload'),
