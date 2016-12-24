@@ -31,3 +31,11 @@ export const getTopicsByUrl = (state) => {
 export const getTopicsByUrlArray = (state) => {
 	return _.keys(state.topics.topicsByUrl)
 }
+
+export function getSelectedTopicUrls(state) {
+  return state.topics.selectedTopicUrls;
+}
+
+export function getSelectedTopicUrlsMap(state) {
+  return _.keyBy(state.topics.selectedTopicUrls);
+}
