@@ -1,12 +1,12 @@
-var path = require('path');
-var webpack = require('webpack');
-var express = require('express');
-var devMiddleware = require('webpack-dev-middleware');
-var hotMiddleware = require('webpack-hot-middleware');
-var config = require('./webpack/webpack.config');
+const path = require('path');
+const webpack = require('webpack');
+const express = require('express');
+const devMiddleware = require('webpack-dev-middleware');
+const hotMiddleware = require('webpack-hot-middleware');
+const config = require('./webpack/webpack.config');
 
-var app = express();
-var compiler = webpack(config);
+const app = express();
+const compiler = webpack(config);
 
 app.use(devMiddleware(compiler, {
   publicPath: config.output.publicPath,
