@@ -4,6 +4,7 @@
   "description": "my mern portfolio website",
   "scripts": {
     "start": "node server.js",
+    "serverDev": "nodemon --exec babel-node server.js --ignore public/",
     "lint": "eslint src"
   },
   "author": "Ryan Garant",
@@ -21,6 +22,7 @@
     "eslint": "^3.9.1",
     "eslint-plugin-react": "^6.5.0",
     "express": "^4.13.4",
+    "nodemon": "^1.11.0",
     "postcss-assets": "^4.1.0",
     "postcss-cssnext": "^2.9.0",
     "postcss-loader": "^1.2.1",
@@ -42,9 +44,11 @@
     "react-hot-loader": "^3.0.0-beta.6",
     "react-redux": "^5.0.1",
     "react-router": "4.0.0-alpha.6",
+    "react-router-redux": "^4.0.7",
     "reactcss": "^1.1.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
+    "serve-favicon": "^2.3.2",
     "style-loader": "^0.13.1",
     "styled-components": "^1.2.1",
     "svg-loader": "^0.0.2",

@@ -20,12 +20,15 @@ export default class Search extends React.Component {
 	handleSubmit(event) {
 		event.preventDefault()
 		let text = this.state.value.replace(' ', '%20')
-		let url = `https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${text}&utf8=&format=json`
-		axios.get(url)
+		console.log('made it')
+		axios.get('/wikiViewer' , {
+			params: {
+				text: text
+			}
+		})
 			.then(function(res) {
 				console.log(res)
-				this.setState({data: res.data.query.search})
-			}.bind(this))
+			})
 			.catch(function(err) {
 				console.log(err)
 			})
