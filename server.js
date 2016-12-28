@@ -9,6 +9,7 @@ const app = express();
 const compiler = webpack(config);
 const axios = require('axios')
 const favicon = require('serve-favicon')
+const bodyParser = require('body-parser')
 
 app.use(devMiddleware(compiler, {
   publicPath: config.output.publicPath,
@@ -18,23 +19,27 @@ app.use(devMiddleware(compiler, {
 app.use(hotMiddleware(compiler));
 
 app.use(favicon(__dirname + '/public/favicon.ico'))
+app.use(bodyParser.json())
 
-// app.get('/favicon.ico', function(req,res) {
-// 	res.send(204)
-// })
-
-app.get('/wikiViewer', function (req, res) {
-	let text = req.params('text')
-	console.log('Should show up below')
+app.post('/api/wikisnippets', function (req, res) {
+	let text = req.body.text
 	let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${text}&utf8=&format=json`
 	axios.get(url)
 		.then(function(resp) {
-			res.send(resp)
+			console.log(resp.data)
 		})
 		.catch(function(err) {
 			console.log(err)
 		})
+
+	res.send('Thank you')
 })
+
+// app.get('/wikiViewer', function (req, res) {
+// 	let text = req.params('text')
+// 	console.log('Should show up below')
+
+// })
 
 app.get('*', function (req, res) {
   if(req.path !== '/wikiViewer') {

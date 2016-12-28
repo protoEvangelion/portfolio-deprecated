@@ -20,24 +20,16 @@ export default class Search extends React.Component {
 	handleSubmit(event) {
 		event.preventDefault()
 		let text = this.state.value.replace(' ', '%20')
-		console.log('made it')
-		axios.get('/wikiViewer' , {
-			params: {
-				text: text
-			}
+		axios.post('/api/wikisnippets', {
+			text: text
 		})
-			.then(function(res) {
-				console.log(res)
-			})
-			.catch(function(err) {
-				console.log(err)
-			})
+		console.log('made it')
 	}
 	render() {
 		console.log('this is state ', this.state.data)
 		return (
 			<div>
-				<form onSubmit={this.handleSubmit} action="" method="GET">
+				<form onSubmit={this.handleSubmit} action="" method="POST">
 					<input type="text" value={this.state.value || ''} onChange={this.handleChange} placeholder="Search..." />
 					<img className="icon" src={require('./magGlass.png')} onClick={this.handleSubmit} alt="search" width="20px" height="20px" />
 				</form>
