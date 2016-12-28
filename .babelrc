@@ -1,4 +1,27 @@
 {
-  "presets": [["es2015", { "modules": false }], "react", "stage-0"],
-  "plugins": ["syntax-async-functions","transform-regenerator"]
+  "presets": ["react", "es2015"],
+  "env": {
+    "development": {
+      "plugins": [
+        ["transform-object-rest-spread"],
+        ["transform-react-display-name"],
+        ["react-transform", {
+          "transforms": [{
+            "transform": "react-transform-hmr",
+            "imports": ["react"],
+            "locals": ["module"]
+          }, {
+            "transform": "react-transform-catch-errors",
+            "imports": ["react", "redbox-react"]
+          }]
+        }]
+      ]
+    },
+    "production": {
+      "plugins": [
+        ["transform-object-rest-spread"],
+        ["transform-react-display-name"]
+      ]
+    }
+  }
 }

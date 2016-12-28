@@ -1,11 +1,9 @@
 
-const initialState = {
-
-}
+const initialState = {}
 
 const wikiSnippets = (state = initialState, action) => {
 	switch (action.type) {
-		case '':
+		case 'UPDATE_SNIPPETS':
 			return state
 		default: 
 			return state

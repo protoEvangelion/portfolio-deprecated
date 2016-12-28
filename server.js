@@ -1,32 +1,38 @@
 const path = require('path');
 const webpack = require('webpack');
 const express = require('express');
-const devMiddleware = require('webpack-dev-middleware');
-const hotMiddleware = require('webpack-hot-middleware');
-const config = require('./webpack/webpack.config');
+const config = require('./webpack.config.dev');
 
 const app = express();
-const compiler = webpack(config);
+
 const axios = require('axios')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 
-app.use(devMiddleware(compiler, {
-  publicPath: config.output.publicPath,
-  historyApiFallback: true,
-}));
+//hot reloading functionality
+const devMiddleware = require('webpack-dev-middleware');
+const hotMiddleware = require('webpack-hot-middleware');
+const compiler = webpack(config);
 
+app.use(devMiddleware(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
+}));
 app.use(hotMiddleware(compiler));
 
-app.use(favicon(__dirname + '/public/favicon.ico'))
+// server favicon so you don't get annoying favicon GET requests
+app.use(favicon(__dirname + '/dist/favicon.ico'))
+
+//simplify body parsing
 app.use(bodyParser.json())
 
+//handle post from wiki component API call to wikipedia
 app.post('/api/wikisnippets', function (req, res) {
 	let text = req.body.text
 	let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${text}&utf8=&format=json`
 	axios.get(url)
 		.then(function(resp) {
-			console.log(resp.data)
+			console.log(resp.data.query)
 		})
 		.catch(function(err) {
 			console.log(err)
@@ -35,17 +41,9 @@ app.post('/api/wikisnippets', function (req, res) {
 	res.send('Thank you')
 })
 
-// app.get('/wikiViewer', function (req, res) {
-// 	let text = req.params('text')
-// 	console.log('Should show up below')
-
-// })
-
 app.get('*', function (req, res) {
-  if(req.path !== '/wikiViewer') {
-  	res.sendFile(path.join(__dirname, 'index.html'));
-  	console.log('hello', req.path)
-  }
+	res.sendFile(path.join(__dirname, 'index.html'));
+	console.log('hello', req.path)
 });
 
 app.listen(3000, function (err) {

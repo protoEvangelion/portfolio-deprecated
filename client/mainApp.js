@@ -1,11 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
+
 import Routes from './router/Routes.js'
+import store from './store'
 
 const root = document.getElementById('root');
 
-export const Root = () => (
-		<Routes />
-)
+render(<Routes/>, root)
 
-if (!module.hot) render(<Root />, root)
+
