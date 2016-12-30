@@ -3,12 +3,10 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
-import posts from './postsReducer'
-import wikiSnippets from './wikiSnippetsReducer'
+import counter from './counter'
 
 const rootReducer = combineReducers({
-	posts,
-	wikiSnippets,
+	counter,
 	routing: routerReducer
 })
 

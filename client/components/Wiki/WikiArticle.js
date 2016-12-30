@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
-function WikiArticle(props) {
-	let data = props.snippets
-	let url = 'https://en.wikipedia.org/wiki/'
+export const WikiArticle = () => {
+	const { value, onIncreaseClick } = this.props
 	return 	(
-			<div>Hello</div>
+			<div>
+				<span>{value}</span>
+				<button onClick={onIncreaseClick}>Increase</button>
+			</div>
 		)
 }
 
 WikiArticle.propTypes = {
-	snippets: React.PropTypes.object
-}
+	value: PropTypes.number.isRequired,
+	onIncreaseClick: PropTypes.func.isRequired
+}	
 
-export default WikiArticle
 
 	// const snippetList = data.map((snippet, i) =>
 	// 	<div key={`d${i}`} className="snippet">

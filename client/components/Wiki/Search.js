@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Snippets from './Snippets'
+import { Snippets } from './Snippets'
 import './style.css'
 
 

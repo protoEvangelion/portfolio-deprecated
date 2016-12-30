@@ -1,18 +1,19 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { snippets } from '../../actions/actionCreators'
-import WikiArticle from './WikiArticle'
+import { increaseAction } from '../../actions'
+import { WikiArticle } from './WikiArticle'
 
 function mapStateToProps(state) {
 	return {
-		snippets: state.wikiSnippets
+		value: state.count
 	}
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators(snippets, dispatch)
+	return {
+		onIncreaseClick: () => dispatch(increaseAction)
+	}
 }
 
-const Snippets = connect(mapStateToProps, mapDispatchToProps)(WikiArticle)
+export const Snippets = connect(mapStateToProps, mapDispatchToProps)(WikiArticle)
 
-export default Snippets

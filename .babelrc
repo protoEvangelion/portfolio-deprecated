@@ -3,6 +3,7 @@
   "env": {
     "development": {
       "plugins": [
+        ["transform-es2015-parameters"],
         ["transform-object-rest-spread"],
         ["transform-react-display-name"],
         ["react-transform", {
