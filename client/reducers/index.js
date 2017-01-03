@@ -3,11 +3,11 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
-import counter from './counter'
+import Books from './books_reducer'
+import WikisReducer from './reducer_wikis'
 
 const rootReducer = combineReducers({
-	counter,
-	routing: routerReducer
+	wikis : WikisReducer
 })
 
 export default rootReducer

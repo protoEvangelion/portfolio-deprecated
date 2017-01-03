@@ -27,18 +27,18 @@ app.use(favicon(__dirname + '/dist/favicon.ico'))
 app.use(bodyParser.json())
 
 //handle post from wiki component API call to wikipedia
-app.post('/api/wikisnippets', function (req, res) {
-	let text = req.body.text
-	let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${text}&utf8=&format=json`
+app.get('/api/wikisnippets', function (req, res) {
+	let term = req.query.TERM
+	console.log('supposed text', term)
+	let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${term}&utf8=&format=json`
+
 	axios.get(url)
 		.then(function(resp) {
-			console.log(resp.data.query)
+			res.send(resp.data.query.search)
 		})
 		.catch(function(err) {
 			console.log(err)
 		})
-
-	res.send('Thank you')
 })
 
 app.get('*', function (req, res) {

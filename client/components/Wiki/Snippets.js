@@ -1,19 +1,37 @@
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { increaseAction } from '../../actions'
-import { WikiArticle } from './WikiArticle'
+
+class Snippets extends Component {
+	renderSnippets(snippet, i) {
+		const url =  `https://en.wikipedia.org/wiki/${snippet.title}`
+		let text = snippet.snippet.replace(/<\/?[^>]+(>|$)/g, '').replace(/&quot;/g, '\"')
+		return (
+			<div key={`d${i}`} className="snippet">
+				<p key={`p${i}`} id={`q${i}`}>{snippet.title}</p>
+				<a key={`a${i}`} className={`a${i}`} href={url}>
+					<p key={`t${i}`} id={`s${i}`}>{text}</p>
+				</a>
+			</div>
+		)	
+	}
+	render() {
+		if(this.props.wikis.length === 0) {
+			return (<div></div>)
+		} else {
+				return (
+					<div>
+						{this.props.wikis[0].map(this.renderSnippets)}
+					</div>
+				)
+		}
+
+	}
+}
 
 function mapStateToProps(state) {
 	return {
-		value: state.count
+		wikis: state.wikis
 	}
 }
 
-function mapDispatchToProps(dispatch) {
-	return {
-		onIncreaseClick: () => dispatch(increaseAction)
-	}
-}
-
-export const Snippets = connect(mapStateToProps, mapDispatchToProps)(WikiArticle)
-
+export default connect(mapStateToProps)(Snippets)

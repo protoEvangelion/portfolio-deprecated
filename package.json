@@ -41,6 +41,7 @@
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.2.3",
     "redux": "^3.6.0",
+    "redux-promise": "^0.5.3",
     "serve-favicon": "^2.3.2",
     "style-loader": "^0.13.1",
     "styled-components": "^1.2.1",

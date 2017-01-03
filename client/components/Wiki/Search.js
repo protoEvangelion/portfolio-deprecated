@@ -1,39 +1,40 @@
 import React from 'react'
 import axios from 'axios'
 import { Snippets } from './Snippets'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fetchWikis } from '../../actions/index'
+
 import './style.css'
 
 
-export default class Search extends React.Component {
+class Search extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			value: '',
-			data: []
-		}
-		this.handleChange = this.handleChange.bind(this)
-		this.handleSubmit = this.handleSubmit.bind(this)
+		this.state = {term: ''}
+		this.onInputChange = this.onInputChange.bind(this)
+		this.onFormSubmit = this.onFormSubmit.bind(this)
 	}
-	handleChange(event) {
-		this.setState({value: event.target.value})
+	onInputChange(e) {
+		this.setState({term: e.target.value})
 	}
-	handleSubmit(event) {
-		event.preventDefault()
-		let text = this.state.value.replace(' ', '%20')
-		axios.post('/api/wikisnippets', {
-			text: text
-		})
+	onFormSubmit(e) {
+		e.preventDefault()
+		this.props.fetchWikis(this.state.term)
+		this.setState({ term: ''})
 	}
 	render() {
 		return (
-			<div>
-				<form onSubmit={this.handleSubmit} action="" method="POST">
-					<input type="text" value={this.state.value || ''} onChange={this.handleChange} placeholder="Search..." />
-					<img className="icon" src={require('./magGlass.png')} onClick={this.handleSubmit} alt="search" width="20px" height="20px" />
-				</form>
-				<Snippets/>
-			</div>
+			<form onSubmit={this.onFormSubmit} action="" method="POST">
+				<input type="text" value={this.state.term} onChange={this.onInputChange} placeholder="Search..." />
+				<img className="icon" src={require('./magGlass.png')} onClick={this.onFormSubmit} alt="search" width="20px" height="20px" />
+			</form>
 		)
 	}
-  
 }
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ fetchWikis }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(Search)
