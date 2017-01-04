@@ -5,9 +5,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchWikis } from '../../actions/index'
 
-import './style.css'
-
-
 class Search extends React.Component {
 	constructor(props) {
 		super(props)
