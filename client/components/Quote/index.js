@@ -3,27 +3,24 @@ import Image from './Image'
 import Tweet from './Tweet'
 import urls from './img_urls'
 
-let randPic = Math.floor((Math.random() * 100) + 1)
-
 export default class Quote extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			currentUrl: 'http://www.brainyquote.com/photos/j/jesuschrist414650.jpg'
 		}
-		this.onBtnClick = this.onBtnClick.bind(this)
 	}
 	onBtnClick() {
-		alert('maybe')
-		this.setState({currentUrl: urls[randPic]})
+		this.setState({currentUrl: urls[Math.floor((Math.random() * 100) + 1)]})
 	}
 	render() {
 		return (
-			<div>
+			<div className="container text-center">
 				<button 
 					id="btn" 
 					className="btn btn-primary btn-large"
-					onClick={this.onBtnClick}>Pump Quote!
+					style={{margin: "20px"}}
+					onClick={this.onBtnClick.bind(this)}>Pump Quote!
 				</button>
 				<Image url={this.state.currentUrl} />
 		  </div>
