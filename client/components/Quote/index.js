@@ -1,29 +1,36 @@
 import React, { Component } from 'react'
-import Image from './Image'
+import Head from './MetaTag'
+import QuoteDetail from './QuoteDetail'
+import PumpBtn from './PumpBtn'
 import Tweet from './Tweet'
-import urls from './img_urls'
+// import urls from './img_urls'
+import { fetchQuote } from '../../actions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-export default class Quote extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			currentUrl: 'http://www.brainyquote.com/photos/j/jesuschrist414650.jpg'
-		}
-	}
-	onBtnClick() {
-		this.setState({currentUrl: urls[Math.floor((Math.random() * 100) + 1)]})
-	}
+class Quote extends Component {
 	render() {
 		return (
-			<div className="container text-center">
-				<button 
-					id="btn" 
-					className="btn btn-primary btn-large"
-					style={{margin: "20px"}}
-					onClick={this.onBtnClick.bind(this)}>Pump Quote!
-				</button>
-				<Image url={this.state.currentUrl} />
-		  </div>
+			<div>
+				<Head currentUrl={this.props.quote.quoteLink} />
+				<div className="container text-center">
+					<PumpBtn onClick={this.props.fetchQuote.bind(this)} />
+					<QuoteDetail quote={this.props.quote}/>
+					<Tweet text={this.props.quote.quoteText} />
+			  </div>
+			</div>
 		)
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		quote: state.quote.quote
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ fetchQuote }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Quote)

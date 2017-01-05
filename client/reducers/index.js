@@ -5,9 +5,11 @@ import { routerReducer } from 'react-router-redux'
 
 import Books from './books_reducer'
 import WikisReducer from './reducer_wikis'
+import QuoteReducer from './reducer_quote'
 
 const rootReducer = combineReducers({
-	wikis : WikisReducer
+	wikis : WikisReducer,
+	quote: QuoteReducer
 })
 
 export default rootReducer

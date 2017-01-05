@@ -29,9 +29,7 @@ app.use(bodyParser.json())
 //handle post from wiki component API call to wikipedia
 app.get('/api/wikisnippets', function (req, res) {
 	let term = req.query.TERM
-	console.log('supposed text', term)
 	let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${term}&utf8=&format=json`
-
 	axios.get(url)
 		.then(function(resp) {
 			res.send(resp.data.query.search)
@@ -41,7 +39,18 @@ app.get('/api/wikisnippets', function (req, res) {
 		})
 })
 
-app.get('*', function (req, res) {
+app.get('/api/quote', function(req, res) {
+	const url = 'http://api.forismatic.com/api/1.0/?&format=json&lang=en&method=getQuote'
+	axios.get(url)
+		.then(function(resp) {
+			res.send(resp.data)
+		})
+		.catch(function(err) {
+			console.log(err)
+		})
+})
+
+app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname, 'index.html'));
 	console.log('hello', req.path)
 });
