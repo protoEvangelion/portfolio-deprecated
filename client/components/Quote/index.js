@@ -14,9 +14,9 @@ class Quote extends Component {
 			<div>
 				<Head currentUrl={this.props.quote.quoteLink} />
 				<div className="container text-center">
-					<PumpBtn onClick={this.props.fetchQuote.bind(this)} />
+					<PumpBtn fetch={this.props.fetchQuote} />
 					<QuoteDetail quote={this.props.quote}/>
-					<Tweet text={this.props.quote.quoteText} />
+					<Tweet quote={this.props.quote}/>
 			  </div>
 			</div>
 		)

@@ -3,8 +3,8 @@ import { FETCH_QUOTE } from '../actions/index'
 const initialState = {
 	quote: {
 		quoteText: 'People may doubt what you say, but they will believe what you do.',
-		quoteAuthor: 'Lewis Cass',
-		quoteLink: 'http://forismatic.com/en/c631e85a9a/'
+		quoteAuthor: 'Abraham Lincoln',
+		quoteLink: 'http://forismatic.com/en/e7d096ac9d/'
 	}
 }
 
