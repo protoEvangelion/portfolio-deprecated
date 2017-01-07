@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Head from './MetaTag'
 import QuoteDetail from './QuoteDetail'
 import PumpBtn from './PumpBtn'
 import Tweet from './Tweet'
@@ -12,11 +11,10 @@ class Quote extends Component {
 	render() {
 		return (
 			<div>
-				<Head currentUrl={this.props.quote.quoteLink} />
 				<div className="container text-center">
 					<PumpBtn fetch={this.props.fetchQuote} />
-					<QuoteDetail quote={this.props.quote}/>
 					<Tweet quote={this.props.quote}/>
+					<QuoteDetail quote={this.props.quote}/>
 			  </div>
 			</div>
 		)
