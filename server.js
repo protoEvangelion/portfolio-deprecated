@@ -40,7 +40,8 @@ app.get('/api/wikisnippets', function (req, res) {
 })
 
 app.get('/api/quote', function(req, res) {
-	const url = 'http://api.forismatic.com/api/1.0/?&format=json&lang=en&method=getQuote'
+	let randNum = Math.floor((Math.random() * 100000) + 1);
+	let url = `http://api.forismatic.com/api/1.0/?&method=getQuote&key=${randNum}&format=json&lang=en`
 	axios.get(url)
 		.then(function(resp) {
 			res.send(resp.data)
