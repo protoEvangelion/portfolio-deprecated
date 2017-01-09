@@ -1,15 +1,14 @@
-const forismatic = require('forismatic-node')
-let randNum = Math.floor((Math.random() * 100000) + 1);
 const axios = require('axios')
 module.exports = {
-	random: () => {	
-		const url = `http://api.forismatic.com/api/1.0/?&format=json&lang=en&method=getQuote&key=${randNum}`
+	random: (res) => {	
+		let randNum = Math.floor((Math.random() * 100000) + 1)
+		let url = `http://api.forismatic.com/api/1.0/?&method=getQuote&key=${randNum}&format=json&lang=en`
 		axios.get(url)
-			.then(function(resp) {
+			.then((resp) => {
 				res.send(resp.data)
 			})
-			.catch(function(err) {
+			.catch((err) => {
 				console.log(err)
 			})
-	}
+		}
 }

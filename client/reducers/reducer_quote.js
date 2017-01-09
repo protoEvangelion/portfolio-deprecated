@@ -1,4 +1,4 @@
-import { FETCH_QUOTE } from '../actions/index'
+import { FETCH_QUOTE } from '../actions/fetchQuote'
 
 const initialState = {
 	quote: {

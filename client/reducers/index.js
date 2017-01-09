@@ -2,13 +2,14 @@
 
 import { combineReducers } from 'redux'
 
-import Books from './books_reducer'
 import WikisReducer from './reducer_wikis'
 import QuoteReducer from './reducer_quote'
+import WeatherReducer from './reducer_weather'
 
 const rootReducer = combineReducers({
 	wikis : WikisReducer,
-	quote: QuoteReducer
+	quote: QuoteReducer,
+	weather: WeatherReducer
 })
 
 export default rootReducer

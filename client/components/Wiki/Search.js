@@ -3,7 +3,8 @@ import axios from 'axios'
 import { Snippets } from './Snippets'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchWikis } from '../../actions/index'
+
+import { fetchWikis } from '../../actions/fetchWikis'
 
 class Search extends React.Component {
 	constructor(props) {
@@ -24,7 +25,7 @@ class Search extends React.Component {
 		return (
 			<form onSubmit={this.onFormSubmit} action="" method="POST">
 				<input type="text" value={this.state.term} onChange={this.onInputChange} placeholder="Search..." />
-				<img className="icon" src={require('./magGlass.png')} onClick={this.onFormSubmit} alt="search" width="20px" height="20px" />
+				<i className="fa fa-search fa-2x icon" aria-hidden="true" onClick={this.onFormSubmit} alt="search"></i>
 			</form>
 		)
 	}

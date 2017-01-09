@@ -1,8 +1,8 @@
-import { FETCH_WIKIS } from '../actions/fetchWikis'
+import { FETCH_WEATHER } from '../actions/fetchWeather'
 
 export default function(state = [], action) {
 	switch(action.type) {
-		case FETCH_WIKIS:
+		case FETCH_WEATHER: 
 			return [action.payload.data, ...state]
 	}
 	return state

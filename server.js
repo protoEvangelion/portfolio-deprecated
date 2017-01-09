@@ -1,65 +1,54 @@
-const path = require('path');
-const webpack = require('webpack');
-const express = require('express');
-const config = require('./webpack.config.dev');
-
-const app = express();
-
-const axios = require('axios')
+// setup
+const express = require('express')
+const app = express()
+const config = require('./webpack.config.dev')
+const path = require('path')
+const webpack = require('webpack')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
+const axios = require('axios')
 
 //hot reloading functionality
-const devMiddleware = require('webpack-dev-middleware');
-const hotMiddleware = require('webpack-hot-middleware');
-const compiler = webpack(config);
+const devMiddleware = require('webpack-dev-middleware')
+const hotMiddleware = require('webpack-hot-middleware')
+const compiler = webpack(config)
 
+//APIs
+const quoteCall = require('./API/quoteCall.js')
+const wikiCall = require('./API/wikiCall.js')
+const weatherCall = require('./API/weatherCall.js')
+
+//middlewares
 app.use(devMiddleware(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath
-}));
-app.use(hotMiddleware(compiler));
+	  noInfo: true,
+	  publicPath: config.output.publicPath
+	}))
+	.use(hotMiddleware(compiler))
+	.use(favicon(__dirname + '/dist/favicon.ico'))
+	.use(bodyParser.json()); 
 
-// server favicon so you don't get annoying favicon GET requests
-app.use(favicon(__dirname + '/dist/favicon.ico'))
 
-//simplify body parsing
-app.use(bodyParser.json())
+//routing
+app.get('/api/wikisnippets', (req, res) => {
+		let term = req.query.TERM
+		wikiCall.snippet(res, term)
+	})
 
-//handle post from wiki component API call to wikipedia
-app.get('/api/wikisnippets', function (req, res) {
-	let term = req.query.TERM
-	let url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${term}&utf8=&format=json`
-	axios.get(url)
-		.then(function(resp) {
-			res.send(resp.data.query.search)
-		})
-		.catch(function(err) {
-			console.log(err)
-		})
+app.get('/api/quote', (req, res) => {
+		quoteCall.random(res)
+	})
+	
+app.get('/api/weather', (req, res) => {
+		let city = req.query.TERM
+		weatherCall.city(res, city)
+	})
+	
+app.get('*', (req, res) => {
+		res.sendFile(path.join(__dirname, 'index.html'))
+	})
+
+//listener
+app.listen(3000, (err) => {
+  let details = 'Listening at http://localhost:3000/'
+  err ? console.error(err) : console.log(details)
 })
-
-app.get('/api/quote', function(req, res) {
-	let randNum = Math.floor((Math.random() * 100000) + 1);
-	let url = `http://api.forismatic.com/api/1.0/?&method=getQuote&key=${randNum}&format=json&lang=en`
-	axios.get(url)
-		.then(function(resp) {
-			res.send(resp.data)
-		})
-		.catch(function(err) {
-			console.log(err)
-		})
-})
-
-app.get('*', function(req, res) {
-	res.sendFile(path.join(__dirname, 'index.html'));
-	console.log('hello', req.path)
-});
-
-app.listen(3000, function (err) {
-  if (err) {
-    return console.error(err);
-  }
-
-  console.log('Listening at http://localhost:3000/');
-});

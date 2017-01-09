@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchQuote } from '../../actions'
+import { fetchQuote } from '../../actions/fetchQuote'
 import { Button } from 'react-bootstrap'
 
 export default class PumpBtn extends Component {

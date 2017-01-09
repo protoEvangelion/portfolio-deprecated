@@ -6,8 +6,8 @@ const Item = styled.div`
 	margin: 20px 20px;
 	background: url(${props => props.src}) no-repeat center;
 	background-size: 100% auto;
-	width: 200px;
-	height: 200px;
+	width: 150px;
+	height: 150px;
 	border-radius: 50%;
 	cursor: default;
 	transition: all 1s ease-in-out;

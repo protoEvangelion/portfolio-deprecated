@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-  devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
     './client/index'
@@ -25,7 +24,8 @@ module.exports = {
 	    },
 			{ 
 				test: /\.css$/, 
-				loaders: ['style-loader','css-loader'] 
+				loaders: ['style-loader','css-loader'],
+				include: path.join(__dirname, './client') 
 			},
 			{ 
 	    	test: /\.(png|jpg)$/,
