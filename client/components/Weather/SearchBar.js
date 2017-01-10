@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { fetchWeather } from '../../actions/fetchWeather'
+import { bindActionCreators } from 'redux'
 
 class SearchBar extends Component {
 	constructor(props) {
@@ -23,13 +23,10 @@ class SearchBar extends Component {
 			<form onSubmit={this.onFormSubmit} className="input-group">
 				<input 
 					placeholder="Search for 5 day forecast"
-					className="form-control"
 					value={this.state.term}
 					onChange={this.onInputChange}
 				/>
-				<span className="input-group-btn">
-					<button type="submit" className="btn btn-secondary">Submit</button>
-				</span>
+				<i className="fa fa-search fa-2x icon" aria-hidden="true" onClick={this.onFormSubmit} alt="search"></i>
 			</form>
 		)
 	}

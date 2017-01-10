@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Chart from './chart'
 import GoogleMap from './GoogleMap'
 
+
 class WeatherList extends Component {
 	renderWeather(cityData) {
 		if(cityData) {
@@ -27,19 +28,25 @@ class WeatherList extends Component {
 	}
 	render() {
 		return (
-			<table className="table table-hover">
-				<thead>
-					<tr>
-						<th>City</th>
-						<th>Temperature (K)</th>
-						<th>Pressure (hPa)</th>
-						<th>Humidity (%)</th>
-					</tr>
-				</thead>
-				<tbody>
-					{this.props.weather.map(this.renderWeather)}
-				</tbody>
-			</table>
+		<div className="container">
+			<div className="row">
+				<div className="col-sm-12">
+					<table className="table table-hover">
+						<thead>
+							<tr>
+								<th>City</th>
+								<th>Temperature (K)</th>
+								<th>Pressure (hPa)</th>
+								<th>Humidity (%)</th>
+							</tr>
+						</thead>
+						<tbody>
+							{this.props.weather.map(this.renderWeather)}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 		)
 	}
 }

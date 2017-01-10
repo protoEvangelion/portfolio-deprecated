@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee+Shade');
+
 .input-group { 
 	margin: 20px 0px;
 }
@@ -7,7 +9,22 @@ td, th {
 	text-align: center !important;
 }
 
-td:first-of-type {
+td {
 	height: 200px;
 	width: 250px;
+	min-width: 200px
+}
+
+#locationBtn {
+	cursor: pointer;
+}
+
+h1 {
+	font-family: 'Bungee Shade', cursive;
+	font-size: 3em;
+	margin-bottom: 30px;
+}
+
+.container{
+	margin-top: 50px;
 }

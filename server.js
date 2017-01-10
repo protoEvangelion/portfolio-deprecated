@@ -6,6 +6,8 @@ const path = require('path')
 const webpack = require('webpack')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
+const http = require('http')
+const url = require('url')
 const axios = require('axios')
 
 //hot reloading functionality
@@ -29,19 +31,29 @@ app.use(devMiddleware(compiler, {
 
 
 //routing
-app.get('/api/wikisnippets', (req, res) => {
-		let term = req.query.TERM
-		wikiCall.snippet(res, term)
+app.get('/api', (req, res) => {
+		const newUrl = req.originalUrl.slice(9)
+		console.log('here is the request', newUrl)
+		axios.get(newUrl)
+			.then(function (response) {
+		    console.log(response.data)
+		    res.send(response.data)
+		  })
+		  .catch(function (error) {
+		    console.log(error)
+		  })
+		// let term = req.query.TERM
+		// wikiCall.snippet(res, term)
 	})
 
-app.get('/api/quote', (req, res) => {
-		quoteCall.random(res)
-	})
+// app.get('/api/quote', (req, res) => {
+// 		quoteCall.random(res)
+// 	})
 	
-app.get('/api/weather', (req, res) => {
-		let city = req.query.TERM
-		weatherCall.city(res, city)
-	})
+// app.get('/api/weather', (req, res) => {
+// 		let city = req.query.TERM
+// 		weatherCall.city(res, city)
+// 	})
 	
 app.get('*', (req, res) => {
 		res.sendFile(path.join(__dirname, 'index.html'))

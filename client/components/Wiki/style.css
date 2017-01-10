@@ -2,13 +2,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Courgette, Verdana, Geneva, sans-serif;
   text-align: center; }
 
-#one {
-	background: url("magGlass.png") no-repeat;
-	background-size: 100% auto;
-	height: 50px;
-	width: 50px;
-}
-
 a .tealButton {
   background: #00ffc0;
   -webkit-border-radius: 30px;
@@ -59,7 +52,7 @@ form input, .icon{
   padding-left: 10px; }
 .icon {
   color: #00ffc0;
-  margin-left: -100px;
+  margin-left: -120px;
   text-shadow: 0;
   -webkit-transition: text-shadow 0.5s;
   -moz-transition: text-shadow 0.5s;
@@ -77,10 +70,12 @@ form input {
   -ms-border-radius: 30px;
   border-radius: 30px;
   border-color: #00ffc0;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   font-family: Courgette, Verdana, Geneva, sans-serif;
   height: auto;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  outline: none;
+	padding: 0 20px;}
 
 .snippet {
   background: #343d46;
