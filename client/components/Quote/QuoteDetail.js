@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import './style.css'
 
 let colors = [
 	['#F1F2B5', '#135058'],
@@ -18,7 +17,7 @@ let colors = [
 let color1 = '#B3FFAB'
 let color2 = '#12FFF7'
 let style={
-	background: color1, 
+	background: color1,
 	background: `webkit-linear-gradient(to left, ${color1} , ${color2})`,
 	background: `linear-gradient(to left, ${color1} , ${color2})`
 }
@@ -29,14 +28,13 @@ export default class QuoteDetail extends Component {
 	componentWillUpdate(nextProps) {
 		if(count==10) {count=0}
 		++count
-		console.log(count)
 		switch(count % 2) {
 			case 1:
 				typeAnimate = 'fadeInLeft'
 				color1 = colors[count][0]
 				color2= colors[count][1]
 				style={
-					background: color1, 
+					background: color1,
 					background: `webkit-linear-gradient(to left, ${color1} , ${color2})`,
 					background: `linear-gradient(to left, ${color1} , ${color2})`
 				}
@@ -46,14 +44,14 @@ export default class QuoteDetail extends Component {
 				color1 = colors[count][0]
 				color2 = colors[count][1]
 				style={
-					background: color1, 
+					background: color1,
 					background: `webkit-linear-gradient(to left, ${color1} , ${color2})`,
 					background: `linear-gradient(to left, ${color1} , ${color2})`
 				}
 		}
 	}
 	render() {
-		const quoteAuthor = !this.props.quote.quoteAuthor ? 'unknown' : this.props.quote.quoteAuthor 
+		const quoteAuthor = !this.props.quote.quoteAuthor ? 'unknown' : this.props.quote.quoteAuthor
 		return (
 			<div className={`jumbotron animated ${typeAnimate}`} style={style}>
 				<h2 className="helloWorld">{this.props.quote.quoteText}</h2>
@@ -62,4 +60,3 @@ export default class QuoteDetail extends Component {
 		)
 	}
 }
-

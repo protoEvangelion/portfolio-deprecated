@@ -6,7 +6,7 @@ import Tweet from './Tweet'
 import { fetchQuote } from '../../actions/fetchQuote'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
+import './style.css'
 class Quote extends Component {
 	render() {
 		return (

@@ -11,20 +11,17 @@ class MyArea extends Component {
 		this.onBtnClick = this.onBtnClick.bind(this)
 	}
 	onBtnClick() {
-	  console.log('hellow')
 	  navigator.geolocation.getCurrentPosition(position => {
   		const lat = position.coords.latitude
   		const lng = position.coords.longitude
   		const ROOT_URL = 'https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng='
   		const reqUrl = `${ROOT_URL}${lat},${lng}`
 			const url = `http://localhost:3000/api?url=${reqUrl}`
-			console.log('hello')
 			axios.get(url)
 				.then(response => {
 					const address = response.data.results[0].formatted_address
 					const end = address.slice(address.indexOf(',') + 2)
 					const city = end.slice(0, end.indexOf(','))
-
 					this.props.fetchWeather(city)
 				})
 				.catch(err => {
@@ -34,12 +31,12 @@ class MyArea extends Component {
 	}
 	render() {
 		return (
-			<div className='text-center'>	
+			<div className='text-center'>
 				<button onClick={this.onBtnClick} id='locationBtn' className='btn btn-primary'>Get your location's weather</button>
 			</div>
-		)	
+		)
 	}
-	
+
 }
 
 function mapDispatchToProps(dispatch) {

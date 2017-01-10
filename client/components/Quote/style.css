@@ -1,4 +1,6 @@
-.helloWorld {	
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+
+.helloWorld {
 	font-family: 'Caveat', cursive;
 	color: white;
 	font-size: 3em;
