@@ -5,11 +5,13 @@ import { combineReducers } from 'redux'
 import WikisReducer from './reducer_wikis'
 import QuoteReducer from './reducer_quote'
 import WeatherReducer from './reducer_weather'
+import StreamReducer from './reducer_streams'
 
 const rootReducer = combineReducers({
 	wikis : WikisReducer,
 	quote: QuoteReducer,
-	weather: WeatherReducer
+	weather: WeatherReducer,
+	streams: StreamReducer
 })
 
 export default rootReducer
