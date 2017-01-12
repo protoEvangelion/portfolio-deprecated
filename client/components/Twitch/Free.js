@@ -13,20 +13,21 @@ const styles = {
   background: '#6441a4',
   transition: 'background 0.5s',
   ':hover': {
-    cursor: 'pointer',
+    cursor: 'pointer'
   }
 }
 
-class Streams extends Component {
+class Free extends Component {
   renderStreams(data) {
     if(data != null) {
       return data.map((stream, i) => {
-        const url = stream.stream.channel.url
-        const image = stream.image
-        const title = stream.title
-        const game = stream.stream.game != '' ? stream.stream.game : 'N/A'
-        const viewers = stream.stream.viewers
-        const live = stream.stream != null ? true : false
+        const condition = () => stream.stream != null
+        const url = condition() ? stream.stream.channel.url : 'https://www.twitch.tv/freecodecamp'
+        const image = condition() ? stream.image : 'https://goo.gl/7IDjKg'
+        const title = condition() ? stream.title : 'freeCodeCamp'
+        const game = condition() ? stream.stream.game : 'N/A'
+        const viewers = condition() ? stream.stream.viewers : 'N/A'
+        const live = condition() ? true : false
         return (
           <div key={i} style={styles}>
             <a href={url} style={{textDecoration: 'none'}}>
@@ -41,18 +42,16 @@ class Streams extends Component {
           </div>
         )
       })
-    } else {
-        return <i style={{color: '#00ffc0', marginTop: '50px'}} className="fa fa-spinner fa-pulse fa-5x" aria-hidden="true"></i>
     }
   }
   render() {
     return (
       <div className="col-xs-12" style={{textAlign: 'center'}}>
-        {this.renderStreams(this.props.data)}
+        {this.renderStreams(this.props.free)}
       </div>
     )
   }
 }
 
 
-export default Streams = Radium(Streams)
+export default Free = Radium(Free)
