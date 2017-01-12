@@ -15,11 +15,11 @@ const Item = styled.div`
 	text-align: left;
 
 	&:hover {
-		box-shadow: 
+		box-shadow:
 			inset 0 0 0 110px rgba(200,95,66, 0.4),
 			inset 0 0 0 16px rgba(255,255,255,0.8),
 			0 1px 2px rgba(0,0,0,0.1);
-	  cursor: pointer;	
+	  cursor: pointer;
 	}
 `
 
@@ -31,14 +31,13 @@ const Header = () => (
 		<Link to="/wikiViewer">
 			<Item src={require('./randomWiki.png')} />
 		</Link>
-		<Link to="/weather">	
+		<Link to="/weather">
 			<Item src={require('./weather.png')} />
+		</Link>
+		<Link to="/twitch">
+			<Item src={require('./twitch.png')} />
 		</Link>
 	</div>
 )
 
 export default Header
-
-		// <div id="wikiPic"></div>
-		// <div id="quotePic"></div>
-		// <div id="weatherPic"></div>

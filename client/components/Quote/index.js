@@ -21,6 +21,8 @@ class Quote extends Component {
 	}
 }
 
+
+
 function mapStateToProps(state) {
 	return {
 		quote: state.quote.quote
