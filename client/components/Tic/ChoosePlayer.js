@@ -14,14 +14,17 @@ const styles = {
     }
   },
   header: {
-    color: '#025aa5'
+    color: '#025aa5',
+    padding: 0,
+    margin: 0
   }
 }
 
 let ChoosePlayer = (props) => {
   return (
-    <div style={styles.base}>
-      <h1 style={styles.header}>Choose your player:</h1>
+    <div style={styles.base} className={props.animate}>
+      <h1 style={styles.header}>Choose your</h1><br/>
+      <h1 style={styles.header}>Tic-Tac-Toe player:</h1>
       <button value="X" onClick={props.onClick} className="btn btn-success" style={styles.btn} key="x">X</button>
       <button value="O" onClick={props.onClick} className="btn btn-info" style={styles.btn} key="y">O</button>
     </div>
