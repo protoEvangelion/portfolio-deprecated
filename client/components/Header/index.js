@@ -37,6 +37,9 @@ const Header = () => (
 		<Link to="/twitch">
 			<Item src={require('./twitch.png')} />
 		</Link>
+		<Link to="/tictactoe">
+			<Item src={require('./tic.png')} />
+		</Link>
 	</div>
 )
 

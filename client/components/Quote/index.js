@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import QuoteDetail from './QuoteDetail'
 import PumpBtn from './PumpBtn'
 import Tweet from './Tweet'
+
 // import urls from './img_urls'
 import { fetchQuote } from '../../actions/fetchQuote'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import './style.css'
+
 class Quote extends Component {
 	render() {
 		return (
