@@ -22,14 +22,22 @@ class Board extends Component {
       currentPlayer: '',
       humanPlayer: '',
       AIPlayer: '',
-      showPlayerChoice: true,
-      AIMoves: 0,
-      terminal: false
+      showPlayerChoice: true
     }
     this.onPlayerClick = this.onPlayerClick.bind(this)
   }
   componentDidUpdate() {
     this.calculateWinner(this.state.squares)
+  }
+  AIMove(spaceTaken, humanPlayer, AIPlayer) {
+    const squares = this.state.squares.slice()
+    if(spaceTaken === 0 || spaceTaken === 2 || spaceTaken === 6 || spaceTaken === 8) {
+      console.log('corner taken')
+    } else if(spaceTaken === 4) {
+        console.log('middle taken')
+    } else {
+        console.log('edge taken')
+    }
   }
   handleClick(i) {
     const squares = this.state.squares.slice()
@@ -40,6 +48,7 @@ class Board extends Component {
         squares: squares,
         currentPlayer: currentPlayer === 'X' ? 'O' : 'X'
       })
+      this.AIMove(i,this.state.humanPlayer, this.state.AIPlayer)
     } else {
         alert('Please choose a different space :)')
     }
@@ -50,17 +59,10 @@ class Board extends Component {
     wins.forEach((arr) => {
       if(taken[arr[0]]==='X' && taken[arr[1]]==='X' && taken[arr[2]]==='X') {
           console.log('x won')
-          if(this.state.terminal === false) {
-            this.setState({terminal: true})
-          }
       } else if(taken[arr[0]]==='O' && taken[arr[1]]==='O' && taken[arr[2]]==='O') {
           console.log('o won')
-          if(this.state.terminal === false) {
-            this.setState({terminal: true})
-          }
       }
     })
-
   }
   onPlayerClick(e) {
     let value = e.target.value
