@@ -4,6 +4,7 @@ import Square from './Square'
 import Player from './Player'
 import ChoosePlayer from './ChoosePlayer'
 import Replay from './Replay'
+import { block, blockFork, win, takeEdge } from './aiFunctions'
 
 const styles = {
   container: {
@@ -22,35 +23,79 @@ class Board extends Component {
       currentPlayer: '',
       humanPlayer: '',
       AIPlayer: '',
-      showPlayerChoice: true
+      showPlayerChoice: true,
+      moveCount: 0,
+      gameType: ''
     }
     this.onPlayerClick = this.onPlayerClick.bind(this)
   }
   componentDidUpdate() {
     this.calculateWinner(this.state.squares)
   }
-  AIMove(spaceTaken, humanPlayer, AIPlayer) {
+  handleClick(i) {
     const squares = this.state.squares.slice()
-    if(spaceTaken === 0 || spaceTaken === 2 || spaceTaken === 6 || spaceTaken === 8) {
-      console.log('corner taken')
+    if(squares[i] === null) {
+      setTimeout(this.AIMove(i, this.state.humanPlayer, this.state.AIPlayer), 3000)
+    } else {
+        alert('Please choose a different space :)')
+    }
+  }
+  AIMove(spaceTaken, humanPlayer, AIPlayer) {
+    let squares = this.state.squares.slice()
+    let count = this.state.moveCount
+
+    //first 3 ifs initialize the gametype
+    if(count === 0 && (spaceTaken === 0 || spaceTaken === 2 || spaceTaken === 6 || spaceTaken === 8)) {
+        console.log('corner taken')
+        squares[spaceTaken] = humanPlayer
+        squares[4] = AIPlayer
+        this.setState({
+          squares: squares,
+          currentPlayer: humanPlayer,
+          moveCount: count + 1,
+          gameType: 'cornerFirst'
+        })
+
     } else if(spaceTaken === 4) {
         console.log('middle taken')
     } else {
         console.log('edge taken')
     }
-  }
-  handleClick(i) {
-    const squares = this.state.squares.slice()
-    if(squares[i] === null) {
-      let currentPlayer = this.state.currentPlayer
-      squares[i] = currentPlayer
-      this.setState({
-        squares: squares,
-        currentPlayer: currentPlayer === 'X' ? 'O' : 'X'
-      })
-      this.AIMove(i,this.state.humanPlayer, this.state.AIPlayer)
-    } else {
-        alert('Please choose a different space :)')
+
+    //handle games where human takes corner spot first
+    if(this.state.gameType == 'cornerFirst') {
+      squares[spaceTaken] = humanPlayer
+
+      if(typeof win(squares, humanPlayer, AIPlayer) === 'number') {
+          squares[win(squares, humanPlayer, AIPlayer)] = AIPlayer
+          this.setState({
+            squares: squares,
+            moveCount: count + 1
+          })
+          return
+      } else if(typeof block(squares, humanPlayer, AIPlayer) === 'number') {
+          squares[block(squares, humanPlayer, AIPlayer)] = AIPlayer
+          this.setState({
+            squares: squares,
+            moveCount: count + 1
+          })
+          return
+      } else if(typeof takeEdge(squares, humanPlayer) === 'number') {
+          squares[takeEdge(squares, humanPlayer)] = AIPlayer
+          this.setState({
+            squares: squares,
+            moveCount: count + 1
+          })
+          return
+      } else {
+         squares[blockFork(squares, humanPlayer)] = AIPlayer
+         this.setState({
+           squares: squares,
+           moveCount: count + 1
+         })
+         return
+      }
+
     }
 
   }
