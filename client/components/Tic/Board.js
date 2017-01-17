@@ -4,7 +4,8 @@ import Square from './Square'
 import Player from './Player'
 import ChoosePlayer from './ChoosePlayer'
 import Replay from './Replay'
-import { block, blockFork, win, takeEdge } from './aiFunctions'
+import Modal from './Modal'
+import { block, blockFork, win, takeEdge, takeOpen, takeCorner } from './aiFunctions'
 
 const styles = {
   container: {
@@ -14,6 +15,9 @@ const styles = {
     marginTop: '-200px'
   }
 }
+
+let winner = ''
+console.log(winner)
 
 class Board extends Component {
   constructor(props) {
@@ -25,17 +29,45 @@ class Board extends Component {
       AIPlayer: '',
       showPlayerChoice: true,
       moveCount: 0,
-      gameType: ''
+      gameType: '',
+      winner: '',
+      src: ''
     }
     this.onPlayerClick = this.onPlayerClick.bind(this)
   }
-  componentDidUpdate() {
-    this.calculateWinner(this.state.squares)
+  calculateWinner(taken) {
+      const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+      wins.forEach((arr) => {
+        if(taken[arr[0]]==='X' && taken[arr[1]]==='X' && taken[arr[2]]==='X') {
+          let src = this.state.humanPlayer === 'O'
+            ? 'https://goo.gl/nFFA75'
+            : 'https://goo.gl/2AJg6p'
+            this.setState({
+              winner: 'X wins!!!',
+              src: src
+            })
+        } else if(taken[arr[0]]==='O' && taken[arr[1]]==='O' && taken[arr[2]]==='O') {
+            let src = this.state.humanPlayer === 'O'
+              ? 'https://goo.gl/2AJg6p'
+              : 'https://goo.gl/nFFA75'
+            this.setState({
+              winner: 'O wins!!!',
+              src: src
+            })
+        }
+      })
+
+      if((taken[0] && taken[1] && taken[2] && taken[3] && taken[4] && taken[5] && taken[6] && taken[7] && taken[8]) !== null) {
+        this.setState({
+          winner: "Cat's Game!!!",
+          src: 'https://goo.gl/Fhsbdv'
+        })
+      }
   }
   handleClick(i) {
     const squares = this.state.squares.slice()
     if(squares[i] === null) {
-      setTimeout(this.AIMove(i, this.state.humanPlayer, this.state.AIPlayer), 3000)
+      this.AIMove(i, this.state.humanPlayer, this.state.AIPlayer)
     } else {
         alert('Please choose a different space :)')
     }
@@ -44,70 +76,103 @@ class Board extends Component {
     let squares = this.state.squares.slice()
     let count = this.state.moveCount
 
+    const initialize = (gameType) => {
+      this.setState({
+        squares: squares,
+        currentPlayer: humanPlayer,
+        moveCount: count + 1,
+        gameType: gameType
+      })
+    }
+
+    const setBoard = (squares) => {
+      this.calculateWinner(squares)
+      this.setState({
+        squares: squares,
+        moveCount: count + 1
+      })
+    }
+
     //first 3 ifs initialize the gametype
     if(count === 0 && (spaceTaken === 0 || spaceTaken === 2 || spaceTaken === 6 || spaceTaken === 8)) {
-        console.log('corner taken')
         squares[spaceTaken] = humanPlayer
         squares[4] = AIPlayer
-        this.setState({
-          squares: squares,
-          currentPlayer: humanPlayer,
-          moveCount: count + 1,
-          gameType: 'cornerFirst'
-        })
+        initialize('cornerFirst')
 
-    } else if(spaceTaken === 4) {
-        console.log('middle taken')
-    } else {
-        console.log('edge taken')
+    } else if(count=== 0 && spaceTaken === 4) {
+        squares[spaceTaken] = humanPlayer
+        squares[0] = AIPlayer
+        initialize('middleFirst')
+
+    } else if(count===0){
+        squares[spaceTaken] = humanPlayer
+        squares[4] = AIPlayer
+        initialize('edgeFirst')
     }
 
     //handle games where human takes corner spot first
     if(this.state.gameType == 'cornerFirst') {
       squares[spaceTaken] = humanPlayer
-
       if(typeof win(squares, humanPlayer, AIPlayer) === 'number') {
           squares[win(squares, humanPlayer, AIPlayer)] = AIPlayer
-          this.setState({
-            squares: squares,
-            moveCount: count + 1
-          })
-          return
+          setBoard(squares)
       } else if(typeof block(squares, humanPlayer, AIPlayer) === 'number') {
           squares[block(squares, humanPlayer, AIPlayer)] = AIPlayer
-          this.setState({
-            squares: squares,
-            moveCount: count + 1
-          })
-          return
+          setBoard(squares)
       } else if(typeof takeEdge(squares, humanPlayer) === 'number') {
           squares[takeEdge(squares, humanPlayer)] = AIPlayer
-          this.setState({
-            squares: squares,
-            moveCount: count + 1
-          })
-          return
+          setBoard(squares)
       } else {
          squares[blockFork(squares, humanPlayer)] = AIPlayer
-         this.setState({
-           squares: squares,
-           moveCount: count + 1
-         })
-         return
+         setBoard(squares)
       }
-
     }
 
-  }
-  calculateWinner(taken) {
-    const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
-    wins.forEach((arr) => {
-      if(taken[arr[0]]==='X' && taken[arr[1]]==='X' && taken[arr[2]]==='X') {
-          console.log('x won')
-      } else if(taken[arr[0]]==='O' && taken[arr[1]]==='O' && taken[arr[2]]==='O') {
-          console.log('o won')
+    //handles game where human takes middleFirst
+    if(this.state.gameType == 'middleFirst') {
+      squares[spaceTaken] = humanPlayer
+      if(typeof win(squares, humanPlayer, AIPlayer) === 'number') {
+          squares[win(squares, humanPlayer, AIPlayer)] = AIPlayer
+          setBoard()
+      } else if(typeof block(squares, humanPlayer, AIPlayer) === 'number') {
+          squares[block(squares, humanPlayer, AIPlayer)] = AIPlayer
+          setBoard()
+      } else if(typeof blockFork(squares, humanPlayer) === 'number') {
+          squares[blockFork(squares, humanPlayer)] = AIPlayer
+          setBoard()
+      } else if(typeof takeCorner(squares, humanPlayer) === 'number') {
+          squares[takeCorner(squares, humanPlayer)] = AIPlayer
+          setBoard()
+      } else {
+          squares[takeOpen(squares, humanPlayer)] = AIPlayer
+          setBoard()
       }
-    })
+    }
+
+    //handle game where human takes edgeFirst
+    if(this.state.gameType == 'edgeFirst') {
+      squares[spaceTaken] = humanPlayer
+      if(count===1 && ((squares[3] === humanPlayer && squares[5] === humanPlayer) || (squares[1] === humanPlayer && squares[7] === humanPlayer))) {
+          squares[0] = AIPlayer
+          setBoard()
+      } else if(typeof win(squares, humanPlayer, AIPlayer) === 'number') {
+          squares[win(squares, humanPlayer, AIPlayer)] = AIPlayer
+          setBoard()
+      } else if(typeof block(squares, humanPlayer, AIPlayer) === 'number') {
+          squares[block(squares, humanPlayer, AIPlayer)] = AIPlayer
+          setBoard()
+      } else if(typeof blockFork(squares, humanPlayer) === 'number') {
+          squares[blockFork(squares, humanPlayer)] = AIPlayer
+          setBoard()
+      } else if(typeof takeCorner(squares, humanPlayer) === 'number') {
+          squares[takeCorner(squares, humanPlayer)] = AIPlayer
+          setBoard()
+      } else {
+          squares[takeOpen(squares, humanPlayer)] = AIPlayer
+          setBoard()
+      }
+    }
+
   }
   onPlayerClick(e) {
     let value = e.target.value
@@ -151,6 +216,12 @@ class Board extends Component {
       : ''
     return replay
   }
+  renderModal() {
+    const stuff = this.state.winner !== ''
+      ? <Modal winner={this.state.winner} src={this.state.src}/>
+      : ''
+    return stuff
+  }
   render() {
     return (
       <div>
@@ -159,6 +230,7 @@ class Board extends Component {
         </div>
         <div style={styles.shiftUp}>
           {this.renderCurrent()}
+          {this.renderModal()}
           <div style={styles.container}>
             {this.renderSquare(0)}
             {this.renderSquare(1)}

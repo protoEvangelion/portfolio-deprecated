@@ -1,6 +1,5 @@
 
 export let takeEdge = (squares, human) => {
-  console.log('taking edge')
   if(squares[1] === null && squares[7] !== human) {
       return 1
   } else if(squares[5] === null && squares[3] !== human) {
@@ -12,8 +11,49 @@ export let takeEdge = (squares, human) => {
   }
 }
 
+export let takeCorner = (squares, human) => {
+  if(squares[0] === null) {
+      return 0
+  } else if(squares[2] === null) {
+      return 2
+  } else if(squares[8] === null) {
+      return 8
+  } else if(squares[6] === null) {
+      return 6
+  }
+}
+
+export let takeOpen = (squares, human) => {
+  if(squares[0] === null) {
+    return 0
+  }
+  if(squares[1] === null) {
+    return 1
+  }
+  if(squares[2] === null) {
+    return 2
+  }
+  if(squares[3] === null) {
+    return 3
+  }
+  if(squares[4] === null) {
+    return 4
+  }
+  if(squares[5] === null) {
+    return 5
+  }
+  if(squares[6] === null) {
+    return 6
+  }
+  if(squares[7] === null) {
+    return 7
+  }
+  if(squares[8] === null) {
+    return 8
+  }
+}
+
 export let win = (squares, human, AI) => {
-  console.log('winning')
   if(squares[0] === AI && squares[1] === AI && squares[2] === null ) {
     return 2
   }
@@ -91,7 +131,6 @@ export let win = (squares, human, AI) => {
 }
 
 export let block = (squares, human, AI) => {
-  console.log('blocking')
   if(squares[0] === human && squares[1] === human && squares[2] === null) {
     return 2
   }
@@ -144,7 +183,6 @@ export let block = (squares, human, AI) => {
     return 2
   }
   if(squares[2] === human && squares[8] ===human && squares[5] === null) {
-    console.log('entered')
     return 5
   }
   if(squares[0] === human && squares[4] ===human && squares[8] === null) {
@@ -170,14 +208,13 @@ export let block = (squares, human, AI) => {
 }
 
 export let blockFork = (squares, human) => {
-  console.log('blocking Fork')
-  if(squares[1] === human && squares[5] === human) {
+  if(squares[1] === human && squares[5] === human && squares[2] === null) {
       return 2
-  } else if(squares[5] === human && squares[7] !== human) {
+  } else if(squares[5] === human && squares[7] === human && squares[8] === null) {
       return 8
-  } else if(squares[7] === human && squares[3] !== human) {
+  } else if(squares[7] === human && squares[3] === human && squares[6] === null) {
       return 6
-  } else if(squares[3] === human && squares[1] !== human) {
+  } else if(squares[3] === human && squares[1] === human && squares[0] === null) {
       return 0
   } else {
       return
