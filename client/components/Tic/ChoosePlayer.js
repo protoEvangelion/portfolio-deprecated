@@ -8,7 +8,7 @@ const styles = {
   btn: {
     margin: '30px',
     padding: '10px 20px',
-    fontSize: '2em',
+    fontSize: '1em',
     ':hover': {
       cursor: 'pointer',
     }
@@ -16,7 +16,8 @@ const styles = {
   header: {
     color: '#025aa5',
     padding: 0,
-    margin: 0
+    margin: 0,
+    fontSize: '2em'
   }
 }
 

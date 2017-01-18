@@ -133,19 +133,19 @@ class Board extends Component {
       squares[spaceTaken] = humanPlayer
       if(typeof win(squares, humanPlayer, AIPlayer) === 'number') {
           squares[win(squares, humanPlayer, AIPlayer)] = AIPlayer
-          setBoard()
+          setBoard(squares)
       } else if(typeof block(squares, humanPlayer, AIPlayer) === 'number') {
           squares[block(squares, humanPlayer, AIPlayer)] = AIPlayer
-          setBoard()
+          setBoard(squares)
       } else if(typeof blockFork(squares, humanPlayer) === 'number') {
           squares[blockFork(squares, humanPlayer)] = AIPlayer
-          setBoard()
+          setBoard(squares)
       } else if(typeof takeCorner(squares, humanPlayer) === 'number') {
           squares[takeCorner(squares, humanPlayer)] = AIPlayer
-          setBoard()
+          setBoard(squares)
       } else {
           squares[takeOpen(squares, humanPlayer)] = AIPlayer
-          setBoard()
+          setBoard(squares)
       }
     }
 
@@ -154,22 +154,22 @@ class Board extends Component {
       squares[spaceTaken] = humanPlayer
       if(count===1 && ((squares[3] === humanPlayer && squares[5] === humanPlayer) || (squares[1] === humanPlayer && squares[7] === humanPlayer))) {
           squares[0] = AIPlayer
-          setBoard()
+          setBoard(squares)
       } else if(typeof win(squares, humanPlayer, AIPlayer) === 'number') {
           squares[win(squares, humanPlayer, AIPlayer)] = AIPlayer
-          setBoard()
+          setBoard(squares)
       } else if(typeof block(squares, humanPlayer, AIPlayer) === 'number') {
           squares[block(squares, humanPlayer, AIPlayer)] = AIPlayer
-          setBoard()
+          setBoard(squares)
       } else if(typeof blockFork(squares, humanPlayer) === 'number') {
           squares[blockFork(squares, humanPlayer)] = AIPlayer
-          setBoard()
+          setBoard(squares)
       } else if(typeof takeCorner(squares, humanPlayer) === 'number') {
           squares[takeCorner(squares, humanPlayer)] = AIPlayer
-          setBoard()
+          setBoard(squares)
       } else {
           squares[takeOpen(squares, humanPlayer)] = AIPlayer
-          setBoard()
+          setBoard(squares)
       }
     }
 

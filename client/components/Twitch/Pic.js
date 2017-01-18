@@ -10,7 +10,10 @@ let styles = {
   paddingTop: 0,
   marginTop: 0,
   marginRight: '15px',
-  minHeight: '100%'
+  minHeight: '150px',
+  minWidth: '269.33px',
+  maxWidth: '269.33px',
+  maxHeight: '150px'
 }
 
 let Pic = (props) => {
