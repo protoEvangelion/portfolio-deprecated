@@ -1,30 +1,21 @@
 import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-
-import { Router, browserHistory } from 'react-router'
-import reducers from './reducers'
-import routes from './router/routes.js'
-import promise from 'redux-promise'
-
+import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-
-const store = createStore(
-	reducers,
-	applyMiddleware(promise)
-)
-
-const root = document.getElementById('root')
+import ReduxProvider from './components/ReduxProvider'
 
 const renderApp = () => {
 	render(
 		<AppContainer>
-			<Provider store={store} >
-				<Router history={browserHistory} routes={routes} />
-			</Provider>
+			<ReduxProvider/>
 		</AppContainer>
-	,	root)
+	,	document.getElementById('root'))
 }
 
 renderApp()
+
+if (module.hot) {
+	module.hot.accept('./components/ReduxProvider', () => {
+		const NextApp = require('./components/ReduxProvider').default;
+		renderApp()
+	})
+}

@@ -9,25 +9,14 @@ const http = require('http')
 const url = require('url')
 const axios = require('axios')
 
-//hot reloading functionality
-const webpack = require('webpack')
-const webpackConfig = require('./webpack.config.dev')
-const compiler = webpack(webpackConfig)
-
 //APIs
 const quoteCall = require('./API/quoteCall.js')
 const wikiCall = require('./API/wikiCall.js')
 const weatherCall = require('./API/weatherCall.js')
 
 //middlewares
-app.use(require('webpack-dev-middleware')(compiler, {
-		noInfo: true,
-		publicPath: webpackConfig.output.publicPath
-	}))
-	.use(require('webpack-hot-middleware')(compiler))
-	.use(favicon(__dirname + '/dist/favicon.ico'))
-	.use(bodyParser.json())
-
+app.use(favicon(__dirname + '/dist/favicon.ico'))
+	 .use(bodyParser.json())
 
 //routing
 app.get('/api', (req, res) => {
@@ -43,12 +32,27 @@ app.get('/api', (req, res) => {
 		  })
 	})
 
-app.get('*', (req, res) => {
-		res.sendFile(path.join(__dirname, './index.html'))
-	})
+//Webpack hot reloading NOT PRODUCTION
+if(process.env.NODE_ENV !== 'production') {
+	const webpack = require('webpack')
+	const webpackConfig = require('./webpack.config.dev')
+	const compiler = webpack(webpackConfig)
+	app.use(require('webpack-dev-middleware')(compiler, {
+		 noInfo: true,
+		 publicPath: webpackConfig.output.publicPath
+	 }))
+	app.use(require('webpack-hot-middleware')(compiler))
+} else {
+//Production no webpack
+		app.use(express.static('dist'))
+		app.get('*', (req, res) => {
+			res.sendFile(path.join(__dirname, 'dist/index.html'))
+		})
+}
 
 //listener
-app.listen(3000, (err) => {
-  let details = 'Listening at http://localhost:3000/'
+app.listen(process.env.PORT || 3000, (err) => {
+	let port = process.env.PORT || 3000
+	let details = `Listening at http://localhost:${port}/`
   err ? console.error(err) : console.log(details)
 })

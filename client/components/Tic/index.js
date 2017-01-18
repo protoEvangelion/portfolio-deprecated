@@ -4,7 +4,7 @@ import Board from './Board'
 
 const styles = {
   margin: '30px',
-  padding: '30px'
+  padding: '30px',
 }
 
 class App extends Component {

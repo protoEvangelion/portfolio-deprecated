@@ -1,5 +1,53 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: [
+		'react-hot-loader/patch',
+		'webpack-hot-middleware/client',
+    './client/index.js'
+  ],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+		publicPath: '/'
+  },
+	module: {
+    rules: [
+	    {
+	      test: /\.js$/,
+	      use: 'babel-loader',
+				exclude: /node_modules/
+	    },
+			{
+				test: /\.css$/,
+				use: ['style-loader','css-loader'],
+			},
+			{
+	    	test: /\.(jpe?g|png|gif|svg)$/,
+	    	use: [
+					{
+						loader: 'url-loader',
+						options: { limit: 40000}
+					},
+					'image-webpack-loader'
+				]
+	    }
+    ]
+  },
+  plugins: [
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
+		new HtmlWebpackPlugin({
+      template: 'client/index.html'
+    }),
+		new webpack.NamedModulesPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
+  ],
+}
 
 var VENDOR_LIBS = [
 	'animate.css',
@@ -44,54 +92,3 @@ var VENDOR_LIBS = [
 	'webpack-dev-middleware',
 	'webpack-hot-middleware'
 ];
-
-module.exports = {
-  entry: [
-		'react-hot-loader/patch',
-		'webpack-hot-middleware/client?reload=true',
-    './client/index'
-  ],
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-		publicPath: '/dist/'
-  },
-  plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NamedModulesPlugin(),
-		new webpack.NoEmitOnErrorsPlugin(),
-  ],
-	devServer: {
-    hot: true,
-    // enable HMR on the server
-
-    contentBase: path.join(__dirname, 'dist'),
-    // match the output path
-
-    publicPath: '/dist/'
-    // match the output `publicPath`
-  },
-  module: {
-    rules: [
-	    {
-	      test: /\.js$/,
-	      use: ['babel-loader', 'webpack-module-hot-accept'],
-				exclude: /node_modules/
-	    },
-			{
-				test: /\.css$/,
-				use: ['style-loader','css-loader'],
-			},
-			{
-	    	test: /\.(jpe?g|png|gif|svg)$/,
-	    	use: [
-					{
-						loader: 'url-loader',
-						options: { limit: 40000}
-					},
-					'image-webpack-loader'
-				]
-	    }
-    ]
-  }
-}

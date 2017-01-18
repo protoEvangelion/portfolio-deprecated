@@ -3,8 +3,8 @@ import Radium from 'radium'
 
 const styles = {
   border: '5px solid black',
-  width: '100px',
-  height: '100px',
+  width: '75px',
+  height: '75px',
   display: 'inline-block',
   textAlign: 'center',
   fontSize: '3em',

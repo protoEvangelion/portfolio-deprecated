@@ -8,8 +8,14 @@ import Modal from './Modal'
 import { block, blockFork, win, takeEdge, takeOpen, takeCorner } from './aiFunctions'
 
 const styles = {
+  board: {
+    maxWidth: '100%',
+    maxHeight: '100%',
+    height: 'auto',
+    widht: 'auto'
+  },
   container: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   shiftUp: {
     marginTop: '-200px'

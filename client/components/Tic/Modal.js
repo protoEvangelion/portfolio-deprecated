@@ -27,6 +27,8 @@ let styles = {
     padding: '20px',
     border: '1px solid #888',
     width: '80%',
+    height: '80%',
+    maxHeight: '80%',
   },
   close: {
     color: '#aaa',
@@ -40,17 +42,20 @@ let styles = {
     }
   },
   text: {
-    marginTop: '30px',
     paddingLeft: '50px',
-    fontFamily: "'Press Start 2P', 'cursive'"
+    fontFamily: "'Press Start 2P', 'cursive'",
+    display: 'block',
+    fontSize: '1em',
+    maxWidth: '100%'
   },
   image: {
-    marginTop: '50px',
+    height: '60%'
   },
   button: {
-    marginTop: '50px',
-    fontSize: '40px',
-    cursor: 'pointer'
+    fontSize: '.5em',
+    cursor: 'pointer',
+    float: 'right',
+    verticalAlign: 'bottom'
   }
 }
 

@@ -3,7 +3,7 @@ import Radium from 'radium'
 
 const styles = {
   base: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   btn: {
     margin: '30px',
@@ -17,7 +17,7 @@ const styles = {
     color: '#025aa5',
     padding: 0,
     margin: 0,
-    fontSize: '2em'
+    fontSize: '1.5em'
   }
 }
 

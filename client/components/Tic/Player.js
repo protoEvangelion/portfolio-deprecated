@@ -4,16 +4,16 @@ import Radium from 'radium'
 const styles = {
   text: {
     fontFamily: "'Press Start 2P', 'cursive'",
-    marginBottom: '40px',
-    lineHeight: '75px'
+    lineHeight: '50px',
+    fontSize: '1em'
   },
   container: {
     background: 'grey',
     color: 'red',
     borderRadius: '20px',
-    width: '200px',
-    height: '75px',
-    margin: '0 auto 40px auto'
+    width: '150px',
+    height: '50px',
+    margin: '0 auto 10px auto'
   }
 }
 

@@ -6,9 +6,8 @@ const styles = {
     textAlign: 'center'
   },
   btn: {
-    margin: '30px',
-    padding: '15px',
-    fontSize: '2em',
+    margin: '15px',
+    fontSize: '1em',
     ':hover': {
       cursor: 'pointer',
     }
