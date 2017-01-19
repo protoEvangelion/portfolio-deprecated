@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
 import Header from './components/Header'
 
 //components
@@ -11,9 +11,11 @@ import Weather from './components/Weather'
 import Twitch from './components/Twitch'
 import Tic from './components/Tic'
 import NotFound from './components/NotFound'
+import Calc from './components/Calc'
 
 //react router setup
 import { BrowserRouter, Match, Miss } from 'react-router'
+import Routes from './routes'
 
 //redux setup
 import { Provider } from 'react-redux'
@@ -21,26 +23,14 @@ import { createStore, applyMiddleware } from 'redux'
 import reducers from './reducers'
 import promise from 'redux-promise'
 
-function configureStore() {
-	const store = createStore(
-		reducers,
-		applyMiddleware(promise)
-	)
+const store = createStore(
+	reducers,
+	applyMiddleware(promise)
+)
 
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers/index');
-      store.replaceReducer(nextRootReducer);
-    });
-  }
-  return store;
-}
-
-
-export const Root = () => {
+const Root = () => {
 	return (
-		<Provider store={configureStore()} >
+		<Provider store={store} >
 			<BrowserRouter>
 				<div>
 					<Header />
@@ -50,6 +40,7 @@ export const Root = () => {
 					<Match pattern="/weather" component={Weather} />
 					<Match pattern="/twitch" component={Twitch} />
 					<Match pattern="/tictactoe" component={Tic} />
+					<Match pattern="/calc" component={Calc} />
 					<Miss pattern="*" component={NotFound} />
 				</div>
 			</BrowserRouter>
@@ -57,4 +48,7 @@ export const Root = () => {
 	)
 }
 
-if (!module.hot) render(<Root/>, document.getElementById('root'))
+ReactDOM.render (
+		<Root/>,
+		document.getElementById('root')
+)

@@ -2,23 +2,18 @@
 const express = require('express')
 const app = express()
 
-import path from 'path'
+const path = require('path')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
-const http = require('http')
 const url = require('url')
 const axios = require('axios')
-
-//APIs
-const quoteCall = require('./API/quoteCall.js')
-const wikiCall = require('./API/wikiCall.js')
-const weatherCall = require('./API/weatherCall.js')
 
 //middlewares
 app.use(favicon(__dirname + '/dist/favicon.ico'))
 	 .use(bodyParser.json())
+	 .use(express.static('dist'))
 
-//routing
+//Proxy Server for making requests from client
 app.get('/api', (req, res) => {
 		const newUrl = req.originalUrl.slice(9)
 		console.log('here is the request', newUrl)
@@ -32,25 +27,21 @@ app.get('/api', (req, res) => {
 		  })
 	})
 
-//server side rendering with React Router 4
+app.use(express.static('dist'))
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/index.html'))
+})
 
-
-//Webpack hot reloading NOT PRODUCTION
-if(process.env.NODE_ENV !== 'production') {
-	const webpack = require('webpack')
-	const webpackConfig = require('./webpack/webpack.config.dev')
-	const compiler = webpack(webpackConfig)
-	app.use(require('webpack-dev-middleware')(compiler, {
-		 noInfo: true,
-		 publicPath: webpackConfig.output.publicPath
-	 }))
-	app.use(require('webpack-hot-middleware')(compiler))
+if (process.env.NODE_ENV !== 'production') {
+  const webpackMiddleware = require('webpack-dev-middleware');
+  const webpack = require('webpack');
+  const webpackConfig = require('./webpack.config.js');
+  app.use(webpackMiddleware(webpack(webpackConfig)));
 } else {
-//Production no webpack
-		app.use(express.static('dist'))
-		app.get('*', (req, res) => {
-			res.sendFile(path.join(__dirname, 'dist/index.html'))
-		})
+	  app.use(express.static('dist'));
+	  app.get('*', (req, res) => {
+	    res.sendFile(path.join(__dirname, 'dist/index.html'));
+	  });
 }
 
 //listener

@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "my mern portfolio website",
   "scripts": {
-    "start": "SET NODE_ENV=development & nodemon --exec babel-node server.js --ignore client/ --ignore node_modules/",
-    "build": "babel server.js -d dist --presets es2015,stage-2",
-    "serve": "node dist/server.js",
+    "start": "SET NODE_ENV=development & nodemon server.js --ignore client/ --ignore node_modules/",
+    "build": "NODE_ENV=production npm run clean && webpack -p",
+    "serve": "webpack-dev-server",
     "lint": "eslint src"
   },
   "author": "Ryan Garant",
