@@ -25,14 +25,14 @@ const Item = styled.div`
 
 const Header = () => (
 	<div style={{textAlign: 'center'}}>
-		<Link to="/quotepump">
-			<Item src={require('./quotePump.png')} />
-		</Link>
 		<Link to="/wikiViewer">
-			<Item src={require('./randomWiki.png')} />
+			<Item src={require('./Wiki.png')} />
 		</Link>
 		<Link to="/weather">
 			<Item src={require('./weather.png')} />
+		</Link>
+		<Link to="/quotepump">
+			<Item src={require('./quotePump.png')} />
 		</Link>
 		<Link to="/twitch">
 			<Item src={require('./twitch.png')} />

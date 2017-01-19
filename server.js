@@ -35,7 +35,7 @@ app.get('/api', (req, res) => {
 //Webpack hot reloading NOT PRODUCTION
 if(process.env.NODE_ENV !== 'production') {
 	const webpack = require('webpack')
-	const webpackConfig = require('./webpack.config.dev')
+	const webpackConfig = require('./webpack/webpack.config.dev')
 	const compiler = webpack(webpackConfig)
 	app.use(require('webpack-dev-middleware')(compiler, {
 		 noInfo: true,
