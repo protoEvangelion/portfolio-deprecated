@@ -2,7 +2,7 @@
 const express = require('express')
 const app = express()
 
-const path = require('path')
+import path from 'path'
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const http = require('http')
@@ -31,6 +31,9 @@ app.get('/api', (req, res) => {
 		    console.log(error)
 		  })
 	})
+
+//server side rendering with React Router 4
+
 
 //Webpack hot reloading NOT PRODUCTION
 if(process.env.NODE_ENV !== 'production') {
