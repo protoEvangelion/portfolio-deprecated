@@ -2,10 +2,15 @@ import React from 'react'
 import Radium from 'radium'
 
 const styles = {
-  width: '300px',
-  height: '100px',
+  width: '260px',
+  height: '50px',
   background: '#afada1',
-  font: 'black'
+  fontColor: 'black',
+  lineHeight: '50px',
+  textAlign: 'right',
+  paddingRight: '20px',
+  fontSize: '1.4em',
+  marginBottom: '10px'
 }
 
 let Display = (props) => {
@@ -17,7 +22,7 @@ let Display = (props) => {
 }
 
 Display.propTypes = {
-  currentDisplay: React.PropTypes.number
+  currentDisplay: React.PropTypes.string
 }
 
 export default Display = Radium(Display)
