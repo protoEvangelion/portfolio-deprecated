@@ -18,14 +18,21 @@ const styles = {
 class Calc extends Component {
   constructor(props) {
     super(props)
-    this.state = {currentDisplay: '0' }
+    this.state = {
+      currentDisplay: '0',
+      previous: 0,
+      runningTotal: 0,
+      operator: false
+    }
+
     this.onNumClick = this.onNumClick.bind(this)
     this.onOperationClick = this.onOperationClick.bind(this)
   }
   onNumClick(value) {
-    if(this.state.currentDisplay === '0') {
+    if(this.state.currentDisplay === '0' || this.state.operator === true) {
         this.setState({
-          currentDisplay: `${value}`
+          currentDisplay: `${value}`,
+          operator: false
         })
     } else {
         this.setState({
@@ -34,9 +41,48 @@ class Calc extends Component {
     }
   }
   onOperationClick(value) {
+    let current = Number(this.state.currentDisplay)
+    let previous= Number(this.state.previous)
+    let runningTotal
+    let total
+
     switch(value) {
       case 'AC':
-        this.setState({currentDisplay: '0'})
+        this.setState({
+          currentDisplay: '0',
+          previous: '0',
+          operator: false,
+          runningTotal: 0
+        })
+        break
+      case 'CE':
+        console.log('CE')
+        break
+      case '%':
+        console.log('%')
+        break
+      case 'X':
+        console.log('X')
+        break
+      case '÷':
+        console.log('÷')
+        break
+      case '+':
+        console.log('+')
+        runningTotal = previous + this.state.runningTotal
+        this.setState({
+          currentDisplay: runningTotal.toString(),
+          previous: current.toString(),
+          runningTotal: runningTotal,
+          operator: true,
+        })
+        break
+      case '-':
+        console.log('-')
+        break
+      case '=':
+        console.log('=')
+        break
     }
   }
   render() {
