@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Radium from 'radium'
 import Display from './Display'
 import Button from './Button'
+import Back from './Back'
 
 const styles = {
   backdrop: {
@@ -11,7 +12,8 @@ const styles = {
     height: '350px',
     margin: '20px auto',
     textAlign: 'center',
-    borderRadius: '20px'
+    borderRadius: '20px',
+    boxShadow: '3px 5px 1px grey'
   }
 }
 
@@ -80,12 +82,17 @@ class Calc extends Component {
           runningTotal: 0
         })
         break
+
       case '⇐':
-        let val = this.state.currentDisplay.length === 1 ? '0' : this.state.currentDisplay.substring(0,this.state.currentDisplay.length-1)
+        let val = this.state.currentDisplay.length === 1
+          ? '0'
+          : this.state.currentDisplay
+              .substring(0,this.state.currentDisplay.length-1)
         this.setState({
           currentDisplay: val
         })
         break
+
       case '%':
         let twoRight = this.state.currentDisplay
           .slice(this.state.currentDisplay.length - 2)
@@ -96,15 +103,41 @@ class Calc extends Component {
         let percent = this.state.currentDisplay.length >= 2
           ? `${left}.${twoRight}`
           : `.0${this.state.currentDisplay}`
-        console.log(1+Number(percent))
-        let percentTotal = this.state.runningTotal * (1 + Number(percent))
 
-        this.setState({
-          currentDisplay: percentTotal.toString(),
-          runningTotal: percentTotal,
-          operator: false,
-          lastOp: '',
-        })
+        let setPercent = (percentTotal) => {
+          this.setState({
+            currentDisplay: percentTotal.toString(),
+            runningTotal: percentTotal,
+            operator: false,
+            lastOp: '',
+          })
+        }
+
+        if(this.state.lastOp === '+') {
+            let percentTotal = this.state.runningTotal * (1 + Number(percent))
+            setPercent(percentTotal)
+        } else if(this.state.lastOp === '-') {
+            let percentTotal = this.state.runningTotal *
+              (1 - Number(percent))
+            setPercent(percentTotal)
+        } else if(this.state.lastOp === 'X') {
+            let percentTotal = this.state.runningTotal *
+              Number(percent)
+            setPercent(percentTotal)
+        } else if(this.state.lastOp === '÷') {
+            let percentTotal = this.state.runningTotal /
+              Number(percent)
+            setPercent(percentTotal)
+        }
+        break
+      case '.':
+        if(this.state.currentDisplay.split(".").length > 1) {
+            alert('This # already has a decimal')
+        } else {
+            this.setState({
+              currentDisplay: `${this.state.currentDisplay}.`,
+            })
+        }
         break
       case 'X':
         set('X')
@@ -125,51 +158,53 @@ class Calc extends Component {
   }
   render() {
     return (
-      <div style={styles.backdrop}>
-        <Display currentDisplay={this.state.currentDisplay}/>
-        <Button color="#d35252" content="AC"
-          click={this.onOperationClick}/>
-        <Button color="#d35252" content="⇐" size="big"
-          click={this.onOperationClick}/>
-        <Button color="#4c4a4a" content="%"
-          click={this.onOperationClick}/>
-        <Button color="#4c4a4a" content="÷" height="40px"
-          click={this.onOperationClick} size="big"/><br/>
+      <Back src={require('./wood.svg')}>
+        <div style={styles.backdrop}>
+          <Display currentDisplay={this.state.currentDisplay}/>
+          <Button color="#d35252" content="AC"
+            click={this.onOperationClick}/>
+          <Button color="#d35252" content="⇐" size="big"
+            click={this.onOperationClick}/>
+          <Button color="#4c4a4a" content="%"
+            click={this.onOperationClick}/>
+          <Button color="#4c4a4a" content="÷" height="40px"
+            click={this.onOperationClick} size="big"/><br/>
 
-        <Button color="#4c4a4a" content={7}
-          click={this.onNumClick}/>
-        <Button color="#4c4a4a" content={8}
-          click={this.onNumClick}/>
-        <Button color="#4c4a4a" content={9}
-          click={this.onNumClick}/>
-        <Button color="#4c4a4a" content="X" height="40px"
-          click={this.onOperationClick}/><br/>
+          <Button color="#4c4a4a" content={7}
+            click={this.onNumClick}/>
+          <Button color="#4c4a4a" content={8}
+            click={this.onNumClick}/>
+          <Button color="#4c4a4a" content={9}
+            click={this.onNumClick}/>
+          <Button color="#4c4a4a" content="X" height="40px"
+            click={this.onOperationClick}/><br/>
 
-        <Button color="#4c4a4a" content={4}
-          click={this.onNumClick}/>
-        <Button color="#4c4a4a" content={5}
-          click={this.onNumClick}/>
-        <Button color="#4c4a4a" content={6}
-          click={this.onNumClick}/>
-        <Button color="#4c4a4a" content="-" height="40px"
-          click={this.onOperationClick} size="big"/><br/>
+          <Button color="#4c4a4a" content={4}
+            click={this.onNumClick}/>
+          <Button color="#4c4a4a" content={5}
+            click={this.onNumClick}/>
+          <Button color="#4c4a4a" content={6}
+            click={this.onNumClick}/>
+          <Button color="#4c4a4a" content="-" height="40px"
+            click={this.onOperationClick} size="big"/><br/>
 
-        <Button color="#4c4a4a" content={1}
-          click={this.onNumClick}/>
-        <Button color="#4c4a4a" content={2}
-          click={this.onNumClick}/>
-        <Button color="#4c4a4a" content={3}
-          click={this.onNumClick}/>
-        <Button color="#4c4a4a" content="+" type="plus"
-          click={this.onOperationClick} size="big"/>
+          <Button color="#4c4a4a" content={1}
+            click={this.onNumClick}/>
+          <Button color="#4c4a4a" content={2}
+            click={this.onNumClick}/>
+          <Button color="#4c4a4a" content={3}
+            click={this.onNumClick}/>
+          <Button color="#4c4a4a" content="+" type="plus"
+            click={this.onOperationClick} size="big"/>
 
-        <Button color="#4c4a4a" content={0} type="bottom"
-          click={this.onNumClick}/>
-        <Button color="#4c4a4a" content="." type="bottom"
-          click={this.onOperationClick} size="big"/>
-        <Button color="#4c4a4a" content="=" type="bottom"
-          click={this.onOperationClick} size="big"/>
-      </div>
+          <Button color="#4c4a4a" content={0} type="bottom"
+            click={this.onNumClick}/>
+          <Button color="#4c4a4a" content="." type="bottom"
+            click={this.onOperationClick} size="big"/>
+          <Button color="#4c4a4a" content="=" type="bottom"
+            click={this.onOperationClick} size="big"/>
+        </div>
+      </Back>
     )
   }
 }

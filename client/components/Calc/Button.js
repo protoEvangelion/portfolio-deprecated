@@ -7,6 +7,8 @@ let Button = ({ color, content, type, size, click}) => {
   const plusAlign = type === 'plus' ? '25px' : '0px'
   const fontSize = size === 'big' ? '2em' : '1em'
   const lineHeight = size === 'big' ? '30px' : '40px'
+  const boxShadow = color === '#d35252' ? '#7a0606' : 'black'
+
   let styles = {
     width: '51px',
     height: `${plusHeight}`,
@@ -19,7 +21,14 @@ let Button = ({ color, content, type, size, click}) => {
     float: 'left',
     cursor: 'pointer',
     background: `${color}`,
-    fontSize: `${fontSize}`
+    fontSize: `${fontSize}`,
+    boxShadow: `0px 5px 0px ${boxShadow}`,
+    top: '0px',
+    transition: 'all ease 0.1s',
+    ':active': {
+      boxShadow: `0 3px 0 ${boxShadow}`,
+      top: '3px'
+    }
   }
 
   return(
