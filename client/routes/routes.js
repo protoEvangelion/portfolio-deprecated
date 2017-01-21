@@ -10,6 +10,7 @@ import Twitch from '../components/Twitch'
 import Tic from '../components/Tic'
 import NotFound from '../components/NotFound'
 import Calc from '../components/Calc'
+import Pomodoro from '../components/Pomodoro'
 
 export default (
 	<Route path="/" component={App}>
@@ -20,6 +21,7 @@ export default (
 		<Route path="twitch" component={Twitch} />
 		<Route path="tictactoe" component={Tic} />
 		<Route path="calc" component={Calc} />
+		<Route path="pomodoro" component={Pomodoro} />
 		<Route path="*" component={NotFound} />
 	</Route>
 )
