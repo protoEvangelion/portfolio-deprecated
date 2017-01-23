@@ -1,5 +1,5 @@
 import React from 'react'
-import Radium from 'radium'
+import Radium, {StyleRoot} from 'radium'
 const tomato = require('file-loader!./tomato.svg')
 
 const styles = {
@@ -15,19 +15,34 @@ const styles = {
     top: '35%',
     fontFamily: '"Rock Salt", cursive',
     color: 'white',
+    fontSize: '30px',
+    '@media (max-width: 995px)': {
+      fontSize: '25px'
+    },
+    '@media (max-width: 830px)': {
+      fontSize: '20px'
+    },
+    '@media (max-width: 650px)': {
+      fontSize: '15px'
+    },
+    '@media (max-width: 450px)': {
+      fontSize: '13px'
+    }
   }
 }
 
 let Display = ({sessionTime, breakTime, seconds, initialized, type}) => {
   let display = initialized === 'yes'
     ? (
-      <div style={styles.container}>
-        <img src={require('./tomato.svg')}/>
-        <h2 style={styles.text}>
-          {type} <br/><br/>
-          {type === 'session' ? sessionTime : breakTime} m {seconds} s
-        </h2>
-      </div>
+      <StyleRoot>
+        <div style={styles.container}>
+          <img src={require('./tomato.svg')}/>
+          <h2 style={styles.text}>
+            {type} <br/><br/>
+            {type === 'session' ? sessionTime : breakTime} m {seconds} s
+          </h2>
+        </div>
+      </StyleRoot>
     )
     : <div></div>
   return (

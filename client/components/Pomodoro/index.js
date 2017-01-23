@@ -4,6 +4,9 @@ import IncDec from './IncDec'
 import Start from './Start'
 import Pause from './Pause'
 import Display from './Display'
+import Progress from './Progress'
+import Sound from './Sound'
+import Reset from './Reset'
 
 const styles = {
   container: {
@@ -30,7 +33,8 @@ class Pomodoro extends Component {
       seconds: 0,
       initialized: 'no',
       type: 'session',
-      paused: false
+      paused: false,
+      sound: 'STOPPED'
     }
     this.increment = this.increment.bind(this)
     this.decrement = this.decrement.bind(this)
@@ -70,57 +74,58 @@ class Pomodoro extends Component {
     }
   }
   check(constMinutes, tempMinutes) {
-    //check if minutes = 1
-    if(constMinutes === 1) {
-        return 1
-    } else {
-        return constMinutes
-    }
+    let val = constMinutes === 1 ? 1 : constMinutes
+    return val
   }
   countDown(paused) {
-    console.log('running')
-    if(this.state.paused === false) {
+    if(paused === false) {
       if(this.state.sessionMinutes === 0 && this.state.seconds === 0) {
           this.setState({
             type: 'break',
             sessionMinutes: this.check(this.state.sessionTime, this.state.sessionMinutes),
             seconds: 0,
+            sound: 'PLAYING'
           })
       } else if(this.state.breakMinutes === 0 && this.state.seconds === 0) {
           this.setState({
             type: 'session',
             breakMinutes: this.check(this.state.breakTime, this.state.breakMinutes),
             seconds: 0,
+            sound: 'PLAYING'
           })
       } else if(this.state.type === 'session') {
           if(this.state.seconds === 0) {
               this.setState({
                 seconds: 59,
-                sessionMinutes: this.state.sessionMinutes - 1
+                sessionMinutes: this.state.sessionMinutes - 1,
+                sound: 'STOPPED'
               })
           } else {
               this.setState({
-                seconds: this.state.seconds - 1
+                seconds: this.state.seconds - 1,
+                sound: 'STOPPED'
               })
           }
       } else {
           if(this.state.seconds === 0) {
               this.setState({
                 seconds: 59,
-                breakMinutes: this.state.breakMinutes - 1
+                breakMinutes: this.state.breakMinutes - 1,
+                sound: 'STOPPED'
               })
           } else {
               this.setState({
-                seconds: this.state.seconds - 1
+                seconds: this.state.seconds - 1,
+                sound: 'STOPPED'
               })
           }
       }
-    } else if(this.state.paused === true){
+    } else if(paused){
         console.log('paused')
         return
-    }
+      }
 
-    setTimeout(() => this.countDown(false), 1000)
+    setTimeout(() => this.countDown(this.state.paused), 1000)
   }
   start() {
     if(this.state.initialized === 'no') {
@@ -129,12 +134,11 @@ class Pomodoro extends Component {
         sessionMinutes: this.check(this.state.sessionTime, this.state.sessionMinutes),
         breakMinutes: this.check(this.state.breakTime, this.state.breakMinutes),
       })
-
-      this.countDown(false)
+      this.countDown(this.state.paused)
 
     } else if(this.state.initialized === 'yes' && this.state.paused === true) {
         this.setState({paused: false})
-        this.countDown(false)
+        this.countDown(!this.state.paused)
     } else {
         alert('The Pomodoro is already running')
     }
@@ -162,8 +166,17 @@ class Pomodoro extends Component {
         </div><br/>
         <div style={styles.block}>
           <Start start={this.start} />
+          <Reset />
           <Pause pause={this.pause} />
         </div>
+        <Progress
+          sessionTime={this.state.sessionTime}
+          sessionMinutes={this.state.sessionMinutes}
+          breakTime={this.state.breakTime}
+          breakMinutes={this.state.breakMinutes}
+          seconds={this.state.seconds}
+          type={this.state.type}
+          initialized={this.state.initialized}/>
         <div>
           <Display
             type={this.state.type}
@@ -172,6 +185,7 @@ class Pomodoro extends Component {
             seconds={this.state.seconds}
             initialized={this.state.initialized}/>
         </div>
+        <Sound sound={this.state.sound}/>
       </div>
     )
   }
