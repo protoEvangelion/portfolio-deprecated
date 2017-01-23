@@ -1,19 +1,48 @@
 import React from 'react'
 import Radium from 'radium'
+const tomato = require('file-loader!./tomato.svg')
 
 const styles = {
-  cursor: 'pointer',
+  container: {
+    margin: '0 auto',
+    textAlign: 'center',
+    position: 'relative',
+    width: '40%'
+  },
+  text: {
+    position: 'absolute',
+    width: '100%',
+    top: '35%',
+    fontFamily: '"Rock Salt", cursive',
+    color: 'white',
+  }
 }
 
-let Display = (props) => {
-  return(
-    <h4>{props.minutes} min {props.seconds} s</h4>
+let Display = ({sessionTime, breakTime, seconds, initialized, type}) => {
+  let display = initialized === 'yes'
+    ? (
+      <div style={styles.container}>
+        <img src={require('./tomato.svg')}/>
+        <h2 style={styles.text}>
+          {type} <br/><br/>
+          {type === 'session' ? sessionTime : breakTime} m {seconds} s
+        </h2>
+      </div>
+    )
+    : <div></div>
+  return (
+    <div>
+      {display}
+    </div>
   )
 }
 
-// React.propTypes = {
-//   minutes: Display.PropTypes.number,
-//   seconds: Display.PropTypes.number,
-// }
+Display.propTypes = {
+  sessionTime: React.PropTypes.number,
+  breakTime: React.PropTypes.number,
+  seconds: React.PropTypes.number,
+  type: React.PropTypes.string,
+  initialized: React.PropTypes.string
+}
 
 export default Display = Radium(Display)

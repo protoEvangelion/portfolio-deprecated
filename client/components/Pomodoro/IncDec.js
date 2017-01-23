@@ -2,38 +2,32 @@ import React from 'react'
 import Radium from 'radium'
 
 const styles = {
-  container: {
-    margin: '0 auto',
-    textAlign: 'center',
-  },
   btn: {
     cursor: 'pointer',
     display: 'inline-block',
-    width: '50px',
-    height: '50px',
-    margin: '0 auto',
-    fontSize: '2em',
+    width: '40px',
+    height: '40px',
   },
   display: {
     display: 'inline-block',
     width: '50px',
     height: '50px',
-    textAlign: 'center',
+    padding: '0',
   }
 }
 
 let IncDec = ({increment, decrement, type, value}) => {
   let btnType = type === 'primary' ? 'btn-primary' : 'btn-success'
   return (
-    <div style={styles.container}>
+    <div>
       <button
         className={`btn ${btnType}`}
-        onClick={increment}
+        onClick={() => increment(btnType)}
         style={styles.btn}>+</button>
       <div style={styles.display}>{value}</div>
       <button
         className={`btn ${btnType}`}
-        onClick={decrement}
+        onClick={() => decrement(btnType)}
         style={styles.btn}>-</button>
     </div>
   )
