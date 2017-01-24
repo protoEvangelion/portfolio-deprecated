@@ -26,10 +26,10 @@ class Pomodoro extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      sessionTime: 1,
-      breakTime: 1,
-      sessionMinutes: 1,
-      breakMinutes: 1,
+      sessionTime: 25,
+      breakTime: 5,
+      sessionMinutes: 25,
+      breakMinutes: 5,
       seconds: 0,
       initialized: 'no',
       type: 'session',
