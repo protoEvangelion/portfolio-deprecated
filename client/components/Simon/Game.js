@@ -4,6 +4,7 @@ import Start from './Start'
 import Strict from './Strict'
 import Display from './Display'
 import Header from './Header'
+// import Sound from './Sound'
 
 let green = '#149b18'
 let red = '#911414'
@@ -154,7 +155,9 @@ Game.propTypes = {
   click: React.PropTypes.func.isRequired,
   start: React.PropTypes.func.isRequired,
   round: React.PropTypes.number.isRequired,
-  memorize: React.PropTypes.any
+  memorize: React.PropTypes.any,
+  sound: React.PropTypes.string.isRequired,
+  url: React.PropTypes.any,
 }
 
 //specified any under memorize prop type because it
