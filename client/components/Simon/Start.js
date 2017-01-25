@@ -12,7 +12,7 @@ const styles = {
     position: 'absolute',
     border: '1px solid #4f4f4f',
     boxShadow: '1px 1px 2px #4f4f4f',
-    top: '51%',
+    top: '46.5%',
     left: '48.8%',
     transition: 'all ease 0.3s',
     ':active': {
@@ -22,7 +22,7 @@ const styles = {
   },
   text: {
     position: 'absolute',
-    top: '57%',
+    top: '52%',
     left: '47.3%',
     fontSize: '70%',
     color: 'black',
@@ -43,7 +43,10 @@ let Start = ({start, round}) => {
 
 Start.propTypes = {
   start: React.PropTypes.func.isRequired,
-  round: React.PropTypes.number.isRequired
+  round: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ])
 }
 
 export default Start = Radium(Start)

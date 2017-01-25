@@ -10,7 +10,7 @@ const styles = {
     outlineStyle: 'none',
     position: 'absolute',
     border: '1px solid #4f4f4f',
-    top: '49.7%',
+    top: '45%',
     left: '33%',
     display: 'flex',
     justifyContent: 'center',
@@ -21,7 +21,7 @@ const styles = {
   },
   text: {
     position: 'absolute',
-    top: '57%',
+    top: '52%',
     left: '32.3%',
     fontSize: '70%',
     color: 'black',
@@ -46,7 +46,10 @@ let Display = ({text}) => {
 }
 
 Display.propTypes = {
-  text: React.PropTypes.number.isRequired
+  text: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ])
 }
 
 export default Display = Radium(Display)

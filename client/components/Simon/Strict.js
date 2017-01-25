@@ -1,7 +1,19 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Radium from 'radium'
 
 const styles = {
+  light: {
+    background: 'rgb(45, 0, 0)',
+    width: '2.8%',
+    height: '2.8%',
+    borderRadius: '50%',
+    outlineStyle: 'none',
+    position: 'absolute',
+    border: '1px solid #4f4f4f',
+    boxShadow: '1px 1px 2px #4f4f4f',
+    top: '42.3%',
+    left: '62.35%',
+  },
   btn: {
     cursor: 'pointer',
     background: '#ede500',
@@ -12,7 +24,7 @@ const styles = {
     position: 'absolute',
     border: '1px solid #4f4f4f',
     boxShadow: '1px 1px 2px #4f4f4f',
-    top: '51%',
+    top: '46.5%',
     left: '61%',
     transition: 'all ease 0.3s',
     ':active': {
@@ -22,25 +34,45 @@ const styles = {
   },
   text: {
     position: 'absolute',
-    top: '57%',
+    top: '52%',
     left: '59%',
     fontSize: '70%',
     color: 'black',
   },
 }
 
-let Strict = ({}) => {
-  return(
-    <div>
-      <button
-        style={styles.btn}></button>
-      <p style={styles.text}>strict</p>
-    </div>
-  )
+class Strict extends Component {
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.on === false){
+        styles.light.background = 'rgb(45, 0, 0)'
+        this.forceUpdate()
+        console.log(styles.light.background)
+    }
+  }
+  strictOn() {
+    if(this.props.on === true) {
+      this.props.strict()
+      let color = this.props.strictMode !== false ? 'rgb(45, 0, 0)' : 'red'
+      styles.light.background = color
+      this.forceUpdate()
+    }
+  }
+  render() {
+    return(
+      <div>
+        <div style={styles.light}></div>
+        <button
+          style={styles.btn}
+          onClick={this.strictOn.bind(this)}></button>
+        <p style={styles.text}>strict</p>
+      </div>
+    )
+  }
 }
 
-// Start.propTypes = {
-//   start: React.PropTypes.func.isRequired
-// }
+Strict.propTypes = {
+  on: React.PropTypes.bool.isRequired,
+  strict: React.PropTypes.func.isRequired
+}
 
 export default Strict = Radium(Strict)

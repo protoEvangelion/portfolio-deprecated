@@ -6,8 +6,8 @@ const styles = {
     fontSize: '120%',
     fontFamily: 'Alfa Slab One',
     position: 'absolute',
-    top: '38%',
-    left: '35.5%',
+    top: '33%',
+    left: '35%',
     color: 'black',
   },
 }

@@ -4,7 +4,7 @@ import Start from './Start'
 import Strict from './Strict'
 import Display from './Display'
 import Header from './Header'
-// import Sound from './Sound'
+import Toggle from './Toggle'
 
 let green = '#149b18'
 let red = '#911414'
@@ -120,20 +120,20 @@ class Game extends Component {
     return(
       <div id="gameContainer" style={styles.container}>
         <div key="green"
-          style={[styles.colors, styles.green]}
-          onClick={() => this.props.click('green')}>
+          style={[styles.colors, styles.green, {cursor: this.props.cursor}]}
+          onClick={(e) => this.props.click(e, 'green')}>
         </div>
         <div key="red"
-          style={[styles.colors, styles.red]}
-          onClick={() => this.props.click('red')}>
+          style={[styles.colors, styles.red, {cursor: this.props.cursor}]}
+          onClick={(e) => this.props.click(e, 'red')}>
         </div>
         <div key="yellow"
-          style={[styles.colors, styles.yellow]}
-          onClick={() => this.props.click('yellow')}>
+          style={[styles.colors, styles.yellow, {cursor: this.props.cursor}]}
+          onClick={(e) => this.props.click(e, 'yellow')}>
         </div>
         <div key="blue"
-          style={[styles.colors, styles.blue]}
-          onClick={() => this.props.click('blue')}>
+          style={[styles.colors, styles.blue, {cursor: this.props.cursor}]}
+          onClick={(e) => this.props.click(e, 'blue')}>
         </div>
         <div key="border"
           style={[styles.center, styles.border]}>
@@ -143,8 +143,11 @@ class Game extends Component {
         <Start
           start={this.props.start}
           round={this.props.round}/>
-        <Strict />
+        <Strict
+          on={this.props.on}
+          strict={this.props.strict} strictMode={this.props.strictMode}/>
         <Display text={this.props.round}/>
+        <Toggle turnOnOff={this.props.turnOnOff}/>
       </div>
     )
   }
@@ -152,12 +155,18 @@ class Game extends Component {
 }
 
 Game.propTypes = {
-  click: React.PropTypes.func.isRequired,
+  on: React.PropTypes.bool.isRequired,
+  turnOnOff: React.PropTypes.func.isRequired,
+  turnOnOff: React.PropTypes.func.isRequired,
   start: React.PropTypes.func.isRequired,
-  round: React.PropTypes.number.isRequired,
+  strict: React.PropTypes.func.isRequired,
+  round: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ]),
   memorize: React.PropTypes.any,
-  sound: React.PropTypes.string.isRequired,
   url: React.PropTypes.any,
+  strictMode: React.PropTypes.bool,
 }
 
 //specified any under memorize prop type because it
