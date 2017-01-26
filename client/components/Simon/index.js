@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import Radium from 'radium'
 import Game from './Game'
+import Modal from './Modal'
 
 const styles = {
   container: {
-  	width: '250px',
+    marginBottom: '250px',
+    marginTop: '50px'
   },
 }
 
@@ -20,15 +22,16 @@ class Simon extends Component {
       clicks: 0,
       currentColor: '',
       cursor: 'not-allowed',
-      strict: false
+      strict: false,
+      modal: false,
     }
     this.turnOnOff = this.turnOnOff.bind(this)
     this.padClick = this.padClick.bind(this)
     this.start = this.start.bind(this)
     this.strict = this.strict.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
   turnOnOff() {
-    console.log('turning')
     this.setState({on: !this.state.on})
     if(!this.state.on === false) {
       this.setState({
@@ -108,6 +111,9 @@ class Simon extends Component {
 
         //handle wrong click
         if(roundColors[this.state.clicks] !== color) {
+          let audio = document.getElementById('audio')
+          audio.src = require('./buzz.mp3')
+          audio.play()
           if(this.state.strict === false) {
             this.setState({
               round: 0,
@@ -134,6 +140,17 @@ class Simon extends Component {
               this.start(1)
             }, 1000)
           }
+        } else if(this.state.clicks === 19 && roundColors.length - 1 === this.state.clicks && roundColors[roundColors.length - 1] === color) {
+            //Dectect win after 20 rounds
+            this.setState({
+              modal: true,
+              clicks: 0,
+              round: 1,
+              memorize: '',
+              roundColors: '',
+              currentColor: '',
+              cursor: 'not-allowed',
+            })
         } else if(roundColors.length - 1 === this.state.clicks && roundColors[roundColors.length - 1] === color){
             //detects if player is correct on last click
             this.setState({
@@ -146,11 +163,13 @@ class Simon extends Component {
             this.beginRound(newArr)
         }
       }
-
+  }
+  closeModal() {
+    this.setState({modal: false})
   }
   render() {
     return(
-      <div id="gameContainer">
+      <div id="gameContainer" style={styles.container}>
         <Game
           on={this.state.on}
           turnOnOff={this.turnOnOff}
@@ -164,6 +183,7 @@ class Simon extends Component {
           strict={this.strict}
           strictMode={this.state.strict}
         />
+        <Modal open={this.state.modal} closeModal={this.closeModal}/>
         <audio id="audio" src={require(`./red.mp3`)} ></audio>
       </div>
     )

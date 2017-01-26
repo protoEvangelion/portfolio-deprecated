@@ -15,12 +15,24 @@ let styles = {
   container: {
   	width: '250px',
   	height: '250px',
-  	background: '#2f2f30',
-  	borderRadius: '50%',
     margin: '0 auto',
     textAlign: 'center',
-    paddingTop: '3px',
     position: 'relative',
+  },
+  img: {
+    position: 'absolute',
+    borderRadius: '50%',
+    width: '100%',
+    height: '100%',
+    zIndex: -1,
+    padding: '-14px 0 0 -14px',
+    margin: '-2.3px 0 0 -2.3px',
+    boxShadow: '3px 3px 5px #888888'
+  },
+  align: {
+    position: 'relative',
+    top: '10px',
+    left: '10px'
   },
   colors: {
     width: '47%',
@@ -33,7 +45,7 @@ let styles = {
   	borderTopLeftRadius: '100%',
     margin: '1% 1% 0% 1%',
     ':active': {
-      background: '#0fd852'
+      background: '#0fd852',
     },
   },
   red:{
@@ -41,7 +53,7 @@ let styles = {
   	borderTopRightRadius: '100%',
     margin: '1% 1% 0% 1%',
     ':active': {
-      background: '#ef0b31'
+      background: '#ef0b31',
     },
   },
   yellow: {
@@ -86,7 +98,7 @@ class Game extends Component {
       case 'green':
         styles.green.background = '#0fd852'
         setTimeout(() => {this.click
-          styles.green.background = green
+          styles.green.backgroundColor = green
           this.forceUpdate()
         }, delay)
         break
@@ -118,7 +130,8 @@ class Game extends Component {
   }
   render() {
     return(
-      <div id="gameContainer" style={styles.container}>
+      <div style={styles.container} >
+        <img src={require('./darkMetal.jpg')} style={styles.img}/>
         <div key="green"
           style={[styles.colors, styles.green, {cursor: this.props.cursor}]}
           onClick={(e) => this.props.click(e, 'green')}>

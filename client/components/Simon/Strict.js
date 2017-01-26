@@ -46,7 +46,6 @@ class Strict extends Component {
     if(nextProps.on === false){
         styles.light.background = 'rgb(45, 0, 0)'
         this.forceUpdate()
-        console.log(styles.light.background)
     }
   }
   strictOn() {
