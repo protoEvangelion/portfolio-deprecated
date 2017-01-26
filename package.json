@@ -4,8 +4,8 @@
   "description": "my mern portfolio website",
   "scripts": {
     "start": "SET NODE_ENV=development & nodemon server.js --ignore client/ --ignore node_modules/",
-    "build": "NODE_ENV=production npm run clean && webpack -p",
-    "serve": "webpack-dev-server",
+    "build": "SET NODE_ENV=production & webpack -p",
+    "serve": "SET NODE_ENV=production & node server.js",
     "lint": "eslint src"
   },
   "author": "Ryan Garant",

@@ -98,7 +98,7 @@ class Game extends Component {
       case 'green':
         styles.green.background = '#0fd852'
         setTimeout(() => {this.click
-          styles.green.backgroundColor = green
+          styles.green.background = green
           this.forceUpdate()
         }, delay)
         break
