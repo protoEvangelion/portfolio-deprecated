@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "my mern portfolio website",
   "scripts": {
-    "start": "SET NODE_ENV=development & nodemon server.js --ignore client/ --ignore node_modules/",
-    "build": "SET NODE_ENV=production & webpack -p",
+    "start": "SET NODE_ENV=development & node server.js --ignore client/ --ignore node_modules/",
+    "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
     "serve": "SET NODE_ENV=production & node server.js",
     "lint": "eslint src"
   },

@@ -3,10 +3,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	entry: [
-    'webpack-hot-middleware/client',
-    './client/index'
-  ],
+	entry: './client/index',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -35,14 +32,13 @@ module.exports = {
 	    }
     ]
   },
+	resolve: {
+		alias: {
+			soundmanager2: 'soundmanager2/script/soundmanager2-nodebug-jsmin.js' 
+		},
+	},
   plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    }),
-		new HtmlWebpackPlugin({
-      template: 'client/index.html'
-    }),
 		new webpack.NamedModulesPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
   ],

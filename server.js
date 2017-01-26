@@ -27,30 +27,29 @@ app.get('/api', (req, res) => {
 //MAKE SURE ALL ROUTING & API LOGIC GOES ABOVE THIS LINE
 
 if(process.env.NODE_ENV == 'development ') {
-	//in DEVELOPMENT mode
+	console.log('Development mode')
 
 	const webpack = require('webpack')
 	const config = require('./webpack.config')
 	const devMiddleware = require('webpack-dev-middleware')
-	const hotMiddleware = require('webpack-hot-middleware')
+	// const hotMiddleware = require('webpack-hot-middleware')
 	const compiler = webpack(config)
 
 	app.use(devMiddleware(compiler, {
-		  noInfo: true,
 		  publicPath: config.output.publicPath
 		}))
-		.use(hotMiddleware(compiler))
+		// .use(hotMiddleware(compiler))
 
 	app.get('*', (req, res) => {
-		res.sendFile(path.join(__dirname, 'client/index.html'))
+		res.sendFile(path.join(__dirname, 'index.html'))
 	})
 
 } else {
-		//in PRODUCTION mode
+		console.log('Production mode')
 
-		app.use(express.static('dist'))
+		app.use("/dist", express.static(path.join(__dirname, 'dist')))
 		app.get('*', (req, res) => {
-			res.sendFile(path.join(__dirname, 'dist/index.html'))
+			res.sendFile(path.join(__dirname, 'index.html'))
 		})
 }
 
