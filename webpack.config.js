@@ -34,7 +34,7 @@ module.exports = {
   },
 	resolve: {
 		alias: {
-			soundmanager2: 'soundmanager2/script/soundmanager2-nodebug-jsmin.js' 
+			soundmanager2: 'soundmanager2/script/soundmanager2-nodebug-jsmin.js'
 		},
 	},
   plugins: [
