@@ -9,14 +9,14 @@ const clientId = 'aswjx355ya1e5y7vy3t5sg1hcwsaokn'
 export function fetchFreeCodeCamp() {
 	const url = `https://api.twitch.tv/kraken/streams/freecodecamp?client_id=${clientId}`
 	const reqUrl = `${proxyUrl}${url}`
-	
+
 	const request = axios.get(reqUrl)
 	return {type: FETCH_FREE, payload: request}
 }
 
 export function fetchStreams() {
 	const url = `https://api.twitch.tv/kraken/streams/featured?limit=9&client_id=${clientId}`
-	const reqUrl = `http://localhost:3000/api?url=${url}`
+	const reqUrl = `${proxyUrl}${url}`
 	const request = axios.get(reqUrl)
 	return {type: FETCH_STREAMS, payload: request}
 }
