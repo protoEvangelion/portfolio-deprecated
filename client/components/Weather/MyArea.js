@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchWeather } from '../../actions/fetchWeather'
 import { bindActionCreators } from 'redux'
 import axios from 'axios'
+import proxyUrl from '../../api'
 
 class MyArea extends Component {
 	constructor(props) {
@@ -15,8 +16,8 @@ class MyArea extends Component {
   		const lat = position.coords.latitude
   		const lng = position.coords.longitude
   		const ROOT_URL = 'https://maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng='
-  		const reqUrl = `${ROOT_URL}${lat},${lng}`
-			const url = `http://localhost:3000/api?url=${reqUrl}`
+  		const url = `${ROOT_URL}${lat},${lng}`
+			let reqUrl = `${proxyUrl}${url}`
 			axios.get(url)
 				.then(response => {
 					const address = response.data.results[0].formatted_address
