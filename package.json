@@ -4,7 +4,7 @@
   "description": "my mern portfolio website",
   "scripts": {
     "start": "SET NODE_ENV=development & node server.js --ignore client/ --ignore node_modules/",
-    "build": "webpack --progress",
+    "build": "webpack -p --progress",
     "serve": "node server.js",
     "lint": "eslint src"
   },
