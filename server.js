@@ -46,8 +46,11 @@ if(process.env.NODE_ENV == 'development ') {
 
 } else {
 		console.log('Production mode')
+		
+		const forceSsl = require('force-ssl-heroku')
+		app.use(forceSsl)
+			 .use("/dist", express.static(path.join(__dirname, 'dist')))
 
-		app.use("/dist", express.static(path.join(__dirname, 'dist')))
 		app.get('*', (req, res) => {
 			res.sendFile(path.join(__dirname, 'index.html'))
 		})
