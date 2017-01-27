@@ -1,11 +1,13 @@
 import axios from 'axios'
+import proxyUrl from '../api'
 
 export const FETCH_WIKIS = 'FETCH_WIKIS'
 
 export function fetchWikis(term) {
-	const reqUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${term}&utf8=&format=json`
-	const url = `http://localhost:3000/api?url=${reqUrl}`
-	const request = axios.get(url)
+	const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${term}&utf8=&format=json`
+	const reqUrl = `${proxyUrl}${url}`
+
+	const request = axios.get(reqUrl)
 	return {
 		type: FETCH_WIKIS,
 		payload: request
