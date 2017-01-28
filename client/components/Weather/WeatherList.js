@@ -15,10 +15,10 @@ class WeatherList extends Component {
 
 			return (
 				<tr height={105} key={name}>
-					<td><GoogleMap lon={lon} lat={lat} /></td>
-					<td><Chart data={temps} color="orange" units="°F" /></td>
-					<td><Chart data={pressures} color="red" units="hPa" /></td>
-					<td><Chart data={humidities} color="blue" units="%" /></td>
+					<td className="tdWeather"><GoogleMap lon={lon} lat={lat} /></td>
+					<td className="tdWeather"><Chart data={temps} color="orange" units="°F" /></td>
+					<td className="tdWeather"><Chart data={pressures} color="red" units="hPa" /></td>
+					<td className="tdWeather"><Chart data={humidities} color="blue" units="%" /></td>
 				</tr>
 			)
 		} else {
@@ -27,16 +27,16 @@ class WeatherList extends Component {
 	}
 	render() {
 		return (
-		<div className="container">
+		<div className="container containerComp">
 			<div className="row">
 				<div className="col-sm-12">
 					<table className="table table-hover">
 						<thead>
 							<tr>
-								<th>City</th>
-								<th>Temperature (°F)</th>
-								<th>Pressure (hPa)</th>
-								<th>Humidity (%)</th>
+								<th className="thWeather">City</th>
+								<th className="thWeather">Temperature (°F)</th>
+								<th className="thWeather">Pressure (hPa)</th>
+								<th className="thWeather">Humidity (%)</th>
 							</tr>
 						</thead>
 						<tbody>

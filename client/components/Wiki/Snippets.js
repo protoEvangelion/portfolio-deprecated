@@ -6,13 +6,13 @@ class Snippets extends Component {
 		const url =  `https://en.wikipedia.org/wiki/${snippet.title}`
 		let text = snippet.snippet.replace(/<\/?[^>]+(>|$)/g, '').replace(/&quot;/g, '\"')
 		return (
-			<div key={`d${i}`} className="snippet">
-				<p key={`p${i}`} id={`q${i}`}>{snippet.title}</p>
-				<a key={`a${i}`} className={`a${i}`} href={url}>
+			<a key={`a${i}`} className={`a${i}`} href={url}>
+				<div key={`d${i}`} className="snippet">
+					<p key={`p${i}`} id={`q${i}`} className="snippetLinks">{snippet.title}</p>
 					<p key={`t${i}`} id={`s${i}`}>{text}</p>
-				</a>
-			</div>
-		)	
+				</div>
+			</a>
+		)
 	}
 	render() {
 		if(this.props.wikis.length === 0) {
@@ -20,7 +20,7 @@ class Snippets extends Component {
 		} else {
 				return (
 					<div>
-						{this.props.wikis[0].map(this.renderSnippets)}
+						{this.props.wikis[0].map(this.renderSnippets.bind(this))}
 					</div>
 				)
 		}

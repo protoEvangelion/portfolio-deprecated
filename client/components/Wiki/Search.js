@@ -24,7 +24,7 @@ class Search extends React.Component {
 	render() {
 		return (
 			<form onSubmit={this.onFormSubmit} action="" method="POST">
-				<input type="text" value={this.state.term} onChange={this.onInputChange} placeholder="Search..." />
+				<input type="text" value={this.state.term} onChange={this.onInputChange} placeholder="Or search for a wiki..." />
 				<i className="fa fa-search fa-2x icon" aria-hidden="true" onClick={this.onFormSubmit} alt="search"></i>
 			</form>
 		)

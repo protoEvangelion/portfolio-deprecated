@@ -36,17 +36,19 @@ if(process.env.NODE_ENV == 'development ') {
 	const compiler = webpack(config)
 
 	app.use(devMiddleware(compiler, {
-		  publicPath: config.output.publicPath
+			noInfo: true,
+			publicPath: config.output.publicPath
 		}))
-		// .use(hotMiddleware(compiler))
-
+		// .use(hotMiddlewa're(compiler))
+		 .use("/dev", express.static(path.join(__dirname, 'dev')))
+		 
 	app.get('*', (req, res) => {
 		res.sendFile(path.join(__dirname, 'index.html'))
 	})
 
 } else {
 		console.log('Production mode')
-		
+
 		const forceSsl = require('force-ssl-heroku')
 		app.use(forceSsl)
 			 .use("/dist", express.static(path.join(__dirname, 'dist')))

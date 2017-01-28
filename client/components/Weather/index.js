@@ -7,9 +7,9 @@ import './style.css'
 export default class Weather extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container containerComp">
       	<SearchBar />
-      	<h1>Or:</h1>
+      	<h1 id="OrOption" className="center">Or:</h1>
       	<MyArea />
       	<WeatherList />
       </div>

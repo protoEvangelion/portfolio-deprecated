@@ -1,6 +1,5 @@
 h1, h2, h3, h4, h5, h6 {
-  font-family: Courgette, Verdana, Geneva, sans-serif;
-  text-align: center; }
+  font-family: Courgette, Verdana, Geneva, sans-serif; }
 
 a .tealButton {
   background: #00ffc0;
@@ -8,7 +7,7 @@ a .tealButton {
   -ms-border-radius: 30px;
   border-radius: 30px;
   font-family: Courgette, Verdana, Geneva, sans-serif;
-  font-size: 3em;
+  font-size: 20px;
   color: white;
   padding: 10px;
   border-width: 0;
@@ -38,7 +37,7 @@ a .tealButton {
   -ms-transform: translate(-50%, 0);
   -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
-  margin: 30px 0; }
+  margin: 30px 0 50px 0; }
 
 form input, .icon{
   display: inline-block;
@@ -65,6 +64,7 @@ form input, .icon{
   -o-transition: text-shadow 0.5s;
   transition: text-shadow 0.5s;
   text-shadow: 10px 10px 5px grey; }
+
 form input {
   -webkit-border-radius: 30px;
   -ms-border-radius: 30px;
@@ -97,8 +97,11 @@ form input {
     box-shadow: 10px 10px 5px grey;
     cursor: pointer; }
 
-a {
+.snippetLinks {
   color: #00ffc0; }
+
+  .snippetLinks:hover {
+    color: white; }
 
 @media only screen and (max-width: 497px) {
   .icon {

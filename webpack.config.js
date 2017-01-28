@@ -16,6 +16,10 @@ module.exports = {
 				exclude: /node_modules/
 	    },
 			{
+				test: /\.json$/,
+	      use: 'json-loader',
+			},
+			{
 				test: /\.css$/,
 				use: ['style-loader','css-loader'],
 			},
@@ -39,6 +43,9 @@ module.exports = {
   plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
+		new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }),
 		new webpack.NoEmitOnErrorsPlugin(),
   ],
 }

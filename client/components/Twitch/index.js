@@ -12,7 +12,7 @@ class Twitch extends Component {
   render() {
     return (
       <div style={{paddingTop: '40px'}}>
-        <h2 style={{fontFamily: "'Press Start 2P', 'cursive'", paddingBottom: '30px', color: '#6441a4', fontSize: '50px'}}>Ultra-Cool Twitch Streams!</h2>
+        <h2 style={{fontFamily: "'Press Start 2P', 'cursive'", paddingBottom: '30px', color: '#6441a4', fontSize: '50px', textAlign: 'center'}}>Ultra-Cool Twitch Streams!</h2>
         <Free free={this.props.free} />
         <Streams data={this.props.data}/>
       </div>

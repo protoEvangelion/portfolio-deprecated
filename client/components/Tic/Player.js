@@ -5,7 +5,8 @@ const styles = {
   text: {
     fontFamily: "'Press Start 2P', 'cursive'",
     lineHeight: '50px',
-    fontSize: '1em'
+    fontSize: '1em',
+    textAlign: 'center'
   },
   container: {
     background: 'grey',

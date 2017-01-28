@@ -12,6 +12,7 @@ import NotFound from '../components/NotFound'
 import Calc from '../components/Calc'
 import Pomodoro from '../components/Pomodoro'
 import Simon from '../components/Simon'
+import Markdown from '../components/Markdown'
 
 export default (
 	<Route path="/" component={App}>
@@ -24,6 +25,7 @@ export default (
 		<Route path="calc" component={Calc} />
 		<Route path="pomodoro" component={Pomodoro} />
 		<Route path="simon" component={Simon} />
+		<Route path="markdown" component={Markdown} />
 		<Route path="*" component={NotFound} />
 	</Route>
 )
