@@ -5,10 +5,12 @@ import Snippets from './Snippets'
 
 import './style.css'
 
+const elem = document.getElementById("wikiContainer")
+elem.scrollIntoView(false)
 class Wiki extends React.Component {
 	render() {
 		return (
-			<div>
+			<div id="wikiContainer" style={{marginBottom: '500px'}}>
 				<Button />
 				<Search />
 				<Snippets />

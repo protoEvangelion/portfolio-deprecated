@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Radium from 'radium'
 import TextArea from './TextArea'
 import Transformed from './Transformed'
+import defaultText from './defaultText'
 import './styles.css'
 
 const styles = {
@@ -14,13 +15,15 @@ const styles = {
   label: {
     display: 'block',
     width: '100%',
-    height: '40px',
+    lineHeight: '100%',
     color: 'white',
     fontSize: '20px',
     background: '#00ffc0',
     marginBottom: '0',
-    paddingLeft: '30px',
-    lineHeight: '40px'
+    padding: '20px',
+    fontFamily: "'Grand Hotel', cursive",
+    fontSize: '3em',
+    textAlign: 'center',
   },
 }
 
@@ -29,7 +32,7 @@ class Markdown extends Component {
     super(props)
 
     this.state = {
-      markdown: ''
+      markdown: defaultText
     }
     this.onInputChange = this.onInputChange.bind(this)
   }

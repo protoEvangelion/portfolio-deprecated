@@ -5,9 +5,10 @@ const styles = {
   area: {
     display: 'inline-block',
     width: '50%',
-    height: '100%',
+    height: '90%',
     borderRadius: '0',
-    paddingTop: '10px'
+    paddingTop: '10px',
+    resize: 'none',
   }
 }
 
@@ -16,8 +17,6 @@ let TextArea = ({onInputChange, markdown}) => {
     <textarea
       style={styles.area}
       className="form-control"
-      id="exampleTextarea"
-      rows="10"
       value={markdown}
       onChange={(e) => onInputChange(e)}></textarea>
   )
