@@ -2,15 +2,18 @@ import React from 'react'
 import Button from './Button'
 import Search from './Search'
 import Snippets from './Snippets'
+import smoothScroll from '../../helpers/scroll'
 
 import './style.css'
 
-const elem = document.getElementById("wikiContainer")
-elem.scrollIntoView(false)
 class Wiki extends React.Component {
+	componentDidMount() {
+       smoothScroll(document.getElementById("wikiContainer"))
+	}
 	render() {
 		return (
-			<div id="wikiContainer" style={{marginBottom: '500px'}}>
+			<div id="wikiContainer"
+				style={{marginBottom: '500px'}} >
 				<Button />
 				<Search />
 				<Snippets />
