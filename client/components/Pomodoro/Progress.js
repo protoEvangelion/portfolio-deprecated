@@ -2,8 +2,12 @@ import React from 'react'
 import Radium from 'radium'
 
 const styles = {
+  padding: {
+    paddingTop: '30px',
+    marginTop: '5px',
+  },
   container: {
-    margin: '20px auto -10px auto',
+    margin: '0 auto -10px auto',
     textAlign: 'center',
     width: '50%',
   },
@@ -25,8 +29,10 @@ let Progress = ({sessionTime, sessionMinutes, breakTime, breakMinutes, seconds, 
 
   let display = initialized === 'yes'
     ? (
-      <div className="progress" style={styles.container}>
-        <div className={`progress-bar progress-bar-striped progress-bar-animated ${color}`} role="progressbar" aria-valuenow={value} aria-valuemin="0" aria-valuemax="100" style={{width: `${value}%`}}></div>
+      <div id="progressBarContainer" style={styles.padding}>
+        <div className="progress" style={styles.container}>
+          <div className={`progress-bar progress-bar-striped progress-bar-animated ${color}`} role="progressbar" aria-valuenow={value} aria-valuemin="0" aria-valuemax="100" style={{width: `${value}%`}}></div>
+        </div>
       </div>
     )
     : <div></div>

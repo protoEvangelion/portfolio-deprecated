@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import smoothScroll from '../../helpers/scroll'
 
 class Snippets extends Component {
+	componentDidUpdate() {
+		smoothScroll(document.getElementById("wikiContainer"))
+		console.log('component updated')
+	}
 	renderSnippets(snippet, i) {
 		const url =  `https://en.wikipedia.org/wiki/${snippet.title}`
 		let text = snippet.snippet.replace(/<\/?[^>]+(>|$)/g, '').replace(/&quot;/g, '\"')

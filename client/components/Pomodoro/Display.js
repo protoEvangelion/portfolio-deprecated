@@ -4,7 +4,7 @@ const tomato = require('file-loader!./tomato.svg')
 
 const styles = {
   container: {
-    margin: '0 auto',
+    margin: '10px auto',
     textAlign: 'center',
     position: 'relative',
     width: '40%'
@@ -26,7 +26,7 @@ const styles = {
       fontSize: '15px'
     },
     '@media (max-width: 450px)': {
-      fontSize: '13px'
+      fontSize: '10px'
     }
   }
 }

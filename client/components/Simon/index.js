@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Radium from 'radium'
 import Game from './Game'
 import Modal from './Modal'
+import smoothScroll from '../../helpers/scroll'
 
 const styles = {
   container: {
@@ -30,6 +31,9 @@ class Simon extends Component {
     this.start = this.start.bind(this)
     this.strict = this.strict.bind(this)
     this.closeModal = this.closeModal.bind(this)
+  }
+  componentDidMount() {
+    smoothScroll(document.getElementById("simonContainer"))
   }
   turnOnOff() {
     this.setState({on: !this.state.on})
@@ -169,7 +173,7 @@ class Simon extends Component {
   }
   render() {
     return(
-      <div id="gameContainer" style={styles.container}>
+      <div id="simonContainer" style={styles.container}>
         <Game
           on={this.state.on}
           turnOnOff={this.turnOnOff}

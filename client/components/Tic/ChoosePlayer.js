@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Radium from 'radium'
+import smoothScroll from '../../helpers/scroll'
 
 const styles = {
   base: {
@@ -21,15 +22,20 @@ const styles = {
   }
 }
 
-let ChoosePlayer = (props) => {
-  return (
-    <div style={styles.base} className={props.animate}>
-      <h1 style={styles.header}>Choose your</h1><br/>
-      <h1 style={styles.header}>Tic-Tac-Toe player:</h1>
-      <button value="X" onClick={props.onClick} className="btn btn-success" style={styles.btn} key="x">X</button>
-      <button value="O" onClick={props.onClick} className="btn btn-info" style={styles.btn} key="y">O</button>
-    </div>
-  )
+class ChoosePlayer extends Component {
+  componentDidMount() {
+    smoothScroll(document.getElementById("choosePlayerContainer"))
+  }
+  render() {
+    return (
+      <div id="choosePlayerContainer" style={styles.base} className={this.props.animate}>
+        <h1 style={styles.header}>Choose your</h1><br/>
+        <h1 style={styles.header}>Tic-Tac-Toe player:</h1>
+        <button value="X" onClick={this.props.onClick} className="btn btn-success" style={styles.btn} key="x">X</button>
+        <button value="O" onClick={this.props.onClick} className="btn btn-info" style={styles.btn} key="y">O</button>
+      </div>
+    )
+  }
 }
 
 export default ChoosePlayer = Radium(ChoosePlayer)

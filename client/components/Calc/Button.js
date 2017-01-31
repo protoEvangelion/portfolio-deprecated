@@ -25,6 +25,7 @@ let Button = ({ color, content, type, size, click}) => {
     boxShadow: `0px 5px 0px ${boxShadow}`,
     top: '0px',
     transition: 'all ease 0.1s',
+    userSelect: 'none',
     ':active': {
       boxShadow: `0 3px 0 ${boxShadow}`,
       top: '3px'

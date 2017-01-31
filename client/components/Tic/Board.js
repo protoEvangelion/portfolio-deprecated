@@ -6,13 +6,17 @@ import ChoosePlayer from './ChoosePlayer'
 import Replay from './Replay'
 import Modal from './Modal'
 import { block, blockFork, win, takeEdge, takeOpen, takeCorner } from './aiFunctions'
+import smoothScroll from '../../helpers/scroll'
 
 const styles = {
+  boardContainer: {
+    paddingTop: '30px'
+  },
   board: {
     maxWidth: '100%',
     maxHeight: '100%',
     height: 'auto',
-    widht: 'auto'
+    width: 'auto'
   },
   container: {
     textAlign: 'center',
@@ -40,6 +44,10 @@ class Board extends Component {
       src: ''
     }
     this.onPlayerClick = this.onPlayerClick.bind(this)
+    this.reset = this.reset.bind(this)
+  }
+  componentDidUpdate() {
+    smoothScroll(document.getElementById("boardContainer"))
   }
   calculateWinner(taken) {
       const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
@@ -180,6 +188,19 @@ class Board extends Component {
     }
 
   }
+  reset() {
+    this.setState({
+      squares: Array(9).fill(null),
+      currentPlayer: '',
+      humanPlayer: '',
+      AIPlayer: '',
+      showPlayerChoice: true,
+      moveCount: 0,
+      gameType: '',
+      winner: '',
+      src: ''
+    })
+  }
   onPlayerClick(e) {
     let value = e.target.value
     if(value === 'X') {
@@ -218,7 +239,7 @@ class Board extends Component {
   }
   renderReplay() {
     const replay = this.state.showPlayerChoice === false
-      ? <Replay animate="animated fadeIn" />
+      ? <Replay reset={this.reset} animate="animated fadeIn" />
       : ''
     return replay
   }
@@ -230,7 +251,7 @@ class Board extends Component {
   }
   render() {
     return (
-      <div>
+      <div id="boardContainer" style={styles.boardContainer}>
         <div>
           {this.renderChoosePlayer()}
         </div>

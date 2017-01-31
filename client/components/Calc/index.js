@@ -8,9 +8,9 @@ class App extends Component {
 	}
   render() {
     return (
-      <div id="calcContainer" style={{marginBottom: '500px'}}>
+      <div id="calcContainer" style={{marginBottom: '250px'}}>
         <Calc />
-      </div>      
+      </div>
     )
   }
 }

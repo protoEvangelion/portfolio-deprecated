@@ -13,6 +13,7 @@ import Calc from '../components/Calc'
 import Pomodoro from '../components/Pomodoro'
 import Simon from '../components/Simon'
 import Markdown from '../components/Markdown'
+import Leaderboard from '../components/Leaderboard'
 
 export default (
 	<Route path="/" component={App}>
@@ -26,6 +27,7 @@ export default (
 		<Route path="pomodoro" component={Pomodoro} />
 		<Route path="simon" component={Simon} />
 		<Route path="markdown" component={Markdown} />
+		<Route path="leaderboard" component={Leaderboard} />
 		<Route path="*" component={NotFound} />
 	</Route>
 )

@@ -3,14 +3,14 @@ import Radium from 'radium'
 import Board from './Board'
 
 const styles = {
-  margin: '30px',
+  margin: '30px 30px 250px 30px',
   padding: '30px',
 }
 
 class App extends Component {
   render() {
     return (
-      <div style={styles}>
+      <div id="ticContainer" style={styles}>
         <Board />
       </div>
     )

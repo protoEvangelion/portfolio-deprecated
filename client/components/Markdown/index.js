@@ -3,6 +3,7 @@ import Radium from 'radium'
 import TextArea from './TextArea'
 import Transformed from './Transformed'
 import defaultText from './defaultText'
+import smoothScroll from '../../helpers/scroll'
 import './styles.css'
 
 const styles = {
@@ -36,12 +37,15 @@ class Markdown extends Component {
     }
     this.onInputChange = this.onInputChange.bind(this)
   }
+  componentDidMount() {
+    smoothScroll(document.getElementById("markdownContainer"))
+  }
   onInputChange(e) {
     this.setState({markdown: e.target.value})
   }
   render() {
     return(
-      <div style={styles.container}>
+      <div id="markdownContainer" style={styles.container}>
         <label style={styles.label} htmlFor="exampleTextarea">Type markdown below</label>
         <TextArea onInputChange={this.onInputChange} markdown={this.state.markdown}/>
         <Transformed markdown={this.state.markdown} />

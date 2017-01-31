@@ -17,7 +17,7 @@ const styles = {
 let Replay = (props) => {
   return (
     <div style={styles.base}>
-      <button className={`btn btn-primary ${props.animate}`} style={styles.btn} onClick={() => location.reload()}>Replay</button>
+      <button className={`btn btn-primary ${props.animate}`} style={styles.btn} onClick={props.reset}>Replay</button>
     </div>
   )
 }

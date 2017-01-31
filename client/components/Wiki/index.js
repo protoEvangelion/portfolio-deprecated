@@ -8,12 +8,12 @@ import './style.css'
 
 class Wiki extends React.Component {
 	componentDidMount() {
-       smoothScroll(document.getElementById("wikiContainer"))
+    smoothScroll(document.getElementById("wikiContainer"))
 	}
 	render() {
 		return (
 			<div id="wikiContainer"
-				style={{marginBottom: '500px'}} >
+				style={{marginBottom: '250px'}} >
 				<Button />
 				<Search />
 				<Snippets />

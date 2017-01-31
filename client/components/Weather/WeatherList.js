@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Chart from './chart'
 import GoogleMap from './GoogleMap'
-
+import smoothScroll from '../../helpers/scroll'
 
 class WeatherList extends Component {
+	componentDidUpdate() {
+    smoothScroll(document.getElementById("weatherTblContainer"))
+	}
 	renderWeather(cityData) {
 		if(cityData) {
 			const name = cityData.city.name
@@ -27,7 +30,7 @@ class WeatherList extends Component {
 	}
 	render() {
 		return (
-		<div className="container containerComp">
+		<div id="weatherTblContainer" className="container containerComp">
 			<div className="row">
 				<div className="col-sm-12">
 					<table className="table table-hover">

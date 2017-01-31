@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Radium from 'radium'
 import Display from './Display'
 import Button from './Button'
-import Back from './Back'
+import './styles.css'
 
 const styles = {
   backdrop: {
@@ -29,6 +29,75 @@ class Calc extends Component {
 
     this.onNumClick = this.onNumClick.bind(this)
     this.onOperationClick = this.onOperationClick.bind(this)
+    this.onDeletePress = this.onDeletePress.bind(this)
+    this.onKeyPress = this.onKeyPress.bind(this)
+  }
+  componentDidMount() {
+    document.addEventListener("keydown", this.onDeletePress)
+    document.addEventListener("keypress", this.onKeyPress)
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.onDeletePress)
+    document.removeEventListener("keypress", this.onKeyPress)
+  }
+  onDeletePress(event) {
+    if(event.keyCode === 8) this.onOperationClick('⇐')
+    if(event.keyCode === 46) this.onOperationClick('⇐')
+  }
+  onKeyPress(event) {
+    switch (event.keyCode) {
+      case 13:
+        this.onOperationClick('=')
+        break
+      case 42:
+        this.onOperationClick('X')
+        break
+      case 47:
+        this.onOperationClick('÷')
+        break
+      case 43:
+        this.onOperationClick('+')
+        break
+      case 45:
+        this.onOperationClick('-')
+        break
+      case 46:
+        this.onOperationClick('.') //
+        break
+      case 37:
+        this.onOperationClick('%')
+        break
+      case 48:
+        this.onNumClick(0)
+        break
+      case 49:
+        this.onNumClick(1)
+        break
+      case 50:
+        this.onNumClick(2)
+        break
+      case 51:
+        this.onNumClick(3)
+        break
+      case 52:
+        this.onNumClick(4)
+        break
+      case 53:
+        this.onNumClick(5)
+        break
+      case 54:
+        this.onNumClick(6)
+        break
+      case 55:
+        this.onNumClick(7)
+        break
+      case 56:
+        this.onNumClick(8)
+        break
+      case 57:
+        this.onNumClick(9)
+        break
+    }
   }
   onNumClick(value) {
     if(this.state.currentDisplay === '0' || this.state.operator === true) {
@@ -158,7 +227,7 @@ class Calc extends Component {
   }
   render() {
     return (
-      <Back src={require('./wood.svg')}>
+      <div id="calcBackground">
         <div style={styles.backdrop}>
           <Display currentDisplay={this.state.currentDisplay}/>
           <Button color="#d35252" content="AC"
@@ -204,7 +273,7 @@ class Calc extends Component {
           <Button color="#4c4a4a" content="=" type="bottom"
             click={this.onOperationClick} size="big"/>
         </div>
-      </Back>
+      </div>
     )
   }
 }

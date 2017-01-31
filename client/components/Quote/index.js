@@ -8,11 +8,15 @@ import { fetchQuote } from '../../actions/fetchQuote'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import './style.css'
+import smoothScroll from '../../helpers/scroll'
 
 class Quote extends Component {
+	componentDidMount() {
+		smoothScroll(document.getElementById("quoteContainer"))
+	}
 	render() {
 		return (
-			<div>
+			<div style={{marginBottom: '250px'}} id="quoteContainer">
 				<div className="container text-center">
 					<PumpBtn fetch={this.props.fetchQuote} />
 					<Tweet quote={this.props.quote}/>
@@ -22,8 +26,6 @@ class Quote extends Component {
 		)
 	}
 }
-
-
 
 function mapStateToProps(state) {
 	return {
