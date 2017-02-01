@@ -9,7 +9,7 @@ class RecipeBox extends Component {
   }
   render() {
     return (
-      <div id="recipeBoxContainer">
+      <div id="recipeBoxContainer" style={{marginBottom: '250px'}}>
         <Box />
       </div>
     )

@@ -36,12 +36,12 @@ if(process.env.NODE_ENV == 'development ') {
 	const compiler = webpack(config)
 
 	app.use(devMiddleware(compiler, {
-			noInfo: true,
+			noInfo: false,
 			publicPath: config.output.publicPath
 		}))
 		// .use(hotMiddlewa're(compiler))
 		 .use("/dev", express.static(path.join(__dirname, 'dev')))
-		 
+
 	app.get('*', (req, res) => {
 		res.sendFile(path.join(__dirname, 'index.html'))
 	})

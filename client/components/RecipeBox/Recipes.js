@@ -14,10 +14,14 @@ const styles = {
     borderRadius: '10px',
     padding: '5px',
     fontFamily: "'Grand Hotel', cursive",
+    cursor: 'pointer',
   }
 }
 
-let Recipes = ({recipes}) => {
+let Recipes = ({recipes, collapse, expand}) => {
+  const clickHandler = (i) => {
+    recipes[i]['expanded'] === false ? collapse(i) : expand(i)
+  }
   return (
     <div>
       {recipes.map((recipe, i) => {
@@ -26,18 +30,18 @@ let Recipes = ({recipes}) => {
             key={'container' + recipe.title}
             style={styles.container}>
             <h4
-              onClick={() => collapse(recipe.title)}
+              value={i}
+              onClick={clickHandler.bind(this, i)}
               style={styles.header}
               key={'header' + recipe.title}
               >
               {recipe.title}
             </h4>
-            <Collapse key={'collapse' + recipe.title} isOpened={false}>
+            <Collapse key={'collapse' + recipe.title} isOpened={recipe.expanded}>
               <table
                 className="table table-hover"
                 key={'table' + recipe.title}
                 id={'table' + recipe.title}
-                style={{display: "inline-block"}}
                 >
                 <thead key={'tablehead' + recipe.title}>
                   <tr key={'tablerow' + recipe.title}>
@@ -72,6 +76,8 @@ let Recipes = ({recipes}) => {
 
 Recipes.propTypes = {
   recipes: React.PropTypes.array.isRequired,
+  collapse: React.PropTypes.func.isRequired,
+  expand: React.PropTypes.func.isRequired,
 }
 
 export default Recipes = Radium(Recipes)
