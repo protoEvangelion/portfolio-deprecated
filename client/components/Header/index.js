@@ -55,6 +55,9 @@ const Header = () => (
 		<Link to="/leaderboard">
 			<Item src={require('./Leaderboard.png')} />
 		</Link>
+		<Link to="/recipebox">
+			<Item src={require('./Recipe.png')} />
+		</Link>
 	</div>
 )
 

@@ -14,6 +14,7 @@ import Pomodoro from '../components/Pomodoro'
 import Simon from '../components/Simon'
 import Markdown from '../components/Markdown'
 import Leaderboard from '../components/Leaderboard'
+import RecipeBox from '../components/RecipeBox'
 
 export default (
 	<Route path="/" component={App}>
@@ -28,6 +29,7 @@ export default (
 		<Route path="simon" component={Simon} />
 		<Route path="markdown" component={Markdown} />
 		<Route path="leaderboard" component={Leaderboard} />
+		<Route path="recipebox" component={RecipeBox} />
 		<Route path="*" component={NotFound} />
 	</Route>
 )

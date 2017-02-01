@@ -7,7 +7,6 @@ const styles = {
     width: '100%',
     lineHeight: '100%',
     color: 'white',
-    fontSize: '20px',
     background: 'darkgreen',
     marginBottom: '20px',
     marginTop: '20px',
