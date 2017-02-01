@@ -7,8 +7,17 @@ const bodyParser = require('body-parser')
 const axios = require('axios')
 
 //middlewares
-app.use(favicon(__dirname + '/dist/favicon.ico'))
-	 .use(bodyParser.json());
+app.disable('x-powered-by')
+app.use(favicon(path.join(__dirname, '../dist/favicon.ico')))
+app.use(bodyParser.json());
+
+//encryption
+const http = require('http')
+const https = require('https')
+const fs = require('fs')
+const privateKey = fs.readFileSync('server/sslcert/server.key', 'utf8')
+const certificate = fs.readFileSync('server/sslcert/server.crt', 'utf8')
+const credentials = {key: privateKey, cert: certificate}
 
 //API Proxy Section
 app.get('/api', (req, res) => {
@@ -37,13 +46,17 @@ if(process.env.NODE_ENV == 'development ') {
 
 	app.use(devMiddleware(compiler, {
 			noInfo: false,
-			publicPath: config.output.publicPath
+			publicPath: config.output.publicPath,
+			stats: {
+	        colors: true
+	    },
 		}))
-		// .use(hotMiddlewa're(compiler))
-		 .use("/dev", express.static(path.join(__dirname, 'dev')))
+		// .use(hotMiddleware(compiler))
+		 .use("/client", express.static(path.join(__dirname, 'client')))
 
 	app.get('*', (req, res) => {
-		res.sendFile(path.join(__dirname, 'index.html'))
+		console.log(path.join(__dirname, '../client/index.html'))
+		res.sendFile(path.join(__dirname, '../client/index.html'))
 	})
 
 } else {
@@ -59,7 +72,11 @@ if(process.env.NODE_ENV == 'development ') {
 }
 
 //listener
-app.listen(process.env.PORT || 3000, (err) => {
-  let details = `Listening at http://localhost:${process.env.PORT || 3000}/`
-  err ? console.error(err) : console.log(details)
-})
+http.createServer(app).listen(3000)
+https.createServer(credentials, app).listen(8443)
+
+// app.listen(process.env.PORT || 3000, (err) => {
+//   let details = `Listening at
+// http://localhost:${process.env.PORT || 3000}/`
+//   err ? console.error(err) : console.log(details)
+// })
