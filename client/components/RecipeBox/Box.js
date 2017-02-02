@@ -5,6 +5,7 @@ import AddRecipeBtn from './AddRecipeBtn'
 import Recipes from './Recipes'
 import GetPinsBtn from './GetPinsBtn'
 import RecipeBtns from './RecipeBtns'
+import PinterestRecipes from './PinterestRecipes'
 
 //authentication
 import proxyUrl from '../../api'
@@ -23,7 +24,8 @@ class Box extends Component {
     super(props)
     this.state = {
       boards: [],
-      recipes: [
+      pinterestRecipes: [],
+      defaultRecipes: [
         { title: 'Spaghetti',
           ingredients: [
             {name: 'Noodles', measurement: '1 box'},
@@ -85,9 +87,7 @@ class Box extends Component {
 
           base = 'https://api.pinterest.com/v1/me/boards/?'
           const token = `access_token=${res.data.access_token}&`
-
           this.setState({token})
-
           url = `${proxyUrl}${base}${token}`
 
           axios.get(url)
@@ -95,7 +95,7 @@ class Box extends Component {
               this.setState({
                 boards: res.data.data
               })
-              console.log(res.data)
+              console.log('boards response', res.data)
             })
             .catch((err) => console.log(err))
         })
@@ -120,13 +120,14 @@ class Box extends Component {
     const user = pathArr[1]
     const boardName = pathArr[2]
     const token = this.state.token
-    let url = `${base}${user}/${boardName}/pins/?${token}`
-    console.log(url)
+    const fields = 'fields=id,note'
+    let url = `${base}${user}/${boardName}/pins/?${token}${fields}`
+
+    // NOTE step: 4 in Pinterest Oauth flow
+    // adds pins to state
     axios.get(url)
       .then((res) => {
-        base = 'https://api.pinterest.com/v1/pins/'
-        const pin = res.data.data[0]['url']
-
+        this.setState({pinterestRecipes: res.data.data})
       })
       .catch((err) => console.log(err))
   }
@@ -139,8 +140,12 @@ class Box extends Component {
             <RecipeBtns
               boards={this.state.boards}
               selectBoard={this.selectBoard.bind(this)}/>
+            <PinterestRecipes
+              pins={this.state.pinterestRecipes}
+              collapse={this.collapse.bind(this)}
+              expand={this.expand.bind(this)}/>
             <Recipes
-              recipes={this.state.recipes}
+              recipes={this.state.defaultRecipes}
               collapse={this.collapse.bind(this)}
               expand={this.expand.bind(this)}/>
             <AddRecipeBtn />
