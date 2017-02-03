@@ -47,7 +47,7 @@ class Box extends Component {
     }
   }
   getPins() {
-    // NOTE step: 1 in Pinterest Oauth flow
+    // NOTE step: 1 in Pinterest Oauth flow get Token
 
     const base = 'https://api.pinterest.com/oauth/?'
     const type = 'response_type=code&'
@@ -56,13 +56,7 @@ class Box extends Component {
     const scope = 'scope=read_public,write_public&'
     const state = 'state=8449codE'
     const oauth = `${base}${type}${redirect}${appId}${scope}${state}`
-
-    const url = `${proxyUrl}${oauth}`
-
     window.location = oauth
-    // axios.get(url)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err))
   }
   componentDidMount() {
     //check url for pinterest auth code
@@ -71,7 +65,7 @@ class Box extends Component {
 
     if(query['?state'] === '8449codE' && query['code']) {
 
-      // NOTE step: 2 in Pinterest Oauth flow
+      // NOTE step: 2 in Pinterest Oauth flow; get auth code
 
       let base = 'https://api.pinterest.com/v1/oauth/token?'
       const grant = 'grant_type=authorization_code&'
@@ -83,7 +77,7 @@ class Box extends Component {
       axios.post(url)
         .then((res) => {
 
-          // NOTE step: 3 in Pinterest Oauth flow
+          // NOTE step: 3 in Pinterest Oauth flow; get boards
 
           base = 'https://api.pinterest.com/v1/me/boards/?'
           const token = `access_token=${res.data.access_token}&`
@@ -120,13 +114,24 @@ class Box extends Component {
     const user = pathArr[1]
     const boardName = pathArr[2]
     const token = this.state.token
-    const fields = 'fields=id,note'
+    const fields = 'fields=id,note,metadata'
     let url = `${base}${user}/${boardName}/pins/?${token}${fields}`
 
     // NOTE step: 4 in Pinterest Oauth flow
     // adds pins to state
     axios.get(url)
       .then((res) => {
+        // let pinterestRecipes = res.data.data
+        // base = 'https://api.pinterest.com/v1/pins/'
+        // pinterestRecipes.map((pinId) => {
+        //   url = `${proxyUrl}${base}${pinId.id}?${token}`
+        //   axios.get(url)
+        //     .then((res) => {
+        //       console.log(res)
+        //     })
+        //     .catch((err) => console.log(err))
+        // })
+        console.log(res)
         this.setState({pinterestRecipes: res.data.data})
       })
       .catch((err) => console.log(err))
