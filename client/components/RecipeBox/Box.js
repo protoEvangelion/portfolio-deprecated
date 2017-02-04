@@ -62,11 +62,12 @@ class Box extends Component {
     //check url for pinterest auth code
     //check url for state to prevent spoofing
     const query = querystring.parse(window.location.search)
+    let token = sessionStorage.getItem('token')
 
-    if(query['?state'] === '8449codE' && query['code']) {
+    if(query['?state'] === '8449codE' && query['code'] && token === null) {
 
       // NOTE step: 2 in Pinterest Oauth flow; get auth code
-
+      console.log('entering if')
       let base = 'https://api.pinterest.com/v1/oauth/token?'
       const grant = 'grant_type=authorization_code&'
       const appId = 'client_id=4882157526600140164&'
@@ -76,36 +77,27 @@ class Box extends Component {
 
       axios.post(url)
         .then((res) => {
-
-          // NOTE step: 3 in Pinterest Oauth flow; get boards
-
-          base = 'https://api.pinterest.com/v1/me/boards/?'
-          const token = `access_token=${res.data.access_token}&`
-          this.setState({token})
-          url = `${proxyUrl}${base}${token}`
-
-          axios.get(url)
-            .then((res) => {
-              this.setState({
-                boards: res.data.data
-              })
-              console.log('boards response', res.data)
-            })
-            .catch((err) => console.log(err))
+          sessionStorage.setItem('token', `access_token=${res.data.access_token}&`)
+          this.getBoards(sessionStorage.getItem('token'))
         })
         .catch((err) => console.log(err))
 
+    } else if(typeof(sessionStorage.getItem('token')) === 'string') {
+        this.getBoards(sessionStorage.getItem('token'))
     }
   }
-  collapse(i) {
-    const arr = this.state.recipes
-    arr[i]['expanded'] = true
-    this.setState({recipes: [...arr]})
-  }
-  expand(i) {
-    const arr = this.state.recipes
-    arr[i]['expanded'] = false
-    this.setState({recipes: [...arr]})
+  getBoards(authToken) {
+    // NOTE step: 3 in Pinterest Oauth flow; get boards
+    let base = 'https://api.pinterest.com/v1/me/boards/?'
+    let url = `${proxyUrl}${base}${authToken}`
+    axios.get(url)
+      .then((res) => {
+        this.setState({
+          boards: res.data.data
+        })
+        console.log('boards response', res.data)
+      })
+      .catch((err) => console.log(err))
   }
   selectBoard(board) {
     let base = 'https://api.pinterest.com/v1/boards/'
@@ -113,28 +105,50 @@ class Box extends Component {
     const pathArr = userUrl.pathname.split('/')
     const user = pathArr[1]
     const boardName = pathArr[2]
-    const token = this.state.token
-    const fields = 'fields=id,note,metadata'
+    const token = sessionStorage.getItem('token')
+    const fields = 'fields=id,metadata,image'
     let url = `${base}${user}/${boardName}/pins/?${token}${fields}`
 
     // NOTE step: 4 in Pinterest Oauth flow
     // adds pins to state
     axios.get(url)
       .then((res) => {
-        // let pinterestRecipes = res.data.data
-        // base = 'https://api.pinterest.com/v1/pins/'
-        // pinterestRecipes.map((pinId) => {
-        //   url = `${proxyUrl}${base}${pinId.id}?${token}`
-        //   axios.get(url)
-        //     .then((res) => {
-        //       console.log(res)
-        //     })
-        //     .catch((err) => console.log(err))
-        // })
-        console.log(res)
-        this.setState({pinterestRecipes: res.data.data})
+        let pinterestRecipes = res.data.data.map((recipe) => {
+          return Object.assign({}, recipe, {expanded: false})
+        })
+        this.setState({pinterestRecipes})
       })
       .catch((err) => console.log(err))
+  }
+  collapse(i, pint) {
+    if(pint === undefined) {
+      const arr = this.state.defaultRecipes
+      arr[i]['expanded'] = true
+      this.setState({defaultRecipes: [...arr]})
+    } else {
+        const arr = this.state.pinterestRecipes
+        arr[i]['expanded'] = true
+        this.setState({pinterestRecipes: [...arr]})
+    }
+  }
+  expand(i, pint) {
+    if(pint === undefined) {
+      const arr = this.state.defaultRecipes
+      arr[i]['expanded'] = false
+      this.setState({defaultRecipes: [...arr]})
+    } else {
+        const arr = this.state.pinterestRecipes
+        arr[i]['expanded'] = false
+        this.setState({pinterestRecipes: [...arr]})
+    }
+  }
+  submitForm(recipeName, ingredients) {
+    const newRecipe = {title: recipeName, ingredients, expanded: true}
+    this.setState({
+      defaultRecipes: [...this.state.defaultRecipes, newRecipe]
+    })
+
+    console.log(recipeName, ingredients)
   }
   render() {
     return(
@@ -148,12 +162,12 @@ class Box extends Component {
             <PinterestRecipes
               pins={this.state.pinterestRecipes}
               collapse={this.collapse.bind(this)}
-              expand={this.expand.bind(this)}/>
+              expand={this.expand.bind(this)} />
             <Recipes
               recipes={this.state.defaultRecipes}
               collapse={this.collapse.bind(this)}
-              expand={this.expand.bind(this)}/>
-            <AddRecipeBtn />
+              expand={this.expand.bind(this)} />
+            <AddRecipeBtn submit={this.submitForm.bind(this)}/>
           </div>
         </div>
       </div>

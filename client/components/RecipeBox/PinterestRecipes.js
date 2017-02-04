@@ -4,70 +4,97 @@ import Collapse from 'react-collapse'
 
 const styles = {
   container: {
-    marginBottom: '10px',
+    margin: '0 auto 30px auto',
+    textAlign: 'center',
+  },
+  pinterest: {
+    fontFamily: "'Grand Hotel', cursive",
+    color: 'black',
+    fontSize: '3em',
+    textAlign: 'left',
+  },
+  ingredientsContainer: {
+    display: 'inline-block',
+    margin: '10px 20px'
   },
   header: {
     lineHeight: '100%',
     color: 'white',
     fontSize: '2em',
-    background: '#16f9ae',
-    borderRadius: '10px',
     padding: '5px',
-    fontFamily: "'Grand Hotel', cursive",
+    marginTop: '10px',
+    fontFamily: "'Coiny', cursive",
     cursor: 'pointer',
   },
+  text: {
+    textAlign: 'center'
+  },
+}
+
+let color1 = '#B3FFAB'
+let color2 = '#12FFF7'
+let background={
+	background: color1,
+	background: `webkit-linear-gradient(to left, ${color1} , ${color2})`,
+	background: `linear-gradient(to left, ${color1} , ${color2})`
 }
 
 let PinterestRecipes = ({pins, collapse, expand}) => {
   const clickHandler = (i) => {
-    recipes[i]['expanded'] === false ? collapse(i) : expand(i)
-  }
-  const showIngredients = () => {
-
+    pins[i]['expanded'] === false ? collapse(i, 'pint') : expand(i, 'pint')
   }
   const renderTitles = () => {
     return (
-      <div>
+      <div style={styles.container}>
+        <h4 style={styles.pinterest}>Your Pinterest Recipes: </h4>
          {pins.map((recipe, i) => {
-           let display = true
-           return (
-             <div
-               key={'container'+recipe.id}
-               onClick={() => showIngredients()}
-               >
-               <h4
-                 style={styles.header}
-                 key={'header' + recipe.id}
+
+           let display = recipe.expanded
+           if(recipe.metadata.recipe) {
+             return (
+               <div
+                 key={'container'+recipe.id}
                  >
-                 {recipe.metadata.recipe.name + '...'}
-               </h4>
-               <Collapse key={'collapse' + recipe.id} isOpened={display}>
-                 {recipe.metadata.recipe.ingredients.map((ingredient) => {
-                   return (
-                     <div key={'container' + ingredient.category}>
-                       <h5 key={'head' + ingredient.category}>
-                         {ingredient.category}
-                       </h5>
-                       {ingredient.category.ingredients.map((info) => {
-                         return (
-                           <div key={'container' + info.name}>
-                             <p key={'amount' + info.name}>
-                               {info.amount}
-                             </p>
-                             <p key={'name' + info.name}>
-                               {info.name}
-                             </p>
-                           </div>
-                         )
-                       })}
-                     </div>
-                   )
-                 })}
-               </Collapse>
-           </div>
-           )
+                 <h4
+                   style={[styles.header, background]}
+                   key={'header' + recipe.id}
+                   onClick={clickHandler.bind(this, i)}
+                   >
+                   {recipe.metadata.recipe.name + '...'}
+                 </h4>
+                 <Collapse key={'collapse' + recipe.id} isOpened={display}>
+                   {recipe.metadata.recipe.ingredients.map((ingredient) => {
+                     return (
+                       <div style={styles.ingredientsContainer} key={'container' + ingredient.category}>
+                         <h5 style={styles.text} key={'head' + ingredient.category}>
+                           {ingredient.category}
+                         </h5>
+                         <table
+                           className= "table table-hover"
+                           key={'table' + recipe.id}>
+                           <tbody key={'body' + recipe.id}>
+                           {ingredient.ingredients.map((info) => {
+                             return (
+                               <tr key={'row' + info.name + recipe.id}>
+                                  <td key={'amount' + info.name + recipe.id}>
+                                    {info.amount} {info.name}
+                                  </td>
+                               </tr>
+                             )
+                           })}
+                           </tbody>
+                         </table>
+                       </div>
+                     )
+                   })}
+                 </Collapse>
+               </div>
+             )
+           } else {
+              return ''
+           }
          })}
-       </div>
+      </div>
     )
   }
   let pinRecipes = pins.length >= 1

@@ -4,18 +4,36 @@ import Collapse from 'react-collapse'
 
 const styles = {
   container: {
-    marginBottom: '10px',
+    margin: '0 auto',
+    textAlign: 'center',
+  },
+  ingredientsContainer: {
+    display: 'inline-block',
+    margin: '10px 20px'
+  },
+  default: {
+    fontFamily: "'Grand Hotel', cursive",
+    color: 'black',
+    fontSize: '3em'
   },
   header: {
     lineHeight: '100%',
     color: 'white',
     fontSize: '2em',
     background: '#16f9ae',
-    borderRadius: '10px',
     padding: '5px',
-    fontFamily: "'Grand Hotel', cursive",
+    marginTop: '10px',
+    fontFamily: "'Coiny', cursive",
     cursor: 'pointer',
   }
+}
+
+let color1 = 'rgb(255, 179, 71)'
+let color2 = 'rgb(255, 204, 51)'
+let background={
+	background: color1,
+	background: `webkit-linear-gradient(to left, ${color1} , ${color2})`,
+	background: `linear-gradient(to left, ${color1} , ${color2})`
 }
 
 let Recipes = ({recipes, collapse, expand}) => {
@@ -24,6 +42,7 @@ let Recipes = ({recipes, collapse, expand}) => {
   }
   return (
     <div>
+      <h4 style={styles.default}>Default Recipes: </h4>
       {recipes.map((recipe, i) => {
         return (
           <div
@@ -32,40 +51,42 @@ let Recipes = ({recipes, collapse, expand}) => {
             <h4
               value={i}
               onClick={clickHandler.bind(this, i)}
-              style={styles.header}
+              style={[styles.header, background]}
               key={'header' + recipe.title}
               >
               {recipe.title}
             </h4>
             <Collapse key={'collapse' + recipe.title} isOpened={recipe.expanded}>
-              <table
-                className="table table-hover"
-                key={'table' + recipe.title}
-                id={'table' + recipe.title}
-                >
-                <thead key={'tablehead' + recipe.title}>
-                  <tr key={'tablerow' + recipe.title}>
-                    <th key={'measure' + recipe.title}>Measurements</th>
-                    <th key={'ingredient' + recipe.title}>Ingredients</th>
-                  </tr>
-                </thead>
-                <tbody key={'tablebody' + recipe.title}>
-                  {recipe.ingredients.map((ingredient, i) => {
-                    return (
-                      <tr
-                        key={'row' + i + recipe.title}
-                        className={i % 2 === 0 ? "table-info" : ""}>
-                        <td key={recipe.title + ingredient.measurement}>
-                          {ingredient.measurement}
-                        </td>
-                        <td key={recipe.title + ingredient.name}>
-                          {ingredient.name}
-                        </td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
+              <div style={styles.ingredientsContainer} key={'container' + recipe.title}>
+                <table
+                  className="table table-hover"
+                  key={'table' + recipe.title}
+                  id={'table' + recipe.title}
+                  >
+                  <thead key={'tablehead' + recipe.title}>
+                    <tr key={'tablerow' + recipe.title}>
+                      <th key={'measure' + recipe.title}>Ingredients</th>
+                      <th key={'ingredient' + recipe.title}>Measurements</th>
+                    </tr>
+                  </thead>
+                  <tbody key={'tablebody' + recipe.title}>
+                    {recipe.ingredients.map((ingredient, i) => {
+                      return (
+                        <tr
+                          key={'row' + i + recipe.title}
+                          className={i % 2 === 0 ? "table-info" : ""}>
+                          <td key={recipe.title + ingredient.name}>
+                            {ingredient.name}
+                          </td>
+                          <td key={recipe.title + ingredient.measurement}>
+                            {ingredient.measurement}
+                          </td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </Collapse>
           </div>
         )

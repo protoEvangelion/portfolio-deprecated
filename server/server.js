@@ -41,18 +41,17 @@ if(process.env.NODE_ENV == 'development ') {
 	const webpack = require('webpack')
 	const config = require('./webpack.config')
 	const devMiddleware = require('webpack-dev-middleware')
+	const hotMiddleware = require('webpack-hot-middleware')
 	// const hotMiddleware = require('webpack-hot-middleware')
 	const compiler = webpack(config)
 
 	app.use(devMiddleware(compiler, {
 			noInfo: false,
 			publicPath: config.output.publicPath,
-			stats: {
-	        colors: true
-	    },
+			stats: {colors: true},
 		}))
-		// .use(hotMiddleware(compiler))
-		 .use("/client", express.static(path.join(__dirname, 'client')))
+		.use(hotMiddleware(compiler))
+		.use("/client", express.static(path.join(__dirname, 'client')))
 
 	app.get('*', (req, res) => {
 		console.log(path.join(__dirname, '../client/index.html'))
@@ -74,9 +73,3 @@ if(process.env.NODE_ENV == 'development ') {
 //listener
 http.createServer(app).listen(3000)
 https.createServer(credentials, app).listen(8443)
-
-// app.listen(process.env.PORT || 3000, (err) => {
-//   let details = `Listening at
-// http://localhost:${process.env.PORT || 3000}/`
-//   err ? console.error(err) : console.log(details)
-// })

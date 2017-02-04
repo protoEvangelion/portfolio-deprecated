@@ -4,6 +4,11 @@ import Radium from 'radium'
 const styles = {
   container: {
     padding: '10px',
+    textAlign: 'center',
+    margin: '20px auto',
+  },
+  btn: {
+    margin: '0 10px',
     cursor: 'pointer',
   }
 }
@@ -16,7 +21,7 @@ let RecipeBtns = ({boards, selectBoard}) => {
          key={board.name + i}
          onClick={() => selectBoard(board)}
          className='btn btn-primary'
-         style={styles.container}>
+         style={styles.btn}>
          {board.name}
        </button>
      )
@@ -26,7 +31,7 @@ let RecipeBtns = ({boards, selectBoard}) => {
     ? renderBoards()
     : ''
   return (
-    <div>
+    <div style={styles.container}>
       {boardBtns}
     </div>
   )
