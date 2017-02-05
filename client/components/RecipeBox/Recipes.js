@@ -25,6 +25,14 @@ const styles = {
     marginTop: '10px',
     fontFamily: "'Coiny', cursive",
     cursor: 'pointer',
+    outline: 'none',
+  },
+  icon: {
+    marginTop: '-45px',
+    marginRight: '10px',
+    float: 'right',
+    display: 'block',
+    color: 'red',
   }
 }
 
@@ -36,8 +44,9 @@ let background={
 	background: `linear-gradient(to left, ${color1} , ${color2})`
 }
 
-let Recipes = ({recipes, collapse, expand}) => {
+let Recipes = ({recipes, collapse, expand, deleteRecipe}) => {
   const clickHandler = (i) => {
+    console.log('defalt', collapse)
     recipes[i]['expanded'] === false ? collapse(i) : expand(i)
   }
   return (
@@ -56,6 +65,12 @@ let Recipes = ({recipes, collapse, expand}) => {
               >
               {recipe.title}
             </h4>
+            <i
+              style={styles.icon}
+              className="fa fa-times fa-2x"
+              aria-hidden="true"
+              onClick={() => deleteRecipe(recipe.title)}>
+            </i>
             <Collapse key={'collapse' + recipe.title} isOpened={recipe.expanded}>
               <div style={styles.ingredientsContainer} key={'container' + recipe.title}>
                 <table
@@ -99,6 +114,7 @@ Recipes.propTypes = {
   recipes: React.PropTypes.array.isRequired,
   collapse: React.PropTypes.func.isRequired,
   expand: React.PropTypes.func.isRequired,
+  deleteRecipe: React.PropTypes.func.isRequired,
 }
 
 export default Recipes = Radium(Recipes)

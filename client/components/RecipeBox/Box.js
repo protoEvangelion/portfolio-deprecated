@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react'
 import Radium from 'radium'
 import AddRecipeBtn from './AddRecipeBtn'
@@ -92,8 +91,18 @@ class Box extends Component {
     let url = `${proxyUrl}${base}${authToken}`
     axios.get(url)
       .then((res) => {
+        //delete boards that do not container eat or recipe or food
+
+        let boardsArr = res.data.data.filter((board) => {
+          let name = board.name.toUpperCase()
+          return (
+            name.includes('eat'.toUpperCase()) === true ||
+            name.includes('recipe'.toUpperCase()) === true ||
+            name.includes('food'.toUpperCase()) === true
+          )
+        })
         this.setState({
-          boards: res.data.data
+          boards: boardsArr
         })
         console.log('boards response', res.data)
       })
@@ -106,7 +115,7 @@ class Box extends Component {
     const user = pathArr[1]
     const boardName = pathArr[2]
     const token = sessionStorage.getItem('token')
-    const fields = 'fields=id,metadata,image'
+    const fields = 'fields=id,link,metadata,image'
     let url = `${base}${user}/${boardName}/pins/?${token}${fields}`
 
     // NOTE step: 4 in Pinterest Oauth flow
@@ -150,6 +159,18 @@ class Box extends Component {
 
     console.log(recipeName, ingredients)
   }
+  deleteRecipe(recipe) {
+    //deletes recipes that have been inputted by user
+    let recipes = this.state.defaultRecipes
+
+    for(let i = 0; i < recipes.length; i++) {
+      if(recipes[i]['title'] === recipe) {
+        recipes.splice(i, 1)
+        this.setState({defaultRecipes: recipes})
+        break
+      }
+    }
+  }
   render() {
     return(
       <div className="container">
@@ -166,7 +187,8 @@ class Box extends Component {
             <Recipes
               recipes={this.state.defaultRecipes}
               collapse={this.collapse.bind(this)}
-              expand={this.expand.bind(this)} />
+              expand={this.expand.bind(this)}
+              deleteRecipe={this.deleteRecipe.bind(this)}/>
             <AddRecipeBtn submit={this.submitForm.bind(this)}/>
           </div>
         </div>

@@ -58,6 +58,8 @@ if(process.env.NODE_ENV == 'development ') {
 		res.sendFile(path.join(__dirname, '../client/index.html'))
 	})
 
+	https.createServer(credentials, app).listen(8443)
+
 } else {
 		console.log('Production mode')
 
@@ -72,4 +74,3 @@ if(process.env.NODE_ENV == 'development ') {
 
 //listener
 http.createServer(app).listen(3000)
-https.createServer(credentials, app).listen(8443)

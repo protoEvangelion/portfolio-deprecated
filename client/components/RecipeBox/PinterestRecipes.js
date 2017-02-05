@@ -5,7 +5,7 @@ import Collapse from 'react-collapse'
 const styles = {
   container: {
     margin: '0 auto 30px auto',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   pinterest: {
     fontFamily: "'Grand Hotel', cursive",
@@ -29,6 +29,18 @@ const styles = {
   text: {
     textAlign: 'center'
   },
+  link: {
+    display: 'block',
+    margin: '15px',
+  },
+  servings: {
+    display: 'inline-block',
+    margin: '15px',
+    background: 'rgb(201, 34, 40)',
+    borderRadius: '5px',
+    padding: '5px',
+    color: 'white',
+  }
 }
 
 let color1 = '#B3FFAB'
@@ -48,7 +60,6 @@ let PinterestRecipes = ({pins, collapse, expand}) => {
       <div style={styles.container}>
         <h4 style={styles.pinterest}>Your Pinterest Recipes: </h4>
          {pins.map((recipe, i) => {
-
            let display = recipe.expanded
            if(recipe.metadata.recipe) {
              return (
@@ -63,6 +74,12 @@ let PinterestRecipes = ({pins, collapse, expand}) => {
                    {recipe.metadata.recipe.name + '...'}
                  </h4>
                  <Collapse key={'collapse' + recipe.id} isOpened={display}>
+                   <a href={recipe.link} style={styles.link}>
+                     Click to view more info about this recipe
+                   </a>
+                   <h5 style={styles.servings}>
+                     Serves: {recipe.metadata.recipe.servings.serves}
+                   </h5><br/>
                    {recipe.metadata.recipe.ingredients.map((ingredient) => {
                      return (
                        <div style={styles.ingredientsContainer} key={'container' + ingredient.category}>
@@ -73,9 +90,9 @@ let PinterestRecipes = ({pins, collapse, expand}) => {
                            className= "table table-hover"
                            key={'table' + recipe.id}>
                            <tbody key={'body' + recipe.id}>
-                           {ingredient.ingredients.map((info) => {
+                           {ingredient.ingredients.map((info, i) => {
                              return (
-                               <tr key={'row' + info.name + recipe.id}>
+                               <tr key={'row' + i}>
                                   <td key={'amount' + info.name + recipe.id}>
                                     {info.amount} {info.name}
                                   </td>

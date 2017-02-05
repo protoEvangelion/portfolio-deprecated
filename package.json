@@ -77,6 +77,5 @@
     "mocha": "^3.2.0",
     "react-addons-test-utils": "^15.0.2"
   },
-  "main": "index.js",
   "repository": "https://github.com/protoEvangelium/MERN-Portfolio"
 }
