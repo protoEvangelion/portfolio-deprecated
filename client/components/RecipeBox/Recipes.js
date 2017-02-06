@@ -1,6 +1,7 @@
 import React from 'react'
 import Radium from 'radium'
 import Collapse from 'react-collapse'
+import EditRecipe from './EditRecipe'
 
 const styles = {
   container: {
@@ -44,9 +45,8 @@ let background={
 	background: `linear-gradient(to left, ${color1} , ${color2})`
 }
 
-let Recipes = ({recipes, collapse, expand, deleteRecipe}) => {
+let Recipes = ({recipes, collapse, expand, deleteRecipe, editRecipe}) => {
   const clickHandler = (i) => {
-    console.log('defalt', collapse)
     recipes[i]['expanded'] === false ? collapse(i) : expand(i)
   }
   return (
@@ -70,9 +70,13 @@ let Recipes = ({recipes, collapse, expand, deleteRecipe}) => {
               className="fa fa-times fa-2x"
               aria-hidden="true"
               onClick={() => deleteRecipe(recipe.title)}>
-            </i>
+            </i><br/>
             <Collapse key={'collapse' + recipe.title} isOpened={recipe.expanded}>
               <div style={styles.ingredientsContainer} key={'container' + recipe.title}>
+                <EditRecipe
+                  editRecipe={editRecipe}
+                  recipe={recipe}
+                  index={i}/>
                 <table
                   className="table table-hover"
                   key={'table' + recipe.title}
@@ -115,6 +119,7 @@ Recipes.propTypes = {
   collapse: React.PropTypes.func.isRequired,
   expand: React.PropTypes.func.isRequired,
   deleteRecipe: React.PropTypes.func.isRequired,
+  editRecipe: React.PropTypes.func.isRequired,
 }
 
 export default Recipes = Radium(Recipes)

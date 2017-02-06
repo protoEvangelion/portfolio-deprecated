@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Radium from 'radium'
-import AddRecipeBtn from './AddRecipeBtn'
+import AddRecipe from './AddRecipe'
+import EditRecipe from './EditRecipe'
 import Recipes from './Recipes'
 import GetPinsBtn from './GetPinsBtn'
 import RecipeBtns from './RecipeBtns'
@@ -53,7 +54,17 @@ class Box extends Component {
     const oauth = `${base}${type}${redirect}${appId}${scope}${state}`
     window.location = oauth
   }
+  componentDidUpdate() {
+    //updates the sessionStorage from state
+    sessionStorage.setItem('defaultRecipes', JSON.stringify(this.state.defaultRecipes))
+  }
   componentDidMount() {
+    //sets the state with sessionStorage details from user's
+    //previous changes
+    if(sessionStorage.getItem('defaultRecipes') !== null) {
+      let sessionRecipes = JSON.parse(sessionStorage.getItem('defaultRecipes'))
+      this.setState({defaultRecipes:sessionRecipes})
+    }
     //check url for pinterest auth code
     //check url for state to prevent spoofing
     const query = querystring.parse(window.location.search)
@@ -62,7 +73,6 @@ class Box extends Component {
     if(query['?state'] === '8449codE' && query['code'] && token === null) {
 
       // NOTE step: 2 in Pinterest Oauth flow; get auth code
-      console.log('entering if')
       let base = 'https://api.pinterest.com/v1/oauth/token?'
       const grant = 'grant_type=authorization_code&'
       const appId = 'client_id=4882157526600140164&'
@@ -152,8 +162,6 @@ class Box extends Component {
     this.setState({
       defaultRecipes: [...this.state.defaultRecipes, newRecipe]
     })
-
-    console.log(recipeName, ingredients)
   }
   deleteRecipe(recipe) {
     //deletes recipes that have been inputted by user
@@ -166,6 +174,11 @@ class Box extends Component {
         break
       }
     }
+  }
+  editRecipe(recipe, i) {
+    let recipes = this.state.defaultRecipes
+    recipes[i] = recipe
+    this.setState({defaultRecipes: recipes})
   }
   render() {
     return(
@@ -184,8 +197,9 @@ class Box extends Component {
               recipes={this.state.defaultRecipes}
               collapse={this.collapse.bind(this)}
               expand={this.expand.bind(this)}
-              deleteRecipe={this.deleteRecipe.bind(this)}/>
-            <AddRecipeBtn submit={this.submitForm.bind(this)}/>
+              deleteRecipe={this.deleteRecipe.bind(this)}
+              editRecipe={this.editRecipe.bind(this)}/>
+            <AddRecipe submit={this.submitForm.bind(this)}/>
           </div>
         </div>
       </div>
