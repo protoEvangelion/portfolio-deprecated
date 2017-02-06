@@ -15,6 +15,7 @@ import Simon from '../components/Simon'
 import Markdown from '../components/Markdown'
 import Leaderboard from '../components/Leaderboard'
 import RecipeBox from '../components/RecipeBox'
+import Privacy from '../components/Privacy'
 
 export default (
 	<Route path="/" component={App}>
@@ -30,6 +31,7 @@ export default (
 		<Route path="markdown" component={Markdown} />
 		<Route path="leaderboard" component={Leaderboard} />
 		<Route path="recipebox" component={RecipeBox} />
+		<Route path="privacy-policy" component={Privacy} />
 		<Route path="*" component={NotFound} />
 	</Route>
 )

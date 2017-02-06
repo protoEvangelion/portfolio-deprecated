@@ -68,10 +68,11 @@ if(process.env.NODE_ENV == 'development') {
 		app.get('*', (req, res) => {
 			res.sendFile(path.join(__dirname, 'client/index.html'))
 		})
-}
 
-//listener
-app.listen(process.env.PORT || 3000, (err) => {
-  let details = `Listening at http://localhost:${process.env.PORT || 3000}/`
-  err ? console.error(err) : console.log(details)
-})
+		//listener
+		app.listen(process.env.PORT || 3000, (err) => {
+		  let details = process.env.PORT !== 3000
+			`Listening at ${process.env.PORT || 3000}/`
+		  err ? console.error(err) : console.log(details)
+		})
+}
