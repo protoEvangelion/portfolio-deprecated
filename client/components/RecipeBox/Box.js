@@ -12,12 +12,6 @@ import axios from 'axios'
 import querystring from 'querystring'
 import URL from 'url-parse'
 
-// const styles = {
-//   constainer: {
-//
-//   }
-// }
-
 class Box extends Component {
   constructor(props) {
     super(props)
@@ -50,7 +44,9 @@ class Box extends Component {
 
     const base = 'https://api.pinterest.com/oauth/?'
     const type = 'response_type=code&'
-    const redirect = 'redirect_uri=https://localhost:8443/recipebox&'
+    const redirect = process.env.NODE_ENV === 'development'
+      ? 'redirect_uri=https://localhost:8443/recipebox&'
+      : 'redirect_uri=https://ryantg.herokuapp.com/recipebox&'
     const appId = 'client_id=4882157526600140164&'
     const scope = 'scope=read_public,write_public&'
     const state = 'state=8449codE'

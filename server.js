@@ -8,15 +8,15 @@ const axios = require('axios')
 
 //middlewares
 app.disable('x-powered-by')
-app.use(favicon(path.join(__dirname, '../dist/favicon.ico')))
-app.use(bodyParser.json());
+	 .use(favicon(path.join(__dirname, './dist/favicon.ico')))
+	 .use(bodyParser.json())
 
 //encryption
 const http = require('http')
 const https = require('https')
 const fs = require('fs')
-const privateKey = fs.readFileSync('server/sslcert/server.key', 'utf8')
-const certificate = fs.readFileSync('server/sslcert/server.crt', 'utf8')
+const privateKey = fs.readFileSync('sslcert/server.key', 'utf8')
+const certificate = fs.readFileSync('sslcert/server.crt', 'utf8')
 const credentials = {key: privateKey, cert: certificate}
 
 //API Proxy Section
@@ -35,14 +35,12 @@ app.get('/api', (req, res) => {
 
 //MAKE SURE ALL ROUTING & API LOGIC GOES ABOVE THIS LINE
 
-if(process.env.NODE_ENV == 'development ') {
+if(process.env.NODE_ENV == 'development') {
 	console.log('Development mode')
-
 	const webpack = require('webpack')
 	const config = require('./webpack.config')
 	const devMiddleware = require('webpack-dev-middleware')
 	const hotMiddleware = require('webpack-hot-middleware')
-	// const hotMiddleware = require('webpack-hot-middleware')
 	const compiler = webpack(config)
 
 	app.use(devMiddleware(compiler, {
@@ -51,26 +49,25 @@ if(process.env.NODE_ENV == 'development ') {
 			stats: {colors: true},
 		}))
 		.use(hotMiddleware(compiler))
-		.use("/client", express.static(path.join(__dirname, 'client')))
 
 	app.get('*', (req, res) => {
-		console.log(path.join(__dirname, '../client/index.html'))
-		res.sendFile(path.join(__dirname, '../client/index.html'))
+		res.sendFile(path.join(__dirname, 'client/index.html'))
 	})
 
-	https.createServer(credentials, app).listen(8443)
+	https.createServer(credentials, app).listen(8443, () => {
+		console.log('listening on https://localhost:8443')
+	})
 
 } else {
 		console.log('Production mode')
-
 		const forceSsl = require('force-ssl-heroku')
 		app.use(forceSsl)
-			 .use("/dist", express.static(path.join(__dirname, 'dist')))
+			 .use('/dist', express.static(path.join(__dirname, 'dist')))
 
 		app.get('*', (req, res) => {
-			res.sendFile(path.join(__dirname, 'index.html'))
+			res.sendFile(path.join(__dirname, 'client/index.html'))
 		})
 }
 
 //listener
-http.createServer(app).listen(3000)
+app.listen(3000, () => console.log('listening on port 3000'))

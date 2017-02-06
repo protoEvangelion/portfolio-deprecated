@@ -6,13 +6,6 @@
         ["transform-es2015-parameters"],
         ["transform-object-rest-spread"],
         ["transform-react-display-name"],
-        ["react-transform", {
-          "transforms": [{
-            "transform": "react-transform-hmr",
-            "imports": ["react"],
-            "locals": ["module"]
-          }]
-        }]
       ]
     },
     "production": {

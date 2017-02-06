@@ -21,17 +21,21 @@ let production = {
 	entry: './client/index',
 	plugins: [
 		new webpack.NamedModulesPlugin(),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify('production')
+		}),
 		new webpack.NoEmitOnErrorsPlugin(),
 	],
 }
 
-let config = process.env.NODE_ENV === 'development '
+let configuration = process.env.NODE_ENV === 'development'
 	? development
 	: production
 
+console.log(`Webpack starting using: ${process.env.NODE_ENV === 'development' ? 'development' : 'production'} config :)`)
 
 module.exports = {
-	entry: config.entry,
+	entry: configuration.entry,
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -65,5 +69,5 @@ module.exports = {
 			soundmanager2: 'soundmanager2/script/soundmanager2-nodebug-jsmin.js'
 		},
 	},
-  plugins: config.plugins,
+  plugins: configuration.plugins,
 }

@@ -13,7 +13,7 @@ ReactDOM.render(
 	mountNode
 )
 
-if (module.hot) {
+if(module.hot) {
   module.hot.accept('./App', () => {
     const NextApp = require('./App').default;
     ReactDOM.render(

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "my mern portfolio website",
   "scripts": {
-    "start": "SET NODE_ENV=development & node server/server.js --ignore client/ --ignore node_modules/",
-    "build": "webpack -p --progress",
+    "start": "SET NODE_ENV=development& node server.js --ignore client/ --ignore node_modules/",
+    "build": "webpack -p --progress --colors",
     "serve": "node server.js",
     "lint": "eslint src"
   },
@@ -58,7 +58,6 @@
     "react-social": "^1.6.2",
     "react-sound": "^0.5.2",
     "react-sparklines": "^1.6.0",
-    "react-transform-hmr": "^1.0.4",
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
     "rimraf": "^2.5.4",
