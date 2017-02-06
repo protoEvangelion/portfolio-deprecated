@@ -55,8 +55,9 @@ if(process.env.NODE_ENV == 'development') {
 	})
 
 	//listener
-	https.createServer(credentials, app).listen(8443, () => {
-		console.log('listening on https://localhost:8443')
+	https.createServer(credentials, app).listen(8443, (err) => {
+		const details = 'listening on https://localhost:8443'
+		err ? console.error(err) : console.log(details)
 	})
 
 } else {
@@ -71,8 +72,7 @@ if(process.env.NODE_ENV == 'development') {
 
 		//listener
 		app.listen(process.env.PORT || 3000, (err) => {
-		  let details = process.env.PORT !== 3000
-			`Listening at ${process.env.PORT || 3000}/`
+		  let details = `Listening at ${process.env.PORT || 3000}/`
 		  err ? console.error(err) : console.log(details)
 		})
 }
