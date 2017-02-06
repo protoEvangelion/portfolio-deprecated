@@ -54,6 +54,7 @@ if(process.env.NODE_ENV == 'development') {
 		res.sendFile(path.join(__dirname, 'client/index.html'))
 	})
 
+	//listener
 	https.createServer(credentials, app).listen(8443, () => {
 		console.log('listening on https://localhost:8443')
 	})
@@ -70,4 +71,7 @@ if(process.env.NODE_ENV == 'development') {
 }
 
 //listener
-app.listen(3000, () => console.log('listening on port 3000'))
+app.listen(process.env.PORT || 3000, (err) => {
+  let details = `Listening at http://localhost:${process.env.PORT || 3000}/`
+  err ? console.error(err) : console.log(details)
+})
