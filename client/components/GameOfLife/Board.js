@@ -18,25 +18,26 @@ class Board extends Component {
 
     this.state = {
       cells: matrix,
-      nextGen: [],
       viewportHeight: window.innerHeight * .80,
     }
   }
   start() {
-    this.storeNeighbors()
+    for(let i = 0; i < 20; i++) {
+      setTimeout(this.storeNeighbors(), 1000)
+    }
   }
   nextState(alive, cell) {
     if(cell === false && alive === 3) {
-        console.log(true)
+        // console.log(true)
         return true
     } else if(cell === true && alive < 2) {
-        console.log(false)
+        // console.log(false)
         return false
     } else if(cell === true && alive > 3) {
-        console.log(false)
+        // console.log(false)
         return false
     } else if(cell === true && alive >= 2) {
-        console.log(true)
+        // console.log(true)
         return true
     }
   }
@@ -47,7 +48,7 @@ class Board extends Component {
       neighbor === true ? ++alive : ''
     })
 
-    this.nextState(alive, cell)
+    return this.nextState(alive, cell)
 
   }
   storeNeighbors() {
@@ -68,7 +69,7 @@ class Board extends Component {
             cells[row+1][column+1]
           ]
 
-          this.countNeighbors(neighbors, cell)
+          return this.countNeighbors(neighbors, cell)
           // console.log(neighbors)
         } else if(row === 0 && column === 0) {
         // handle top left corner cell
@@ -82,7 +83,7 @@ class Board extends Component {
             cells[row+1][column],
             cells[row+1][column+1]
           ]
-          this.countNeighbors(neighbors, cell)
+          return this.countNeighbors(neighbors, cell)
           // console.log('neighbors')
         } else if(row === 0 && column === 9) {
         // handle top right corner cell
@@ -96,7 +97,7 @@ class Board extends Component {
             cells[row+1][column],
             cells[row+1][column-9]
           ]
-          this.countNeighbors(neighbors, cell)
+          return this.countNeighbors(neighbors, cell)
           // console.log(neighbors)
         } else if(row === 9 && column === 0) {
         // handle bottom left corner cell
@@ -110,7 +111,7 @@ class Board extends Component {
             cells[row-9][column],
             cells[row-9][column+1]
           ]
-          this.countNeighbors(neighbors, cell)
+          return this.countNeighbors(neighbors, cell)
           // console.log(neighbors)
         } else if(row === 9 && column === 9) {
         // handle bottom right corner cell
@@ -124,7 +125,7 @@ class Board extends Component {
             cells[row-9][column],
             cells[row-9][column-9]
           ]
-          this.countNeighbors(neighbors, cell)
+          return this.countNeighbors(neighbors, cell)
           // console.log(neighbors)
         } else if(row === 0) {
         // handle top row cells
@@ -138,7 +139,7 @@ class Board extends Component {
             cells[row+1][column],
             cells[row+1][column+1]
           ]
-          this.countNeighbors(neighbors, cell)
+          return this.countNeighbors(neighbors, cell)
           // console.log(neighbors)
         } else if(row === 9) {
         // handle bottom row cells
@@ -152,7 +153,7 @@ class Board extends Component {
             cells[row-9][column],
             cells[row-9][column+1]
           ]
-          this.countNeighbors(neighbors, cell)
+          return this.countNeighbors(neighbors, cell)
           // console.log(neighbors)
         } else if(column === 0) {
         // handle left column cells
@@ -166,7 +167,7 @@ class Board extends Component {
             cells[row+1][column],
             cells[row+1][column+1]
           ]
-          this.countNeighbors(neighbors, cell)
+          return this.countNeighbors(neighbors, cell)
           // console.log(neighbors)
         } else if(column === 9) {
         // handle right column cells
@@ -180,11 +181,14 @@ class Board extends Component {
             cells[row+1][column],
             cells[row+1][column-9]
           ]
-          this.countNeighbors(neighbors, cell)
+          return this.countNeighbors(neighbors, cell)
           // console.log(neighbors)
         }
       })
     })
+    // console.log(newCells)
+    this.setState({cells: newCells})
+    this.forceUpdate()
   }
   cellClick(id) {
     const row = id.slice(0, id.indexOf(','))
