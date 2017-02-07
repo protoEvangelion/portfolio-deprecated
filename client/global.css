@@ -1,0 +1,13 @@
+/*helps footer stick to bottom of page gracefully*/
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#root {
+  flex: 1;
+}

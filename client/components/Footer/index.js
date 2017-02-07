@@ -8,6 +8,7 @@ const styles = {
     marginTop: '20px',
     padding: '20px 0 30px 0',
     textAlign: 'center',
+    width: '100%',
   },
   text: {
     display: 'inline',
@@ -17,7 +18,7 @@ const styles = {
 
 let Footer = () => {
   return (
-    <div className="container-fluid" style={styles.container}>
+    <footer className="container-fluid" style={styles.container}>
       <div className="row">
         <div className="col-md-4">
           <p style={styles.text}>Lovingly crafted by Ryan Garant</p>
@@ -29,7 +30,7 @@ let Footer = () => {
           <p style={styles.text}>Copyright © 2017</p>
         </div>
       </div>
-    </div>
+    </footer>
   )
 }
 

@@ -15,4 +15,8 @@ let App = () => {
   )
 }
 
+// App.propTypes = {
+//   prop: React.PropTypes.func.isRequired,
+// }
+
 export default App = Radium(App)

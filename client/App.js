@@ -7,6 +7,8 @@ import reducers from './reducers'
 import routes from './routes/routes'
 import promise from 'redux-promise'
 
+import './global.css'
+
 const store = createStore(
   reducers,
   applyMiddleware(promise)

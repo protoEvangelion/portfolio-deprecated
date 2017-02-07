@@ -16,6 +16,7 @@ import Markdown from '../components/Markdown'
 import Leaderboard from '../components/Leaderboard'
 import RecipeBox from '../components/RecipeBox'
 import Privacy from '../components/Privacy'
+import GameOfLife from '../components/GameOfLife'
 
 export default (
 	<Route path="/" component={App}>
@@ -32,6 +33,7 @@ export default (
 		<Route path="leaderboard" component={Leaderboard} />
 		<Route path="recipebox" component={RecipeBox} />
 		<Route path="privacy-policy" component={Privacy} />
+		<Route path="game-of-life" component={GameOfLife} />
 		<Route path="*" component={NotFound} />
 	</Route>
 )
