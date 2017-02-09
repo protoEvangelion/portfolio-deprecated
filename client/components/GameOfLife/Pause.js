@@ -4,6 +4,7 @@ import Radium from 'radium'
 const styles = {
   button: {
     marginRight: '20px',
+    paddingLeft: '18px',
     cursor: 'pointer',
   }
 }
@@ -13,7 +14,7 @@ let Pause = ({pause}) => {
     <button
       style={styles.button}
       className="btn btn-danger"
-      onClick={pause}>Pause
+      onClick={pause}>&#9612;&#9612;
     </button>
   )
 }

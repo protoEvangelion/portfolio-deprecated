@@ -8,18 +8,22 @@ const styles = {
   }
 }
 
-let Start = ({start}) => {
-  return (
+let Start = ({start, running}) => {
+	running
+		?	styles.button.cursor = 'not-allowed'
+		: styles.button.cursor = 'pointer'
+	return (
     <button
       style={styles.button}
-      className="btn btn-primary"
-      onClick={start}>Start
+      className="btn btn-success"
+      onClick={start}>&#9658;
     </button>
   )
 }
 
 Start.propTypes = {
   start: React.PropTypes.func.isRequired,
+	running: React.PropTypes.bool.isRequired,
 }
 
 export default Start = Radium(Start)
