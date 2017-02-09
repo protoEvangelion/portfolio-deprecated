@@ -8,18 +8,18 @@ const styles = {
   }
 }
 
-let Start = ({start}) => {
+let Pause = ({pause}) => {
   return (
     <button
       style={styles.button}
-      className="btn btn-primary"
-      onClick={start}>Start
+      className="btn btn-danger"
+      onClick={pause}>Pause
     </button>
   )
 }
 
-Start.propTypes = {
-  start: React.PropTypes.func.isRequired,
+Pause.propTypes = {
+  pause: React.PropTypes.func.isRequired,
 }
 
-export default Start = Radium(Start)
+export default Pause = Radium(Pause)

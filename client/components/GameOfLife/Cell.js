@@ -1,22 +1,31 @@
 import React, {Component} from 'react'
+import Radium from 'radium'
+import shallowCompare from 'react-addons-shallow-compare'
 
-export default class Cell extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      selected: false,
-    }
-  }
-  handleClick() {
-    this.props.cellClick(this.props.name)
-    this.setState({selected: !this.state.selected})
-  }
-  render() {
-    return (
-      <div
-        className={this.props.value === true ? 'lifeSquare lifeSquareActive' : 'lifeSquare'}
-        onClick={() => this.handleClick()}>
-      </div>
-    )
-  }
+const styles = {
+	cell: {
+		width: '7px',
+		height: '7px',
+		cursor: 'pointer',
+		borderRight: '1px solid lightgrey',
+		borderBottom: '1px solid lightgrey',
+		display: 'block',
+		float: 'left',
+	}
 }
+
+class Cell extends Component {
+	shouldComponentUpdate(nextProps, nextState) {
+		return shallowCompare(this, nextProps, nextState)
+	}
+	render() {
+		return (
+	    <div
+	      className={`lifeSquare ${this.props.value === true ? 'alive' : ''}`}
+	      onClick={() => this.props.cellClick(this.props.x, this.props.y)}>
+	    </div>
+	  )
+	}
+}
+
+export default Cell = Radium(Cell)

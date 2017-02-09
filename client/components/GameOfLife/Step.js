@@ -8,18 +8,18 @@ const styles = {
   }
 }
 
-let Start = ({start}) => {
+let Step = ({step}) => {
   return (
     <button
       style={styles.button}
       className="btn btn-primary"
-      onClick={start}>Start
+      onClick={step}>Step
     </button>
   )
 }
 
-Start.propTypes = {
-  start: React.PropTypes.func.isRequired,
+Step.propTypes = {
+  step: React.PropTypes.func.isRequired,
 }
 
-export default Start = Radium(Start)
+export default Step = Radium(Step)
