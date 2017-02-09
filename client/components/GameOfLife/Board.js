@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Radium from 'radium'
-import {Layer, Stage, Rect} from 'react-konva'
+import nextGeneration from './helpers'
+
 import Start from './Start'
 import Pause from './Pause'
 import Cell from './Cell'
@@ -27,8 +28,8 @@ class Board extends Component {
   constructor(props) {
     super(props)
 
-    const size = 50
-    const coords = 8
+    const size = 20
+    const coords = 20
     const dimensions = coords
     const canvasSize = size*coords.toString() + 'px'
 
@@ -42,6 +43,7 @@ class Board extends Component {
 
     this.state = {
       cells: matrix,
+      coords: {},
       count: 0,
       canvasSize: canvasSize,
       boardSize: size,
@@ -49,22 +51,25 @@ class Board extends Component {
       speed: 250,
       viewportHeight: window.innerHeight * .80,
     }
+
   }
-  step() {
-    const size = this.state.boardSize - 1
-    this.storeNeighbors(size)
+  componentDidMount() {
+    canvas = document.getElementById('lifeCanvas')
+    ctx = canvas.getContext('2d')
+    this.renderCanvas(this.state.dimensions)
   }
-  start() {
-    let loopForever= () => {
-      Interval = setInterval(startItUp, 100)
-    }
-    let startItUp = () => {
-      this.storeNeighbors(this.state.boardSize - 1)
-    }
-    loopForever()
-	}
-  pause() {
-    clearInterval(Interval)
+
+  //next three functions handle the computation of nextGen
+  storeNeighbors(size) {
+    let cells = this.state.cells
+    nextGeneration(this, cells, size)
+  }
+  countNeighbors(neighbors, cell) {
+    let alive = 0
+    neighbors.forEach((neighbor) => {
+      if(neighbor === true) ++alive
+    })
+    return this.nextState(alive, cell)
   }
   nextState(alive, cell) {
     if(cell === false && alive === 3) {
@@ -79,160 +84,10 @@ class Board extends Component {
         return false
     }
   }
-  countNeighbors(neighbors, cell) {
-    let alive = 0
 
-    neighbors.forEach((neighbor) => {
-      if(neighbor === true) ++alive
-    })
-
-    return this.nextState(alive, cell)
-
-  }
-  storeNeighbors(size) {
-    let cells = this.state.cells
-    let deadOrAlive
-
-    let newCells = cells.map((matrix, row) => {
-      return matrix.map((cell, col) => {
-        //handle inner cells (non border)
-        let neighbors
-        if(row !== 0 && row !== size && col !== 0 && col !== size) {
-          neighbors = [
-            cells[row-1][col-1],
-            cells[row-1][col],
-            cells[row-1][col+1],
-            cells[row][col-1],
-            cells[row][col+1],
-            cells[row+1][col-1],
-            cells[row+1][col],
-            cells[row+1][col+1]
-          ]
-
-          return this.drawCorrectBox(cell, this.countNeighbors(neighbors, cell), row, col)
-
-        } else if(row === 0 && col === 0) {
-        // handle top left corner cell
-          neighbors = [
-            cells[row+size][col+size],
-            cells[row+size][col],
-            cells[row+size][col+1],
-            cells[row][col+size],
-            cells[row][col+1],
-            cells[row+1][col+size],
-            cells[row+1][col],
-            cells[row+1][col+1]
-          ]
-          return this.drawCorrectBox(cell, this.countNeighbors(neighbors, cell), row, col)
-        } else if(row === 0 && col === size) {
-        // handle top right corner cell
-          neighbors = [
-            cells[row+size][col-1],
-            cells[row+size][col],
-            cells[row+size][col-size],
-            cells[row][col-1],
-            cells[row][col-size],
-            cells[row+1][col-1],
-            cells[row+1][col],
-            cells[row+1][col-size]
-          ]
-          return this.drawCorrectBox(cell, this.countNeighbors(neighbors, cell), row, col)
-        } else if(row === size && col === 0) {
-        // handle bottom left corner cell
-          neighbors = [
-            cells[row-1][col+size],
-            cells[row-1][col],
-            cells[row-1][col+1],
-            cells[row][col+size],
-            cells[row][col+1],
-            cells[row-size][col+size],
-            cells[row-size][col],
-            cells[row-size][col+1]
-          ]
-          return this.drawCorrectBox(cell, this.countNeighbors(neighbors, cell), row, col)
-        } else if(row === size && col === size) {
-        // handle bottom right corner cell
-          neighbors = [
-            cells[row-1][col-1],
-            cells[row-1][col],
-            cells[row-1][col-size],
-            cells[row][col-1],
-            cells[row][col-size],
-            cells[row-size][col-1],
-            cells[row-size][col],
-            cells[row-size][col-size]
-          ]
-          return this.drawCorrectBox(cell, this.countNeighbors(neighbors, cell), row, col)
-        } else if(row === 0) {
-        // handle top row cells
-          neighbors = [
-            cells[row+size][col-1],
-            cells[row+size][col],
-            cells[row+size][col+1],
-            cells[row][col-1],
-            cells[row][col+1],
-            cells[row+1][col-1],
-            cells[row+1][col],
-            cells[row+1][col+1]
-          ]
-          return this.drawCorrectBox(cell, this.countNeighbors(neighbors, cell), row, col)
-        } else if(row === size) {
-        // handle bottom row cells
-          neighbors = [
-            cells[row-1][col-1],
-            cells[row-1][col],
-            cells[row-1][col+1],
-            cells[row][col-1],
-            cells[row][col+1],
-            cells[row-size][col-1],
-            cells[row-size][col],
-            cells[row-size][col+1]
-          ]
-          return this.drawCorrectBox(cell, this.countNeighbors(neighbors, cell), row, col)
-        } else if(col === 0) {
-        // handle left col cells
-          neighbors = [
-            cells[row-1][col+size],
-            cells[row-1][col],
-            cells[row-1][col+1],
-            cells[row][col+size],
-            cells[row][col+1],
-            cells[row+1][col+size],
-            cells[row+1][col],
-            cells[row+1][col+1]
-          ]
-          return this.drawCorrectBox(cell, this.countNeighbors(neighbors, cell), row, col)
-        } else if(col === size) {
-        // handle right col cells
-          neighbors = [
-            cells[row-1][col-1],
-            cells[row-1][col],
-            cells[row-1][col-size],
-            cells[row][col-1],
-            cells[row][col-size],
-            cells[row+1][col-1],
-            cells[row+1][col],
-            cells[row+1][col-size]
-          ]
-          return this.drawCorrectBox(cell, this.countNeighbors(neighbors, cell), row, col)
-        }
-      })
-    })
-
-    this.setState({
-      cells: newCells,
-      count: this.state.count + 1
-    })
-    this.forceUpdate()
-  }
-  componentDidMount() {
-    canvas = document.getElementById('lifeCanvas')
-    ctx = canvas.getContext('2d')
-    this.renderCanvas(this.state.dimensions)
-  }
+  // next 5 functions handle rendering to the canvas element
   drawCorrectBox(cell, deadOrAlive, row, col) {
     const d = this.state.dimensions
-
     if(cell !== deadOrAlive) {
       cell === true ?
         this.drawDeadBox(col * d, row * d) :
@@ -249,24 +104,16 @@ class Board extends Component {
 
     ctx.fillRect(x, y, d, d)
     ctx.strokeRect(x, y, d, d)
+
+    return {x, y}
   }
   drawAliveBox(x, y) {
     const d = this.state.dimensions
 
     ctx.fillStyle = 'rgba(2,117,216,255)'
     ctx.fillRect(x, y, d, d)
-  }
-  renderCanvas(d) {
 
-    let newCanvas = this.state.cells.map((cells, x) => {
-      return cells.map((cell, y) => {
-          cell === true
-            ? this.drawAliveBox(y * d, x * d)
-            : this.drawDeadBox(y * d, x * d)
-          return cell
-      })
-    })
-
+    return {x, y}
   }
   canvasClick(e) {
     //get coords of click
@@ -283,12 +130,49 @@ class Board extends Component {
       : this.drawAliveBox(x, y)
 
     //NOTE calculate row and col
-      // const cells = this.state.cells
-      // cells[row][col] = !cells[row][col]
-      //
-      // this.setState({cells})
+    const coords = this.state.coords
 
+    coords.forEach((cells, row) => {
+      cells.forEach((cell, col) => {
+        if(cell.coords.x === x && cell.coords.y === y) {
+          const cells = this.state.cells
+          cells[row][col] = !cells[row][col]
+          this.setState({cells})
+        }
+      })
+    })
   }
+  renderCanvas(d) {
+    const cells = this.state.cells
+    let newCanvas = cells.map((cells, x) => {
+      return cells.map((cell, y) => {
+          let coords = cell === true
+            ? this.drawAliveBox(y * d, x * d)
+            : this.drawDeadBox(y * d, x * d)
+          return {cell, coords}
+      })
+    })
+    this.setState({coords: newCanvas})
+  }
+
+  // next 3 functions handle startUP, pausing, and stepping
+  start() {
+    let loopForever= () => {
+      Interval = setInterval(startItUp, 100)
+    }
+    let startItUp = () => {
+      this.storeNeighbors(this.state.boardSize - 1)
+    }
+    loopForever()
+	}
+  pause() {
+    clearInterval(Interval)
+  }
+  step() {
+    const size = this.state.boardSize - 1
+    this.storeNeighbors(size)
+  }
+
   render() {
     return (
       <div style={styles.container}>
