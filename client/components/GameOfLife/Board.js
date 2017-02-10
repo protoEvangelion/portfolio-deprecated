@@ -25,14 +25,18 @@ const styles = {
   }
 }
 //Global variables
-let Interval, canvas, ctx, initialState
+let Interval, canvas, ctx
 
 class Board extends Component {
   constructor(props) {
     super(props)
 
-    const size = 20
-    const coords = 20
+    this.state = this.initialState()
+
+  }
+  initialState() {
+    const size = 50
+    const coords = 8
     const dimensions = coords
     const canvasSize = size*coords.toString() + 'px'
 
@@ -44,7 +48,7 @@ class Board extends Component {
     matrix[1][0] = true
     matrix[2][1] = true
 
-    this.state = {
+    return {
       cells: matrix,
       count: 0,
       running: false,
@@ -56,9 +60,6 @@ class Board extends Component {
       choosingPattern: false,
       patternType: '',
     }
-
-    initialState = this.state
-
   }
   componentDidMount() {
     canvas = document.getElementById('lifeCanvas')
@@ -137,6 +138,7 @@ class Board extends Component {
 
       cells[row][col] = !cells[row][col]
       this.setState({cells})
+
     } else {
         let newPattern = patternHelper(this, cells, x, y, d, this.state.patternType)
 
@@ -150,10 +152,10 @@ class Board extends Component {
   expandPatterns() {
     this.setState({expanded: !this.state.expanded})
   }
-  placePattern() {
+  placePattern(type) {
     this.setState({
       choosingPattern: true,
-      patternType: 'Gosper Gun'
+      patternType: type
     })
   }
   renderCanvas(d, cells) {
@@ -186,7 +188,9 @@ class Board extends Component {
   }
   reset() {
     clearInterval(Interval)
+    let initialState = this.initialState()
     this.renderCanvas(initialState.dimensions, initialState.cells)
+
     this.setState(initialState)
   }
   step() {

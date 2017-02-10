@@ -4,7 +4,7 @@ import Radium from 'radium'
 const styles = {
   button: {
     marginRight: '20px',
-    paddingLeft: '18px',
+    paddingLeft: '20px',
     cursor: 'pointer',
   }
 }

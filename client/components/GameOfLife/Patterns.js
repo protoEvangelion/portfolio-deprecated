@@ -4,7 +4,7 @@ import Collapse from 'react-collapse'
 
 const styles = {
   button: {
-    margin: '20px',
+    margin: '5px',
     cursor: 'pointer',
   }
 }
@@ -21,7 +21,12 @@ let Patterns = ({expandPatterns, expanded, placePattern}) => {
         <button
           style={styles.button}
           className="btn btn-info"
-          onClick={placePattern}>Gosper Gun
+          onClick={() => placePattern('Gosper Gun')}>Gosper Gun
+        </button>
+				<button
+          style={styles.button}
+          className="btn btn-info"
+          onClick={() => placePattern('Pulsar')}>Pulsar
         </button>
       </Collapse>
     </div>

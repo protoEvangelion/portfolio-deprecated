@@ -15,19 +15,118 @@ const patternHelper = (_this, cells, x, y, d, type) => {
 	}
 
 	if(type === 'Gosper Gun') {
+
 		let indexArr = []
 		indexArr.push(
 			[row+1, col],
-			[row+2, col],
+			[row+1, col-1],
+			[row, col-1],
+			[row+2, col-1],
+			[row-1, col-2],
+			[row+3, col-2],
+			[row+1, col-3],
+			[row-2, col-4],
+			[row-2, col-5],
+			[row-1, col-6],
+			[row, col-7],
+			[row+1, col-7],
+			[row+4, col-4],
+			[row+4, col-5],
+			[row+3, col-6],
+			[row+2, col-7],
+			[row, col-16],
+			[row, col-17],
+			[row+1, col-16],
+			[row+1, col-17],
+			[row, col+3],
+			[row, col+4],
+			[row-1, col+3],
+			[row-1, col+4],
+			[row-2, col+3],
+			[row-2, col+4],
+			[row-3, col+5],
+			[row-3, col+7],
+			[row-4, col+7],
+			[row+1, col+5],
+			[row+1, col+7],
+			[row+2, col+7],
+			[row-1, col+17],
+			[row-1, col+18],
+			[row-2, col+17],
+			[row-2, col+18],
 		)
 		updateCellState(indexArr)
 		drawItBro(indexArr)
-
-		console.log('newCells', newCells)
 		return newCells
 
-	} else {
-			console.log('not Gosper gun')
+	} else if(type === 'Spaceship'){
+			let indexArr = []
+			indexArr.push(
+			[row, col],
+			)
+			updateCellState(indexArr)
+			drawItBro(indexArr)
+			return newCells
+
+	} else if(type === 'Pulsar'){
+
+			let indexArr = []
+			indexArr.push(
+				[row-2, col+1],
+				[row-3, col+1],
+				[row-4, col+1],
+				[row-6, col+2],
+				[row-6, col+3],
+				[row-6, col+4],
+				[row-1, col+2],
+				[row-1, col+3],
+				[row-1, col+4],
+				[row-2, col+6],
+				[row-3, col+6],
+				[row-4, col+6],
+
+				[row-2, col-1],
+				[row-3, col-1],
+				[row-4, col-1],
+				[row-6, col-2],
+				[row-6, col-3],
+				[row-6, col-4],
+				[row-1, col-2],
+				[row-1, col-3],
+				[row-1, col-4],
+				[row-2, col-6],
+				[row-3, col-6],
+				[row-4, col-6],
+
+				[row+2, col+1],
+				[row+3, col+1],
+				[row+4, col+1],
+				[row+6, col+2],
+				[row+6, col+3],
+				[row+6, col+4],
+				[row+1, col+2],
+				[row+1, col+3],
+				[row+1, col+4],
+				[row+2, col+6],
+				[row+3, col+6],
+				[row+4, col+6],
+
+				[row+2, col-1],
+				[row+3, col-1],
+				[row+4, col-1],
+				[row+6, col-2],
+				[row+6, col-3],
+				[row+6, col-4],
+				[row+1, col-2],
+				[row+1, col-3],
+				[row+1, col-4],
+				[row+2, col-6],
+				[row+3, col-6],
+				[row+4, col-6],
+			)
+			updateCellState(indexArr)
+			drawItBro(indexArr)
+			return newCells
 	}
 
 }

@@ -134,7 +134,7 @@ const nextGeneration = (_this, cells, size) => {
     cells: newCells,
     count: _this.state.count + 1
   })
-  _this.forceUpdate()
+  // _this.forceUpdate()
 }
 
 export default nextGeneration
