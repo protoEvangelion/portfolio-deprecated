@@ -62,7 +62,15 @@ const patternHelper = (_this, cells, x, y, d, type) => {
 	} else if(type === 'Spaceship'){
 			let indexArr = []
 			indexArr.push(
-			[row, col],
+				[row+1, col],
+				[row+1, col-1],
+				[row, col-2],
+				[row-2, col-2],
+				[row+1, col+1],
+				[row+1, col+2],
+				[row, col+2],
+				[row-1, col+2],
+				[row-2, col+1],
 			)
 			updateCellState(indexArr)
 			drawItBro(indexArr)

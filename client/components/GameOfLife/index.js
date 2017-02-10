@@ -2,8 +2,6 @@ import React from 'react'
 import Radium from 'radium'
 import Board from './Board'
 
-import './style.css'
-
 const styles = {
   container: {
     margin: '0 auto 200px auto',
@@ -19,9 +17,5 @@ let GameOfLife = () => {
     </div>
   )
 }
-
-// App.propTypes = {
-//   prop: React.PropTypes.func.isRequired,
-// }
 
 export default GameOfLife = Radium(GameOfLife)

@@ -17,39 +17,39 @@ const styles = {
   }
 }
 
-let Patterns = ({expandPatterns, expanded, placePattern}) => {
+let Sizes = ({expandSizes, expanded, setSize}) => {
   return (
     <div style={styles.container}>
       <button
         style={styles.topBtn}
         className="btn btn-primary"
-        onClick={expandPatterns}>Choose Pattern
+        onClick={expandSizes}>Sizes
       </button>
       <Collapse isOpened={expanded}>
         <button
           style={styles.button}
           className="btn btn-info"
-          onClick={() => placePattern('Gosper Gun')}>Gosper Gun
+          onClick={() => setSize(20, 20)}>Small
         </button>
 				<button
           style={styles.button}
           className="btn btn-info"
-          onClick={() => placePattern('Pulsar')}>Pulsar
+          onClick={() => setSize(500, 8)}>Medium
         </button>
         <button
           style={styles.button}
           className="btn btn-info"
-          onClick={() => placePattern('Spaceship')}>Spaceship
+          onClick={() => setSize(1000, 8)}>Jumbo
         </button>
       </Collapse>
     </div>
   )
 }
 
-Patterns.propTypes = {
-  expandPatterns: React.PropTypes.func.isRequired,
+Sizes.propTypes = {
+  expandSizes: React.PropTypes.func.isRequired,
   expanded: React.PropTypes.bool.isRequired,
-  placePattern: React.PropTypes.func.isRequired,
+  setSize: React.PropTypes.func.isRequired,
 }
 
-export default Patterns = Radium(Patterns)
+export default Sizes = Radium(Sizes)

@@ -3,13 +3,14 @@ import Radium from 'radium'
 import nextGeneration from './nextGen_helper'
 import patternHelper from './pattern_helper'
 import Patterns from './Patterns'
+import Speeds from './Speeds'
+import Sizes from './Sizes'
 import Start from './Start'
 import Pause from './Pause'
 import Reset from './Reset'
 import Step from './Step'
 
 import Count from './Count'
-
 
 const styles = {
   container: {
@@ -24,6 +25,7 @@ const styles = {
     border: '1px solid black'
   }
 }
+
 //Global variables
 let Interval, canvas, ctx
 
@@ -51,12 +53,15 @@ class Board extends Component {
     return {
       cells: matrix,
       count: 0,
+      speed: 100,
       running: false,
       canvasSize: canvasSize,
       boardSize: size,
       dimensions: dimensions,
       viewportHeight: window.innerHeight * .80,
-      expanded: false,
+      patternsExpanded: false,
+      speedsExpanded: false,
+      sizesExpanded: false,
       choosingPattern: false,
       patternType: '',
     }
@@ -65,6 +70,7 @@ class Board extends Component {
     canvas = document.getElementById('lifeCanvas')
     ctx = canvas.getContext('2d')
     this.renderCanvas(this.state.dimensions, this.state.cells)
+    this.start(this.state.speed)
   }
 
   //next three functions handle the computation of nextGen
@@ -150,12 +156,39 @@ class Board extends Component {
 
   }
   expandPatterns() {
-    this.setState({expanded: !this.state.expanded})
+    this.setState({patternsExpanded: !this.state.patternsExpanded})
+  }
+  expandSpeeds() {
+    this.setState({speedsExpanded: !this.state.speedsExpanded})
+  }
+  expandSizes() {
+    this.setState({sizesExpanded: !this.state.sizesExpanded})
   }
   placePattern(type) {
     this.setState({
       choosingPattern: true,
       patternType: type
+    })
+  }
+  setSpeed(speed) {
+    clearInterval(Interval)
+    let loopForever= () => {
+      Interval = setInterval(startItUp, speed || this.state.speed)
+    }
+    let startItUp = () => {
+      this.storeNeighbors(this.state.boardSize - 1)
+    }
+    loopForever()
+    this.setState({speed})
+  }
+  setSize(size, dimensions) {
+
+    const canvasSize = size*dimensions.toString() + 'px'
+
+    this.setState({
+      canvasSize: canvasSize,
+      boardSize: size,
+      dimensions: dimensions,
     })
   }
   renderCanvas(d, cells) {
@@ -173,7 +206,7 @@ class Board extends Component {
   start() {
     if(!this.state.running) {
       let loopForever= () => {
-        Interval = setInterval(startItUp, 100)
+        Interval = setInterval(startItUp, this.state.speed)
       }
       let startItUp = () => {
         this.storeNeighbors(this.state.boardSize - 1)
@@ -220,8 +253,16 @@ class Board extends Component {
         <div style={styles.footer}>
           <Patterns
             expandPatterns={this.expandPatterns.bind(this)}
-            expanded={this.state.expanded}
+            expanded={this.state.patternsExpanded}
             placePattern={this.placePattern.bind(this)}/>
+          <Speeds
+            expandSpeeds={this.expandSpeeds.bind(this)}
+            expanded={this.state.speedsExpanded}
+            setSpeed={this.setSpeed.bind(this)}/>
+          <Sizes
+            expandSizes={this.expandSizes.bind(this)}
+            expanded={this.state.sizesExpanded}
+            setSize={this.setSize.bind(this)}/>
         </div>
       </div>
     )

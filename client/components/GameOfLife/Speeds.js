@@ -17,39 +17,39 @@ const styles = {
   }
 }
 
-let Patterns = ({expandPatterns, expanded, placePattern}) => {
+let Speeds = ({expandSpeeds, expanded, setSpeed}) => {
   return (
     <div style={styles.container}>
       <button
         style={styles.topBtn}
         className="btn btn-primary"
-        onClick={expandPatterns}>Choose Pattern
+        onClick={expandSpeeds}>Speeds
       </button>
       <Collapse isOpened={expanded}>
         <button
           style={styles.button}
           className="btn btn-info"
-          onClick={() => placePattern('Gosper Gun')}>Gosper Gun
+          onClick={() => setSpeed(1000)}>Slow
         </button>
 				<button
           style={styles.button}
           className="btn btn-info"
-          onClick={() => placePattern('Pulsar')}>Pulsar
+          onClick={() => setSpeed(100)}>Medium
         </button>
         <button
           style={styles.button}
           className="btn btn-info"
-          onClick={() => placePattern('Spaceship')}>Spaceship
+          onClick={() => setSpeed(50)}>Fast
         </button>
       </Collapse>
     </div>
   )
 }
 
-Patterns.propTypes = {
-  expandPatterns: React.PropTypes.func.isRequired,
+Speeds.propTypes = {
+  expandSpeeds: React.PropTypes.func.isRequired,
   expanded: React.PropTypes.bool.isRequired,
-  placePattern: React.PropTypes.func.isRequired,
+  setSpeed: React.PropTypes.func.isRequired,
 }
 
-export default Patterns = Radium(Patterns)
+export default Speeds = Radium(Speeds)
