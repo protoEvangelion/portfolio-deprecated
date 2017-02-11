@@ -1,14 +1,15 @@
 import React from 'react'
 import Radium from 'radium'
-import Collapse from 'react-collapse'
 
 const styles = {
   container: {
-    display: 'inline-block'
+    display: 'flex',
+    flexDirection: 'column',
   },
-  topBtn: {
+  header: {
     margin: '5px',
     cursor: 'pointer',
+    fontFamily: '"Grand Hotel", cursive',
   },
   button: {
     margin: '5px',
@@ -17,38 +18,30 @@ const styles = {
   }
 }
 
-let Sizes = ({expandSizes, expanded, setSize}) => {
+let Sizes = ({setSize}) => {
   return (
     <div style={styles.container}>
+      <h2 style={styles.header}>Sizes</h2>
       <button
-        style={styles.topBtn}
-        className="btn btn-primary"
-        onClick={expandSizes}>Sizes
+        style={styles.button}
+        className="btn btn-info"
+        onClick={() => setSize(20, 20, 'Small')}>Small
       </button>
-      <Collapse isOpened={expanded}>
-        <button
-          style={styles.button}
-          className="btn btn-info"
-          onClick={() => setSize(20, 20)}>Small
-        </button>
-				<button
-          style={styles.button}
-          className="btn btn-info"
-          onClick={() => setSize(500, 8)}>Medium
-        </button>
-        <button
-          style={styles.button}
-          className="btn btn-info"
-          onClick={() => setSize(1000, 8)}>Jumbo
-        </button>
-      </Collapse>
+			<button
+        style={styles.button}
+        className="btn btn-info"
+        onClick={() => setSize(50, 10, 'Medium')}>Medium
+      </button>
+      <button
+        style={styles.button}
+        className="btn btn-info"
+        onClick={() => setSize(100, 8, 'Jumbo')}>Jumbo
+      </button>
     </div>
   )
 }
 
 Sizes.propTypes = {
-  expandSizes: React.PropTypes.func.isRequired,
-  expanded: React.PropTypes.bool.isRequired,
   setSize: React.PropTypes.func.isRequired,
 }
 

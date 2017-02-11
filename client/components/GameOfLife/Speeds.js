@@ -1,14 +1,16 @@
 import React from 'react'
 import Radium from 'radium'
-import Collapse from 'react-collapse'
 
 const styles = {
   container: {
-    display: 'inline-block'
+    display: 'flex',
+    flexDirection: 'column',
+    marginRight: '15px',
   },
-  topBtn: {
+  header: {
     margin: '5px',
     cursor: 'pointer',
+    fontFamily: '"Grand Hotel", cursive',
   },
   button: {
     margin: '5px',
@@ -17,38 +19,30 @@ const styles = {
   }
 }
 
-let Speeds = ({expandSpeeds, expanded, setSpeed}) => {
+let Speeds = ({setSpeed}) => {
   return (
     <div style={styles.container}>
+      <h2 style={styles.header}>Speeds</h2>
       <button
-        style={styles.topBtn}
-        className="btn btn-primary"
-        onClick={expandSpeeds}>Speeds
+        style={styles.button}
+        className="btn btn-info"
+        onClick={() => setSpeed(1000)}>Slow
       </button>
-      <Collapse isOpened={expanded}>
-        <button
-          style={styles.button}
-          className="btn btn-info"
-          onClick={() => setSpeed(1000)}>Slow
-        </button>
-				<button
-          style={styles.button}
-          className="btn btn-info"
-          onClick={() => setSpeed(100)}>Medium
-        </button>
-        <button
-          style={styles.button}
-          className="btn btn-info"
-          onClick={() => setSpeed(50)}>Fast
-        </button>
-      </Collapse>
+			<button
+        style={styles.button}
+        className="btn btn-info"
+        onClick={() => setSpeed(100)}>Medium
+      </button>
+      <button
+        style={styles.button}
+        className="btn btn-info"
+        onClick={() => setSpeed(50)}>Fast
+      </button>
     </div>
   )
 }
 
 Speeds.propTypes = {
-  expandSpeeds: React.PropTypes.func.isRequired,
-  expanded: React.PropTypes.bool.isRequired,
   setSpeed: React.PropTypes.func.isRequired,
 }
 

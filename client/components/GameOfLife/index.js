@@ -1,6 +1,7 @@
 import React from 'react'
 import Radium from 'radium'
 import Board from './Board'
+import Header from './Header'
 
 const styles = {
   container: {
@@ -13,7 +14,8 @@ const styles = {
 let GameOfLife = () => {
   return (
     <div style={styles.container}>
-      <Board />
+			<Header />
+			<Board />
     </div>
   )
 }

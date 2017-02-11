@@ -2,9 +2,8 @@ import React, {Component} from 'react'
 import Radium from 'radium'
 import nextGeneration from './nextGen_helper'
 import patternHelper from './pattern_helper'
-import Patterns from './Patterns'
-import Speeds from './Speeds'
-import Sizes from './Sizes'
+
+import OptionsTable from './OptionsTable'
 import Start from './Start'
 import Pause from './Pause'
 import Reset from './Reset'
@@ -14,7 +13,7 @@ import Count from './Count'
 
 const styles = {
   container: {
-    margin: '60px auto',
+    margin: '10px auto',
     textAlign: 'center',
   },
   header: {
@@ -33,38 +32,36 @@ class Board extends Component {
   constructor(props) {
     super(props)
 
-    this.state = this.initialState()
-
-  }
-  initialState() {
     const size = 50
     const coords = 8
     const dimensions = coords
     const canvasSize = size*coords.toString() + 'px'
 
-    let matrix = Array(size).fill(false).map(() => Array(size).fill(false))
+    function createRandMatrix(width, height){
+        var result= [];
+        for (let i = 0 ; i < width; i++) {
+            result[i] = [];
+            for (let j = 0; j < height; j++) {
+                result[i][j] = !!Math.floor(Math.random() * 2)
+            }
+        }
+        return result;
+    }
 
-    matrix[0][0] = true
-    matrix[0][1] = true
-    matrix[0][2] = true
-    matrix[1][0] = true
-    matrix[2][1] = true
-
-    return {
-      cells: matrix,
+    this.state = {
+      cells: createRandMatrix(50,50),
       count: 0,
       speed: 100,
       running: false,
       canvasSize: canvasSize,
+      newCanvas: null,
       boardSize: size,
       dimensions: dimensions,
       viewportHeight: window.innerHeight * .80,
-      patternsExpanded: false,
-      speedsExpanded: false,
-      sizesExpanded: false,
       choosingPattern: false,
       patternType: '',
     }
+
   }
   componentDidMount() {
     canvas = document.getElementById('lifeCanvas')
@@ -130,6 +127,7 @@ class Board extends Component {
 
     const x = Math.floor(e.nativeEvent.offsetX / d) * d
     const y = Math.floor(e.nativeEvent.offsetY / d) * d
+
     const cells = this.state.cells
     const row = y / d
     const col = x / d
@@ -155,15 +153,6 @@ class Board extends Component {
     }
 
   }
-  expandPatterns() {
-    this.setState({patternsExpanded: !this.state.patternsExpanded})
-  }
-  expandSpeeds() {
-    this.setState({speedsExpanded: !this.state.speedsExpanded})
-  }
-  expandSizes() {
-    this.setState({sizesExpanded: !this.state.sizesExpanded})
-  }
   placePattern(type) {
     this.setState({
       choosingPattern: true,
@@ -181,25 +170,43 @@ class Board extends Component {
     loopForever()
     this.setState({speed})
   }
-  setSize(size, dimensions) {
+  setSize(size, dimensions, newCanvas) {
+    clearInterval(Interval)
 
     const canvasSize = size*dimensions.toString() + 'px'
 
+    let matrix = Array(size).fill(false).map(() => Array(size).fill(false))
+
+    matrix[0][0] = true
+    matrix[0][1] = true
+    matrix[0][2] = true
+    matrix[1][0] = true
+    matrix[2][1] = true
+
+    let convertSizeToNum = Number(this.state.canvasSize.substring(0, this.state.canvasSize.length - 2))
+
+    ctx.clearRect(0,0,convertSizeToNum, convertSizeToNum)
+
     this.setState({
+      running: false,
+      cells: matrix,
       canvasSize: canvasSize,
       boardSize: size,
       dimensions: dimensions,
+      newCanvas: newCanvas
+    }, () => {
+        this.renderCanvas(dimensions, matrix)
     })
   }
   renderCanvas(d, cells) {
-    cells.map((cells, x) => {
-      return cells.map((cell, y) => {
+      cells.map((cells, x) => {
+        return cells.map((cell, y) => {
           let coords = cell === true
             ? this.drawAliveBox(y * d, x * d)
             : this.drawDeadBox(y * d, x * d)
           return
+        })
       })
-    })
   }
 
   // next 3 functions handle startUP, pausing, and stepping
@@ -221,10 +228,22 @@ class Board extends Component {
   }
   reset() {
     clearInterval(Interval)
-    let initialState = this.initialState()
-    this.renderCanvas(initialState.dimensions, initialState.cells)
 
-    this.setState(initialState)
+    let matrix = Array(this.state.boardSize).fill(false).map(() => Array(this.state.boardSize).fill(false))
+
+    matrix[0][0] = true
+    matrix[0][1] = true
+    matrix[0][2] = true
+    matrix[1][0] = true
+    matrix[2][1] = true
+
+    this.renderCanvas(this.state.dimensions, matrix)
+
+    this.setState({
+      count: 0,
+      cells: matrix,
+      running: false,
+    })
   }
   step() {
     const size = this.state.boardSize - 1
@@ -251,17 +270,9 @@ class Board extends Component {
           </canvas>
         </div>
         <div style={styles.footer}>
-          <Patterns
-            expandPatterns={this.expandPatterns.bind(this)}
-            expanded={this.state.patternsExpanded}
-            placePattern={this.placePattern.bind(this)}/>
-          <Speeds
-            expandSpeeds={this.expandSpeeds.bind(this)}
-            expanded={this.state.speedsExpanded}
-            setSpeed={this.setSpeed.bind(this)}/>
-          <Sizes
-            expandSizes={this.expandSizes.bind(this)}
-            expanded={this.state.sizesExpanded}
+          <OptionsTable
+            placePattern={this.placePattern.bind(this)}
+            setSpeed={this.setSpeed.bind(this)}
             setSize={this.setSize.bind(this)}/>
         </div>
       </div>

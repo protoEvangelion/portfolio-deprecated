@@ -1,14 +1,16 @@
-import React from 'react'
+import React, {Component} from 'react'
 import Radium from 'radium'
-import Collapse from 'react-collapse'
 
 const styles = {
   container: {
-    display: 'inline-block'
+    display: 'flex',
+    flexDirection: 'column',
+    marginRight: '15px',
   },
-  topBtn: {
+  header: {
     margin: '5px',
     cursor: 'pointer',
+    fontFamily: '"Grand Hotel", cursive',
   },
   button: {
     margin: '5px',
@@ -17,38 +19,43 @@ const styles = {
   }
 }
 
-let Patterns = ({expandPatterns, expanded, placePattern}) => {
-  return (
-    <div style={styles.container}>
-      <button
-        style={styles.topBtn}
-        className="btn btn-primary"
-        onClick={expandPatterns}>Choose Pattern
-      </button>
-      <Collapse isOpened={expanded}>
+class Patterns extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {count: 0}
+  }
+  patternClick(pattern) {
+    this.props.placePattern(pattern)
+    if(this.state.count === 0) {
+      alert('Please click on the canvas where you want the pattern to appear')
+      this.setState({count: 1})
+    }
+  }
+  render() {
+  	return (
+      <div style={styles.container}>
+        <h2 style={styles.header}>Patterns</h2>
         <button
           style={styles.button}
           className="btn btn-info"
-          onClick={() => placePattern('Gosper Gun')}>Gosper Gun
+          onClick={() => this.patternClick('Gosper Gun')}>Gosper Gun
         </button>
-				<button
+  			<button
           style={styles.button}
           className="btn btn-info"
-          onClick={() => placePattern('Pulsar')}>Pulsar
+          onClick={() => this.patternClick('Pulsar')}>Pulsar
         </button>
         <button
           style={styles.button}
           className="btn btn-info"
-          onClick={() => placePattern('Spaceship')}>Spaceship
+          onClick={() => this.patternClick('Spaceship')}>Spaceship
         </button>
-      </Collapse>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
 Patterns.propTypes = {
-  expandPatterns: React.PropTypes.func.isRequired,
-  expanded: React.PropTypes.bool.isRequired,
   placePattern: React.PropTypes.func.isRequired,
 }
 
