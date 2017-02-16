@@ -1,8 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
 import App from './App'
 
-import { AppContainer } from 'react-hot-loader';
+import { AppContainer } from 'react-hot-loader'
 
 const mountNode = document.getElementById('root')
 

@@ -1,4 +1,6 @@
 // setup
+require('dotenv').config()
+const modifyUrl = require('./client/api/apiKey_helper')
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -20,16 +22,21 @@ const certificate = fs.readFileSync('sslcert/server.crt', 'utf8')
 const credentials = {key: privateKey, cert: certificate}
 
 //API Proxy Section
+//TODO: prevent other urls from making requests to this proxy
 app.get('/api', (req, res) => {
-		const newUrl = req.originalUrl.slice(9)
+		const url = req.originalUrl.slice(9)
+
+		let newUrl = modifyUrl(url)
+
 		console.log('here is the request', newUrl)
-		axios.get(newUrl)
+
+		axios.get(newUrl.trim())
 			.then(function (response) {
 		    console.log(response.data)
 		    res.send(response.data)
 		  })
 		  .catch(function (error) {
-		    console.log(error)
+		    console.log('error bro', error)
 		  })
 })
 
@@ -76,3 +83,7 @@ if(process.env.NODE_ENV == 'development') {
 		  err ? console.error(err) : console.log(details)
 		})
 }
+
+app.listen(8333, () => {
+	console.log('listening on 8333')
+})
