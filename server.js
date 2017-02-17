@@ -13,31 +13,43 @@ app.disable('x-powered-by')
 	 .use(favicon(path.join(__dirname, './dist/favicon.ico')))
 	 .use(bodyParser.json())
 
-//encryption
-const http = require('http')
+//encryption for local https host
 const https = require('https')
 const fs = require('fs')
 const privateKey = fs.readFileSync('sslcert/server.key', 'utf8')
 const certificate = fs.readFileSync('sslcert/server.crt', 'utf8')
 const credentials = {key: privateKey, cert: certificate}
 
+
 //API Proxy Section
-//TODO: prevent other urls from making requests to this proxy
+
 app.get('/api', (req, res) => {
-		const url = req.originalUrl.slice(9)
 
-		let newUrl = modifyUrl(url)
+	const makeApiRequest = () => {
+		let newUrl = modifyUrl(req.originalUrl)
 
-		console.log('here is the request', newUrl)
+		axios.get(newUrl)
+		 .then(function (response) {
+			 res.status(200).send(response.data)
+		 })
+		 .catch(function (error) {
+			 console.log('Check error log', error)
+			 res.status(500).send(error)
+		 })
+	}
 
-		axios.get(newUrl.trim())
-			.then(function (response) {
-		    console.log(response.data)
-		    res.send(response.data)
-		  })
-		  .catch(function (error) {
-		    console.log('error bro', error)
-		  })
+	//NOTE: prevent unauthorized urls from using proxy
+
+	if(process.env.NODE_ENV !== 'development') {
+		 if(req.headers.host === 'ryantg.herokuapp.com'){
+			 	makeApiRequest()
+		 } else {
+			 	res.sendStatus(403)
+					 .send('You are not authorized to use this proxy')
+		 }
+	} else {
+			makeApiRequest()
+	}
 })
 
 //MAKE SURE ALL ROUTING & API LOGIC GOES ABOVE THIS LINE
@@ -83,7 +95,3 @@ if(process.env.NODE_ENV == 'development') {
 		  err ? console.error(err) : console.log(details)
 		})
 }
-
-app.listen(8333, () => {
-	console.log('listening on 8333')
-})

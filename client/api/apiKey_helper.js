@@ -1,16 +1,10 @@
+const URL = require('url-parse')
 
-let modifyUrl = (url) => {
-	let modifiedUrl
-
-	if(url.includes('https://www.bea.gov/api/data')) {
-		const key = process.env.GDPAPIKEY
-		console.log('returning', url + 'UserID=' + key)
-		return url + 'UserID=' + key
-
-	} else {
-			console.log('no stuff')
-			return url
-	}
+let modifyUrl = (originalUrl) => {
+	let url = new URL(originalUrl)
+	url = url.query.slice(5) + process.env.GDPAPIKEY
+	console.log('url', url)
+	return url
 }
 
 module.exports = modifyUrl
