@@ -1,8 +1,8 @@
 import React from 'react'
 import Radium from 'radium'
-import Header from './Header'
+import Title from './Title'
 import Footer from './Footer'
-import Chart from './Chart'
+import Simple from './Simple'
 
 const styles = {
   container: {
@@ -13,14 +13,14 @@ const styles = {
   }
 }
 
-let GDP = () => {
+let BarChart = () => {
   return (
     <div style={styles.container}>
-      <Header />
-      <Chart />
+      <Title />
+      <Simple />
       <Footer />
     </div>
   )
 }
 
-export default GDP = Radium(GDP)
+export default BarChart = Radium(BarChart)
