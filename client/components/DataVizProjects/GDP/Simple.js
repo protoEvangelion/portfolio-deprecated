@@ -4,6 +4,7 @@ import axios from 'axios'
 import proxyUrl from '../../../api'
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts'
 import CustomTip from './CustomTip'
+import {convertMonth} from './convertMonth_helper'
 const styles = {
 }
 
@@ -24,13 +25,12 @@ class Simple extends Component{
 				let gdpData = filteredData.map((gdp, i) => {
 					return {
 						date: gdp.date.slice(0, 4),
-						month: gdp.date.slice(6, 7),
+						month: convertMonth(gdp.date.slice(5, 7)),
 						GDP: Number(gdp.value)
 					}
 				})
 				let reducedData = gdpData
 				this.setState({gdpData: reducedData})
-				console.log(reducedData)
 			})
 			.catch(err => console.log(err))
 
@@ -40,12 +40,15 @@ class Simple extends Component{
 				return <i style={{color: '#33adff', marginTop: '50px'}} className="fa fa-spinner fa-pulse fa-3x" aria-hidden="true"></i>
 			}
 			return (
-				<BarChart width={1000} height={500} data={this.state.gdpData}
-							margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+				<BarChart
+					width={1000}
+					height={500}
+					data={this.state.gdpData}
+					margin={{top: 5, right: 30, left: 20, bottom: 5}}>
 					 <XAxis dataKey="date"/>
 					 <YAxis/>
 					 <CartesianGrid strokeDasharray="3 3"/>
-					 <Tooltip content={<CustomTip payload={this.state.gdpData}/>}/>
+					 <Tooltip content={<CustomTip payload={this.props.payload}/>}/>
 					 <Legend />
 					 <Bar name="GDP (Billions of Dollars)" dataKey="GDP" fill="#82ca9d" />
 				</BarChart>

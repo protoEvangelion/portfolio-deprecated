@@ -3,15 +3,23 @@ import Radium from 'radium'
 
 const styles = {
   container: {
-		display: 'flex',
-    justifyContent: 'center',
+		background: '#f2f2f2',
+    borderRadius: '10px',
+    padding: '5px',
+  },
+  value: {
+    color: '#82ca9d'
   }
 }
 
 let CustomTip = ({payload}) => {
+  let val = payload.length > 0 ? payload[0].value : ''
+  let month = payload.length > 0 ? payload[0].payload.month : ''
+  let year = payload.length > 0 ? payload[0].payload.date : ''
   return (
-		<div className="custom-tooltip">
-			<p className="desc">Anything you want can be displayed here.</p>
+		<div className="custom-tooltip" style={styles.container}>
+      <p className="desc">{`${month}, ${year}`}</p>
+			<p className="desc" style={styles.value}>{`GDP: ${val}`}</p>
 		</div>
   )
 }
