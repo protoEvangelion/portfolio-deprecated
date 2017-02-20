@@ -65,6 +65,9 @@ const Header = () => (
 		<Link to="/GDP">
 			<Item src={require('./GDP.png')} />
 		</Link>
+		<Link to="/scatterplot_doping_olympian_cyclists">
+			<Item src={require('./scatter.png')} />
+		</Link>
 	</div>
 )
 

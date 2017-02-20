@@ -23,6 +23,7 @@ import GameOfLife from '../components/FrontEndProjects/GameOfLife'
 
 // NOTE: Data Visualization Projects
 import GDP from '../components/DataVizProjects/GDP'
+import ScatterPlot from '../components/DataVizProjects/ScatterPlot'
 
 export default (
 	<Route path="/" component={App}>
@@ -42,7 +43,9 @@ export default (
 		<Route path="recipebox" component={RecipeBox} />
 		<Route path="game-of-life" component={GameOfLife} />
 
+
 		<Route path="GDP" component={GDP} />
+		<Route path="scatterplot_doping_olympian_cyclists" component={ScatterPlot} />
 
 		<Route path="*" component={NotFound} />
 	</Route>
