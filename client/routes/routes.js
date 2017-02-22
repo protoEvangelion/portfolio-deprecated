@@ -20,6 +20,8 @@ import Markdown from '../components/FrontEndProjects/Markdown'
 import Leaderboard from '../components/FrontEndProjects/Leaderboard'
 import RecipeBox from '../components/FrontEndProjects/RecipeBox'
 import GameOfLife from '../components/FrontEndProjects/GameOfLife'
+import YoutubeViewer from '../components/FrontEndProjects/YoutubeViewer'
+
 
 // NOTE: Data Visualization Projects
 import GDP from '../components/DataVizProjects/GDP'
@@ -43,7 +45,7 @@ export default (
 		<Route path="leaderboard" component={Leaderboard} />
 		<Route path="recipebox" component={RecipeBox} />
 		<Route path="game-of-life" component={GameOfLife} />
-
+		<Route path="youtube-viewer" component={YoutubeViewer} />
 
 		<Route path="GDP" component={GDP} />
 		<Route path="scatterplot_doping_olympian_cyclists" component={ScatterPlot} />

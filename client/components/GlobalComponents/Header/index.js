@@ -61,6 +61,9 @@ const Header = () => (
 		<Link to="/game-of-life">
 			<Item src={require('./gameoflife.png')} />
 		</Link>
+		<Link to="/youtube-viewer">
+			<Item src={require('./youtubeviewer.png')} />
+		</Link>
 
 		<Link to="/GDP">
 			<Item src={require('./GDP.png')} />
