@@ -1,12 +1,16 @@
 import React from 'react'
 import Radium from 'radium'
+import Header from './Header'
+import Legend from './Legend'
 import Chart from './Chart'
 import data from './heatData'
-import Tester from './tester'
+
 import './style.css'
 
 const styles = {
   container: {
+    marginTop: '100px',
+    marginBottom: '100px',
     display: 'flex',
 		flexDirection: 'column',
     alignItems: 'center',
@@ -16,8 +20,9 @@ const styles = {
 let Heatmap = () => {
   return (
     <div style={styles.container}>
-      {/* <Chart wide={500} tall={500} baseTemp={data.baseTemperature} data={data.monthlyVariance}/> */}
-      <Tester />
+      <Header />
+      <Legend />
+      <Chart wide={500} tall={500} baseTemp={data.baseTemperature} data={data.monthlyVariance}/>
     </div>
   )
 }

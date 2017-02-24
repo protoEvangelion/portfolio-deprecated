@@ -1,5 +1,5 @@
 export const convertMonth = (num) => {
-  switch(num) {
+	switch(num) {
     case '01':
       return 'January'
       break
