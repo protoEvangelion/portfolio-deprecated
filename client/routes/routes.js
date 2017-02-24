@@ -27,6 +27,7 @@ import YoutubeViewer from '../components/FrontEndProjects/YoutubeViewer'
 import GDP from '../components/DataVizProjects/GDP'
 import ScatterPlot from '../components/DataVizProjects/ScatterPlot'
 import Heatmap from '../components/DataVizProjects/Heatmap'
+import ForceGraph from '../components/DataVizProjects/Force'
 
 export default (
 	<Route path="/" component={App}>
@@ -50,6 +51,7 @@ export default (
 		<Route path="GDP" component={GDP} />
 		<Route path="scatterplot_doping_olympian_cyclists" component={ScatterPlot} />
 		<Route path="heatmap" component={Heatmap} />
+		<Route path="world-force-graph" component={ForceGraph} />
 
 		<Route path="*" component={NotFound} />
 	</Route>

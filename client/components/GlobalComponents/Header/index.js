@@ -72,7 +72,10 @@ const Header = () => (
 			<Item src={require('./scatter.png')} />
 		</Link>
 		<Link to="/heatmap">
-			<Item src={require('./noise.png')} />
+			<Item src={require('./heatmap.png')} />
+		</Link>
+		<Link to="/world-force-graph">
+			<Item src={require('./force.png')} />
 		</Link>
 	</div>
 )

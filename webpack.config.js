@@ -66,7 +66,12 @@ module.exports = {
 					},
 					'image-webpack-loader'
 				]
-	    }
+	    },
+			{
+				test: /\.json$/,
+				use: 'json-loader',
+				exclude: /node_modules/
+			}
     ]
   },
 	resolve: {
