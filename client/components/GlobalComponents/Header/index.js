@@ -1,83 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router'
-import styled, { keyframes } from 'styled-components'
-
-const Item = styled.div`
-	margin: 20px 20px;
-	background: url(${props => props.src}) no-repeat center;
-	background-size: 100% auto;
-	width: 150px;
-	height: 150px;
-	border-radius: 50%;
-	cursor: default;
-	transition: all 1s ease-in-out;
-	display: inline-block;
-	text-align: left;
-
-	&:hover {
-		box-shadow:
-			inset 0 0 0 110px rgba(200,95,66, 0.4),
-			inset 0 0 0 16px rgba(255,255,255,0.8),
-			0 1px 2px rgba(0,0,0,0.1);
-	  cursor: pointer;
-	}
-`
-
-const Header = () => (
-	<div style={{textAlign: 'center'}}>
-		<Link to="/wikiViewer">
-			<Item src={require('./Wiki.png')} />
-		</Link>
-		<Link to="/weather">
-			<Item src={require('./weather.png')} />
-		</Link>
-		<Link to="/calc">
-			<Item src={require('./calc.png')} />
-		</Link>
-		<Link to="/quotepump">
-			<Item src={require('./quotePump.png')} />
-		</Link>
-		<Link to="/twitch">
-			<Item src={require('./twitch.png')} />
-		</Link>
-		<Link to="/tictactoe">
-			<Item src={require('./tic.png')} />
-		</Link>
-		<Link to="/pomodoro">
-			<Item src={require('./pomodoro.png')} />
-		</Link>
-		<Link to="/simon">
-			<Item src={require('./simon.png')} />
-		</Link>
-		<Link to="/markdown">
-			<Item src={require('./Markdown.png')} />
-		</Link>
-		<Link to="/leaderboard">
-			<Item src={require('./Leaderboard.png')} />
-		</Link>
-		<Link to="/recipebox">
-			<Item src={require('./Recipe.png')} />
-		</Link>
-		<Link to="/game-of-life">
-			<Item src={require('./gameoflife.png')} />
-		</Link>
-		<Link to="/youtube-viewer">
-			<Item src={require('./youtubeviewer.png')} />
-		</Link>
-
-		<Link to="/GDP">
-			<Item src={require('./GDP.png')} />
-		</Link>
-		<Link to="/scatterplot_doping_olympian_cyclists">
-			<Item src={require('./scatter.png')} />
-		</Link>
-		<Link to="/heatmap">
-			<Item src={require('./heatmap.png')} />
-		</Link>
-		<Link to="/world-force-graph">
-			<Item src={require('./force.png')} />
-		</Link>
-	</div>
-)
+import Navbar from './Navbar'
+import './header.scss'
+const Header = () => {
+	return (
+		<Navbar />
+	)
+}
 
 export default Header
