@@ -1,10 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const extractSass = new ExtractTextPlugin({
-    filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV === "development"
-});
 
 let development = {
 	entry: [
@@ -19,7 +14,6 @@ let development = {
 		}),
 		new webpack.NamedModulesPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
-		extractSass
 	]
 }
 
@@ -36,7 +30,6 @@ let production = {
       }
     }),
 		new webpack.NoEmitOnErrorsPlugin(),
-		extractSass
 	],
 }
 
@@ -53,7 +46,6 @@ module.exports = {
     filename: 'bundle.js',
 		publicPath: '/dist/'
   },
-	devtool: 'source-map',
 	module: {
     rules: [
 	    {
@@ -83,16 +75,7 @@ module.exports = {
 				test: /\.json$/,
 				use: 'json-loader',
 				exclude: /node_modules/
-			},
-			{
-				test: /\.scss$/,
-				loader: [
-					{loader: 'style-loader'},
-					{loader: 'css-loader'},
-					{loader: 'sass-loader'},
-				],
 			}
-
     ]
   },
 	resolve: {
