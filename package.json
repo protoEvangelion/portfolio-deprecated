@@ -4,7 +4,7 @@
   "description": "my mern portfolio website",
   "scripts": {
     "start": "SET NODE_ENV=development& node server.js --ignore client/ --ignore node_modules/",
-		"test": "mocha",
+    "test": "./node_modules/jshint/bin/jshint hello.js",
     "build": "webpack -p --progress --colors",
     "serve": "node server.js",
     "lint": "eslint src"
@@ -87,6 +87,7 @@
   "devDependencies": {
     "expect": "^1.18.0",
     "expect-jsx": "^2.5.1",
+    "jshint": "^2.9.4",
     "mocha": "^3.2.0",
     "react-addons-test-utils": "^15.0.2"
   },
