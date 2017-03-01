@@ -4,7 +4,7 @@
   "description": "my mern portfolio website",
   "scripts": {
     "start": "SET NODE_ENV=development& node server.js --ignore client/ --ignore node_modules/",
-		"test": "nodemon --exec mocha -R min",
+		"test": "mocha",
     "build": "webpack -p --progress --colors",
     "serve": "node server.js",
     "lint": "eslint src"
