@@ -1,0 +1,18 @@
+import axios from 'axios';
+import proxyUrl from '../api';
+
+var API_KEY = '248f4ff9366b7a46104566e76bd7aa11';
+var ROOT_URL = 'http://api.openweathermap.org/data/2.5/forecast?appid=' + API_KEY;
+
+export var FETCH_WEATHER = 'FETCH_WEATHER';
+
+export function fetchWeather(city) {
+	var url = ROOT_URL + '&q=' + city + ',us';
+	var reqUrl = '' + proxyUrl + url;
+
+	var request = axios.get(reqUrl);
+	return {
+		type: FETCH_WEATHER,
+		payload: request
+	};
+}

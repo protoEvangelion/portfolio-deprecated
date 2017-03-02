@@ -91,7 +91,7 @@ if(process.env.NODE_ENV == 'development') {
 
 		//listener
 		app.listen(process.env.PORT || 3000, (err) => {
-		  let details = `Listening at ${process.env.PORT || 3000}/`
+			const details = `Listening at ${process.env.PORT || 3000}/`
 		  err ? console.error(err) : console.log(details)
 		})
 }

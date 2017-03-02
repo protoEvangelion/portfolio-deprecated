@@ -1,0 +1,22 @@
+import axios from 'axios';
+import proxyUrl from '../api';
+
+export var FETCH_FREE = 'FETCH_FREE';
+export var FETCH_STREAMS = 'FETCH_STREAMS';
+
+var clientId = 'aswjx355ya1e5y7vy3t5sg1hcwsaokn';
+
+export function fetchFreeCodeCamp() {
+	var url = 'https://api.twitch.tv/kraken/streams/freecodecamp?client_id=' + clientId;
+	var reqUrl = '' + proxyUrl + url;
+
+	var request = axios.get(reqUrl);
+	return { type: FETCH_FREE, payload: request };
+}
+
+export function fetchStreams() {
+	var url = 'https://api.twitch.tv/kraken/streams/featured?limit=9&client_id=' + clientId;
+	var reqUrl = '' + proxyUrl + url;
+	var request = axios.get(reqUrl);
+	return { type: FETCH_STREAMS, payload: request };
+}

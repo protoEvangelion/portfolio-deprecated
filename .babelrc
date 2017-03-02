@@ -1,10 +1,11 @@
 {
-  "presets": ["react", ["es2015", {"modules": false}], "stage-3"],
+  "presets": ["react", "es2015", "stage-3"],
   "env": {
     "development": {
       "plugins": [
 				["transform-react-constant-elements"],
-				["transform-react-inline-elements"]
+				["transform-react-inline-elements"],
+				["lodash"]
       ]
     },
     "production": {
@@ -12,6 +13,7 @@
 				["transform-react-constant-elements"],
 				["transform-react-inline-elements"],
 				["transform-react-remove-prop-types"],
+				["lodash"]
       ]
     }
   }

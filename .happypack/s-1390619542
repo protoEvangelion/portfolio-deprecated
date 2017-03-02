@@ -1,0 +1,203 @@
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+import React, { Component } from 'react';
+import Radium, { StyleRoot } from 'radium';
+import axios from 'axios';
+import proxyUrl from '../../../api';
+
+var styles = {
+  click: {
+    cursor: 'pointer',
+    textAlign: 'center',
+    ':hover': {
+      background: '#eceeef'
+    }
+  },
+  row: {
+    textAlign: 'center',
+    lineHeight: '40px'
+  },
+  center: {
+    textAlign: 'center'
+  },
+  img: {
+    borderRadius: '10px',
+    width: '40px',
+    height: '40px',
+    marginRight: '20px',
+    '@media screen and (max-width: 786px)': {
+      display: 'block'
+    }
+  }
+};
+
+var _ref = _jsx('div', {});
+
+var _ref2 = _jsx('th', {}, void 0, 'Camper Name');
+
+var Table = function (_Component) {
+  _inherits(Table, _Component);
+
+  function Table(props) {
+    _classCallCheck(this, Table);
+
+    var _this = _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, props));
+
+    _this.state = {
+      data: [],
+      currentData: '',
+      loadingInitial: true,
+      loadingRecent: false,
+      loadingAllTime: false
+    };
+    return _this;
+  }
+
+  _createClass(Table, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      //pulls the recent camper's data
+      this.onRecentClick();
+    }
+  }, {
+    key: 'onAllTimeClick',
+    value: function onAllTimeClick() {
+      var _this2 = this;
+
+      this.setState({ loadingAllTime: true });
+      var topAllTimeUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime';
+      axios.get('' + proxyUrl + topAllTimeUrl).then(function (res) {
+        _this2.setState({
+          data: res.data,
+          currentData: 'topAllTime',
+          loadingAllTime: false
+        });
+      });
+    }
+  }, {
+    key: 'onRecentClick',
+    value: function onRecentClick() {
+      var _this3 = this;
+
+      this.setState({ loadingRecent: true });
+      var topRecentUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
+      axios.get('' + proxyUrl + topRecentUrl).then(function (res) {
+        _this3.setState({
+          data: res.data,
+          currentData: 'topRecent',
+          loadingInitial: false,
+          loadingRecent: false
+        });
+      });
+    }
+  }, {
+    key: 'renderList',
+    value: function renderList(data) {
+      if (data) {
+        return _jsx('tbody', {}, void 0, data.map(function (camper, i) {
+          return _jsx('tr', {
+            className: i % 2 === 0 ? 'table-info' : ''
+          }, camper.username, _jsx('th', {
+            style: styles.row,
+            scope: 'row'
+          }, void 0, i + 1), _jsx('td', {}, void 0, _jsx('img', {
+            src: camper.img,
+            alt: 'camper avatar',
+            style: styles.img
+          }), _jsx('a', {
+            href: 'https://www.freecodecamp.com/' + camper.username
+          }, void 0, ' ', camper.username, ' ')), _jsx('td', {
+            style: styles.row
+          }, void 0, camper.recent), _jsx('td', {
+            style: styles.row
+          }, void 0, camper.alltime));
+        }));
+      } else {
+        return _ref;
+      }
+    }
+  }, {
+    key: 'loading',
+    value: function loading() {
+      var spinner = this.state.loadingInitial === true ? _jsx('i', {
+        style: { color: '#33adff', marginTop: '50px' },
+        className: 'fa fa-spinner fa-pulse fa-3x',
+        'aria-hidden': 'true'
+      }) : '';
+      return spinner;
+    }
+  }, {
+    key: 'recentSymbol',
+    value: function recentSymbol() {
+      if (this.state.loadingRecent === true) {
+        return _jsx('i', {
+          style: { color: '#33adff' },
+          className: 'fa fa-spinner fa-pulse fa-1x',
+          'aria-hidden': 'true'
+        });
+      } else if (this.state.currentData === 'topRecent') {
+        return '▼';
+      } else {
+        return '';
+      }
+    }
+  }, {
+    key: 'allTimeSymbol',
+    value: function allTimeSymbol() {
+      if (this.state.loadingAllTime === true) {
+        return _jsx('i', {
+          style: { color: '#33adff' },
+          className: 'fa fa-spinner fa-pulse fa-1x',
+          'aria-hidden': 'true'
+        });
+      } else if (this.state.currentData === 'topAllTime') {
+        return '▼';
+      } else {
+        return '';
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      return _jsx('div', {
+        style: styles.container
+      }, void 0, _jsx('div', {
+        className: 'container'
+      }, void 0, _jsx('div', {
+        className: 'row'
+      }, void 0, _jsx('div', {
+        className: 'col-12'
+      }, void 0, _jsx(StyleRoot, {}, void 0, _jsx('table', {
+        className: 'table table-hover'
+      }, void 0, _jsx('thead', {}, void 0, _jsx('tr', {}, void 0, _jsx('th', {
+        style: styles.center
+      }, void 0, '#'), _ref2, _jsx('th', {
+        style: styles.click,
+        onClick: function onClick() {
+          return _this4.onRecentClick();
+        }
+      }, 'recent', 'Posts in past 30 days ', this.recentSymbol()), _jsx('th', {
+        style: styles.click,
+        onClick: function onClick() {
+          return _this4.onAllTimeClick();
+        }
+      }, 'alltime', 'All time points ', this.allTimeSymbol()))), this.renderList(this.state.data))), _jsx('div', {
+        style: { textAlign: 'center' }
+      }, void 0, this.loading())))));
+    }
+  }]);
+
+  return Table;
+}(Component);
+
+export default Table = Radium(Table);

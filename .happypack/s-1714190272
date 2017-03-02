@@ -1,0 +1,187 @@
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+import React, { Component } from 'react';
+import Radium from 'radium';
+
+var styles = {
+  container: {
+    margin: '0 auto 30px auto'
+  },
+  well: {
+    marginTop: '10px',
+    padding: '20px',
+    background: '#eff0f2',
+    textAlign: 'left',
+    borderRadius: '10px',
+    boxShadow: 'inset 2px 2px 1px rgba(0,0,0,.05)'
+  },
+  text: {
+    fontFamily: "'Grand Hotel', cursive",
+    fontSize: '1.5em',
+    marginBottom: '-10px'
+  },
+  btn: {
+    cursor: 'pointer',
+    marginTop: '10px',
+    display: 'inline-block',
+    background: 'rgb(201, 34, 40)'
+  },
+  formBtn: {
+    cursor: 'pointer',
+    margin: '10px',
+    outline: 'none'
+  }
+};
+
+var _ref = _jsx('label', {}, void 0, 'Recipe Name');
+
+var Btn = function (_Component) {
+  _inherits(Btn, _Component);
+
+  function Btn(props) {
+    _classCallCheck(this, Btn);
+
+    var _this = _possibleConstructorReturn(this, (Btn.__proto__ || Object.getPrototypeOf(Btn)).call(this, props));
+
+    _this.state = {
+      form: false,
+      count: 1,
+      recipeName: '',
+      ingredients: []
+    };
+    return _this;
+  }
+
+  _createClass(Btn, [{
+    key: 'handleNameChange',
+    value: function handleNameChange(e) {
+      var value = e.target.value;
+
+      this.setState({ recipeName: value });
+    }
+  }, {
+    key: 'handleIngredientChange',
+    value: function handleIngredientChange(e, i) {
+      var target = e.target;
+      var value = target.value;
+      var name = target.name;
+
+      var ingredients = this.state.ingredients;
+      ingredients[i] = Object.assign({}, ingredients[i], _defineProperty({}, name, value));
+
+      this.setState({ ingredients: ingredients });
+    }
+  }, {
+    key: 'submitHandler',
+    value: function submitHandler() {
+      this.props.submit(this.state.recipeName, this.state.ingredients);
+      this.setState({ form: false });
+    }
+  }, {
+    key: 'incrementCount',
+    value: function incrementCount() {
+      this.setState({ count: this.state.count + 1 });
+    }
+  }, {
+    key: 'decrementCount',
+    value: function decrementCount() {
+      if (this.state.count > 1) {
+        this.setState({ count: this.state.count - 1 });
+      }
+    }
+  }, {
+    key: 'renderCount',
+    value: function renderCount() {
+      var _this2 = this;
+
+      var arr = Array(this.state.count).fill(0);
+
+      return arr.map(function (nothingness, i) {
+        return _jsx('div', {}, 'container' + i, _jsx('label', {}, 'ingredientHeader' + i, 'Ingredient Name #', i + 1), _jsx('input', {
+          type: 'text',
+          className: 'form-control',
+          name: 'name',
+          onChange: function onChange(e) {
+            return _this2.handleIngredientChange(e, i);
+          }
+        }, 'ingredientName' + i), _jsx('label', {}, 'amountHeader' + i, 'Amount / Quantity'), _jsx('input', {
+          type: 'text',
+          className: 'form-control',
+          name: 'measurement',
+          onChange: function onChange(e) {
+            return _this2.handleIngredientChange(e, i);
+          }
+        }, 'amountName' + i));
+      });
+    }
+  }, {
+    key: 'showForm',
+    value: function showForm() {
+      this.setState({ form: !this.state.form });
+    }
+  }, {
+    key: 'renderForm',
+    value: function renderForm() {
+      var _this3 = this;
+
+      var form = this.state.form === false ? '' : _jsx('form', {
+        style: styles.well
+      }, void 0, _jsx('div', {
+        className: 'form-group'
+      }, void 0, _ref, _jsx('input', {
+        type: 'text',
+        className: 'form-control',
+        name: 'recipeName',
+        placeholder: 'Enter name',
+        onChange: function onChange(e) {
+          return _this3.handleNameChange(e);
+        }
+      }), this.renderCount()), _jsx('div', {
+        style: styles.container
+      }, void 0, _jsx('p', {
+        style: styles.text
+      }, void 0, 'Add or Remove another ingredient: '), _jsx('button', {
+        style: styles.formBtn,
+        type: 'button',
+        className: 'btn btn-primary',
+        onClick: this.incrementCount.bind(this)
+      }, void 0, '+'), _jsx('button', {
+        style: styles.formBtn,
+        type: 'button',
+        className: 'btn btn-primary',
+        onClick: this.decrementCount.bind(this)
+      }, void 0, '-')), _jsx('button', {
+        style: styles.formBtn,
+        type: 'button',
+        className: 'btn btn-primary',
+        onClick: function onClick() {
+          return _this3.submitHandler();
+        }
+      }, void 0, 'Submit'));
+      return form;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _jsx('div', {}, void 0, this.renderForm(), _jsx('button', {
+        style: styles.btn,
+        className: 'btn btn-primary',
+        onClick: this.showForm.bind(this)
+      }, void 0, 'Add Recipe'));
+    }
+  }]);
+
+  return Btn;
+}(Component);
+
+export default Btn = Radium(Btn);

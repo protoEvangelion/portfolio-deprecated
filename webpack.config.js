@@ -1,5 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
+const HappyPack = require('happypack');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
 let development = {
 	entry: [
@@ -14,7 +16,12 @@ let development = {
 		}),
 		new webpack.NamedModulesPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
-	]
+	],
+	jsLoader: {
+		test: /\.js$/,
+		use: 'babel-loader',
+		exclude: /node_modules/
+	},
 }
 
 let production = {
@@ -30,7 +37,28 @@ let production = {
       }
     }),
 		new webpack.NoEmitOnErrorsPlugin(),
+		new WebpackShellPlugin({onBuildStart:['echo "Webpack Production mode"'], onBuildEnd:['node server.js']}),
+		new HappyPack({
+			loaders: [{
+				path: 'babel-loader',
+				query: {
+					plugins: [
+						'transform-react-constant-elements',
+						'transform-react-inline-elements',
+						'transform-react-remove-prop-types',
+						'lodash'
+					],
+					presets: ["react", ["es2015", {"modules": false}], "stage-3"]
+				}
+			}],
+			threads: 5
+		})
 	],
+	jsLoader: {
+    test: /\.js$/,
+    use: 'happypack/loader',
+		exclude: /node_modules/
+  },
 }
 
 let configuration = process.env.NODE_ENV === 'development'
@@ -48,11 +76,7 @@ module.exports = {
   },
 	module: {
     rules: [
-	    {
-	      test: /\.js$/,
-	      use: 'babel-loader',
-				exclude: /node_modules/
-	    },
+			configuration.jsLoader,
 			{
 				test: /\.css$/,
 				use: ['style-loader','css-loader'],

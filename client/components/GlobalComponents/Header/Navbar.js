@@ -67,56 +67,9 @@ let NavigationBar = () => {
           </div>
           </a>
         </div>
-        <div
-          style={styles.linkContainer}
-          className="linkContainer"
-          onMouseOver={(e) => Play('About')}
-          onMouseOut={(e) => Pause('About')}
-          >
-            <video
-              style={styles.video}
-              id="About"
-              height="130"
-              >
-                <source src={require('./videos/about.mp4')} type="video/mp4"/>
-                Your browser does not support the video tag. I suggest you upgrade your browser.
-            </video>
-            <h3 style={styles.h3}>About</h3>
-        </div>
-        <div
-          style={styles.linkContainer}
-          className="linkContainer"
-          onMouseOver={(e) => Play('Projects')}
-          onMouseOut={(e) => Pause('Projects')}
-          >
-          <video
-            style={styles.video}
-            id="Projects"
-            height="130"
-            >
-              <source src={require('./videos/projects.mp4')} type="video/mp4"/>
-              Your browser does not support the video tag. I suggest you upgrade your browser.
-          </video>
+          <h3 style={styles.h3}>About</h3>
           <h3 style={styles.h3}>Projects</h3>
-        </div>
-        <div
-          style={styles.linkContainer}
-          className="linkContainer"
-          onMouseOver={(e) => Play('Contact')}
-          onMouseOut={(e) => Pause('Contact')}
-          >
-          <video
-            style={styles.video}
-            id="Contact"
-            height="130"
-            onMouseOver={(e) => Play('Contact')}
-            onMouseOut={(e) => Pause('Contact')}
-            >
-              <source src={require('./videos/contact.mp4')} type="video/mp4"/>
-              Your browser does not support the video tag. I suggest you upgrade your browser.
-          </video>
           <h3 style={styles.h3}>Contact</h3>
-        </div>
       </nav>
     </header>
   )

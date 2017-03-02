@@ -1,0 +1,62 @@
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+import React from 'react';
+
+var _ref = _jsx('h2', {}, void 0, 'Ryan Garant Terms of Service and Privacy Policy');
+
+var _ref2 = _jsx('h3', {}, void 0, '1. Terms');
+
+var _ref3 = _jsx('p', {}, void 0, 'By accessing the website at ', _jsx('a', {
+  href: 'https://ryantg.herokuapp.com'
+}, void 0, 'https://ryantg.herokuapp.com'), ', you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.');
+
+var _ref4 = _jsx('h3', {}, void 0, '2. Use License');
+
+var _ref5 = _jsx('ol', {
+  type: 'a'
+}, void 0, _jsx('li', {}, void 0, 'Permission is granted to temporarily download one copy of the materials (information or software) on Ryan Garant\'s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:', _jsx('ol', {
+  type: 'i'
+}, void 0, _jsx('li', {}, void 0, 'modify or copy the materials;'), _jsx('li', {}, void 0, 'use the materials for any commercial purpose, or for any public display (commercial or non-commercial);'), _jsx('li', {}, void 0, 'attempt to decompile or reverse engineer any software contained on Ryan Garant\'s website;'), _jsx('li', {}, void 0, 'remove any copyright or other proprietary notations from the materials; or'), _jsx('li', {}, void 0, 'transfer the materials to another person or "mirror" the materials on any other server.'))), _jsx('li', {}, void 0, 'This license shall automatically terminate if you violate any of these restrictions and may be terminated by Ryan Garant at any time. Upon terminating your viewing of these materials or upon the termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.'));
+
+var _ref6 = _jsx('h3', {}, void 0, '3. Disclaimer');
+
+var _ref7 = _jsx('ol', {
+  type: 'a'
+}, void 0, _jsx('li', {}, void 0, 'The materials on Ryan Garant\'s website are provided on an \'as is\' basis. Ryan Garant makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.'), _jsx('li', {}, void 0, 'Further, Ryan Garant does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.'));
+
+var _ref8 = _jsx('h3', {}, void 0, '4. Limitations');
+
+var _ref9 = _jsx('p', {}, void 0, 'In no event shall Ryan Garant or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Ryan Garant\'s website, even if Ryan Garant or a Ryan Garant authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.');
+
+var _ref10 = _jsx('h3', {}, void 0, '5. Accuracy of materials');
+
+var _ref11 = _jsx('p', {}, void 0, 'The materials appearing on Ryan Garant\'s website could include technical, typographical, or photographic errors. Ryan Garant does not warrant that any of the materials on its website are accurate, complete or current. Ryan Garant may make changes to the materials contained on its website at any time without notice. However Ryan Garant does not make any commitment to update the materials.');
+
+var _ref12 = _jsx('h3', {}, void 0, '6. Links');
+
+var _ref13 = _jsx('p', {}, void 0, 'Ryan Garant has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Ryan Garant of the site. Use of any such linked website is at the user\'s own risk.');
+
+var _ref14 = _jsx('h3', {}, void 0, '7. Modifications');
+
+var _ref15 = _jsx('p', {}, void 0, 'Ryan Garant may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.');
+
+var _ref16 = _jsx('h3', {}, void 0, '8. Governing Law');
+
+var _ref17 = _jsx('p', {}, void 0, 'These terms and conditions are governed by and construed in accordance with the laws of CA and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.');
+
+var _ref18 = _jsx('h2', {}, void 0, 'Privacy Policy');
+
+var _ref19 = _jsx('p', {}, void 0, 'Your privacy is important to us.');
+
+var _ref20 = _jsx('p', {}, void 0, 'It is Ryan Garant\'s policy to respect your privacy regarding any information we may collect while operating our website. Accordingly, we have developed this privacy policy in order for you to understand how we collect, use, communicate, disclose and otherwise make use of personal information. We have outlined our privacy policy below.');
+
+var _ref21 = _jsx('ul', {}, void 0, _jsx('li', {}, void 0, 'We will collect personal information by lawful and fair means and, where appropriate, with the knowledge or consent of the individual concerned.'), _jsx('li', {}, void 0, 'Before or at the time of collecting personal information, we will identify the purposes for which information is being collected.'), _jsx('li', {}, void 0, 'We will collect and use personal information solely for fulfilling those purposes specified by us and for other ancillary purposes, unless we obtain the consent of the individual concerned or as required by law.'), _jsx('li', {}, void 0, 'Personal data should be relevant to the purposes for which it is to be used, and, to the extent necessary for those purposes, should be accurate, complete, and up-to-date.'), _jsx('li', {}, void 0, 'We will protect personal information by using reasonable security safeguards against loss or theft, as well as unauthorized access, disclosure, copying, use or modification.'), _jsx('li', {}, void 0, 'We will make readily available to customers information about our policies and practices relating to the management of personal information.'), _jsx('li', {}, void 0, 'We will only retain personal information for as long as necessary for the fulfilment of those purposes.'));
+
+var _ref22 = _jsx('p', {}, void 0, 'We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained. Ryan Garant may change this privacy policy from time to time at Ryan Garant\'s sole discretion.');
+
+export default (function () {
+  return _jsx('div', {
+    style: { marginTop: '100px' },
+    className: 'container'
+  }, void 0, _ref, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref19, _ref20, _ref21, _ref22);
+});

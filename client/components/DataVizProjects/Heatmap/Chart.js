@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import Radium from 'radium'
 import * as d3 from 'd3'
-import d3Scale from 'd3-scale'
 import d3Tip from 'd3-tip'
 import month from 'month'
 

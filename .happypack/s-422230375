@@ -1,0 +1,64 @@
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+import React from 'react';
+import Radium from 'radium';
+
+var styles = {
+  base: {
+    textAlign: 'left',
+    color: 'white',
+    transition: 'color .5s, background 0.5s',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    paddingLeft: '10px',
+    ':hover': {
+      transition: 'color .5s, background 0.5s',
+      color: 'black',
+      background: 'white',
+      cursor: 'pointer'
+    }
+  },
+  header: {
+    paddingTop: '10px',
+    paddingRight: '10px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  },
+  inline: {
+    display: 'inline-block'
+  },
+  dot: {
+    color: 'red',
+    paddingLeft: '2px'
+  },
+  text: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  }
+};
+
+var _ref = _jsx('strong', {}, void 0, 'Game:');
+
+var _ref2 = _jsx('strong', {}, void 0, 'Viewers:');
+
+var _ref3 = _jsx('strong', {}, void 0, 'Status \xA0');
+
+var Content = function Content(props) {
+  return _jsx('div', {
+    style: styles.base
+  }, void 0, _jsx('h5', {
+    style: styles.header
+  }, void 0, props.title), _jsx('p', {
+    style: styles.text
+  }, void 0, _ref, ' ', props.game), _jsx('p', {
+    style: styles.text
+  }, void 0, _ref2, ' ', props.viewers), _jsx('p', {
+    style: styles.inline
+  }, void 0, _ref3), !props.live ? 'OFFLINE' : _jsx('i', {
+    className: 'fa fa-circle fa-pulse',
+    'aria-hidden': 'true',
+    style: [styles.dot, styles.inline]
+  }));
+};
+export default Content = Radium(Content);
