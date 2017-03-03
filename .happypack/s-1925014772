@@ -1,0 +1,118 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+		value: true
+});
+
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _radium = require('radium');
+
+var _radium2 = _interopRequireDefault(_radium);
+
+var _d = require('d3');
+
+var d3 = _interopRequireWildcard(_d);
+
+var _d3Tip = require('d3-tip');
+
+var _d3Tip2 = _interopRequireDefault(_d3Tip);
+
+var _month = require('month');
+
+var _month2 = _interopRequireDefault(_month);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var styles = {
+		container: {
+				display: 'flex',
+				justifyContent: 'center'
+		}
+};
+
+var _ref = _jsx('div', {
+		className: 'animated rotateInUpRight',
+		id: 'chart'
+});
+
+var Chart = function (_Component) {
+		_inherits(Chart, _Component);
+
+		function Chart() {
+				_classCallCheck(this, Chart);
+
+				return _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).apply(this, arguments));
+		}
+
+		_createClass(Chart, [{
+				key: 'componentDidMount',
+				value: function componentDidMount() {
+						var margin = { top: 0, right: 20, bottom: 60, left: 35 },
+						    barData = this.props.data,
+						    width = 700 - margin.left - margin.right,
+						    height = 400 - margin.top - margin.bottom,
+						    barHeight = height / 12 - 3,
+						    barWidth = width / this.props.data.length + .5,
+						    colors = ['#7caaff', '#e2f293', '#f7ff89', '#e5db27', '#ce5c0a', '#c41717', '#911414'],
+						    legend = [-7, -2.5, -.5, 0, .5, 2.5, 7];
+
+						var xScale = d3.scaleLinear().domain([1753, 2015]).range([0, width]);
+
+						var colorScale = d3.scaleQuantile().domain(legend).range(colors);
+
+						var tip = (0, _d3Tip2.default)().attr('class', 'd3-heat-tip').offset([-10, 0]).html(function (d) {
+								return '<div>' + (0, _month2.default)(d.month) + ', ' + d.year + '</br>Variance: ' + d.variance + ' </br>Base Temp: 8.66\xB0C<div>';
+						});
+
+						var myChart = d3.select('#chart').append('svg').attr('width', width + margin.left + margin.right).attr('height', height + margin.top + margin.bottom).attr('class', 'heatmap-chart').append('g').attr("transform", 'translate(' + margin.left + ', ' + margin.top + ')').style('background', 'lightgrey');
+
+						myChart.call(tip);
+
+						var myBars = myChart.selectAll('rect').data(barData).enter().append('rect').style('fill', function (d) {
+								return colorScale(d.variance);
+						}).attr('x', function (d) {
+								return xScale(d.year);
+						}).attr('y', function (d) {
+								return (d.month - 1) * (height / 12);
+						}).attr('width', barWidth + 2).attr('height', barHeight).on('mouseover', tip.show).on('mouseout', tip.hide);
+
+						var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
+						myChart.selectAll(".monthLabel").data(months).enter().append("text").text(function (d) {
+								return d;
+						}).attr("x", 0).attr("y", function (d, i) {
+								return i * (height / 12);
+						}).style("text-anchor", "end").attr("transform", 'translate(-10,' + (height - margin.top - margin.bottom) / 12 + ')').attr("class", 'monthLabel');
+
+						var xAxis = d3.axisBottom().scale(xScale).tickFormat(d3.format('d'));
+
+						d3.select('svg').append('g').attr('class', 'heatmap-xaxis').attr('transform', 'translate(' + margin.left + ', ' + (height + margin.top) + ')').call(xAxis);
+
+						d3.select('svg').append('text').attr('class', 'heatmap-xaxis-label').attr('transform', 'translate(' + (width + margin.left + margin.right) / 2 + ', ' + (height + margin.bottom + margin.top - 10) + ')').style('text-anchor', 'middle').text('Years');
+				}
+		}, {
+				key: 'render',
+				value: function render() {
+						return _ref;
+				}
+		}]);
+
+		return Chart;
+}(_react.Component);
+
+exports.default = Chart = (0, _radium2.default)(Chart);

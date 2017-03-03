@@ -1,0 +1,38 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.FETCH_STREAMS = exports.FETCH_FREE = undefined;
+exports.fetchFreeCodeCamp = fetchFreeCodeCamp;
+exports.fetchStreams = fetchStreams;
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _api = require('../api');
+
+var _api2 = _interopRequireDefault(_api);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FETCH_FREE = exports.FETCH_FREE = 'FETCH_FREE';
+var FETCH_STREAMS = exports.FETCH_STREAMS = 'FETCH_STREAMS';
+
+var clientId = 'aswjx355ya1e5y7vy3t5sg1hcwsaokn';
+
+function fetchFreeCodeCamp() {
+	var url = 'https://api.twitch.tv/kraken/streams/freecodecamp?client_id=' + clientId;
+	var reqUrl = '' + _api2.default + url;
+
+	var request = _axios2.default.get(reqUrl);
+	return { type: FETCH_FREE, payload: request };
+}
+
+function fetchStreams() {
+	var url = 'https://api.twitch.tv/kraken/streams/featured?limit=9&client_id=' + clientId;
+	var reqUrl = '' + _api2.default + url;
+	var request = _axios2.default.get(reqUrl);
+	return { type: FETCH_STREAMS, payload: request };
+}

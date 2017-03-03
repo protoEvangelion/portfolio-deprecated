@@ -7,7 +7,8 @@ import reducers from './reducers'
 import routes from './routes/routes'
 import promise from 'redux-promise'
 
-import './global.css'
+import './css/global.css'
+import './css/ihover.css'
 
 const store = createStore(
   reducers,

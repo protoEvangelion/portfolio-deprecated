@@ -1,0 +1,95 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _radium = require('radium');
+
+var _radium2 = _interopRequireDefault(_radium);
+
+var _scroll = require('../../../helpers/scroll');
+
+var _scroll2 = _interopRequireDefault(_scroll);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var styles = {
+  base: {
+    textAlign: 'center'
+  },
+  btn: {
+    margin: '30px',
+    padding: '10px 20px',
+    fontSize: '1em',
+    ':hover': {
+      cursor: 'pointer'
+    }
+  },
+  header: {
+    color: '#025aa5',
+    padding: 0,
+    margin: 0,
+    fontSize: '1.5em'
+  }
+};
+
+var _ref = _jsx('br', {});
+
+var ChoosePlayer = function (_Component) {
+  _inherits(ChoosePlayer, _Component);
+
+  function ChoosePlayer() {
+    _classCallCheck(this, ChoosePlayer);
+
+    return _possibleConstructorReturn(this, (ChoosePlayer.__proto__ || Object.getPrototypeOf(ChoosePlayer)).apply(this, arguments));
+  }
+
+  _createClass(ChoosePlayer, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      (0, _scroll2.default)(document.getElementById("choosePlayerContainer"));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _jsx('div', {
+        id: 'choosePlayerContainer',
+        style: styles.base,
+        className: this.props.animate
+      }, void 0, _jsx('h1', {
+        style: styles.header
+      }, void 0, 'Choose your'), _ref, _jsx('h1', {
+        style: styles.header
+      }, void 0, 'Tic-Tac-Toe player:'), _jsx('button', {
+        value: 'X',
+        onClick: this.props.onClick,
+        className: 'btn btn-success',
+        style: styles.btn
+      }, 'x', 'X'), _jsx('button', {
+        value: 'O',
+        onClick: this.props.onClick,
+        className: 'btn btn-info',
+        style: styles.btn
+      }, 'y', 'O'));
+    }
+  }]);
+
+  return ChoosePlayer;
+}(_react.Component);
+
+exports.default = ChoosePlayer = (0, _radium2.default)(ChoosePlayer);

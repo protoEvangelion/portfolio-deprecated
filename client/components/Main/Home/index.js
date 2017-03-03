@@ -1,9 +1,12 @@
 import React from 'react'
+import Banner from './Banner'
+import APIProjects from './apiProjects'
 
 export default () => {
 		return (
-			<div style={{textAlign: 'center', marginTop: '100px'}}>
-				<p>Click on one of the projects above and it will render ;)</p>
+			<div>
+				<Banner />
+				<APIProjects />
 			</div>
 		)
 }

@@ -32,7 +32,7 @@ let About = () => {
   return (
     <div style={styles.container}>
       <div className="animated lightSpeedIn" style={styles.quoteCtn}>
-				<h2 style={styles.h2}>Who Am I?</h2><br/>
+				<h2 style={styles.h2}>Who I Am</h2><br/>
 				<p style={styles.p}>Testing my hand at html back in Jr. High, I never saw myself as a developer...I wanted to be a pro baseball player. But after running into some database problems at work, I thought I would give it a go once again and as they say: "the rest is history".</p>
 				<p style={styles.p}>My passion is developing web projects that actually help people and can impact the world in a monumental way!</p>
 			</div>

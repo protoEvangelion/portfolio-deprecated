@@ -4,11 +4,12 @@ import { Route, IndexRoute } from 'react-router'
 // NOTE: Main site stuff
 import App from '../components/Main/App.js'
 import Home from '../components/Main/Home'
-import Privacy from '../components/Main/Privacy'
-import NotFound from '../components/Main/NotFound'
-import AllProjects from '../components/Main/Header/AllProjects'
+import AllProjects from '../components/Main/Projects/AllProjects'
+import APIProjects from '../components/Main/Projects/APIProjects'
 import About from '../components/Main/About'
 import Contact from '../components/Main/Contact'
+import Privacy from '../components/Main/Privacy'
+import NotFound from '../components/Main/NotFound'
 
 // NOTE: Front End Projects
 import Wiki from '../components/FrontEndProjects/Wiki'
@@ -35,30 +36,33 @@ import ForceGraph from '../components/DataVizProjects/Force'
 export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={Home} />
-		<Route path="privacy-policy" component={Privacy} />
-		<Route path="projects" component={AllProjects} />
+
 		<Route path="about" component={About} />
+		<Route path="projects" component={AllProjects} />
+		<Route path="apiProjects" component={APIProjects} />
 		<Route path="contact" component={Contact} />
 
+		<Route path="weather" component={Weather} />
 		<Route path="wikiViewer" component={Wiki} />
 		<Route path="quotepump" component={Quote} />
-		<Route path="weather" component={Weather} />
 		<Route path="twitch" component={Twitch} />
+		<Route path="leaderboard" component={Leaderboard} />
+		<Route path="recipebox" component={RecipeBox} />
+		<Route path="youtube-viewer" component={YoutubeViewer} />
+
+		<Route path="game-of-life" component={GameOfLife} />
 		<Route path="tictactoe" component={Tic} />
 		<Route path="calc" component={Calc} />
 		<Route path="pomodoro" component={Pomodoro} />
 		<Route path="simon" component={Simon} />
 		<Route path="markdown" component={Markdown} />
-		<Route path="leaderboard" component={Leaderboard} />
-		<Route path="recipebox" component={RecipeBox} />
-		<Route path="game-of-life" component={GameOfLife} />
-		<Route path="youtube-viewer" component={YoutubeViewer} />
 
 		<Route path="GDP" component={GDP} />
 		<Route path="scatterplot_doping_olympian_cyclists" component={ScatterPlot} />
 		<Route path="heatmap" component={Heatmap} />
 		<Route path="world-force-graph" component={ForceGraph} />
 
+		<Route path="privacy-policy" component={Privacy} />
 		<Route path="*" component={NotFound} />
 	</Route>
 )
