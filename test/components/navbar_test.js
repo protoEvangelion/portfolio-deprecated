@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../test_helper'
-import Navbar from '../../client/components/GlobalComponents/Header/Navbar'
+import Navbar from '../../client/components/Main/Header/Navbar'
 
 describe('Navbar', () => {
 	it('shows the correct nav tabs', () => {
