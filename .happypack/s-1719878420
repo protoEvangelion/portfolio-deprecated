@@ -1,0 +1,126 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _radium = require('radium');
+
+var _radium2 = _interopRequireDefault(_radium);
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _api = require('../../../api');
+
+var _api2 = _interopRequireDefault(_api);
+
+var _recharts = require('recharts');
+
+var _CustomTip = require('./CustomTip');
+
+var _CustomTip2 = _interopRequireDefault(_CustomTip);
+
+var _convertMonth_helper = require('./convertMonth_helper');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var styles = {};
+
+var _ref = _jsx(_recharts.XAxis, {
+	dataKey: 'date'
+});
+
+var _ref2 = _jsx(_recharts.YAxis, {});
+
+var _ref3 = _jsx(_recharts.CartesianGrid, {
+	strokeDasharray: '3 3'
+});
+
+var _ref4 = _jsx(_recharts.Legend, {});
+
+var _ref5 = _jsx(_recharts.Bar, {
+	name: 'GDP (Billions of Dollars)',
+	dataKey: 'GDP',
+	fill: '#82ca9d'
+});
+
+var Simple = function (_Component) {
+	_inherits(Simple, _Component);
+
+	function Simple(props) {
+		_classCallCheck(this, Simple);
+
+		var _this = _possibleConstructorReturn(this, (Simple.__proto__ || Object.getPrototypeOf(Simple)).call(this, props));
+
+		_this.state = {
+			gdpData: []
+		};
+		return _this;
+	}
+
+	_createClass(Simple, [{
+		key: 'componentWillMount',
+		value: function componentWillMount() {
+			var _this2 = this;
+
+			var url = 'https://api.stlouisfed.org/fred/series/observations?series_id=GDP&file_type=json&fq=Quarterly&api_key=';
+			_axios2.default.get('' + _api2.default + url).then(function (res) {
+				var filteredData = res.data.observations.filter(function (gdp) {
+					return gdp.value !== '.';
+				});
+				var gdpData = filteredData.map(function (gdp, i) {
+					return {
+						date: gdp.date.slice(0, 4),
+						month: (0, _convertMonth_helper.convertMonth)(gdp.date.slice(5, 7)),
+						GDP: Number(gdp.value)
+					};
+				});
+				var reducedData = gdpData;
+				_this2.setState({ gdpData: reducedData });
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			if (this.state.gdpData.length < 1) {
+				return _jsx('i', {
+					style: { color: '#33adff', marginTop: '50px' },
+					className: 'fa fa-spinner fa-pulse fa-3x',
+					'aria-hidden': 'true'
+				});
+			}
+			return _jsx(_recharts.BarChart, {
+				width: 1000,
+				height: 500,
+				data: this.state.gdpData,
+				margin: { top: 5, right: 30, left: 20, bottom: 5 }
+			}, void 0, _ref, _ref2, _ref3, _jsx(_recharts.Tooltip, {
+				content: _jsx(_CustomTip2.default, {
+					payload: this.props.payload
+				})
+			}), _ref4, _ref5);
+		}
+	}]);
+
+	return Simple;
+}(_react.Component);
+
+exports.default = Simple = (0, _radium2.default)(Simple);

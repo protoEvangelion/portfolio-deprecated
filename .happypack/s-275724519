@@ -1,0 +1,91 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+var _radium = require('radium');
+
+var _radium2 = _interopRequireDefault(_radium);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = {
+	link: {
+		cursor: 'pointer'
+	}
+};
+
+var _ref = _jsx('button', {
+	className: 'navbar-toggler navbar-toggler-right',
+	type: 'button',
+	'data-toggle': 'collapse',
+	'data-target': '#navbarNavDropdown',
+	'aria-controls': 'navbarNavDropdown',
+	'aria-expanded': 'false',
+	'aria-label': 'Toggle navigation'
+}, void 0, _jsx('span', {
+	className: 'navbar-toggler-icon'
+}));
+
+var _ref2 = _jsx(_reactRouter.Link, {
+	className: 'nav-link',
+	to: 'about'
+}, void 0, 'About');
+
+var _ref3 = _jsx('li', {
+	className: 'nav-item'
+}, void 0, _jsx(_reactRouter.Link, {
+	className: 'nav-link',
+	to: 'projects'
+}, void 0, 'Projects'));
+
+var _ref4 = _jsx('li', {
+	className: 'nav-item'
+}, void 0, _jsx(_reactRouter.Link, {
+	className: 'nav-link',
+	to: 'contact'
+}, void 0, 'Contact'));
+
+var NavigationBar = function NavigationBar() {
+	var styles = {
+		img: {
+			width: '300px',
+			margin: '-35px'
+		},
+		navCtn: {
+			marginLeft: '-100px'
+		}
+	};
+
+	return _jsx('header', {}, void 0, _jsx('nav', {
+		className: 'navbar navbar-toggleable-md navbar-light bg-faded'
+	}, void 0, _ref, _jsx(_reactRouter.Link, {
+		className: 'nav-link',
+		to: '/'
+	}, void 0, _jsx('img', {
+		style: styles.img,
+		className: 'img img-responsive',
+		src: require('./logo.png'),
+		alt: 'Ryan\'s logo'
+	})), _jsx('div', {
+		style: styles.navCtn,
+		className: 'collapse navbar-collapse',
+		id: 'navbarNavDropdown'
+	}, void 0, _jsx('ul', {
+		className: 'navbar-nav'
+	}, void 0, _jsx('li', {
+		className: 'nav-item active',
+		style: styles.link
+	}, void 0, _ref2), _ref3, _ref4))));
+};
+
+exports.default = NavigationBar = (0, _radium2.default)(NavigationBar);
