@@ -6,26 +6,29 @@ import App from '../components/Main/App.js'
 import Home from '../components/Main/Home'
 import AllProjects from '../components/Main/Projects/AllProjects'
 import APIProjects from '../components/Main/Projects/APIProjects'
+import UtilityProjects from '../components/Main/Projects/UtilityProjects'
+import VizProjects from '../components/Main/Projects/VizProjects'
 import About from '../components/Main/About'
 import Contact from '../components/Main/Contact'
 import Privacy from '../components/Main/Privacy'
 import NotFound from '../components/Main/NotFound'
 
-// NOTE: Front End Projects
-import Wiki from '../components/FrontEndProjects/Wiki'
-import Quote from '../components/FrontEndProjects/Quote'
-import Weather from '../components/FrontEndProjects/Weather'
-import Twitch from '../components/FrontEndProjects/Twitch'
-import Tic from '../components/FrontEndProjects/Tic'
-import Calc from '../components/FrontEndProjects/Calc'
-import Pomodoro from '../components/FrontEndProjects/Pomodoro'
-import Simon from '../components/FrontEndProjects/Simon'
-import Markdown from '../components/FrontEndProjects/Markdown'
-import Leaderboard from '../components/FrontEndProjects/Leaderboard'
-import RecipeBox from '../components/FrontEndProjects/RecipeBox'
-import GameOfLife from '../components/FrontEndProjects/GameOfLife'
-import YoutubeViewer from '../components/FrontEndProjects/YoutubeViewer'
+// NOTE: API Projects
+import Wiki from '../components/APIProjects/Wiki'
+import Quote from '../components/APIProjects/Quote'
+import Weather from '../components/APIProjects/Weather'
+import Twitch from '../components/APIProjects/Twitch'
+import Leaderboard from '../components/APIProjects/Leaderboard'
+import RecipeBox from '../components/APIProjects/RecipeBox'
+import YoutubeViewer from '../components/APIProjects/YoutubeViewer'
 
+// NOTE: Utility and Gaming Projects
+import Tic from '../components/UtilityProjects/Tic'
+import Calc from '../components/UtilityProjects/Calc'
+import Pomodoro from '../components/UtilityProjects/Pomodoro'
+import Simon from '../components/UtilityProjects/Simon'
+import Markdown from '../components/UtilityProjects/Markdown'
+import GameOfLife from '../components/UtilityProjects/GameOfLife'
 
 // NOTE: Data Visualization Projects
 import GDP from '../components/DataVizProjects/GDP'
@@ -40,6 +43,8 @@ export default (
 		<Route path="about" component={About} />
 		<Route path="projects" component={AllProjects} />
 		<Route path="apiProjects" component={APIProjects} />
+		<Route path="utilityProjects" component={UtilityProjects} />
+		<Route path="vizProjects" component={VizProjects} />
 		<Route path="contact" component={Contact} />
 
 		<Route path="weather" component={Weather} />

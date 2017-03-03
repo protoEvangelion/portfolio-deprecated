@@ -76,6 +76,7 @@
     "react-social": "^1.6.2",
     "react-sound": "^0.5.2",
     "react-sparklines": "^1.6.0",
+    "react-waypoint": "^5.1.0",
     "recharts": "^0.20.8",
     "redux": "^3.6.0",
     "redux-form": "^6.5.0",

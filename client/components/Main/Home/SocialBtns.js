@@ -3,6 +3,7 @@ import Radium from 'radium'
 
 const styles = {
   container: {
+    zIndex: 9999,
 		marginTop: '35px',
     marginBottom: '-30px',
   },

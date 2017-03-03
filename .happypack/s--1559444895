@@ -1,0 +1,73 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _radium = require('radium');
+
+var _radium2 = _interopRequireDefault(_radium);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Button = function Button(_ref) {
+  var color = _ref.color,
+      content = _ref.content,
+      type = _ref.type,
+      size = _ref.size,
+      click = _ref.click;
+
+  var marginTop = type === 'bottom' ? '-45px' : '5.5px';
+  var plusHeight = type === 'plus' ? '90px' : '40px';
+  var plusAlign = type === 'plus' ? '25px' : '0px';
+  var fontSize = size === 'big' ? '2em' : '1em';
+  var lineHeight = size === 'big' ? '30px' : '40px';
+  var boxShadow = color === '#d35252' ? '#7a0606' : 'black';
+
+  var styles = {
+    width: '51px',
+    height: '' + plusHeight,
+    lineHeight: '' + lineHeight,
+    display: 'inline-block',
+    margin: marginTop + ' 5.5px 5.5px 5.5px',
+    padding: plusAlign + ' 0px 0px 0px',
+    borderRadius: '5px',
+    color: 'white',
+    float: 'left',
+    cursor: 'pointer',
+    background: '' + color,
+    fontSize: '' + fontSize,
+    boxShadow: '0px 5px 0px ' + boxShadow,
+    top: '0px',
+    transition: 'all ease 0.1s',
+    userSelect: 'none',
+    ':active': {
+      boxShadow: '0 3px 0 ' + boxShadow,
+      top: '3px'
+    }
+  };
+
+  return _jsx('div', {
+    style: styles,
+    onClick: function onClick() {
+      return click(content);
+    },
+    value: content
+  }, void 0, content);
+};
+
+_react2.default.propTypes = {
+  color: _react2.default.PropTypes.string.isRequired,
+  content: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.number]),
+  size: _react2.default.PropTypes.string,
+  type: _react2.default.PropTypes.string,
+  onClick: _react2.default.PropTypes.func.isRequired
+};
+
+exports.default = Button = (0, _radium2.default)(Button);

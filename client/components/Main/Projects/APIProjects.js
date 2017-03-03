@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import styled, { keyframes } from 'styled-components'
+import Leaderboard from '../../APIProjects/Leaderboard'
 
 const Item = styled.div`
 	margin: 20px 20px;
@@ -26,7 +27,7 @@ const Item = styled.div`
 const APIProjects = () => (
 	<div style={{textAlign: 'center'}}>
 		<Link to="/wikiViewer">
-			<Item src={require('./images/Wiki.png')} />
+			<Item src={require('./images/wiki.png')}/>
 		</Link>
 		<Link to="/weather">
 			<Item src={require('./images/weather.png')} />
@@ -46,6 +47,7 @@ const APIProjects = () => (
 		<Link to="/youtube-viewer">
 			<Item src={require('./images/youtubeviewer.png')} />
 		</Link>
+		<Leaderboard />
 	</div>
 )
 

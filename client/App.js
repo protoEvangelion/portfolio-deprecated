@@ -18,7 +18,7 @@ const store = createStore(
 const App = () => {
   return (
 		<Provider store={store} >
-			<Router history={browserHistory} routes={routes} />
+			<Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory} routes={routes} />
 		</Provider>
   )
 }

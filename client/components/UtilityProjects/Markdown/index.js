@@ -3,7 +3,6 @@ import Radium from 'radium'
 import TextArea from './TextArea'
 import Transformed from './Transformed'
 import defaultText from './defaultText'
-import smoothScroll from '../../../helpers/scroll'
 import './styles.css'
 
 const styles = {
@@ -35,9 +34,6 @@ class Markdown extends Component {
       markdown: defaultText
     }
     this.onInputChange = this.onInputChange.bind(this)
-  }
-  componentDidMount() {
-    smoothScroll(document.getElementById("markdownContainer"))
   }
   onInputChange(e) {
     this.setState({markdown: e.target.value})

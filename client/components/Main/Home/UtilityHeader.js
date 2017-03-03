@@ -7,7 +7,7 @@ const styles = {
 		display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    margin: '40px 0 200px 0',
+    padding: '75px 0 75px 0',
     '@media (max-width: 758px)': {
       flexDirection: 'column',
     }
@@ -23,26 +23,26 @@ const styles = {
   }
 }
 
-let APIProjects = () => {
+let UtilityHeader = () => {
   return (
     <StyleRoot>
-      <section id="apiProjects">
+      <section id="utilityProjects" className="animated fadeInLeft">
         <div style={styles.container}>
           <div className="ih-item square effect4">
-            <Link to="weather">
-              <div className="img"><img src={require('../Projects/images/weather.png')} alt="img"/></div>
+            <Link to="game-of-life">
+              <div className="img"><img src={require('../Projects/images/gameoflife.png')} alt="img"/></div>
               <div className="mask1"></div>
               <div className="mask2"></div>
               <div className="info">
-                <h3>Cool weather API forecaster</h3>
-                <p>Geolocation forecasts!</p>
+                <h3>Conway's Game of Life</h3>
+                <p>Advanced algo that determines life and death</p>
               </div>
             </Link>
           </div>
           <div style={styles.textCtn}>
-            <h5 style={styles.header}>A fun collection of API projects that span from building a Pinterest recipe box to viewing the coolest channels on Twitch...</h5><br/>
-            <Link to="apiProjects">
-              <p>View my API Projects</p>
+            <h5 style={styles.header}>An exciting collection consisting of simple game projects and utilities like a Markdown previewer...</h5><br/>
+            <Link to="utilityProjects">
+              <p>View my Gaming & Utility Projects</p>
             </Link>
           </div>
         </div>
@@ -51,4 +51,4 @@ let APIProjects = () => {
   )
 }
 
-export default APIProjects
+export default UtilityHeader

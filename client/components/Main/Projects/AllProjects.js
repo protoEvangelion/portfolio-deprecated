@@ -25,20 +25,30 @@ const Item = styled.div`
 
 const AllProjects = () => (
 	<div style={{textAlign: 'center'}}>
-		<Link to="/wikiViewer">
-			<Item src={require('./images/Wiki.png')} />
-		</Link>
 		<Link to="/weather">
 			<Item src={require('./images/weather.png')} />
 		</Link>
-		<Link to="/calc">
-			<Item src={require('./images/calc.png')} />
+		<Link to="/wikiViewer">
+			<Item src={require('./images/wiki.png')} />
 		</Link>
 		<Link to="/quotepump">
 			<Item src={require('./images/quotePump.png')} />
 		</Link>
 		<Link to="/twitch">
 			<Item src={require('./images/twitch.png')} />
+		</Link>
+		<Link to="/leaderboard">
+			<Item src={require('./images/Leaderboard.png')} />
+		</Link>
+		<Link to="/recipebox">
+			<Item src={require('./images/Recipe.png')} />
+		</Link>
+		<Link to="/youtube-viewer">
+			<Item src={require('./images/youtubeviewer.png')} />
+		</Link>
+
+		<Link to="/calc">
+			<Item src={require('./images/calc.png')} />
 		</Link>
 		<Link to="/tictactoe">
 			<Item src={require('./images/tic.png')} />
@@ -52,17 +62,8 @@ const AllProjects = () => (
 		<Link to="/markdown">
 			<Item src={require('./images/Markdown.png')} />
 		</Link>
-		<Link to="/leaderboard">
-			<Item src={require('./images/Leaderboard.png')} />
-		</Link>
-		<Link to="/recipebox">
-			<Item src={require('./images/Recipe.png')} />
-		</Link>
 		<Link to="/game-of-life">
 			<Item src={require('./images/gameoflife.png')} />
-		</Link>
-		<Link to="/youtube-viewer">
-			<Item src={require('./images/youtubeviewer.png')} />
 		</Link>
 
 		<Link to="/GDP">
