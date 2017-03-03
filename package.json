@@ -103,5 +103,5 @@
     "supertest": "^3.0.0",
     "webpack-shell-plugin": "^0.5.0"
   },
-  "repository": "https://github.com/protoEvangelium/MERN-Portfolio"
+  "repository": "https://github.com/protoEvangeliom/MERN-Portfolio"
 }
