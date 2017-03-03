@@ -1,0 +1,135 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = require('react-redux');
+
+var _chart = require('./chart');
+
+var _chart2 = _interopRequireDefault(_chart);
+
+var _GoogleMap = require('./GoogleMap');
+
+var _GoogleMap2 = _interopRequireDefault(_GoogleMap);
+
+var _scroll = require('../../../helpers/scroll');
+
+var _scroll2 = _interopRequireDefault(_scroll);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _ref = _jsx('thead', {}, void 0, _jsx('tr', {}, void 0, _jsx('th', {
+	className: 'thWeather'
+}, void 0, 'City'), _jsx('th', {
+	className: 'thWeather'
+}, void 0, 'Temperature (\xB0F)'), _jsx('th', {
+	className: 'thWeather'
+}, void 0, 'Pressure (hPa)'), _jsx('th', {
+	className: 'thWeather'
+}, void 0, 'Humidity (%)')));
+
+var WeatherList = function (_Component) {
+	_inherits(WeatherList, _Component);
+
+	function WeatherList() {
+		_classCallCheck(this, WeatherList);
+
+		return _possibleConstructorReturn(this, (WeatherList.__proto__ || Object.getPrototypeOf(WeatherList)).apply(this, arguments));
+	}
+
+	_createClass(WeatherList, [{
+		key: 'componentDidUpdate',
+		value: function componentDidUpdate() {
+			(0, _scroll2.default)(document.getElementById("weatherTblContainer"));
+		}
+	}, {
+		key: 'renderWeather',
+		value: function renderWeather(cityData) {
+			if (cityData) {
+				var name = cityData.city.name;
+				var temps = cityData.list.map(function (weather) {
+					return weather.main.temp * (9 / 5) - 459.67;
+				});
+				var pressures = cityData.list.map(function (weather) {
+					return weather.main.pressure;
+				});
+				var humidities = cityData.list.map(function (weather) {
+					return weather.main.humidity;
+				});
+				var _cityData$city$coord = cityData.city.coord,
+				    lon = _cityData$city$coord.lon,
+				    lat = _cityData$city$coord.lat;
+
+
+				return _jsx('tr', {
+					height: 105
+				}, name, _jsx('td', {
+					className: 'tdWeather'
+				}, void 0, _jsx(_GoogleMap2.default, {
+					lon: lon,
+					lat: lat
+				})), _jsx('td', {
+					className: 'tdWeather'
+				}, void 0, _jsx(_chart2.default, {
+					data: temps,
+					color: 'orange',
+					units: '\xB0F'
+				})), _jsx('td', {
+					className: 'tdWeather'
+				}, void 0, _jsx(_chart2.default, {
+					data: pressures,
+					color: 'red',
+					units: 'hPa'
+				})), _jsx('td', {
+					className: 'tdWeather'
+				}, void 0, _jsx(_chart2.default, {
+					data: humidities,
+					color: 'blue',
+					units: '%'
+				})));
+			} else {
+				return;
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return _jsx('div', {
+				id: 'weatherTblContainer',
+				className: 'container containerComp'
+			}, void 0, _jsx('div', {
+				className: 'row'
+			}, void 0, _jsx('div', {
+				className: 'col-sm-12'
+			}, void 0, _jsx('table', {
+				className: 'table table-hover'
+			}, void 0, _ref, _jsx('tbody', {}, void 0, this.props.weather.map(this.renderWeather))))));
+		}
+	}]);
+
+	return WeatherList;
+}(_react.Component);
+
+function mapStateToProps(_ref2) {
+	var weather = _ref2.weather;
+
+	return { weather: weather };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(WeatherList);

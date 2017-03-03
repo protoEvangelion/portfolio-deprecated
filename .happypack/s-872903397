@@ -1,0 +1,54 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _radium = require('radium');
+
+var _radium2 = _interopRequireDefault(_radium);
+
+var _Patterns = require('./Patterns');
+
+var _Patterns2 = _interopRequireDefault(_Patterns);
+
+var _Speeds = require('./Speeds');
+
+var _Speeds2 = _interopRequireDefault(_Speeds);
+
+var _Sizes = require('./Sizes');
+
+var _Sizes2 = _interopRequireDefault(_Sizes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
+};
+
+var OptionsTable = function OptionsTable(_ref) {
+  var placePattern = _ref.placePattern,
+      setSpeed = _ref.setSpeed,
+      setSize = _ref.setSize;
+
+  return _jsx('div', {
+    style: styles.container
+  }, void 0, _jsx(_Patterns2.default, {
+    placePattern: placePattern.bind(undefined)
+  }), _jsx(_Speeds2.default, {
+    setSpeed: setSpeed.bind(undefined)
+  }), _jsx(_Sizes2.default, {
+    setSize: setSize.bind(undefined)
+  }));
+};
+
+exports.default = OptionsTable = (0, _radium2.default)(OptionsTable);

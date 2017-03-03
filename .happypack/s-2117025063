@@ -1,0 +1,39 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _redux = require('redux');
+
+var _reduxForm = require('redux-form');
+
+var _reducer_wikis = require('./reducer_wikis');
+
+var _reducer_wikis2 = _interopRequireDefault(_reducer_wikis);
+
+var _reducer_quote = require('./reducer_quote');
+
+var _reducer_quote2 = _interopRequireDefault(_reducer_quote);
+
+var _reducer_weather = require('./reducer_weather');
+
+var _reducer_weather2 = _interopRequireDefault(_reducer_weather);
+
+var _reducer_streams = require('./reducer_streams');
+
+var _reducer_streams2 = _interopRequireDefault(_reducer_streams);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//reducers take in the action and copy of current state
+
+var rootReducer = (0, _redux.combineReducers)({
+	form: _reduxForm.reducer,
+	wikis: _reducer_wikis2.default,
+	quote: _reducer_quote2.default,
+	weather: _reducer_weather2.default,
+	streams: _reducer_streams2.default
+});
+
+exports.default = rootReducer;

@@ -1,0 +1,8 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var text = "\n### A few examples of Markdown woop woop!\n\n> Note: HTML output along with javascript, vbscript, file & data links prohibited to prevent XSS attacks ;)\n\n#### *Emojis*:\n:stuck_out_tongue_closed_eyes: :gift_heart: :smiley_cat:\n\n#### *Code*:\n\nInline `code` has `back-ticks around` it.\n\nCode blocks have 3 ticks before and after like this:\n\n```javascript\nvar s = \"JavaScript syntax highlighting\";\nalert(s);\n```\n\n\n#### *Headers like this*:\n\n#### H4\n##### H5\n\n\n#### *Images*:\n\nInline-style:\n![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png \"Logo Title Text 1\")\n\nReference-style:\n![alt text][logo]\n\n[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png \"Logo Title Text 2\"\n\n\n#### *Blockquotes*:\n\n> Blockquotes are very handy in email to emulate reply text.\n> This line is part of the same quote.\n\n\n#### *Links*:\n\n[I'm an inline-style link](https://www.google.com)\n\n[Here's a markdown cheetseet with more examples :)](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code)\n\n";
+
+exports.default = text;

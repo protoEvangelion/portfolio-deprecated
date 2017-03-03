@@ -1,0 +1,30 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.FETCH_WIKIS = undefined;
+exports.fetchWikis = fetchWikis;
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _api = require('../api');
+
+var _api2 = _interopRequireDefault(_api);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var FETCH_WIKIS = exports.FETCH_WIKIS = 'FETCH_WIKIS';
+
+function fetchWikis(term) {
+	var url = 'https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + term + '&utf8=&format=json';
+	var reqUrl = '' + _api2.default + url;
+
+	var request = _axios2.default.get(reqUrl);
+	return {
+		type: FETCH_WIKIS,
+		payload: request
+	};
+}

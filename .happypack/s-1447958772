@@ -1,0 +1,28 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+exports.default = function () {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	var action = arguments[1];
+
+	switch (action.type) {
+		case _fetchQuote.FETCH_QUOTE:
+			return Object.assign({}, state, {
+				quote: action.payload.data
+			});
+	}
+	return state;
+};
+
+var _fetchQuote = require('../actions/fetchQuote');
+
+var initialState = {
+	quote: {
+		quoteText: 'People may doubt what you say, but they will believe what you do.',
+		quoteAuthor: 'Abraham Lincoln',
+		quoteLink: 'http://forismatic.com/en/e7d096ac9d/'
+	}
+};
