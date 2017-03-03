@@ -10,7 +10,7 @@ import './style.css'
 const styles = {
   container: {
     marginTop: '100px',
-    marginBottom: '100px',
+    marginBottom: '150px',
     display: 'flex',
 		flexDirection: 'column',
     alignItems: 'center',

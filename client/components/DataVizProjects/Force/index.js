@@ -5,7 +5,7 @@ import Graph from './Graph'
 
 const styles = {
   container: {
-		margin: '100px 0 100px 0',
+		margin: '100px 0 150px 0',
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',

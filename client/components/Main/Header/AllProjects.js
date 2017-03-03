@@ -16,7 +16,7 @@ const Item = styled.div`
 
 	&:hover {
 		box-shadow:
-			inset 0 0 0 110px rgba(200,95,66, 0.4),
+			inset 0 0 0 110px rgba(65, 88, 200, 0.4),
 			inset 0 0 0 16px rgba(255,255,255,0.8),
 			0 1px 2px rgba(0,0,0,0.1);
 	  cursor: pointer;

@@ -7,6 +7,7 @@ import Simple from './Simple'
 const styles = {
   container: {
     marginTop: '50px',
+		marginBottom: '150px',
     display: 'flex',
 		flexDirection: 'column',
     alignItems: 'center',

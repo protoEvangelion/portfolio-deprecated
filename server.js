@@ -26,16 +26,22 @@ const credentials = {key: privateKey, cert: certificate}
 app.get('/api', (req, res) => {
 
 	const makeApiRequest = () => {
-		let newUrl = modifyUrl(req.originalUrl)
+		console.log(req.originalUrl)
 
-		axios.get(newUrl)
-		 .then(function (response) {
-			 res.status(200).send(response.data)
-		 })
-		 .catch(function (error) {
-			 console.log('Check error log', error)
-			 res.status(500).send(error)
-		 })
+		if(modifyUrl(req.originalUrl) !== undefined) {
+			let newUrl = modifyUrl(req.originalUrl)
+			console.log('making request', newUrl)
+			axios.get(newUrl)
+			 .then(function (response) {
+				 console.log('new', response)
+				 res.status(200).send(response.data)
+			 })
+			 .catch(function (error) {
+				 console.log('Check error log', error)
+				 res.status(500).send(error)
+			 })
+		}
+
 	}
 
 	//NOTE: prevent unauthorized urls from using proxy

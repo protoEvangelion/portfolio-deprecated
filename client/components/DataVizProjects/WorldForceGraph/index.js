@@ -7,6 +7,7 @@ const styles = {
   container: {
 		display: 'flex',
     justifyContent: 'center',
+		marginBottom: '150px',
   }
 }
 

@@ -11,7 +11,6 @@ const styles = {
     width: '100%',
     height: '100vh',
     position: 'relative',
-    marginTop: '20px',
   },
   label: {
     display: 'block',

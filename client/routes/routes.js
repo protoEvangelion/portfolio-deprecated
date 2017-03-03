@@ -1,11 +1,14 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
-// NOTE: Global stuff
-import App from '../components/GlobalComponents/App.js'
-import Home from '../components/GlobalComponents/Home'
-import Privacy from '../components/GlobalComponents/Privacy'
-import NotFound from '../components/GlobalComponents/NotFound'
+// NOTE: Main site stuff
+import App from '../components/Main/App.js'
+import Home from '../components/Main/Home'
+import Privacy from '../components/Main/Privacy'
+import NotFound from '../components/Main/NotFound'
+import AllProjects from '../components/Main/Header/AllProjects'
+import About from '../components/Main/About'
+import Contact from '../components/Main/Contact'
 
 // NOTE: Front End Projects
 import Wiki from '../components/FrontEndProjects/Wiki'
@@ -33,6 +36,9 @@ export default (
 	<Route path="/" component={App}>
 		<IndexRoute component={Home} />
 		<Route path="privacy-policy" component={Privacy} />
+		<Route path="projects" component={AllProjects} />
+		<Route path="about" component={About} />
+		<Route path="contact" component={Contact} />
 
 		<Route path="wikiViewer" component={Wiki} />
 		<Route path="quotepump" component={Quote} />

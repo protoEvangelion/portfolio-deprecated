@@ -11,7 +11,7 @@ const styles = {
 		borderRadius: '10px',
 		paddingRight: '40px',
 		paddingBottom: '40px',
-		marginBottom: '30px',
+		marginBottom: '50px',
 	},
 	header: {
 		fontFamily: 'Coiny',

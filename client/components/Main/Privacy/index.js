@@ -2,8 +2,8 @@ import React from 'react'
 
 export default () => {
   return (
-    <div style={{marginTop: '100px'}} className="container">
-      <h2>Ryan Garant Terms of Service and Privacy Policy</h2>
+    <div style={{margin: '100px 0 0 20px'}} className="container">
+      <h2>Ryan Garant Terms of Service and Privacy Policy</h2><br/>
 
 <h3>1. Terms</h3>
 

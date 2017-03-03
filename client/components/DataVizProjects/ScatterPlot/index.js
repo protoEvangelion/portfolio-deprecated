@@ -8,7 +8,6 @@ const styles = {
     backgroundImage: `url(${require('./land.jpg')})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
-    marginTop: '50px',
     marginBottom: '-20px',
     paddingTop: '50px',
     display: 'flex',

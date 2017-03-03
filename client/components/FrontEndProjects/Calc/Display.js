@@ -10,7 +10,7 @@ const styles = {
   textAlign: 'right',
   paddingRight: '20px',
   fontSize: '1.4em',
-  marginBottom: '10px'
+  margin: '0'
 }
 
 let Display = (props) => {

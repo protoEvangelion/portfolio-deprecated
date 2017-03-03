@@ -5,10 +5,13 @@ import Radium from 'radium'
 const styles = {
   container: {
     backgroundColor: '#5A5E69',
-    marginTop: '20px',
-    padding: '20px 0 30px 0',
-    textAlign: 'center',
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
     width: '100%',
+    overflow: 'hidden',
+    padding: '40px 0 40px 30px',
+    textAlign: 'center',
   },
   text: {
     display: 'inline',
@@ -21,13 +24,15 @@ let Footer = () => {
     <footer className="container-fluid" style={styles.container}>
       <div className="row">
         <div className="col-md-4">
-          <p style={styles.text}>Lovingly crafted by Ryan Garant</p>
+          <p key="crafted" style={styles.text}>Lovingly crafted by Ryan Garant</p>
         </div>
         <div className="col-md-4">
-          <Link to="/privacy-policy"><p style={styles.text}>Privacy Policy</p></Link>
+          <Link to="/privacy-policy">
+            <p key="privacy-policy" style={styles.text}>Privacy Policy</p>
+          </Link>
         </div>
         <div className="col-md-4">
-          <p style={styles.text}>Copyright © 2017</p>
+          <p key="Copyright" style={styles.text}>Copyright © 2017</p>
         </div>
       </div>
     </footer>

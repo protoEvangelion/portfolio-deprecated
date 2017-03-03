@@ -3,7 +3,7 @@ import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-spark
 import _ from 'lodash'
 
 function average(data) {
-	return _round(_sum(data)/data.length)
+	return _.round(_.sum(data)/data.length)
 }
 
 export default (props) => {

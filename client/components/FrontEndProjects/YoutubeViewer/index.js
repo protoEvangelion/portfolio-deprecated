@@ -35,7 +35,7 @@ export default class YoutubeViewer extends Component {
 		const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300)
 
 		return (
-			<div id="youtube-viewer-container">
+			<div id="youtube-viewer-container" style={{marginBottom: '200px'}}>
 				<SearchBar
 					change={this.changeTerm.bind(this)}
 					search={this.videoSearch.bind(this)}/>
