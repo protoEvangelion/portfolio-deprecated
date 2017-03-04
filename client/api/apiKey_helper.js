@@ -28,8 +28,8 @@ let modifyUrl = (originalUrl, res) => {
 			    const data = {
 			      from: from_who,
 			      to: 'ryantgarant@gmail.com',
-			      subject: 'Hello from Mailgun',
-			      html: queries.mailgunMessage
+			      subject: 'Mailgun Ryantg app contact message',
+			      html: queries.mailgunMessage.replace(/%20/g," ")
 			    }
 
 			    //Invokes the method to send emails given the above data with the helper library
