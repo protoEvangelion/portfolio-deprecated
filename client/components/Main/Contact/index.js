@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Radium from 'radium'
 import ContactForm from './ContactForm'
 import Success from './Success'
+import Failure from './Failure'
 import Recaptcha from 'react-grecaptcha'
 import axios from 'axios'
 import proxyUrl from '../../../api'
@@ -26,27 +27,43 @@ class Contact extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			loading: 'no'
+			loading: 'no',
+      firstName: '',
+      email: '',
+      mailgunMessage: '',
 		}
 	}
 	handleSubmit(values) {
     console.log('handling', values)
-    this.setState({loading: 'captcha'})
-    // const message = values.message.replace(/ /g,"%20")
-    // const url = 'mailgunMessage=' + message
-    // console.log('url', url)
-    // axios.get(proxyUrl, {
-    //     params: {
-    //       mailgunMessage: values.message
-    //     }
-    //   })
-    //   .then((res) => console.log('frontend', res))
-    //   .catch((err) => console.log(err))
+    this.setState({
+      loading: 'captcha',
+      firstName: values.firstName,
+      email: values.email,
+      mailgunMessage: values.message
+    })
   }
-  nextStage(res) {
+  nextStage(payload) {
     //shows success or failure
-    console.log('res', res)
-    this.setState({loading: 'success'})
+    console.log('payload', payload)
+    this.setState({loading: 'waiting'}, () => {
+      const message = this.state.mailgunMessage.replace(/ /g,"%20")
+      const url = 'mailgunMessage=' + message
+      axios.get(proxyUrl, {
+          params: {
+            firstName: this.state.firstName,
+            email: this.state.email,
+            mailgunMessage: message,
+            payload: payload
+          }
+        })
+        .then((res) => {
+          res.data === 'success'
+            ? this.setState({loading: 'success'})
+            : this.setState({loading: 'failure'})
+          console.log('here"s the response', res)
+        })
+        .catch((err) => console.log('here"s the error', err))
+    })
   }
   renderContent() {
     if(this.state.loading === 'no') {
@@ -62,10 +79,14 @@ class Contact extends Component {
             sitekey="6Le_nhcUAAAAAB0R3QbGXN7Bu14LvJPihAkiYqtP"
             callback={this.nextStage.bind(this)}/>
         )
-    } else if(this.state.loading === 'success'){
+    } else if(this.state.loading === 'waiting') {
         return (
-          <Success />
+          <i style={{color: '#33adff', marginTop: '50px'}} className="fa fa-spinner fa-pulse fa-3x" aria-hidden="true"></i>
         )
+    } else if(this.state.loading === 'success'){
+        return <Success />
+    } else {
+       return <Failure />
     }
   }
   render () {

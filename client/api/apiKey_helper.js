@@ -1,45 +1,53 @@
 const URL = require('url-parse')
 const querystring = require('querystring')
+const axios = require('axios')
 
-let modifyUrl = (originalUrl) => {
+let modifyUrl = (originalUrl, res) => {
 	let url = new URL(originalUrl)
 	const queries = querystring.parse(url.query)
-	console.log('queries', url.query, queries)
 
 	if(url.query.includes('api.stlouisfed.org')) {
-			console.log('returning modified', url)
+
 			return url.query.slice(5) + process.env.GDPAPIKEY
 
 	} else if(queries.mailgunMessage) {
 
-			const api_key = process.env.MAILGUN
-			const Mailgun = require('mailgun-js')
-			const domain = 'sandboxb02a583d258841ec936b5085c6ca7163.mailgun.org'
-			const from_who = 'ryantgarant@gmail.com'
+			axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA}&response=${queries.payload}`)
+			.then((response) => {
 
-			var mailgun = new Mailgun({apiKey: api_key, domain: domain})
+				if(response.data.success) {
+					console.log('googles reCaptcha response', response.data)
 
-	    var data = {
-	      from: from_who,
-	      to: 'ryantgarant@gmail.com',
-	      subject: 'Hello from Mailgun',
-	      html: queries.mailgunMessage
-	    }
+					const api_key = process.env.MAILGUN
+					const Mailgun = require('mailgun-js')
+					const domain = 'sandboxb02a583d258841ec936b5085c6ca7163.mailgun.org'
+					const from_who = queries.firstName + '' + queries.email
 
-	    //Invokes the method to send emails given the above data with the helper library
-	    mailgun.messages().send(data, function (err, body) {
-	        //If there is an error, render the error page
-	        if (err) {
-	            console.log("got an error: ", err);
-	        }
-	        //Else we can greet    and leave
-	        else {
-	            //Here "submitted.jade" is the view file for this landing page
-	            //We pass the variable "email" from the url parameter in an object rendered by Jade
+					const mailgun = new Mailgun({apiKey: api_key, domain: domain})
 
-	            console.log(body);
-	        }
-	    });
+			    const data = {
+			      from: from_who,
+			      to: 'ryantgarant@gmail.com',
+			      subject: 'Hello from Mailgun',
+			      html: queries.mailgunMessage
+			    }
+
+			    //Invokes the method to send emails given the above data with the helper library
+			    mailgun.messages().send(data, function (err, body) {
+			        if (err) {
+			            console.log("got an error: ", err)
+									res.status(500).send('failure')
+			        } else {
+									console.log(body)
+									res.status(200).send('success')
+			        }
+			    })
+				}
+			})
+			.catch(err => {
+				res.status(500).send('google reCaptacha failed')
+				console.log('google reCaptcha error', err)
+			})
 
 	} else {
 			console.log('parsed url', url)

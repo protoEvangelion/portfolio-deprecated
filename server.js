@@ -20,7 +20,6 @@ const privateKey = fs.readFileSync('sslcert/server.key', 'utf8')
 const certificate = fs.readFileSync('sslcert/server.crt', 'utf8')
 const credentials = {key: privateKey, cert: certificate}
 
-
 //API Proxy Section
 
 app.get('/api', (req, res) => {
@@ -28,7 +27,7 @@ app.get('/api', (req, res) => {
 	const makeApiRequest = () => {
 		console.log(req.originalUrl)
 
-		if(modifyUrl(req.originalUrl) !== undefined) {
+		if(modifyUrl(req.originalUrl, res) !== undefined) {
 			let newUrl = modifyUrl(req.originalUrl)
 			console.log('making request', newUrl)
 			axios.get(newUrl)
