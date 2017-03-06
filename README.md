@@ -16,8 +16,7 @@ This portfolio was built using modern web tools and best practices.  Here are so
   - 🖌  Styling: `CSS`, `Radium`, `Stylus`
   - 📦 All source is bundled using `Webpack v2`.
   - 🚀 ES6 Javascript
-  - 🔧 Centralised application configuration with helpers to avoid boilerplate in your code.
-  - 🔥 Extreme live development - hot reloading with `react-hot-loader`
+  - 🔥  Hot reloading with `react-hot-loader`
   - 🤖 Optimised Webpack builds via `HappyPack`.
   - 👼 `ESlint` configuration.
   - ❤️ Continuous integration with `Travis-CI` and Heroku
