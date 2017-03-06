@@ -55,7 +55,7 @@ let production = {
 		})
 	],
 	jsLoader: {
-    test: /\.js$/,
+    test: /\.(js|es6)$/,
     use: 'happypack/loader',
 		exclude: /node_modules/
   },

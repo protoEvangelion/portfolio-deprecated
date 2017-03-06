@@ -86,6 +86,7 @@
     "rimraf": "^2.5.4",
     "sass-loader": "^6.0.2",
     "serve-favicon": "^2.3.2",
+    "simple-react-bootstrap": "^0.1.13",
     "style-loader": "^0.13.1",
     "styled-components": "^1.2.1",
     "url-loader": "^0.5.7",
