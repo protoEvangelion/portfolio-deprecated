@@ -1,11 +1,23 @@
-#This is my web portfolio built using:
+<p align='center'>
+  <h1 align='center'>My React Portfolio</h1>
+  <p align='center'><img width='150' src='https://s15.postimg.org/wy51sdtu3/400dpi_Logo_Cropped.jpg' /></p>
+  <p align='center'>A starter kit giving you the minimum requirements for a modern universal React application.</p>
+</p>
 
-[![express.jpg](https://s28.postimg.org/cj1zzj8ul/express.jpg)](https://postimg.org/image/rf0j74k95/)
+## About
 
+This portfolio was built using modern web tools and best practices.  Here are some of the neat tools used below:
 
-[![react.png](https://s30.postimg.org/tnd2bf16p/react.png)](https://postimg.org/image/dccyf3oot/)
-[![redux.png](https://s27.postimg.org/r2yti5roj/redux.png)](https://postimg.org/image/jzqy2jm8v/)
+## Features
 
-
-[![router.png](https://s23.postimg.org/7a66lhvkr/router.png)](https://postimg.org/image/6xesfbdav/)
-[![webpack.png](https://s30.postimg.org/bwh0q2381/webpack.png)](https://postimg.org/image/560jgmg25/)
+  - 👀 `react` as the view.
+  - 🔀 `react-router` v4 as the router.
+  - 🚄 `express` with `Node.js` as the server.
+  - 🖌  Styling: CSS, Radium, Stylus
+  - 📦 All source is bundled using Webpack v2.
+  - 🚀 ES6 Javascript
+  - 🔧 Centralised application configuration with helpers to avoid boilerplate in your code.
+  - 🔥 Extreme live development - hot reloading of ALL changes to client/server source, with auto development server restarts when your application configuration changes.
+  - 🤖 Optimised Webpack builds via HappyPack.
+  - 👼 ESlint configuration.
+  - ❤️ Continuous integration with Travis-CI and Heroku
