@@ -13,11 +13,11 @@ This portfolio was built using modern web tools and best practices.  Here are so
   - 👀 `react` as the view.
   - 🔀 `react-router` v4 as the router.
   - 🚄 `express` with `Node.js` as the server.
-  - 🖌  Styling: CSS, Radium, Stylus
-  - 📦 All source is bundled using Webpack v2.
+  - 🖌  Styling: `CSS`, `Radium`, `Stylus`
+  - 📦 All source is bundled using `Webpack v2`.
   - 🚀 ES6 Javascript
   - 🔧 Centralised application configuration with helpers to avoid boilerplate in your code.
-  - 🔥 Extreme live development - hot reloading of ALL changes to client/server source, with auto development server restarts when your application configuration changes.
-  - 🤖 Optimised Webpack builds via HappyPack.
-  - 👼 ESlint configuration.
-  - ❤️ Continuous integration with Travis-CI and Heroku
+  - 🔥 Extreme live development - hot reloading with `react-hot-loader`
+  - 🤖 Optimised Webpack builds via `HappyPack`.
+  - 👼 `ESlint` configuration.
+  - ❤️ Continuous integration with `Travis-CI` and Heroku
