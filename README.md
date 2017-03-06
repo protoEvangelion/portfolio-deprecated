@@ -1,7 +1,7 @@
 <p align='center'>
   <h1 align='center'>My React Portfolio</h1>
   <p align='center'><img width='150' src='https://s15.postimg.org/wy51sdtu3/400dpi_Logo_Cropped.jpg' /></p>
-  <p align='center'>A starter kit giving you the minimum requirements for a modern universal React application.</p>
+  <p align='center'>A modern universal React application.</p>
 </p>
 
 ## About
