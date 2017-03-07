@@ -10,7 +10,7 @@ const styles = {
   },
   h3: {
     fontSize: '3em',
-    fontFamily: 'Fascinate Inline'
+    fontFamily: 'Coiny'
   },
   h5: {
     marginTop: '10px'

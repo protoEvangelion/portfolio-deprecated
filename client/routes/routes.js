@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
 // NOTE: Main site stuff
-import App from '../components/Main/App.js'
+import Layout from '../components/Main/Layout.js'
 import Home from '../components/Main/Home'
 import AllProjects from '../components/Main/Projects/AllProjects'
 import APIProjects from '../components/Main/Projects/APIProjects'
@@ -37,7 +37,7 @@ import Heatmap from '../components/DataVizProjects/Heatmap'
 import ForceGraph from '../components/DataVizProjects/Force'
 
 export default (
-	<Route path="/" component={App}>
+	<Route path="/" component={Layout}>
 		<IndexRoute component={Home} />
 
 		<Route path="about" component={About} />

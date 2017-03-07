@@ -20,8 +20,7 @@ const privateKey = fs.readFileSync('sslcert/server.key', 'utf8')
 const certificate = fs.readFileSync('sslcert/server.crt', 'utf8')
 const credentials = {key: privateKey, cert: certificate}
 
-//API Proxy Section
-
+// NOTE: API Proxy Section
 app.get('/api', (req, res) => {
 
 	const makeApiRequest = () => {
@@ -44,7 +43,6 @@ app.get('/api', (req, res) => {
 	}
 
 	//NOTE: prevent unauthorized urls from using proxy
-
 	if(process.env.NODE_ENV !== 'development') {
 		 if(req.headers.host === 'ryantg.herokuapp.com'){
 			 	makeApiRequest()
@@ -56,6 +54,28 @@ app.get('/api', (req, res) => {
 			makeApiRequest()
 	}
 })
+
+//NOTE: Server-side rendering
+// const React = require('react')
+// const ReactDOMServer = require('react-dom/server')
+// const renderToString = ReactDOMServer.renderToString
+// const match  = require('react-router/lib/match')
+// const RouterContext = require('react-router/lib/RouterContext')
+// const routes = require('./client/routes/routes')
+//
+// app.get((req, res) => {
+// 	match({ routes, location: req.url}, (err, redirectUrl, renderProps) => {
+// 		if(err) {
+// 				res.status(500).send(err.message)
+// 		} else if(redirectUrl) {
+// 				res.redirect(302, redirectUrl.pathname + redirectUrl.search)
+// 		} else if(renderProps) {
+// 				res.status(200).send(renderToString(<RouterContext {...renderProps} />))
+// 		} else {
+// 				res.status(400).send('Not Found')
+// 		}
+// 	})
+// })
 
 //MAKE SURE ALL ROUTING & API LOGIC GOES ABOVE THIS LINE
 
