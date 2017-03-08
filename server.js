@@ -13,13 +13,6 @@ app.disable('x-powered-by')
 	 .use(favicon(path.join(__dirname, './dist/favicon.ico')))
 	 .use(bodyParser.json())
 
-//encryption for local https host
-const https = require('https')
-const fs = require('fs')
-const privateKey = fs.readFileSync('sslcert/server.key', 'utf8')
-const certificate = fs.readFileSync('sslcert/server.crt', 'utf8')
-const credentials = {key: privateKey, cert: certificate}
-
 // NOTE: API Proxy Section
 app.get('/api', (req, res) => {
 
@@ -28,10 +21,9 @@ app.get('/api', (req, res) => {
 
 		if(modifyUrl(req.originalUrl, res) !== undefined) {
 			let newUrl = modifyUrl(req.originalUrl)
-			console.log('making request', newUrl)
+
 			axios.get(newUrl)
 			 .then(function (response) {
-				 console.log('new', response)
 				 res.status(200).send(response.data)
 			 })
 			 .catch(function (error) {
@@ -45,6 +37,8 @@ app.get('/api', (req, res) => {
 	//NOTE: prevent unauthorized urls from using proxy
 	if(process.env.NODE_ENV !== 'development') {
 		 if(req.headers.host === 'ryantg.herokuapp.com'){
+			 	makeApiRequest()
+		 } else if(process.env.NODE_ENV === 'testing') {
 			 	makeApiRequest()
 		 } else {
 			 	res.sendStatus(403)
@@ -80,12 +74,14 @@ app.get('/api', (req, res) => {
 //MAKE SURE ALL ROUTING & API LOGIC GOES ABOVE THIS LINE
 
 if(process.env.NODE_ENV == 'development') {
+
 	console.log('Development mode')
-	const webpack = require('webpack')
-	const config = require('./webpack.config')
-	const devMiddleware = require('webpack-dev-middleware')
-	const hotMiddleware = require('webpack-hot-middleware')
-	const compiler = webpack(config)
+
+	const webpack = require('webpack'),
+	     config = require('./webpack.config'),
+	     devMiddleware = require('webpack-dev-middleware'),
+	     hotMiddleware = require('webpack-hot-middleware'),
+	     compiler = webpack(config)
 
 	app.use(devMiddleware(compiler, {
 			noInfo: false,
@@ -98,14 +94,22 @@ if(process.env.NODE_ENV == 'development') {
 		res.sendFile(path.join(__dirname, 'client/index.html'))
 	})
 
-	//listener
+	//listener & encryption for local https host
+	const https = require('https'),
+	     fs = require('fs'),
+	     privateKey = fs.readFileSync('sslcert/server.key', 'utf8'),
+	     certificate = fs.readFileSync('sslcert/server.crt', 'utf8'),
+	     credentials = {key: privateKey, cert: certificate}
+
 	https.createServer(credentials, app).listen(8443, (err) => {
 		const details = 'listening on https://localhost:8443'
 		err ? console.error(err) : console.log(details)
 	})
 
-} else {
+} else if(!module.parent){
+	//NOTE: !module.parent is so that supertest does not reuse the port
 		console.log('Production mode')
+
 		const forceSsl = require('force-ssl-heroku')
 		app.use(forceSsl)
 			 .use('/dist', express.static(path.join(__dirname, 'dist')))
@@ -120,3 +124,6 @@ if(process.env.NODE_ENV == 'development') {
 		  err ? console.error(err) : console.log(details)
 		})
 }
+
+//NOTE: exporting for tests
+module.exports = {app, env: process.env}

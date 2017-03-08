@@ -16,7 +16,6 @@ let modifyUrl = (originalUrl, res) => {
 			.then((response) => {
 
 				if(response.data.success) {
-					console.log('googles reCaptcha response', response.data)
 
 					const api_key = process.env.MAILGUN
 					const Mailgun = require('mailgun-js')
@@ -50,7 +49,6 @@ let modifyUrl = (originalUrl, res) => {
 			})
 
 	} else {
-			console.log('parsed url', url)
 			return url.query.slice(5)
 	}
 }
