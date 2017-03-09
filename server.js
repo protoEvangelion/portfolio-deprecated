@@ -8,11 +8,9 @@ require('dotenv').config()
 const modifyUrl = require('./client/api/apiKey_helper'),
  		 express = require('express'),
  		 app = express(),
-		 router = express.Router()
  		 path = require('path'),
  		 favicon = require('serve-favicon'),
  		 bodyParser = require('body-parser'),
-		 renderReact = require('./helpers/serverRender')
  		 axios = require('axios')
 
 //middlewares
