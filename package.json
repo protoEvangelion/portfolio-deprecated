@@ -41,6 +41,7 @@
     "force-ssl-heroku": "^1.0.2",
     "formsy-react": "^0.19.2",
     "formsy-react-components": "^0.10.1",
+    "history": "^4.6.0",
     "html-webpack-plugin": "^2.26.0",
     "image-webpack-loader": "^3.1.0",
     "jquery": "^3.1.1",
