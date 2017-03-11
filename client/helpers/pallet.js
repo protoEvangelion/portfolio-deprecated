@@ -1,4 +1,5 @@
 const teal = '#00ffc0'
+const gold = '#fcaf17'
 
 const tealGradient = {
 	background: '#B3FFAB',

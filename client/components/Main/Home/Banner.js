@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import Radium from 'radium'
 import SocialBtns from './SocialBtns'
 import Particles from 'react-particles-js'

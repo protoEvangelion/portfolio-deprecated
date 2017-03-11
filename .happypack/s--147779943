@@ -1,0 +1,89 @@
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import Radium from 'radium';
+
+var styles = {
+  formCtn: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end'
+  },
+  message: {
+    minWidth: '400px',
+    width: '440px'
+  },
+  btn: {
+    marginBottom: '100px'
+  }
+};
+
+var _ref = _jsx('div', {}, void 0, _jsx('label', {
+  htmlFor: 'firstName'
+}, void 0, 'Name'), _jsx(Field, {
+  name: 'firstName',
+  component: 'input',
+  type: 'text'
+}));
+
+var _ref2 = _jsx('div', {}, void 0, _jsx('label', {
+  htmlFor: 'email'
+}, void 0, 'Email\xA0'), _jsx(Field, {
+  name: 'email',
+  component: 'input',
+  type: 'email'
+}));
+
+var _ref3 = _jsx('br', {});
+
+var _ref4 = _jsx('label', {}, void 0, 'Message');
+
+var _ref5 = _jsx('br', {});
+
+var ContactForm = function (_Component) {
+  _inherits(ContactForm, _Component);
+
+  function ContactForm() {
+    _classCallCheck(this, ContactForm);
+
+    return _possibleConstructorReturn(this, (ContactForm.__proto__ || Object.getPrototypeOf(ContactForm)).apply(this, arguments));
+  }
+
+  _createClass(ContactForm, [{
+    key: 'render',
+    value: function render() {
+      var handleSubmit = this.props.handleSubmit;
+
+      return _jsx('form', {
+        onSubmit: handleSubmit
+      }, void 0, _ref, _ref2, _ref3, _jsx('div', {}, void 0, _ref4, _jsx('div', {}, void 0, _jsx(Field, {
+        style: styles.message,
+        name: 'message',
+        component: 'textarea'
+      }))), _ref5, _jsx('button', {
+        style: styles.btn,
+        className: 'btn btn-primary',
+        type: 'submit'
+      }, void 0, 'Submit'));
+    }
+  }]);
+
+  return ContactForm;
+}(Component);
+
+// ContactForm.propTypes = {
+//   handleSubmit: React.PropTypes.func.isRequired
+// }
+
+export default reduxForm({
+  form: 'simple' // a unique identifier for this form
+})(Radium(ContactForm));

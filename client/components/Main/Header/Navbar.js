@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import Radium from 'radium'
 import { Collapse } from 'react-collapse'
 import DropDown from './DropDown'

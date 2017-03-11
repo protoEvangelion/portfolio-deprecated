@@ -6,7 +6,8 @@
     "start": "SET NODE_ENV=development& nodemon server.js --watch client/api --ignore client/ --ignore node_modules/",
     "test": "SET NODE_ENV=testing& mocha --compilers js:babel-core/register --require ./test/test_helper.js png:./test/mochacfg.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
-    "build": "webpack -p --watch --progress",
+    "build": "webpack -p",
+    "build:watch": "npm run build --watch --progress",
     "serve": "node server.js",
     "lint": "eslint src"
   },
@@ -76,6 +77,7 @@
     "react-recaptcha": "^2.2.6",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.0",
+    "react-router-dom": "^4.0.0",
     "react-router-redux": "^4.0.7",
     "react-social": "^1.6.2",
     "react-sound": "^0.5.2",

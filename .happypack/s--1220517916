@@ -1,0 +1,246 @@
+var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+import React, { Component } from 'react';
+import Radium from 'radium';
+import IncDec from './IncDec';
+import Start from './Start';
+import Pause from './Pause';
+import Display from './Display';
+import Progress from './Progress';
+import Sound from './Sound';
+import Reset from './Reset';
+import smoothScroll from '../../../helpers/scroll';
+
+var styles = {
+  container: {
+    margin: '20px auto 250px auto',
+    textAlign: 'center'
+  },
+  block: {
+    display: 'inline-block',
+    margin: '0 20px'
+  },
+  incdec: {
+    display: 'block'
+  }
+};
+
+var _ref = _jsx('br', {});
+
+var _ref2 = _jsx(Reset, {});
+
+var Pomodoro = function (_Component) {
+  _inherits(Pomodoro, _Component);
+
+  function Pomodoro(props) {
+    _classCallCheck(this, Pomodoro);
+
+    var _this = _possibleConstructorReturn(this, (Pomodoro.__proto__ || Object.getPrototypeOf(Pomodoro)).call(this, props));
+
+    _this.state = {
+      sessionTime: 25,
+      breakTime: 5,
+      sessionMinutes: 25,
+      breakMinutes: 5,
+      seconds: 0,
+      initialized: 'no',
+      type: 'session',
+      paused: false,
+      sound: 'STOPPED'
+    };
+    _this.increment = _this.increment.bind(_this);
+    _this.decrement = _this.decrement.bind(_this);
+    _this.start = _this.start.bind(_this);
+    _this.pause = _this.pause.bind(_this);
+    _this.countDown = _this.countDown.bind(_this);
+    return _this;
+  }
+
+  _createClass(Pomodoro, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      smoothScroll(document.getElementById("pomodoroContainer"));
+    }
+  }, {
+    key: 'increment',
+    value: function increment(type) {
+      // sets the correct time for session and break btns
+      if (type === 'btn-primary') {
+        this.setState({
+          sessionTime: this.state.sessionTime + 1,
+          sessionMinutes: this.state.sessionMinutes + 1
+        });
+      } else {
+        this.setState({
+          breakTime: this.state.breakTime + 1,
+          breakMinutes: this.state.breakMinutes + 1
+        });
+      }
+    }
+  }, {
+    key: 'decrement',
+    value: function decrement(type) {
+      if (type === 'btn-primary') {
+        if (this.state.sessionTime > 0) {
+          this.setState({
+            sessionTime: this.state.sessionTime - 1,
+            sessionMinutes: this.state.sessionMinutes - 1
+          });
+        }
+      } else {
+        if (this.state.breakTime > 0) {
+          this.setState({
+            breakTime: this.state.breakTime - 1,
+            breakMinutes: this.state.breakMinutes - 1
+          });
+        }
+      }
+    }
+  }, {
+    key: 'check',
+    value: function check(constMinutes, tempMinutes) {
+      var val = constMinutes === 1 ? 1 : constMinutes;
+      return val;
+    }
+  }, {
+    key: 'countDown',
+    value: function countDown(paused) {
+      var _this2 = this;
+
+      if (paused === false) {
+        if (this.state.sessionMinutes === 0 && this.state.seconds === 0) {
+          this.setState({
+            type: 'break',
+            sessionMinutes: this.check(this.state.sessionTime, this.state.sessionMinutes),
+            seconds: 0,
+            sound: 'PLAYING'
+          });
+        } else if (this.state.breakMinutes === 0 && this.state.seconds === 0) {
+          this.setState({
+            type: 'session',
+            breakMinutes: this.check(this.state.breakTime, this.state.breakMinutes),
+            seconds: 0,
+            sound: 'PLAYING'
+          });
+        } else if (this.state.type === 'session') {
+          if (this.state.seconds === 0) {
+            this.setState({
+              seconds: 59,
+              sessionMinutes: this.state.sessionMinutes - 1,
+              sound: 'STOPPED'
+            });
+          } else {
+            this.setState({
+              seconds: this.state.seconds - 1,
+              sound: 'STOPPED'
+            });
+          }
+        } else {
+          if (this.state.seconds === 0) {
+            this.setState({
+              seconds: 59,
+              breakMinutes: this.state.breakMinutes - 1,
+              sound: 'STOPPED'
+            });
+          } else {
+            this.setState({
+              seconds: this.state.seconds - 1,
+              sound: 'STOPPED'
+            });
+          }
+        }
+      } else if (paused) {
+        console.log('paused');
+        return;
+      }
+
+      setTimeout(function () {
+        return _this2.countDown(_this2.state.paused);
+      }, 1000);
+    }
+  }, {
+    key: 'start',
+    value: function start() {
+      setTimeout(function () {
+        return smoothScroll(document.getElementById("progressBarContainer"));
+      }, 200);
+      if (this.state.initialized === 'no') {
+        this.setState({
+          initialized: 'yes',
+          sessionMinutes: this.check(this.state.sessionTime, this.state.sessionMinutes),
+          breakMinutes: this.check(this.state.breakTime, this.state.breakMinutes)
+        });
+        this.countDown(this.state.paused);
+      } else if (this.state.initialized === 'yes' && this.state.paused === true) {
+        this.setState({ paused: false });
+        this.countDown(!this.state.paused);
+      } else {
+        alert('The Pomodoro is already running');
+      }
+    }
+  }, {
+    key: 'pause',
+    value: function pause() {
+      this.setState({ paused: true });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _jsx('div', {
+        id: 'pomodoroContainer',
+        style: styles.container
+      }, void 0, _jsx('div', {
+        style: styles.block
+      }, void 0, _jsx('h5', {
+        style: styles.incdec
+      }, void 0, 'Session Time'), _jsx(IncDec, {
+        increment: this.increment,
+        decrement: this.decrement,
+        type: 'primary',
+        value: this.state.sessionTime
+      })), _jsx('div', {
+        style: styles.block
+      }, void 0, _jsx('h5', {
+        style: styles.incdec
+      }, void 0, 'Break Time'), _jsx(IncDec, {
+        increment: this.increment,
+        decrement: this.decrement,
+        value: this.state.breakTime
+      })), _ref, _jsx('div', {
+        style: styles.block
+      }, void 0, _jsx(Start, {
+        start: this.start
+      }), _ref2, _jsx(Pause, {
+        pause: this.pause
+      })), _jsx(Progress, {
+        sessionTime: this.state.sessionTime,
+        sessionMinutes: this.state.sessionMinutes,
+        breakTime: this.state.breakTime,
+        breakMinutes: this.state.breakMinutes,
+        seconds: this.state.seconds,
+        type: this.state.type,
+        initialized: this.state.initialized
+      }), _jsx('div', {}, void 0, _jsx(Display, {
+        type: this.state.type,
+        sessionTime: this.state.sessionMinutes,
+        breakTime: this.state.breakMinutes,
+        seconds: this.state.seconds,
+        initialized: this.state.initialized
+      })), _jsx(Sound, {
+        sound: this.state.sound
+      }));
+    }
+  }]);
+
+  return Pomodoro;
+}(Component);
+
+export default Pomodoro = Radium(Pomodoro);

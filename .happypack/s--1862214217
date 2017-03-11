@@ -1,0 +1,19 @@
+import { FETCH_STREAMS, FETCH_FREE } from '../actions/fetchStreams';
+
+export default function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  switch (action.type) {
+    case FETCH_STREAMS:
+      return Object.assign({}, state, {
+        featured: action.payload.data.featured
+      });
+    case FETCH_FREE:
+      return Object.assign({}, state, {
+        free: [action.payload.data]
+      });
+    default:
+      return state;
+  }
+}

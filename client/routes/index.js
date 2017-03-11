@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import { Switch, Route } from 'react-router-dom'
 
 // NOTE: Main site stuff
 import Layout from '../components/Main/Layout.js'
@@ -36,38 +36,45 @@ import ScatterPlot from '../components/DataVizProjects/ScatterPlot'
 import Heatmap from '../components/DataVizProjects/Heatmap'
 import ForceGraph from '../components/DataVizProjects/Force'
 
-export default (
-	<Route path="/" component={Layout}>
-		<IndexRoute component={Home} />
+const Routes = () => {
+	return (
+		<div>
+			<Layout>
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route path="/about" component={About} />
+					<Route path="/projects" component={AllProjects} />
+					<Route path="/apiProjects" component={APIProjects} />
+					<Route path="/utilityProjects" component={UtilityProjects} />
+					<Route path="/vizProjects" component={VizProjects} />
+					<Route path="/contact" component={Contact} />
 
-		<Route path="about" component={About} />
-		<Route path="projects" component={AllProjects} />
-		<Route path="apiProjects" component={APIProjects} />
-		<Route path="utilityProjects" component={UtilityProjects} />
-		<Route path="vizProjects" component={VizProjects} />
-		<Route path="contact" component={Contact} />
+					<Route path="/weather" component={Weather} />
+					<Route path="/wikiViewer" component={Wiki} />
+					<Route path="/quotepump" component={Quote} />
+					<Route path="/twitch" component={Twitch} />
+					<Route path="/leaderboard" component={Leaderboard} />
+					<Route path="/recipebox" component={RecipeBox} />
+					<Route path="/youtube-viewer" component={YoutubeViewer} />
 
-		<Route path="weather" component={Weather} />
-		<Route path="wikiViewer" component={Wiki} />
-		<Route path="quotepump" component={Quote} />
-		<Route path="twitch" component={Twitch} />
-		<Route path="leaderboard" component={Leaderboard} />
-		<Route path="recipebox" component={RecipeBox} />
-		<Route path="youtube-viewer" component={YoutubeViewer} />
+					<Route path="/game-of-life" component={GameOfLife} />
+					<Route path="/tictactoe" component={Tic} />
+					<Route path="/calc" component={Calc} />
+					<Route path="/pomodoro" component={Pomodoro} />
+					<Route path="/simon" component={Simon} />
+					<Route path="/markdown" component={Markdown} />
 
-		<Route path="game-of-life" component={GameOfLife} />
-		<Route path="tictactoe" component={Tic} />
-		<Route path="calc" component={Calc} />
-		<Route path="pomodoro" component={Pomodoro} />
-		<Route path="simon" component={Simon} />
-		<Route path="markdown" component={Markdown} />
+					<Route path="/GDP" component={GDP} />
+					<Route path="/scatterplot_doping_olympian_cyclists" component={ScatterPlot} />
+					<Route path="/heatmap" component={Heatmap} />
+					<Route path="/world-force-graph" component={ForceGraph} />
 
-		<Route path="GDP" component={GDP} />
-		<Route path="scatterplot_doping_olympian_cyclists" component={ScatterPlot} />
-		<Route path="heatmap" component={Heatmap} />
-		<Route path="world-force-graph" component={ForceGraph} />
+					<Route path="/privacy-policy" component={Privacy} />
+					<Route component={NotFound} />
+				</Switch>
+			</Layout>
+		</div>
+	)
+}
 
-		<Route path="privacy-policy" component={Privacy} />
-		<Route path="*" component={NotFound} />
-	</Route>
-)
+export default Routes

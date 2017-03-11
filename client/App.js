@@ -1,14 +1,17 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import { Router, browserHistory } from 'react-router'
 import reducers from './reducers'
-import routes from './routes/routes'
+import Routes from './routes'
 import promise from 'redux-promise'
 
 import './css/global.css'
 import './css/ihover.css'
+
+import Header from './components/Main/Header'
+import Footer from './components/Main/Footer'
 
 const store = createStore(
   reducers,
@@ -17,9 +20,13 @@ const store = createStore(
 
 const App = () => {
   return (
-		<Provider store={store} >
-			<Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory} routes={routes} />
-		</Provider>
+    <div>
+      <Provider store={store} >
+        <Router basename="/">
+          <Routes />
+        </Router>
+      </Provider>
+    </div>
   )
 }
 
