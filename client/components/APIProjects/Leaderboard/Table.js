@@ -47,8 +47,9 @@ class Table extends Component {
   onAllTimeClick() {
     this.setState({loadingAllTime: true})
     const topAllTimeUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime'
-    axios.get(`${proxyUrl}${topAllTimeUrl}`)
+    axios.get(proxyUrl + topAllTimeUrl)
       .then((res) => {
+        console.log(res)
         this.setState({
           data: res.data,
           currentData: 'topAllTime',
@@ -59,7 +60,7 @@ class Table extends Component {
   onRecentClick() {
     this.setState({loadingRecent: true})
     const topRecentUrl = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent'
-    axios.get(`${proxyUrl}${topRecentUrl}`)
+    axios.get(proxyUrl + topRecentUrl)
       .then((res) => {
         this.setState({
           data: res.data,

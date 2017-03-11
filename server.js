@@ -1,24 +1,23 @@
 // setup
+require('babel-register')({
+	presets: ['es2015',  'react', 'stage-3'],
+})
+// require.extensions['.png', '.css', '.svg'] = () => {return}
+
 require('dotenv').config()
-const modifyUrl = require('./client/api/apiKey_helper')
-const express = require('express')
-const app = express()
-const path = require('path')
-const favicon = require('serve-favicon')
-const bodyParser = require('body-parser')
-const axios = require('axios')
+const modifyUrl = require('./client/api/apiKey_helper'),
+ 		 express = require('express'),
+ 		 app = express(),
+ 		 path = require('path'),
+ 		 favicon = require('serve-favicon'),
+ 		 bodyParser = require('body-parser'),
+ 		 axios = require('axios')
 
 //middlewares
 app.disable('x-powered-by')
 	 .use(favicon(path.join(__dirname, './dist/favicon.ico')))
 	 .use(bodyParser.json())
-
-//encryption for local https host
-const https = require('https')
-const fs = require('fs')
-const privateKey = fs.readFileSync('sslcert/server.key', 'utf8')
-const certificate = fs.readFileSync('sslcert/server.crt', 'utf8')
-const credentials = {key: privateKey, cert: certificate}
+	//  .set('view engine', 'ejs')
 
 // NOTE: API Proxy Section
 app.get('/api', (req, res) => {
@@ -28,10 +27,9 @@ app.get('/api', (req, res) => {
 
 		if(modifyUrl(req.originalUrl, res) !== undefined) {
 			let newUrl = modifyUrl(req.originalUrl)
-			console.log('making request', newUrl)
+
 			axios.get(newUrl)
 			 .then(function (response) {
-				 console.log('new', response)
 				 res.status(200).send(response.data)
 			 })
 			 .catch(function (error) {
@@ -46,6 +44,8 @@ app.get('/api', (req, res) => {
 	if(process.env.NODE_ENV !== 'development') {
 		 if(req.headers.host === 'ryantg.herokuapp.com'){
 			 	makeApiRequest()
+		 } else if(process.env.NODE_ENV === 'testing') {
+			 	makeApiRequest()
 		 } else {
 			 	res.sendStatus(403)
 					 .send('You are not authorized to use this proxy')
@@ -55,37 +55,17 @@ app.get('/api', (req, res) => {
 	}
 })
 
-//NOTE: Server-side rendering
-// const React = require('react')
-// const ReactDOMServer = require('react-dom/server')
-// const renderToString = ReactDOMServer.renderToString
-// const match  = require('react-router/lib/match')
-// const RouterContext = require('react-router/lib/RouterContext')
-// const routes = require('./client/routes/routes')
-//
-// app.get((req, res) => {
-// 	match({ routes, location: req.url}, (err, redirectUrl, renderProps) => {
-// 		if(err) {
-// 				res.status(500).send(err.message)
-// 		} else if(redirectUrl) {
-// 				res.redirect(302, redirectUrl.pathname + redirectUrl.search)
-// 		} else if(renderProps) {
-// 				res.status(200).send(renderToString(<RouterContext {...renderProps} />))
-// 		} else {
-// 				res.status(400).send('Not Found')
-// 		}
-// 	})
-// })
-
 //MAKE SURE ALL ROUTING & API LOGIC GOES ABOVE THIS LINE
 
 if(process.env.NODE_ENV == 'development') {
+
 	console.log('Development mode')
-	const webpack = require('webpack')
-	const config = require('./webpack.config')
-	const devMiddleware = require('webpack-dev-middleware')
-	const hotMiddleware = require('webpack-hot-middleware')
-	const compiler = webpack(config)
+
+	const webpack = require('webpack'),
+	     config = require('./webpack.config'),
+	     devMiddleware = require('webpack-dev-middleware'),
+	     hotMiddleware = require('webpack-hot-middleware'),
+	     compiler = webpack(config)
 
 	app.use(devMiddleware(compiler, {
 			noInfo: false,
@@ -94,18 +74,32 @@ if(process.env.NODE_ENV == 'development') {
 		}))
 		.use(hotMiddleware(compiler))
 
+	// const ReactRouter = require('react-router'),
+	//  		 routes = require('./client/routes/routes'),
+	//  		 React = require('react')
+
 	app.get('*', (req, res) => {
+		// console.log('serverRender value', renderReact.serverRender())
 		res.sendFile(path.join(__dirname, 'client/index.html'))
+		// res.send('index')
 	})
 
-	//listener
+	//listener & encryption for local https host
+	const https = require('https'),
+	     fs = require('fs'),
+	     privateKey = fs.readFileSync('sslcert/server.key', 'utf8'),
+	     certificate = fs.readFileSync('sslcert/server.crt', 'utf8'),
+	     credentials = {key: privateKey, cert: certificate}
+
 	https.createServer(credentials, app).listen(8443, (err) => {
 		const details = 'listening on https://localhost:8443'
 		err ? console.error(err) : console.log(details)
 	})
 
-} else {
+} else if(!module.parent){
+	//NOTE: !module.parent is so that supertest does not reuse the port
 		console.log('Production mode')
+
 		const forceSsl = require('force-ssl-heroku')
 		app.use(forceSsl)
 			 .use('/dist', express.static(path.join(__dirname, 'dist')))
@@ -120,3 +114,6 @@ if(process.env.NODE_ENV == 'development') {
 		  err ? console.error(err) : console.log(details)
 		})
 }
+
+//NOTE: exporting for tests
+module.exports = {app, env: process.env}

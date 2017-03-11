@@ -1,13 +1,14 @@
-import {expect} from '../test_helper'
+import { env } from '../../server'
+import { expect } from 'chai'
 
 describe('Checking for correct env variables', () => {
 	it('checks GDP API Key existence', () => {
-		expect(process.env.GDPAPIKEY).to.exist
+		expect(env.GDPAPIKEY).to.exist
 	})
 	it('checks MAILGUN API Key existence', () => {
-		expect(process.env.MAILGUN).to.exist
+		expect(env.MAILGUN).to.exist
 	})
 	it('checks Google reCaptcha API Key existence', () => {
-		expect(process.env.RECAPTCHA).to.exist
+		expect(env.RECAPTCHA).to.exist
 	})
 })
