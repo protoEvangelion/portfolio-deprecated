@@ -1,14 +1,23 @@
 {
-  "presets": ["react", ["es2015", {"modules": false}], "stage-3"],
   "env": {
     "development": {
+      "presets": ["react", ["es2015", {"modules": false}], "stage-3"],
       "plugins": [
 				["transform-react-constant-elements"],
 				["transform-react-inline-elements"],
 				["lodash"]
       ]
     },
+    "testing": {
+      "presets": ["react", "es2015", "stage-3"],
+      "plugins": [
+        ["transform-react-constant-elements"],
+        ["transform-react-inline-elements"],
+        ["lodash"]
+      ]
+    },
     "production": {
+      "presets": ["react", ["es2015", {"modules": false}], "stage-3"],
       "plugins": [
 				["transform-react-constant-elements"],
 				["transform-react-inline-elements"],
