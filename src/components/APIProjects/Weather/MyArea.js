@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchWeather } from '../../../actions/fetchWeather'
+import { fetchWeather } from '../../../store/weather/actions'
 import { bindActionCreators } from 'redux'
 import axios from 'axios'
 import proxyUrl from '../../../api'

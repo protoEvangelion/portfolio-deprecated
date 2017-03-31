@@ -1,53 +1,54 @@
-import { Link } from 'react-router-dom'
 import React from 'react'
-import Radium, { StyleRoot } from 'radium'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
-const styles = {
-  container: {
-		display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    padding: '75px 0 75px 0',
-    '@media (max-width: 758px)': {
-      flexDirection: 'column',
-    }
-  },
-  textCtn: {
-    marginTop: '20px',
-    maxWidth: '50%',
-    textAlign: 'center',
-  },
-  header: {
-    fontFamily: '"Coda", cursive',
-    fontSize: '1.7em',
+const Container = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 75px 0 75px 0;
+  @media (max-width: 758px) {
+    flex-direction: column;
   }
-}
+`
 
-let APIHeader = () => {
+const Block = styled.div`
+  margin-top: 20px;
+  max-width: 50%;
+  text-align: center;
+`
+
+const Header = styled.h5`
+  font-family: "Coda", cursive;
+  font-size: 1.7em;
+`
+
+const APIHeader = () => {
   return (
-    <StyleRoot>
-      <section id="apiProjects" className="animated fadeInLeft">
-        <div style={styles.container}>
-          <div className="ih-item square effect4">
-            <Link to="weather">
-              <div className="img"><img src={require('../Projects/images/weather.png')} alt="img"/></div>
-              <div className="mask1"></div>
-              <div className="mask2"></div>
-              <div className="info">
-                <h3>Cool weather API forecaster</h3>
-                <p>Geolocation forecasts!</p>
-              </div>
-            </Link>
-          </div>
-          <div style={styles.textCtn}>
-            <h5 style={styles.header}>A fun collection of API projects that span from building a Pinterest recipe box to viewing the coolest channels on Twitch...</h5><br/>
-            <Link to="apiProjects">
-              <p>View my API Projects</p>
-            </Link>
-          </div>
+    <section id="apiProjects" className="animated fadeInLeft">
+      <Container>
+        <div className="ih-item square effect4">
+          <Link to="weather">
+            <div className="img">
+              <img src={require('../Projects/images/weather.png')} alt="img" />
+            </div>
+            <div className="mask1" />
+            <div className="mask2" />
+            <div className="info">
+              <h3>Cool weather API forecaster</h3>
+              <p>Geolocation forecasts!</p>
+            </div>
+          </Link>
         </div>
-      </section>
-    </StyleRoot>
+        <Block>
+          <Header>A fun collection of API projects that span from building a Pinterest recipe box to viewing the coolest channels on Twitch...</Header>
+          <br />
+          <Link to="apiProjects">
+            <p>View my API Projects</p>
+          </Link>
+        </Block>
+      </Container>
+    </section>
   )
 }
 

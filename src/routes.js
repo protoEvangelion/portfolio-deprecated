@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router'
 import App from 'components/App'
+import { HomePage, NotFoundPage } from 'components'
 
 // NOTE: Main site stuff
 import Home from './components/Main/Home'
@@ -41,7 +42,7 @@ export const routes = [
   {
     path: '/',
     exact: true,
-    component: Home,
+    component: HomePage,
   },
   {
     path: '/about',
@@ -49,7 +50,7 @@ export const routes = [
   },
   {
     path: '*',
-    component: NotFound,
+    component: NotFoundPage,
   },
 ]
 

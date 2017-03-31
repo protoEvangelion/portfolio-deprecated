@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchStreams, fetchFreeCodeCamp } from '../../../actions/fetchStreams'
-import Streams from './streams'
+import { fetchStreams, fetchFreeCodeCamp } from '../../../store/streams/actions'
+import Streams from './Streams'
 import Free from './Free'
 import smoothScroll from '../../../helpers/scroll'
 
