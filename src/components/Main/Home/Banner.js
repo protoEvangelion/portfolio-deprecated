@@ -1,63 +1,65 @@
-import React, { Component } from 'react'
+import React from 'react'
+import styled from 'styled-components'
+import Particles from 'react-particles-js'
 import { Link } from 'react-router-dom'
 import Radium from 'radium'
 import SocialBtns from './SocialBtns'
-import Particles from 'react-particles-js'
 import config from './particlesjs-config.json'
 
-const styles = {
-  container: {
-		width: '100%',
-		padding: '50px',
-		position: 'relative',
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-  },
-	img: {
-		marginLeft: '-5px'
-	},
-	h5: {
-		color: 'white'
-	},
-	particles: {
-		background: '#000428',
-		background: 'linear-gradient(to left, #000428 , #004e92)',
-		position: 'absolute',
-		top: 0,
-		left: 0,
-	}
-}
+const Container = styled.div`
+  width: 100%;
+  padding: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const Headshot = styled.img`
+  margin-left: -5px;
+`
+
+const Info = styled.h5`
+  color: white;
+`
+
+const ParticleBoard = styled(Particles)`
+  background: #000428;
+  background: linear-gradient(to left, #000428 , #004e92);
+  position: absolute;
+  top: 0;
+  left: 0;ParticleBoard
+`
 
 let Banner = () => {
-	return (
-		<div>
-			<div style={styles.container}>
-				<Particles
-					width={'100%'}
-					params={config}
-					style={styles.particles}/>
-				<div className="ih-item circle effect1">
-					<Link to="">
-						<div className="spinner"></div>
-						<div className="img">
-							<img
-								src={require('./head.png')}
-								style={styles.img}
-								alt="head shot" />
-						</div>
-						<div className="info">
-							<div className="info-back">
-								<h3>Ryan Garant</h3>
-								<h5 style={styles.h5}>Full Stack Web Dev</h5>
-							</div>
-						</div>
-					</Link>
-				</div>
-				<SocialBtns />
-			</div>
-		</div>
-	)
+  return (
+    <div>
+      <Container>
+        <ParticleBoard
+          width={'100%'}
+          params={config}
+        />
+        <div className="ih-item circle effect1">
+          <Link to="">
+            <div className="spinner" />
+            <div className="img">
+              <Headshot
+                src={require('./head.png')}
+                alt="head shot"
+              />
+            </div>
+            <div className="info">
+              <div className="info-back">
+                <h3>Ryan Garant</h3>
+                <Info>Full Stack Web Dev</Info>
+              </div>
+            </div>
+          </Link>
+        </div>
+        <SocialBtns />
+      </Container>
+    </div>
+  )
 }
 
 export default Banner = Radium(Banner)

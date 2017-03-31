@@ -53,4 +53,4 @@ let modifyUrl = (originalUrl, res) => {
 	}
 }
 
-module.exports = modifyUrl
+export default modifyUrl
