@@ -1,26 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
+require('babel-polyfill')
+require('babel-core/register')({
+  plugins: ['transform-es2015-modules-commonjs'],
+})
 
-import { AppContainer } from 'react-hot-loader'
+const WebpackIsomorphicTools = require('webpack-isomorphic-tools')
+const webpackIsomorphicToolsConfig = require('../webpack/webpack-isomorphic-tools')
 
-const mountNode = document.getElementById('root')
-
-ReactDOM.render(
-	<AppContainer>
-    <App />
-	</AppContainer>,
-	mountNode
-)
-
-if(module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default;
-    ReactDOM.render(
-      <AppContainer>
-        <NextApp/>
-      </AppContainer>,
-      mountNode
-    );
-  });
-}
+global.webpackIsomorphicTools = new WebpackIsomorphicTools(webpackIsomorphicToolsConfig)
+  .server('./', () => {
+    require('./server')
+  })
