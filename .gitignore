@@ -8,4 +8,7 @@ node_modules
 
 # misc
 .DS_Store
+dist
 npm-debug.log
+webpack/webpack-assets.json
+*.log

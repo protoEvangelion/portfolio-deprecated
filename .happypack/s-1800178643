@@ -1,9 +1,0 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var host = process.env.NODE_ENV !== 'development' ? 'https://ryantg.herokuapp.com' : 'https://localhost:8443';
-var proxyUrl = host + '/api?url=';
-
-exports.default = proxyUrl;

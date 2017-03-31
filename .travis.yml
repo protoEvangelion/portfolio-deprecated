@@ -1,7 +1,8 @@
 language: node_js
 node_js:
 - '7'
-- stable
+cache:
+  - yarn
 deploy:
   provider: heroku
   api_key:
