@@ -4,7 +4,7 @@ import Search from './Search'
 import Snippets from './Snippets'
 import smoothScroll from '../../../helpers/scroll'
 
-import './style.css'
+// NOTE: restructure import './style.css'
 
 class Wiki extends React.Component {
 	componentDidMount() {

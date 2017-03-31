@@ -5,7 +5,7 @@ import Start from './Start'
 import Pause from './Pause'
 import Display from './Display'
 import Progress from './Progress'
-import Sound from './Sound'
+// TODO: import Sound from './Sound'
 import Reset from './Reset'
 import smoothScroll from '../../../helpers/scroll'
 

@@ -3,7 +3,7 @@ import Radium from 'radium'
 import TextArea from './TextArea'
 import Transformed from './Transformed'
 import defaultText from './defaultText'
-import './styles.css'
+// import './styles.css'
 
 const styles = {
   container: {

@@ -5,7 +5,7 @@ import Legend from './Legend'
 import Chart from './Chart'
 import data from './heatData'
 
-import './style.css'
+// import './style.css'
 
 const styles = {
   container: {

@@ -6,7 +6,7 @@ import VideoList from './VideoList'
 import VideoDetail from './VideoDetail'
 
 const API_KEY = 'AIzaSyDwsOCQnHPYgPXxQ3C42DAgtW_umXoIpEE'
-import './style.css'
+// import './style.css'
 
 export default class YoutubeViewer extends Component {
 	constructor(props) {

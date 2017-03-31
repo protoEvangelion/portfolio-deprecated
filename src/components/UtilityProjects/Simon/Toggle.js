@@ -1,7 +1,7 @@
 import React from 'react'
 import Radium from 'radium'
 
-import './style.css'
+// TODO: import './style.css'
 
 let Toggle = ({turnOnOff}) => {
   return (

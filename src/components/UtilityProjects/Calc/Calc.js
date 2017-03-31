@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Radium from 'radium'
 import Display from './Display'
 import Button from './Button'
-import './styles.css'
+// import './styles.css'
 
 const styles = {
   backdrop: {
