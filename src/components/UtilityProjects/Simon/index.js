@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Radium from 'radium'
 import Game from './Game'
 import Modal from './Modal'
@@ -7,12 +7,12 @@ import smoothScroll from '../../../helpers/scroll'
 const styles = {
   container: {
     marginBottom: '250px',
-    marginTop: '50px'
+    marginTop: '50px',
   },
 }
 
 class Simon extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       on: false,
@@ -33,11 +33,11 @@ class Simon extends Component {
     this.closeModal = this.closeModal.bind(this)
   }
   componentDidMount() {
-    smoothScroll(document.getElementById("simonContainer"))
+    smoothScroll(document.getElementById('simonContainer'))
   }
   turnOnOff() {
-    this.setState({on: !this.state.on})
-    if(!this.state.on === false) {
+    this.setState({ on: !this.state.on })
+    if (!this.state.on === false) {
       this.setState({
         round: '',
         memorize: '',
@@ -45,43 +45,45 @@ class Simon extends Component {
         clicks: 0,
         currentColor: '',
         cursor: 'not-allowed',
-        strict: false
+        strict: false,
       })
-    } else if(!this.state.on === true) {
-        this.setState({round: 1})
+    } else if (!this.state.on === true) {
+      this.setState({ round: 1 })
     }
   }
   strict() {
-    if(this.state.on === true) {
-      this.setState({strict: !this.state.strict})
+    if (this.state.on === true) {
+      this.setState({ strict: !this.state.strict })
     }
   }
-  beginRound(colorArr){
+  beginRound(colorArr) {
     let i = 0
     this.setState({
-      memorize : colorArr[i],
+      memorize: colorArr[i],
       roundColors: colorArr,
       currentColor: colorArr[i],
-      cursor: 'not-allowed'
+      cursor: 'not-allowed',
     })
-    i++
-    const loop = () => {
 
+    i += 1
+
+    const loop = () => {
       setTimeout(() => {
         this.setState({
-          memorize : colorArr[i],
-          currentColor: colorArr[i]
+          memorize: colorArr[i],
+          currentColor: colorArr[i],
         })
-        let audio = document.getElementById('audio')
-        audio.src = require(`./${colorArr[i-1]}.mp3`)
+        const audio = document.getElementById('audio')
+        audio.src = require(`./${colorArr[i - 1]}.mp3`)
         audio.play()
 
-        if(i===colorArr.length) {
-          this.setState({cursor: 'pointer'})
+        if (i === colorArr.length) {
+          this.setState({ cursor: 'pointer' })
         }
 
-        i++
-        if(i < this.state.round+1) {
+        i += 1
+
+        if (i < this.state.round + 1) {
           loop()
         }
       }, 1000)
@@ -90,89 +92,89 @@ class Simon extends Component {
   }
 
   start(round) {
-    let colorArr = []
+    const colorArr = []
     for (let i = 0; i < round; i++) {
-      let rand = Math.floor(Math.random() * 4) + 0
+      const rand = Math.floor(Math.random() * 4) + 0
       colorArr.push(this.state.colors[rand])
     }
     this.beginRound(colorArr)
   }
 
   padClick(e, color) {
-    if(this.state.cursor === 'not-allowed') {
+    if (this.state.cursor === 'not-allowed') {
       e.preventDefault()
     } else {
-        this.setState({
-          clicks: this.state.clicks + 1,
-          currentColor: color
-        })
-        let roundColors = this.state.roundColors
-        let round = this.state.round
+      this.setState({
+        clicks: this.state.clicks + 1,
+        currentColor: color,
+      })
+      const roundColors = this.state.roundColors
+      const round = this.state.round
 
-        let audio = document.getElementById('audio')
-        audio.src = require(`./${color}.mp3`)
+      const audio = document.getElementById('audio')
+      audio.src = require(`./${color}.mp3`)
+      audio.play()
+
+      // handle wrong click
+      if (roundColors[this.state.clicks] !== color) {
+        const audio = document.getElementById('audio')
+        audio.src = require('./buzz.mp3')
         audio.play()
-
-        //handle wrong click
-        if(roundColors[this.state.clicks] !== color) {
-          let audio = document.getElementById('audio')
-          audio.src = require('./buzz.mp3')
-          audio.play()
-          if(this.state.strict === false) {
+        if (this.state.strict === false) {
+          this.setState({
+            round: 0,
+            clicks: 0,
+          })
+          setTimeout(() => {
+            this.setState({ round })
+            this.beginRound(roundColors)
+          }, 1000)
+        } else {
+          // if in strict mode
+          this.setState({
+            round: 0,
+            clicks: 0,
+          })
+          setTimeout(() => {
             this.setState({
-              round: 0,
-              clicks: 0
-            })
-            setTimeout(() => {
-              this.setState({round: round})
-              this.beginRound(roundColors)
-            }, 1000)
-          } else {
-            //if in strict mode
-            this.setState({
-              round: 0,
-              clicks: 0,
-            })
-            setTimeout(() => {
-              this.setState({
-                round: 1,
-                memorize: '',
-                roundColors: '',
-                currentColor: '',
-                cursor: 'not-allowed',
-              })
-              this.start(1)
-            }, 1000)
-          }
-        } else if(this.state.clicks === 19 && roundColors.length - 1 === this.state.clicks && roundColors[roundColors.length - 1] === color) {
-            //Dectect win after 20 rounds
-            this.setState({
-              modal: true,
-              clicks: 0,
               round: 1,
               memorize: '',
               roundColors: '',
               currentColor: '',
               cursor: 'not-allowed',
             })
-        } else if(roundColors.length - 1 === this.state.clicks && roundColors[roundColors.length - 1] === color){
-            //detects if player is correct on last click
-            this.setState({
-              round: round + 1,
-              clicks: 0
-            })
-            let rand = Math.floor(Math.random() * 4) + 0
-            let newColor = this.state.colors[rand]
-            let newArr = [...this.state.roundColors, newColor]
-            this.beginRound(newArr)
+            this.start(1)
+          }, 1000)
         }
+      } else if (this.state.clicks === 19 && roundColors.length - 1 === this.state.clicks && roundColors[roundColors.length - 1] === color) {
+            // Dectect win after 20 rounds
+        this.setState({
+          modal: true,
+          clicks: 0,
+          round: 1,
+          memorize: '',
+          roundColors: '',
+          currentColor: '',
+          cursor: 'not-allowed',
+        })
+      } else if (roundColors.length - 1 === this.state.clicks && roundColors[roundColors.length - 1] === color) {
+            // detects if player is correct on last click
+        this.setState({
+          round: round + 1,
+          clicks: 0,
+        })
+        const rand = Math.floor(Math.random() * 4) + 0
+        const newColor = this.state.colors[rand]
+        const newArr = [...this.state.roundColors, newColor]
+        this.beginRound(newArr)
       }
+    }
   }
   closeModal() {
-    this.setState({modal: false})
+    this.setState({ modal: false })
   }
   render() {
-    return(
+    return (
       <div id="simonContainer" style={styles.container}>
         <Game
           on={this.state.on}
@@ -187,8 +189,8 @@ class Simon extends Component {
           strict={this.strict}
           strictMode={this.state.strict}
         />
-        <Modal open={this.state.modal} closeModal={this.closeModal}/>
-        <audio id="audio" src={require(`./red.mp3`)} ></audio>
+        <Modal open={this.state.modal} closeModal={this.closeModal} />
+        <audio id="audio" src={require('./red.mp3')} />
       </div>
     )
   }

@@ -1,6 +1,5 @@
 import React from 'react'
 import Radium, {StyleRoot} from 'radium'
-const tomato = require('file-loader!./tomato.svg')
 
 const styles = {
   container: {
@@ -36,7 +35,7 @@ let Display = ({sessionTime, breakTime, seconds, initialized, type}) => {
     ? (
       <StyleRoot>
         <div style={styles.container}>
-          <img src={require('./tomato.svg')}/>
+          <img src={require('raw-loader!./tomato.svg')} />
           <h2 style={styles.text}>
             {type} <br/><br/>
             {type === 'session' ? sessionTime : breakTime} m {seconds} s

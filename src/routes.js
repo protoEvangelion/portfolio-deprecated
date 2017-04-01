@@ -42,7 +42,7 @@ export const routes = [
   {
     path: '/',
     exact: true,
-    component: HomePage,
+    component: Home,
   },
   {
     path: '/about',
@@ -50,7 +50,7 @@ export const routes = [
   },
   {
     path: '*',
-    component: NotFoundPage,
+    component: NotFound,
   },
 ]
 

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import styled, { css } from 'styled-components'
 import { font, palette } from 'styled-theme'
-import { Link as RouterLink } from 'react-router'
+import { Link as RouterLink } from 'react-router-dom'
 
 const styles = css`
   font-family: ${font('primary')};
