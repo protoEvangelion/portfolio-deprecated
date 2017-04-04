@@ -14,18 +14,18 @@ const App = ({ children }) => {
   return (
     <div>
       <Helmet
-        title="Atomic React"
-        titleTemplate="ARc - %s"
+        title="Portfolio"
+        titleTemplate="Ryan G - %s"
         meta={[
           { name: 'description', content: 'React starter kit based on Atomic Design with React Router v4, Webpack, Redux, Server Side Rendering and more.' },
           { property: 'og:site_name', content: 'ARc' },
-          { property: 'og:image', content: 'https://diegohaz.github.io/arc/thumbnail.png' },
+          { property: 'og:image', content: 'https://s24.postimg.org/oa6fpvd2t/400dpi_Logo_Cropped.png' },
           { property: 'og:image:type', content: 'image/png' },
-          { property: 'og:image:width', content: '1200' },
-          { property: 'og:image:height', content: '630' },
+          { property: 'og:image:width', content: '150' },
+          { property: 'og:image:height', content: '112' },
         ]}
         link={[
-          { rel: 'icon', href: 'https://diegohaz.github.io/arc/icon.png' },
+          { rel: 'icon', href: 'https://s29.postimg.org/64ns96k3b/400dpi_Logo_Cropped.jpg' },
         ]}
       />
       <ThemeProvider theme={theme}>{children}</ThemeProvider>

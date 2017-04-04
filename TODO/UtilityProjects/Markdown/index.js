@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Radium from 'radium'
 import TextArea from './TextArea'
-import Transformed from './Transformed'
+// TODO: import Transformed from './Transformed'
 import defaultText from './defaultText'
 // import './styles.css'
 
@@ -43,7 +43,7 @@ class Markdown extends Component {
       <div id="markdownContainer" style={styles.container}>
         <label style={styles.label} htmlFor="exampleTextarea">Type markdown below</label>
         <TextArea onInputChange={this.onInputChange} markdown={this.state.markdown}/>
-        <Transformed markdown={this.state.markdown} />
+        {/* <Transformed markdown={this.state.markdown} /> */}
       </div>
     )
   }

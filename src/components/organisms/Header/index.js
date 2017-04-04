@@ -25,7 +25,7 @@ const StyledPrimaryNavigation = styled(PrimaryNavigation)`
 const Header = (props) => {
   return (
     <Wrapper opaque reverse {...props}>
-      <StyledIconLink to="/" icon="arc" height={100} />
+      {/* <StyledIconLink to="/" icon="arc" height={100} /> */}
       <StyledPrimaryNavigation reverse />
     </Wrapper>
   )

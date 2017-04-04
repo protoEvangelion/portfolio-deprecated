@@ -1,12 +1,12 @@
 import React from 'react'
-import { Switch, Route } from 'react-router'
+import { Switch, Route } from 'react-router-dom'
 import App from 'components/App'
 import { HomePage, NotFoundPage } from 'components'
 
 // NOTE: Main site stuff
-import Home from './components/Main/Home'
-import About from './components/Main/About'
-import NotFound from './components/Main/NotFound'
+// import Home from './components/Main/Home'
+// import About from './components/Main/About'
+// import NotFound from './components/Main/NotFound'
 // import Layout from './components/Main/Layout'
 // import AllProjects from './components/Main/Projects/AllProjects'
 // import APIProjects from './components/Main/Projects/APIProjects'
@@ -42,15 +42,11 @@ export const routes = [
   {
     path: '/',
     exact: true,
-    component: Home,
-  },
-  {
-    path: '/about',
-    component: About,
+    component: HomePage,
   },
   {
     path: '*',
-    component: NotFound,
+    component: NotFoundPage,
   },
 ]
 

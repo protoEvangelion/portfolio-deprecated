@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
 
-import { Link } from 'components'
+import { MenuButton, Link } from 'components'
 
 const Nav = styled.nav`
   display: flex;
@@ -23,8 +23,9 @@ const Nav = styled.nav`
 const PrimaryNavigation = (props) => {
   return (
     <Nav {...props}>
-      <li><Link to="/" onlyActiveOnIndex activeClassName="active">Home</Link></li>
-      <li><Link to="/sample-page" activeClassName="active">Sample page</Link></li>
+      <li><MenuButton /></li>
+      <li><Link to="/" >Home</Link></li>
+      <li><Link to="/sample-page" >Sample page</Link></li>
     </Nav>
   )
 }
