@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import { Header } from 'components'
+import { Navbar } from 'components'
 
-storiesOf('Header', module)
+storiesOf('Navbar', module)
   .add('default', () => (
-    <Header />
+    <Navbar />
   ))

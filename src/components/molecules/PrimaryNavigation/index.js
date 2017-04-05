@@ -11,21 +11,36 @@ const Nav = styled.nav`
     margin-left: 1rem;
   }
   a {
-    font-weight: 300;
-    color: ${palette('grayscale', 2)};
-    font-size: 1.25rem;
+    transition: color .3s;
+    color: white;
+    font-size: 15px;
     &.active {
       color: ${palette('grayscale', 0)};
     }
+    &:hover {
+      text-decoration: none;
+      transition: color .3s;
+      color: ${palette('grayscale', 3)};
+    }
   }
+`
+const LinkContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 `
 
 const PrimaryNavigation = (props) => {
   return (
     <Nav {...props}>
-      <li><MenuButton /></li>
-      <li><Link to="/" >Home</Link></li>
-      <li><Link to="/sample-page" >Sample page</Link></li>
+      <MenuButton {...props} />
+      <LinkContainer>
+        <li><Link to="/" >Home</Link></li>
+        <li><Link to="/micro" >MicroApps</Link></li>
+        <li><Link to="/apis" >APIs</Link></li>
+        <li><Link to="/about" >About</Link></li>
+        <li><Link to="/contact" >Contact</Link></li>
+      </LinkContainer>
     </Nav>
   )
 }

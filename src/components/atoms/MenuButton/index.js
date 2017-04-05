@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
   cursor: pointer;
+  align-self: flex-start;
   position: relative;
   margin-left: -5px;
   width: 48px;
-  height: 48px;
+  height: 28px;
+  @media (min-width: 700px) {
+    display: none;
+  }
 `
 
 const Line1 = styled.span`
@@ -40,19 +44,20 @@ const Line2 = styled.span`
   z-index: 1;
 `
 
-export default class MenuButton extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { opened: false }
-  }
-  render() {
-    return (
-      <Wrapper
-        onClick={() => this.setState({ opened: !this.state.opened })}
-      >
-        <Line1 opened={this.state.opened} />
-        <Line2 opened={this.state.opened} />
-      </Wrapper>
-    )
-  }
+const MenuButton = ({ open, opened }) => {
+  return (
+    <Wrapper
+      onClick={() => open()}
+    >
+      <Line1 opened={opened} />
+      <Line2 opened={opened} />
+    </Wrapper>
+  )
 }
+
+MenuButton.propTypes = {
+  open: PropTypes.func.isRequired,
+  opened: PropTypes.bool.isRequired,
+}
+
+export default MenuButton

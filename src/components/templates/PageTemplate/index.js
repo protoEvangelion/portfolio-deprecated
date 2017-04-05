@@ -4,13 +4,11 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 3.75rem;
   min-height: 100vh;
   box-sizing: border-box;
 `
 
 const Header = styled.header`
-  position: fixed;
   top: 0;
   width: 100%;
   z-index: 999;
