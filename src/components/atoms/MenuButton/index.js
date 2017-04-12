@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   cursor: pointer;
   align-self: flex-start;
   position: relative;
+  margin-top: ${({ opened }) => opened ? 5 : 2}px;
   margin-left: -5px;
   width: 48px;
   height: 28px;
@@ -17,7 +18,7 @@ const Line1 = styled.span`
   top: 10px;
   transition: transform .4s;
   transform:
-    rotate(${({ opened }) => opened ? 135 : 0}deg)
+    rotate(${({ opened }) => opened ? 135 : 0}deg);
   display: block;
   width: 17px;
   height: 1px;
@@ -47,6 +48,7 @@ const Line2 = styled.span`
 const MenuButton = ({ open, opened }) => {
   return (
     <Wrapper
+      opened={opened}
       onClick={() => open()}
     >
       <Line1 opened={opened} />

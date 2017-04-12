@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
 
-import { MenuButton, Link } from 'components'
+import { Link } from 'components'
 
 const Nav = styled.nav`
   display: flex;
@@ -28,13 +28,15 @@ const LinkContainer = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `
 
 const PrimaryNavigation = (props) => {
   return (
     <Nav {...props}>
-      <MenuButton {...props} />
-      <LinkContainer>
+      <LinkContainer {...props}>
         <li><Link to="/" >Home</Link></li>
         <li><Link to="/micro" >MicroApps</Link></li>
         <li><Link to="/apis" >APIs</Link></li>
