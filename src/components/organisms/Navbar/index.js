@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { IconLink, MenuButton, PrimaryNavigation, Block } from 'components'
+import { palette } from 'styled-theme'
 
 const Wrapper = styled(Block)`
   display: flex;
@@ -55,7 +56,7 @@ const StyledSecondaryNavigation = styled(PrimaryNavigation)`
     left: 20px;
     > li {
       padding: 15px 0 15px 0;
-      border-bottom: 1px solid white;
+      border-bottom: 1px solid ${palette('grayscale', 1)};
     }
   }
 `
