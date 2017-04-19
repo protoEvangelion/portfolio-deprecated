@@ -46,12 +46,17 @@ const StyledPrimaryNavigation = styled(PrimaryNavigation)`
 `
 
 const StyledSecondaryNavigation = styled(PrimaryNavigation)`
-  flex: 1;
   display: none;
   @media (max-width: 700px) {
     display: ${({ opened }) => opened ? 'block' : 'none'};
     position: absolute;
-    top: 75px;
+    width: 90%;
+    top: 35px;
+    left: 20px;
+    > li {
+      padding: 15px 0 15px 0;
+      border-bottom: 1px solid white;
+    }
   }
 `
 
