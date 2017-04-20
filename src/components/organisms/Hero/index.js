@@ -12,7 +12,6 @@ const Wrapper = styled(Block)`
   padding: 2rem 6rem;
   box-sizing: border-box;
   text-align: center;
-  background: linear-gradient(to left, ${palette('gradient', 0)}, ${palette('gradient', 1)});
   @media screen and (max-width: 640px) {
     padding: 1rem;
   }
