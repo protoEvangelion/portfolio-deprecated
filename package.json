@@ -3,6 +3,37 @@
   "description": "my mern portfolio website",
   "version": "1.0.0",
   "author": "Ryan Garant",
+  "scripts": {
+    "start": "node .",
+    "env:dev": "cross-env NODE_ENV=development",
+    "env:prod": "cross-env NODE_ENV=production",
+    "test": "jest",
+    "coverage": "npm test -- --coverage",
+    "postcoverage": "opn coverage/lcov-report/index.html",
+    "lint": "eslint src src-clean test .storybook webpack.config.js",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "dev": "npm run env:dev -- webpack-dev-server --progress",
+    "build:clean": "rimraf \"dist/!(.git*|Procfile)**\"",
+    "build:copy": "copyfiles public/* public/**/* dist",
+    "prebuild": "npm run build:clean && npm run build:copy",
+    "build": "npm run env:prod -- webpack --progress",
+    "heroku-postbuild": "npm run build"
+  },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "<rootDir>/src-clean"
+    ],
+    "moduleDirectories": [
+      "src",
+      "node_modules"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/fileMock.js",
+      "^(components|containers)$": "<rootDir>/test/componentsMock.js",
+      "^(store|\\.\\.)\\/selectors$": "<rootDir>/test/selectorsMock.js",
+      "^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js"
+    }
+  },
   "dependencies": {
     "animate.css": "^3.5.2",
     "axios": "^0.15.3",
@@ -65,10 +96,10 @@
     "react-particles-js": "^1.4.0",
     "react-recaptcha": "^2.2.6",
     "react-redux": "^5.0.2",
-    "react-router": "4.0.0-beta.8",
-    "react-router-config": "^1.0.0-beta.1",
-    "react-router-dom": "4.0.0-beta.8",
-    "react-router-redux": "5.0.0-alpha.4",
+    "react-router": "4.1.1",
+    "react-router-config": "^1.0.0-beta.3",
+    "react-router-dom": "4.1.1",
+    "react-router-redux": "5.0.0-alpha.6",
     "react-social": "^1.6.2",
     "react-sound": "^0.5.2",
     "react-sparklines": "^1.6.0",
@@ -88,13 +119,12 @@
     "url-loader": "^0.5.7",
     "url-parse": "^1.1.7",
     "webpack": "^2.2.1",
-    "webpack-dev-middleware": "^1.9.0",
-    "webpack-hot-middleware": "^2.15.0",
     "webpack-isomorphic-tools": "^3.0.0",
     "webpack-md5-hash": "^0.0.5",
     "youtube-api-search": "0.0.5"
   },
   "devDependencies": {
+    "@kadira/storybook": "^2.35.2",
     "babel-eslint": "^7.2.1",
     "babel-jest": "^19.0.0",
     "concurrently": "^3.1.0",
@@ -116,16 +146,5 @@
   "license": "ISC",
   "main": "src",
   "private": true,
-  "repository": "https://github.com/protoEvangelion/MERN-Portfolio",
-  "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config",
-    "build:clean": "rimraf \"dist/!(.git*|Procfile)**\"",
-    "build:copy": "copyfiles -u 1 public/* public/**/* dist",
-    "dev": "concurrently --kill-others \"nodemon --watch src\" \"node webpack/webpack-dev-server\"",
-    "heroku-postbuild": "npm run build",
-    "lint": "eslint src src-clean .storybook",
-    "prebuild": "npm run build:clean && npm run build:copy",
-    "start": "node .",
-    "test": "cross-env NODE_ENV=test jest"
-  }
+  "repository": "https://github.com/protoEvangelion/MERN-Portfolio"
 }

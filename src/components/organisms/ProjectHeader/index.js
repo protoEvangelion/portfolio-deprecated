@@ -6,7 +6,7 @@ import { Heading } from 'components'
 const Wrapper = styled.section`
   display: flex;
   justify-content: space-around;
-  width: 100%;
+  width: 100vw;
   height: auto;
   background: linear-gradient(to left, ${palette('gradient', 0)}, ${palette('gradient', 1)});
 `
