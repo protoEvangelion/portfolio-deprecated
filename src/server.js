@@ -29,7 +29,7 @@ router.use((req, res) => {
   const history = createHistory()
   const store = configureStore({}, history)
 
-  // store.dispatch(setCsrfToken(req.csrfToken()))
+  store.dispatch(setCsrfToken(req.csrfToken()))
   store.dispatch(push(req.url))
 
   const context = {}

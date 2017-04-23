@@ -9,6 +9,6 @@ module.exports = storybookBaseConfig =>
       modulesDirectories: baseConfig.resolve.modules,
     },
     module: Object.assign({}, storybookBaseConfig.module, {
-      loaders: storybookBaseConfig.module.loaders.concat(baseConfig.module.rules.slice(1)),
+      loaders: storybookBaseConfig.module.loaders.concat(baseConfig.module.rules),
     }),
   })

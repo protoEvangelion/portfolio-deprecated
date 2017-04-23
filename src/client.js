@@ -8,7 +8,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import configureStore from 'store/configure' //
 import { basename } from 'config'
 
-import AppRoutes from 'routes' //
+import AppRoutes from 'routes'
 
 // import './css/global.css'
 // import './css/ihover.css'

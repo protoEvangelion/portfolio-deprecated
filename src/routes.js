@@ -1,5 +1,6 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
 import App from 'components/App'
 import { HomePage, NotFoundPage } from 'components'
 
@@ -53,17 +54,7 @@ export const routes = [
 const AppRoutes = () => (
   <App>
     <Switch>
-      {routes.map((route) => (
-        <Route
-          key={route.path}
-          path={route.path}
-          exact={route.exact}
-          strict={route.strict}
-          render={(props) => (
-            <route.component {...props} route={route} />
-          )}
-        />
-      ))}
+      {renderRoutes(routes)}
     </Switch>
   </App>
 )

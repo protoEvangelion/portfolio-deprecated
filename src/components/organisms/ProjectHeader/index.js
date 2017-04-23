@@ -1,24 +1,27 @@
 import React, { PropTypes } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { palette } from 'styled-theme'
 import { Heading } from 'components'
+import { ifProp } from 'styled-tools'
 
 const Wrapper = styled.section`
   display: flex;
   justify-content: space-around;
   width: 100vw;
-  height: auto;
-  background: linear-gradient(to left, ${palette('gradient', 0)}, ${palette('gradient', 1)});
+  ${ifProp('background', css`
+    background: linear-gradient(to left, ${palette('gradient', 0)}, ${palette('gradient', 1)});
+  `)}  
 `
 
-const ProjectHeader = () => (
-  <Wrapper>
-    <Heading>yo</Heading>
+const ProjectHeader = ({ header, background }) => (
+  <Wrapper background={background} >
+    <Heading>{header}</Heading>
   </Wrapper>
 )
 
 ProjectHeader.propTypes = {
-  Header: PropTypes.string.isRequired,
+  header: PropTypes.string.isRequired,
+  background: PropTypes.bool,
 }
 
 export default ProjectHeader
