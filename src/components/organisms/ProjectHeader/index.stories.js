@@ -4,7 +4,7 @@ import { ProjectHeader } from 'components'
 
 storiesOf('ProjectHeader', module)
   .add('default', () => (
-    <ProjectHeader header="Hello" background={true} />
+    <ProjectHeader header="Hello" />
   ))
   .add('theme', () => (
     <ProjectHeader header="Hello" background />
