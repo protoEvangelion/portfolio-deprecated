@@ -3,7 +3,8 @@ import { reversePalette } from 'styled-theme/composer'
 const theme = {}
 
 theme.palette = {
-  gradient: ['#FF4E50', '#F9D423'],
+  gradient: ['#12FFF7', '#B3FFAB'],
+  gradientRBG: ['rgba(18, 255, 247, 0.4)', 'rgba(179, 255, 171, 0.4)'],
   primary: ['#1976d2', '#2196f3', '#71bcf7', '#c2e2fb'],
   secondary: ['#c2185b', '#e91e63', '#f06292', '#f8bbd0'],
   danger: ['#d32f2f', '#f44336', '#f8877f', '#ffcdd2'],
@@ -17,6 +18,7 @@ theme.reversePalette = reversePalette(theme.palette)
 
 theme.fonts = {
   primary: 'Helvetica Neue, Helvetica, Roboto, sans-serif',
+  header: 'Coda, Helvetica Neue, Helvetica, Roboto, sans-serif',
   pre: 'Consolas, Liberation Mono, Menlo, Courier, monospace',
   quote: 'Georgia, serif',
 }

@@ -18,9 +18,6 @@ const Hero = styled.section``
 
 const Content = styled.section`
   width: 100%;
-  box-sizing: border-box;
-  margin: 2rem auto;
-  max-width: 920px;
 `
 
 const Footer = styled.footer`
@@ -32,7 +29,7 @@ const PageTemplate = ({ header, hero, children, footer, ...props }) => {
     <Wrapper {...props}>
       <Header>{header}</Header>
       {hero && <Hero>{hero}</Hero>}
-      <Content>{children}</Content>
+      <Content id="content">{children}</Content>
       <Footer>{footer}</Footer>
     </Wrapper>
   )

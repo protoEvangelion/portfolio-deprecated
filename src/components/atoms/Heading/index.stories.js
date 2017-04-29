@@ -4,7 +4,7 @@ import Heading from '.'
 
 storiesOf('Heading', module)
   .add('default', () => (
-    <Heading>Id tempor duis non esse commodo fugiat excepteur nostrud.</Heading>
+    <Heading header="Id tempor duis non esse commodo fugiat excepteur nostrud." />
   ))
   .add('palette', () => (
     <Heading palette="primary">Id tempor duis non esse commodo fugiat excepteur nostrud.</Heading>

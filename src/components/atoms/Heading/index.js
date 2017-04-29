@@ -1,33 +1,27 @@
 import React, { PropTypes } from 'react'
-import styled, { css } from 'styled-components'
-import { font, palette } from 'styled-theme'
+import styled from 'styled-components'
+import { ifProp } from 'styled-tools'
 
 export const fontSize = ({ level }) => `${0.75 + (1 * (1 / level))}rem`
 
-const styles = css`
-  font-family: ${font('primary')};
+const Header = styled.h1`
+  font-family: 'Coda';
   font-weight: 500;
   font-size: ${fontSize};
   margin: 0;
   margin-top: 0.85714em;
   margin-bottom: 0.57142em;
-  color: ${palette({ grayscale: 0 }, 1)};
+  color: ${ifProp('background', 'white', 'black')};
+  z-index: 999;
 `
 
-const Heading = styled(({ level, children, reverse, palette, theme, ...props }) =>
-  React.createElement(`h${level}`, props, children)
-)`${styles}`
+const Heading = ({ background, header }) => (
+  <Header background={background}>{header}</Header>
+)
 
 Heading.propTypes = {
-  level: PropTypes.number,
-  children: PropTypes.node,
-  palette: PropTypes.string,
-  reverse: PropTypes.bool,
-}
-
-Heading.defaultProps = {
-  level: 1,
-  palette: 'grayscale',
+  header: PropTypes.string,
+  background: PropTypes.bool,
 }
 
 export default Heading

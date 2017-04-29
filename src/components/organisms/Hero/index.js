@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
-import { Avatar, Block, Paragraph, IconLink, IconButton } from 'components'
+import { Avatar, Block, Paragraph, SocialBtns } from 'components'
+import headshot from '../../../../public/projectimages/headshot.jpg'
 
 const Wrapper = styled(Block)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 3.75rem);
-  max-height: 700px;
+  margin: 30px 0;
   padding: 2rem 6rem;
   box-sizing: border-box;
   text-align: center;
@@ -18,8 +18,7 @@ const Wrapper = styled(Block)`
 `
 
 const Text = styled(Paragraph)`
-  color: ${palette('grayscale', 3)}
-  margin: 3rem auto;
+  color: ${palette('grayscale', 0)}
   max-width: 800px;
   font-weight: 300;
   font-size: 1.35rem;
@@ -30,14 +29,13 @@ const Text = styled(Paragraph)`
   }
 `
 
-const StyledIconButton = styled(IconButton)`
-  flex: none;
-`
-
 const Hero = (props) => {
   return (
     <Wrapper {...props}>
-      <Avatar />
+      <Avatar size="250" src={headshot} />
+      <SocialBtns />
+      <Text>Ryan Garant</Text>
+      <Text><em>Full Stack JavaScript Web Developer</em></Text>
     </Wrapper>
   )
 }

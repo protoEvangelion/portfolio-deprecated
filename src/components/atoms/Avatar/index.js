@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import styled from 'styled-components'
-import headshot from './headshot.jpg'
 
-const Headshot = styled.img`
+const Image = styled.img`
   border-radius: 50%;
-  height: ${props => props.size};
+  height: ${props => props.size}px;
+  padding: 20px;
 `
 
-const Avatar = () => {
+const Avatar = ({ size, src }) => {
   return (
-    <Headshot src={headshot} />
+    <Image size={size} src={src} />
   )
 }
 
 Avatar.defaultProps = {
   size: '200px',
+}
+
+Avatar.propTypes = {
+  size: PropTypes.string,
+  src: PropTypes.string.isRequired,
 }
 
 export default Avatar

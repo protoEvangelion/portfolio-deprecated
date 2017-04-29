@@ -22,6 +22,7 @@ const Wrapper = styled(Block)`
 `
 
 const StyledIconLogo = styled(IconLink)`
+  margin-top: 5px;
   margin-left: 10px;
   display: inline-block;
   transform-origin: center;
@@ -68,7 +69,7 @@ const Navbar = (props) => {
         <MenuButton {...props} />
         <StyledIconLogo to="/" icon="whiteLogo" height={100} />
         <StyledPrimaryNavigation reverse {...props} />
-        <StyledIconLink to="/projects" icon="briefcase" height={100} />
+        <StyledIconLink to="/allApps" icon="briefcase" height={100} />
       </Wrapper>
       <StyledSecondaryNavigation reverse {...props} />
     </div>

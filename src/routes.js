@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import App from 'components/App'
-import { HomePage, NotFoundPage } from 'components'
+import { HomePage, UtilityPage, NotFoundPage } from 'components'
 
 // NOTE: Main site stuff
 // import Home from './components/Main/Home'
@@ -44,6 +44,11 @@ export const routes = [
     path: '/',
     exact: true,
     component: HomePage,
+  },
+  {
+    path: '/utilityApps',
+    exact: true,
+    component: UtilityPage,
   },
   {
     path: '*',

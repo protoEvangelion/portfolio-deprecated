@@ -37,9 +37,9 @@ const PrimaryNavigation = (props) => {
   return (
     <Nav {...props}>
       <LinkContainer {...props}>
-        <li><Link exact to="/" >Home</Link></li>
-        <li><Link to="/micro" >MicroApps</Link></li>
-        <li><Link to="/apis" >APIs</Link></li>
+        <li><Link exact to="/stack" >Stack</Link></li>
+        <li><Link to="/allApps" >MicroApps</Link></li>
+        <li><Link to="/apiApps" >APIs</Link></li>
         <li><Link to="/about" >About</Link></li>
         <li><Link to="/contact" >Contact</Link></li>
       </LinkContainer>
