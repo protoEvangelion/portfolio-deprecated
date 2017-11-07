@@ -1,12 +1,24 @@
-require('babel-polyfill')
-require('babel-core/register')({
-  plugins: ['transform-es2015-modules-commonjs'],
-})
+import 'react-hot-loader/patch'
 
-const WebpackIsomorphicTools = require('webpack-isomorphic-tools')
-const webpackIsomorphicToolsConfig = require('../webpack/webpack-isomorphic-tools')
+import App from 'components/App'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+import appStore from 'reducers'
 
-global.webpackIsomorphicTools = new WebpackIsomorphicTools(webpackIsomorphicToolsConfig)
-  .server('./', () => {
-    require('./server')
+const renderApp = Component => {
+  ReactDOM.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    document.getElementById('app'),
+  )
+}
+
+renderApp(App)
+
+if (module.hot) {
+  module.hot.accept('components/App', () => {
+    renderApp(App)
   })
+}
