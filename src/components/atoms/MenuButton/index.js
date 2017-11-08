@@ -1,11 +1,12 @@
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
   cursor: pointer;
   align-self: flex-start;
   position: relative;
-  margin-top: ${({ opened }) => opened ? 5 : 2}px;
+  margin-top: ${({ opened }) => (opened ? 5 : 2)}px;
   margin-left: -5px;
   width: 48px;
   height: 28px;
@@ -16,9 +17,8 @@ const Wrapper = styled.div`
 
 const Line1 = styled.span`
   top: 10px;
-  transition: transform .4s;
-  transform:
-    rotate(${({ opened }) => opened ? 135 : 0}deg);
+  transition: transform 0.4s;
+  transform: rotate(${({ opened }) => (opened ? 135 : 0)}deg);
   display: block;
   width: 17px;
   height: 1px;
@@ -29,12 +29,11 @@ const Line1 = styled.span`
 `
 const Line2 = styled.span`
   top: 17px;
-  transition: transform .4s;
-  transform:
-    rotate(${({ opened }) => opened ? 45 : 0}deg)
+  transition: transform 0.4s;
+  transform: rotate(${({ opened }) => (opened ? 45 : 0)}deg)
     translate(
-      ${({ opened }) => opened ? -4.2 : 0}px,
-      ${({ opened }) => opened ? -5.2 : 0}px
+      ${({ opened }) => (opened ? -4.2 : 0)}px,
+      ${({ opened }) => (opened ? -5.2 : 0)}px
     );
   display: block;
   width: 17px;
@@ -47,10 +46,7 @@ const Line2 = styled.span`
 
 const MenuButton = ({ open, opened }) => {
   return (
-    <Wrapper
-      opened={opened}
-      onClick={() => open()}
-    >
+    <Wrapper opened={opened} onClick={() => open()}>
       <Line1 opened={opened} />
       <Line2 opened={opened} />
     </Wrapper>

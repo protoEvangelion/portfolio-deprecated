@@ -2,7 +2,7 @@ import { Button, Icon } from 'components/atoms'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled, { css, keyframes } from 'styled-components'
-import { get, ifProp } from 'styled-tools'
+import { ifProp, prop } from 'styled-tools'
 
 const fadeIn = keyframes`
   0% { display: none; opacity: 0; }
@@ -36,7 +36,7 @@ const StyledButton = styled(Button)`
   )} ${ifProp(
       'responsive',
       css`
-        @media screen and (max-width: ${get('breakpoint')}px) {
+        @media screen and (max-width: ${prop('breakpoint')}px) {
           width: auto;
           flex: 0 !important;
         }
@@ -46,7 +46,7 @@ const StyledButton = styled(Button)`
 
 const Text = styled.span`
   padding: 0.4375em;
-  @media screen and (max-width: ${get('breakpoint')}px) {
+  @media screen and (max-width: ${prop('breakpoint')}px) {
     display: ${ifProp('responsive', 'none !important')};
   }
 `

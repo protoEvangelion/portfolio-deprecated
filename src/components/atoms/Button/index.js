@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react'
-import styled, { css } from 'styled-components'
+import PropTypes from 'prop-types'
+import React from 'react'
 import Link from 'react-router-dom/Link'
+import styled, { css } from 'styled-components'
 import { font, palette } from 'styled-theme'
 import { ifProp } from 'styled-tools'
 
@@ -12,8 +13,10 @@ const backgroundColor = ({ transparent, disabled }) =>
 const foregroundColor = ({ transparent, disabled }) =>
   transparent ? palette(disabled ? 2 : 1) : palette('grayscale', 0, true)
 
-const hoverBackgroundColor = ({ disabled, transparent }) => !disabled && !transparent && palette(0)
-const hoverForegroundColor = ({ disabled, transparent }) => !disabled && transparent && palette(0)
+const hoverBackgroundColor = ({ disabled, transparent }) =>
+  !disabled && !transparent && palette(0)
+const hoverForegroundColor = ({ disabled, transparent }) =>
+  !disabled && transparent && palette(0)
 
 const styles = css`
   display: inline-flex;
@@ -31,25 +34,36 @@ const styles = css`
   border-radius: 0.125em;
   box-sizing: border-box;
   pointer-events: ${ifProp('disabled', 'none', 'auto')};
-  transition: background-color 250ms ease-out, color 250ms ease-out, border-color 250ms ease-out;
+  transition: background-color 250ms ease-out, color 250ms ease-out,
+    border-color 250ms ease-out;
   background-color: ${backgroundColor};
   color: ${foregroundColor};
 
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     background-color: ${hoverBackgroundColor};
     color: ${hoverForegroundColor};
   }
 
   &:focus {
-    outline: none
+    outline: none;
   }
 `
 
-const StyledLink = styled(({ disabled, transparent, reverse, palette, height, theme, ...props }) =>
-  <Link {...props} />
-)`${styles}`
-const Anchor = styled.a`${styles}`
-const StyledButton = styled.button`${styles}`
+const StyledLink = styled(
+  ({ disabled, transparent, reverse, palette, height, theme, ...props }) => (
+    <Link {...props} />
+  ),
+)`
+  ${styles};
+`
+const Anchor = styled.a`
+  ${styles};
+`
+const StyledButton = styled.button`
+  ${styles};
+`
 
 const Button = ({ type, ...props }) => {
   if (props.to) {

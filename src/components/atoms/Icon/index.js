@@ -1,9 +1,11 @@
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
 import { ifProp } from 'styled-tools'
 
-export const fontSize = ({ height }) => height ? `${height / 16}rem` : '1.25em'
+export const fontSize = ({ height }) =>
+  height ? `${height / 16}rem` : '1.25em'
 
 const Wrapper = styled.span`
   display: inline-block;
@@ -24,12 +26,7 @@ const Wrapper = styled.span`
 
 const Icon = ({ icon, ...props }) => {
   const svg = require(`raw-loader!./icons/${icon}.svg`)
-  return (
-    <Wrapper
-      {...props}
-      dangerouslySetInnerHTML={{ __html: svg }}
-    />
-  )
+  return <Wrapper {...props} dangerouslySetInnerHTML={{ __html: svg }} />
 }
 
 Icon.propTypes = {

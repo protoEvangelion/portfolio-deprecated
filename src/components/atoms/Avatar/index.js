@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
 
 const Image = styled.img`
@@ -8,9 +9,7 @@ const Image = styled.img`
 `
 
 const Avatar = ({ size, src }) => {
-  return (
-    <Image size={size} src={src} />
-  )
+  return <Image size={size} src={src} />
 }
 
 Avatar.defaultProps = {

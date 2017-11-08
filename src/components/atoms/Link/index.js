@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
+import RouterLink from 'react-router-dom/NavLink'
 import styled, { css } from 'styled-components'
 import { font, palette } from 'styled-theme'
-import RouterLink from 'react-router-dom/NavLink'
 
 const styles = css`
   font-family: ${font('primary')};
@@ -14,10 +15,14 @@ const styles = css`
   }
 `
 
-const StyledLink = styled(({ theme, reverse, palette, ...props }) =>
+const StyledLink = styled(({ theme, reverse, palette, ...props }) => (
   <RouterLink {...props} />
-)`${styles}`
-const Anchor = styled.a`${styles}`
+))`
+  ${styles};
+`
+const Anchor = styled.a`
+  ${styles};
+`
 
 const Link = ({ ...props }) => {
   if (props.to) {

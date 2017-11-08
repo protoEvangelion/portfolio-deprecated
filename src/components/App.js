@@ -4,7 +4,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import appStore from 'reducers'
-import { ThemeProvider, injectGlobal } from 'styled-comasdponents'
+import { ThemeProvider, injectGlobal } from 'styled-components'
 
 import Coda from './themes/Coda.ttf'
 import theme from './themes/default'

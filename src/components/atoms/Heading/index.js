@@ -1,8 +1,9 @@
-import React, { PropTypes } from 'react'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
 import { ifProp } from 'styled-tools'
 
-export const fontSize = ({ level }) => `${0.75 + (1 * (1 / level))}rem`
+export const fontSize = ({ level }) => `${0.75 + 1 * (1 / level)}rem`
 
 const Header = styled.h1`
   font-family: 'Coda';

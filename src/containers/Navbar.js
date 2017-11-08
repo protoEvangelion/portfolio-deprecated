@@ -1,18 +1,18 @@
+import { openNavbar } from 'actions'
+import { Navbar } from 'components/organisms'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Navbar } from 'components'
-import { openNavbar } from '../store/navbar/actions'
 
 const NavbarContainer = props => <Navbar {...props} />
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     opened: state.navbar.opened,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     open: bindActionCreators(openNavbar, dispatch),
   }
