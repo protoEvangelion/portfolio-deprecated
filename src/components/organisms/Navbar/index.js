@@ -1,6 +1,7 @@
+import { Block, MenuButton } from 'components/atoms'
+import { IconLink, PrimaryNavigation } from 'components/molecules'
 import React from 'react'
 import styled from 'styled-components'
-import { IconLink, MenuButton, PrimaryNavigation, Block } from 'components'
 import { palette } from 'styled-theme'
 
 const Wrapper = styled(Block)`
@@ -8,8 +9,8 @@ const Wrapper = styled(Block)`
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
-  opacity: ${({ opened }) => opened ? 1 : 0.9};
-  height: ${({ opened }) => opened ? '100vh' : 'auto'};
+  opacity: ${({ opened }) => (opened ? 1 : 0.9)};
+  height: ${({ opened }) => (opened ? '100vh' : 'auto')};
   & > :not(:first-child) {
     margin-left: 1rem;
   }
@@ -50,7 +51,7 @@ const StyledPrimaryNavigation = styled(PrimaryNavigation)`
 const StyledSecondaryNavigation = styled(PrimaryNavigation)`
   display: none;
   @media (max-width: 700px) {
-    display: ${({ opened }) => opened ? 'block' : 'none'};
+    display: ${({ opened }) => (opened ? 'block' : 'none')};
     position: absolute;
     width: 90%;
     top: 35px;
@@ -62,7 +63,7 @@ const StyledSecondaryNavigation = styled(PrimaryNavigation)`
   }
 `
 
-const Navbar = (props) => {
+const Navbar = props => {
   return (
     <div>
       <Wrapper opaque reverse {...props}>

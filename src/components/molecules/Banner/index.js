@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react'
+import { Heading } from 'components/atoms'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
-import { Heading } from 'components'
 
 const Wrapper = styled.div`
   display: flex;

@@ -1,10 +1,12 @@
-import React from 'react'
-import { PageTemplate, Hero, ProjectHeader, Footer, FeatureList } from 'components'
+import { FeatureList, Footer, Hero, ProjectHeader } from 'components/organisms'
+import { PageTemplate } from 'components/templates'
 import { Navbar } from 'containers'
+import React from 'react'
+
+import force from '../../../../public/projectimages/force.png'
+import gameOfLife from '../../../../public/projectimages/gameOfLife.png'
 import tradeshow from '../../../../public/projectimages/tradeshow.png'
 import weather from '../../../../public/projectimages/weather.png'
-import gameOfLife from '../../../../public/projectimages/gameOfLife.png'
-import force from '../../../../public/projectimages/force.png'
 
 const HomePage = () => {
   return (

@@ -30,40 +30,6 @@ const sourceDir = process.env.SOURCE || 'src'
 const sourcePath = path.join(process.cwd(), sourceDir)
 const outputPath = path.join(process.cwd(), 'dist')
 
-function sassLoader() {
-  return (context, { merge }) =>
-    merge({
-      module: {
-        rules: [
-          Object.assign(
-            {
-              test: /\.scss$/,
-              use: [
-                {
-                  loader: 'style-loader',
-                },
-                {
-                  loader: 'css-loader',
-                  options: {
-                    modules: true,
-                    localIdentName: '[local]-[hash:base64:5]',
-                  },
-                },
-                {
-                  loader: 'sass-loader',
-                  options: {
-                    includePaths: [sourcePath],
-                  },
-                },
-              ],
-            },
-            context.match,
-          ),
-        ],
-      },
-    })
-}
-
 const config = createConfig([
   entryPoint(sourcePath),
   setOutput(`${outputPath}/app.js`),
@@ -79,7 +45,6 @@ const config = createConfig([
     'process.env.PUBLIC_PATH': publicPath.replace(/\/$/, ''),
   }),
   babel(),
-  sassLoader(),
   css(),
   match(
     [

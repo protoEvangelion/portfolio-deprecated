@@ -4,7 +4,6 @@ import App from 'components/App'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import appStore from 'reducers'
 
 const renderApp = Component => {
   ReactDOM.render(

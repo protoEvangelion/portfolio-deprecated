@@ -1,7 +1,8 @@
-import React, { PropTypes } from 'react'
+import { Heading, Link } from 'components/atoms'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled, { css } from 'styled-components'
 import { palette } from 'styled-theme'
-import { Heading, Link } from 'components'
 import { ifProp } from 'styled-tools'
 
 const Wrapper = styled.div`
@@ -11,13 +12,21 @@ const Wrapper = styled.div`
   padding: 100px 0;
   height: 300px;
   width: 100%;
-  ${ifProp('flip', css`
-    flex-direction: row-reverse;
-  `)}
-  ${ifProp('background', css`
-    background: linear-gradient(to left, ${palette('gradient', 0)}, ${palette('gradient', 1)});
-  `)}
-  @media (max-width: 1000px) {
+  ${ifProp(
+    'flip',
+    css`
+      flex-direction: row-reverse;
+    `,
+  )} ${ifProp(
+      'background',
+      css`
+        background: linear-gradient(
+          to left,
+          ${palette('gradient', 0)},
+          ${palette('gradient', 1)}
+        );
+      `,
+    )} @media (max-width: 1000px) {
     flex-direction: column;
     justify-content: center;
     height: auto;
@@ -47,11 +56,13 @@ const StyledLink = styled(Link)`
 `
 
 const ProjectHeader = ({ header, background, image, flip, link, to, href }) => (
-  <Wrapper background={background} flip={flip} >
+  <Wrapper background={background} flip={flip}>
     <ProjectImage src={image} />
     <HeadingCtn>
       <Heading background={background} header={header} />
-      <StyledLink to={to} href={href}>{link}</StyledLink>
+      <StyledLink to={to} href={href}>
+        {link}
+      </StyledLink>
     </HeadingCtn>
   </Wrapper>
 )

@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react'
+import { Icon, Link } from 'components/atoms'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
 
-import { Icon, Link } from 'components'
-
-const fontSize = ({ height }) => height ? `${height / 3 / 16}rem` : '0.75em'
+const fontSize = ({ height }) => (height ? `${height / 3 / 16}rem` : '0.75em')
 
 const margin = ({ hasText, right }) => {
   if (hasText) {

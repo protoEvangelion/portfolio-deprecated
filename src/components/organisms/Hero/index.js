@@ -1,7 +1,9 @@
+import { Avatar, Block, Paragraph } from 'components/atoms'
+import { SocialBtns } from 'components/molecules'
 import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
-import { Avatar, Block, Paragraph, SocialBtns } from 'components'
+
 import headshot from '../../../../public/projectimages/headshot.jpg'
 
 const Wrapper = styled(Block)`
@@ -29,13 +31,15 @@ const Text = styled(Paragraph)`
   }
 `
 
-const Hero = (props) => {
+const Hero = props => {
   return (
     <Wrapper {...props}>
       <Avatar size="250" src={headshot} />
       <SocialBtns />
       <Text>Ryan Garant</Text>
-      <Text><em>Full Stack JavaScript Web Developer</em></Text>
+      <Text>
+        <em>Full Stack JavaScript Web Developer</em>
+      </Text>
     </Wrapper>
   )
 }

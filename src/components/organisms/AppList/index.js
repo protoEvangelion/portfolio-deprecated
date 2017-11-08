@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react'
+import { Link } from 'components/atoms'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'components'
 
 const Wrapper = styled.section`
   display: flex;
@@ -19,28 +20,22 @@ const AppImage = styled.div`
   border-radius: 50%;
   transition: all 1s ease-in-out;
   &:hover {
-    box-shadow:
-      inset 0 0 0 110px rgba(255, 255, 255, 0.4),
-      inset 0 0 0 16px rgba(255,255,255,0.8),
-      0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: inset 0 0 0 110px rgba(255, 255, 255, 0.4),
+      inset 0 0 0 16px rgba(255, 255, 255, 0.8), 0 1px 2px rgba(0, 0, 0, 0.1);
   }
 `
 
 const AppList = ({ apps }) => {
   const renderAppIcons = () => {
-    return apps.map((app) => {
+    return apps.map(app => {
       return (
-        <Link key={app.route} to={app.route} >
+        <Link key={app.route} to={app.route}>
           <AppImage key={app.src} src={app.src} />
         </Link>
       )
     })
   }
-  return (
-    <Wrapper>
-      {renderAppIcons()}
-    </Wrapper>
-  )
+  return <Wrapper>{renderAppIcons()}</Wrapper>
 }
 
 AppList.propTypes = {

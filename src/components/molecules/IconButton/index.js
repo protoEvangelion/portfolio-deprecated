@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react'
+import { Button, Icon } from 'components/atoms'
+import PropTypes from 'prop-types'
+import React from 'react'
 import styled, { css, keyframes } from 'styled-components'
-import { ifProp, get } from 'styled-tools'
-
-import { Icon, Button } from 'components'
+import { get, ifProp } from 'styled-tools'
 
 const fadeIn = keyframes`
   0% { display: none; opacity: 0; }
@@ -11,32 +11,37 @@ const fadeIn = keyframes`
 `
 
 const StyledButton = styled(Button)`
-  max-width: ${props => props.hasText && !props.collapsed ? '100%' : '2.5em'};
+  max-width: ${props => (props.hasText && !props.collapsed ? '100%' : '2.5em')};
   width: ${ifProp('hasText', 'auto', '2.5em')};
   padding: ${ifProp('hasText', '0 0.4375em', 0)};
   flex: 0 0 2.5em;
   box-sizing: border-box;
-  ${ifProp('collapsed', css`
-    overflow: hidden;
-    transition: max-width 250ms ease-in-out;
-    will-change: max-width;
-    & .text {
-      display: none;
-    }
-    &:hover {
-      max-width: 100%;
+  ${ifProp(
+    'collapsed',
+    css`
+      overflow: hidden;
+      transition: max-width 250ms ease-in-out;
+      will-change: max-width;
       & .text {
-        display: block;
-        animation: ${fadeIn} 250ms;
+        display: none;
       }
-    }
-  `)}
-  ${ifProp('responsive', css`
-    @media screen and (max-width: ${get('breakpoint')}px) {
-      width: auto;
-      flex: 0 !important;
-    }
-  `)}
+      &:hover {
+        max-width: 100%;
+        & .text {
+          display: block;
+          animation: ${fadeIn} 250ms;
+        }
+      }
+    `,
+  )} ${ifProp(
+      'responsive',
+      css`
+        @media screen and (max-width: ${get('breakpoint')}px) {
+          width: auto;
+          flex: 0 !important;
+        }
+      `,
+    )};
 `
 
 const Text = styled.span`
@@ -65,9 +70,15 @@ const IconButton = ({ icon, children, ...props }) => {
     <StyledButton hasText={!!children} {...props}>
       <Wrapper>
         {right || iconElement}
-        {children &&
-          <Text className="text" responsive={responsive} breakpoint={breakpoint}>{children}</Text>
-        }
+        {children && (
+          <Text
+            className="text"
+            responsive={responsive}
+            breakpoint={breakpoint}
+          >
+            {children}
+          </Text>
+        )}
         {right && iconElement}
       </Wrapper>
     </StyledButton>

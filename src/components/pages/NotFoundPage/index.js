@@ -1,10 +1,10 @@
+import { Footer, Heading, ProjectHeader } from 'components/organisms'
+import { PageTemplate } from 'components/templates'
 import React from 'react'
-
-import { PageTemplate, Header, Footer, Heading } from 'components'
 
 const NotFoundPage = () => {
   return (
-    <PageTemplate header={<Header />} footer={<Footer />}>
+    <PageTemplate header={<ProjectHeader />} footer={<Footer />}>
       <Heading>404 Not Found</Heading>
     </PageTemplate>
   )
