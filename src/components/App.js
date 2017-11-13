@@ -1,23 +1,11 @@
-import { Home } from 'components/pages'
+import { HomePage } from 'components/pages'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import appStore from 'reducers'
-import { ThemeProvider, injectGlobal } from 'styled-components'
-
-import Coda from './themes/Coda.ttf'
-import theme from './themes/default'
-
-injectGlobal`
-  @font-face {
-    font-family: 'Coda';
-    src: url(${Coda});
-  }
-  body {
-    margin: 0;
-  }
-`
+import { ThemeProvider } from 'styled-components'
+import theme from 'theme'
 
 const App = () => {
   return (
@@ -25,7 +13,7 @@ const App = () => {
       <Router>
         <ThemeProvider theme={theme}>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={HomePage} />
           </Switch>
         </ThemeProvider>
       </Router>

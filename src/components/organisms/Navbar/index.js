@@ -1,4 +1,5 @@
 import { Block, MenuButton } from 'components/atoms'
+import { Hide } from 'components/atoms'
 import { IconLink, PrimaryNavigation } from 'components/molecules'
 import React from 'react'
 import styled from 'styled-components'
@@ -65,7 +66,7 @@ const StyledSecondaryNavigation = styled(PrimaryNavigation)`
 
 const Navbar = props => {
   return (
-    <div>
+    <Hide md>
       <Wrapper opaque reverse {...props}>
         <MenuButton {...props} />
         <StyledIconLogo to="/" icon="whiteLogo" height={100} />
@@ -73,7 +74,7 @@ const Navbar = props => {
         <StyledIconLink to="/allApps" icon="briefcase" height={100} />
       </Wrapper>
       <StyledSecondaryNavigation reverse {...props} />
-    </div>
+    </Hide>
   )
 }
 

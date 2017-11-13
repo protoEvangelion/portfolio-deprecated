@@ -58,9 +58,7 @@ export const routes = [
 
 const AppRoutes = () => (
   <App>
-    <Switch>
-      {renderRoutes(routes)}
-    </Switch>
+    <Switch>{renderRoutes(routes)}</Switch>
   </App>
 )
 

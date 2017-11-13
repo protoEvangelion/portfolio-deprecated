@@ -1,5 +1,4 @@
 export formAction from './formAction'
-export openNavbar from './openNavbar'
 export quoteAction from './quoteAction'
 export streamAction from './streamAction'
 export weatherAction from './weatherAction'

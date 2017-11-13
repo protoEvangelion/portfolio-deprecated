@@ -9,7 +9,7 @@ import { env } from 'config'
 
 const root = path.join(__dirname, '../../..')
 
-export default (routes) => {
+export default routes => {
   const app = express()
 
   /* istanbul ignore next */
@@ -26,7 +26,11 @@ export default (routes) => {
     app.use(compression())
     app.use(morgan('dev'))
     app.use(cookieParser())
-    app.use(express.static(path.join(root, env === 'development' ? 'public' : 'dist')))
+    app.use(
+      express.static(
+        path.join(root, env === 'development' ? 'public' : 'dist'),
+      ),
+    )
   }
 
   app.use(bodyParser.urlencoded({ extended: false }))

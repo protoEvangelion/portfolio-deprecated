@@ -1,10 +1,9 @@
+// import headshot from '/public/projectimages/headshot.jpg'
 import { Avatar, Block, Paragraph } from 'components/atoms'
 import { SocialBtns } from 'components/molecules'
 import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
-
-import headshot from '../../../../public/projectimages/headshot.jpg'
 
 const Wrapper = styled(Block)`
   display: flex;
@@ -34,7 +33,8 @@ const Text = styled(Paragraph)`
 const Hero = props => {
   return (
     <Wrapper {...props}>
-      <Avatar size="250" src={headshot} />
+      {/* {<Avatar size="250" src={headshot} />} */}
+      <Avatar size="250" />
       <SocialBtns />
       <Text>Ryan Garant</Text>
       <Text>

@@ -26,11 +26,7 @@ const SocialBtns = () => (
       />
     </a>
     <a href="https://github.com/protoEvangelion">
-      <Icon
-        key="githubBtn"
-        className="fa fa-github fa-2x"
-        aria-hidden="true"
-      />
+      <Icon key="githubBtn" className="fa fa-github fa-2x" aria-hidden="true" />
     </a>
     <a href="https://www.freecodecamp.com/protoevangelion">
       <Icon

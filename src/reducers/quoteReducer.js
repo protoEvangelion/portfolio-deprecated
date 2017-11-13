@@ -2,13 +2,14 @@ import { FETCH_QUOTE } from './actions'
 
 const initialState = {
   quote: {
-    quoteText: 'People may doubt what you say, but they will believe what you do.',
+    quoteText:
+      'People may doubt what you say, but they will believe what you do.',
     quoteAuthor: 'Abraham Lincoln',
     quoteLink: 'http://forismatic.com/en/e7d096ac9d/',
   },
 }
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_QUOTE:
       return Object.assign({}, state, {
