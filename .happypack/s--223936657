@@ -1,0 +1,59 @@
+import { FeatureList, Footer, Hero, Navbar, ProjectHeader } from 'components/organisms';
+import { PageTemplate } from 'components/templates';
+import React from 'react';
+
+var HomePage = function HomePage() {
+  return React.createElement(
+    PageTemplate,
+    { header: React.createElement(Navbar, null), hero: React.createElement(Hero, null), footer: React.createElement(Footer, null) },
+    React.createElement(ProjectHeader, {
+      id: 'tradeshowApp',
+      image: '/images/tradeshow.png',
+      header: 'A fullstack MERN project built to help trade show teams consolidate their efforts and collaborate in real time...',
+      link: 'View my Fullstack Tradeshow App',
+      href: 'https://aoatradeshow.herokuapp.com',
+      background: true
+    }),
+    React.createElement(ProjectHeader, {
+      id: 'utilityApps',
+      image: '/images/gameOfLife.png',
+      header: 'A cool collection consisting of simple game projects and utilities like a Markdown previewer...',
+      link: 'View my Gaming & Utility Projects',
+      to: 'utilityApps',
+      flip: true
+    }),
+    React.createElement(ProjectHeader, {
+      id: 'apiApps',
+      image: '/images/weather.png',
+      header: 'An interesting group of API projects that span from a  Pinterest recipe box to syndicating the coolest channels on Twitch...',
+      link: 'View my API Projects',
+      to: 'apiApps',
+      background: true
+    }),
+    React.createElement(ProjectHeader, {
+      id: 'd3Apps',
+      image: '/images/force.png',
+      header: 'A dynamic collection of D3 projects implementing cutting edge data visualization technology...',
+      link: 'View my D3 Projects',
+      to: 'd3Apps',
+      flip: true
+    }),
+    React.createElement(FeatureList, null)
+  );
+};
+
+var _default = HomePage;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(HomePage, 'HomePage', '/home/ryan/dev/port/src/components/pages/HomePage/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/pages/HomePage/index.js');
+}();
+
+;

@@ -1,0 +1,123 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+import PropTypes from 'prop-types';
+import React from 'react';
+import Link from 'react-router-dom/Link';
+import styled, { css } from 'styled-components';
+import { font, palette } from 'styled-theme';
+import { ifProp } from 'styled-tools';
+
+var fontSize = function fontSize(_ref) {
+  var height = _ref.height;
+  return height / 40 + 'rem';
+};
+
+var backgroundColor = function backgroundColor(_ref2) {
+  var transparent = _ref2.transparent,
+      disabled = _ref2.disabled;
+  return transparent ? 'transparent' : palette(disabled ? 2 : 1);
+};
+
+var foregroundColor = function foregroundColor(_ref3) {
+  var transparent = _ref3.transparent,
+      disabled = _ref3.disabled;
+  return transparent ? palette(disabled ? 2 : 1) : palette('grayscale', 0, true);
+};
+
+var hoverBackgroundColor = function hoverBackgroundColor(_ref4) {
+  var disabled = _ref4.disabled,
+      transparent = _ref4.transparent;
+  return !disabled && !transparent && palette(0);
+};
+var hoverForegroundColor = function hoverForegroundColor(_ref5) {
+  var disabled = _ref5.disabled,
+      transparent = _ref5.transparent;
+  return !disabled && transparent && palette(0);
+};
+
+var styles = css(['display:inline-flex;font-family:', ';align-items:center;white-space:nowrap;font-size:', ';border:0.0625em solid ', ';height:2.5em;justify-content:center;text-decoration:none;cursor:', ';appearance:none;padding:0 1em;border-radius:0.125em;box-sizing:border-box;pointer-events:', ';transition:background-color 250ms ease-out,color 250ms ease-out,border-color 250ms ease-out;background-color:', ';color:', ';&:hover,&:focus,&:active{background-color:', ';color:', ';}&:focus{outline:none;}'], font('primary'), fontSize, ifProp('transparent', 'currentcolor', 'transparent'), ifProp('disabled', 'default', 'pointer'), ifProp('disabled', 'none', 'auto'), backgroundColor, foregroundColor, hoverBackgroundColor, hoverForegroundColor);
+
+var StyledLink = styled(function (_ref6) {
+  var disabled = _ref6.disabled,
+      transparent = _ref6.transparent,
+      reverse = _ref6.reverse,
+      palette = _ref6.palette,
+      height = _ref6.height,
+      theme = _ref6.theme,
+      props = _objectWithoutProperties(_ref6, ['disabled', 'transparent', 'reverse', 'palette', 'height', 'theme']);
+
+  return React.createElement(Link, props);
+}).withConfig({
+  displayName: 'Button__StyledLink'
+})(['', ';'], styles);
+var Anchor = styled.a.withConfig({
+  displayName: 'Button__Anchor'
+})(['', ';'], styles);
+var StyledButton = styled.button.withConfig({
+  displayName: 'Button__StyledButton'
+})(['', ';'], styles);
+
+var Button = function Button(_ref7) {
+  var type = _ref7.type,
+      props = _objectWithoutProperties(_ref7, ['type']);
+
+  if (props.to) {
+    return React.createElement(StyledLink, props);
+  } else if (props.href) {
+    return React.createElement(Anchor, props);
+  }
+  return React.createElement(StyledButton, _extends({}, props, { type: type }));
+};
+
+Button.propTypes = {
+  disabled: PropTypes.bool,
+  palette: PropTypes.string,
+  transparent: PropTypes.bool,
+  reverse: PropTypes.bool,
+  height: PropTypes.number,
+  type: PropTypes.string,
+  to: PropTypes.string,
+  href: PropTypes.string
+};
+
+Button.defaultProps = {
+  palette: 'primary',
+  type: 'button',
+  height: 40
+};
+
+var _default = Button;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(fontSize, 'fontSize', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+
+  __REACT_HOT_LOADER__.register(backgroundColor, 'backgroundColor', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+
+  __REACT_HOT_LOADER__.register(foregroundColor, 'foregroundColor', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+
+  __REACT_HOT_LOADER__.register(hoverBackgroundColor, 'hoverBackgroundColor', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+
+  __REACT_HOT_LOADER__.register(hoverForegroundColor, 'hoverForegroundColor', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+
+  __REACT_HOT_LOADER__.register(styles, 'styles', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+
+  __REACT_HOT_LOADER__.register(StyledLink, 'StyledLink', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+
+  __REACT_HOT_LOADER__.register(Anchor, 'Anchor', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+
+  __REACT_HOT_LOADER__.register(StyledButton, 'StyledButton', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+
+  __REACT_HOT_LOADER__.register(Button, 'Button', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/atoms/Button/index.js');
+}();
+
+;

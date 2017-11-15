@@ -1,0 +1,25 @@
+import React from 'react';
+
+var ErrorPage = function ErrorPage() {
+  return React.createElement(
+    'div',
+    null,
+    'Oops! A server error occurred'
+  );
+};
+
+var _default = ErrorPage;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(ErrorPage, 'ErrorPage', '/home/ryan/dev/port/src/components/Error.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/Error.js');
+}();
+
+;

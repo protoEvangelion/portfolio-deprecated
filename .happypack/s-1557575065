@@ -1,0 +1,32 @@
+import { FETCH_FREE, FETCH_STREAMS } from './action';
+
+var _default = function _default() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  switch (action.type) {
+    case FETCH_STREAMS:
+      return Object.assign({}, state, {
+        featured: action.payload.data.featured
+      });
+    case FETCH_FREE:
+      return Object.assign({}, state, {
+        free: [action.payload.data]
+      });
+    default:
+      return state;
+  }
+};
+
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/store/stream/reducer.js');
+}();
+
+;

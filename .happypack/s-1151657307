@@ -1,0 +1,92 @@
+import { Link } from 'components/atoms';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+import { palette } from 'styled-theme';
+
+var Nav = styled.nav.withConfig({
+  displayName: 'PrimaryNavigation__Nav'
+})(['display:flex;list-style:none;>:not(:first-child){margin-left:1rem;}a{transition:color 0.3s;color:white;font-size:15px;&.active{color:', ';}&:hover{text-decoration:none;transition:color 0.3s;color:', ';}}'], palette('grayscale', 0), palette('grayscale', 3));
+var LinkContainer = styled.div.withConfig({
+  displayName: 'PrimaryNavigation__LinkContainer'
+})(['display:flex;justify-content:space-around;width:100%;@media (max-width:700px){flex-direction:column;}']);
+
+var PrimaryNavigation = function PrimaryNavigation(props) {
+  return React.createElement(
+    Nav,
+    props,
+    React.createElement(
+      LinkContainer,
+      props,
+      React.createElement(
+        'li',
+        null,
+        React.createElement(
+          Link,
+          { exact: true, to: '/stack' },
+          'Stack'
+        )
+      ),
+      React.createElement(
+        'li',
+        null,
+        React.createElement(
+          Link,
+          { to: '/allApps' },
+          'MicroApps'
+        )
+      ),
+      React.createElement(
+        'li',
+        null,
+        React.createElement(
+          Link,
+          { to: '/apiApps' },
+          'APIs'
+        )
+      ),
+      React.createElement(
+        'li',
+        null,
+        React.createElement(
+          Link,
+          { to: '/about' },
+          'About'
+        )
+      ),
+      React.createElement(
+        'li',
+        null,
+        React.createElement(
+          Link,
+          { to: '/contact' },
+          'Contact'
+        )
+      )
+    )
+  );
+};
+
+PrimaryNavigation.propTypes = {
+  reverse: PropTypes.bool
+};
+
+var _default = PrimaryNavigation;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Nav, 'Nav', '/home/ryan/dev/port/src/components/molecules/PrimaryNavigation/index.js');
+
+  __REACT_HOT_LOADER__.register(LinkContainer, 'LinkContainer', '/home/ryan/dev/port/src/components/molecules/PrimaryNavigation/index.js');
+
+  __REACT_HOT_LOADER__.register(PrimaryNavigation, 'PrimaryNavigation', '/home/ryan/dev/port/src/components/molecules/PrimaryNavigation/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/molecules/PrimaryNavigation/index.js');
+}();
+
+;

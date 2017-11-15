@@ -1,0 +1,34 @@
+// https://github.com/diegohaz/arc/wiki/Reducers
+import camelCase from 'lodash/camelCase';
+import { combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
+
+var reducers = {
+  form: form
+};
+
+var req = require.context('.', true, /\.\/.+\/reducer\.js$/);
+
+req.keys().forEach(function (key) {
+  var storeName = camelCase(key.replace(/\.\/(.+)\/.+$/, '$1'));
+  reducers[storeName] = req(key).default;
+});
+
+var _default = combineReducers(reducers);
+
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(reducers, 'reducers', '/home/ryan/dev/port/src/store/reducer.js');
+
+  __REACT_HOT_LOADER__.register(req, 'req', '/home/ryan/dev/port/src/store/reducer.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/store/reducer.js');
+}();
+
+;

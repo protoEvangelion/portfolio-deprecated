@@ -1,0 +1,33 @@
+import { HorizontalRule } from 'components/atoms';
+import { Banner } from 'components/molecules';
+import { AppList, Footer, Navbar } from 'components/organisms';
+import { PageTemplate } from 'components/templates';
+import React from 'react';
+
+var UtilityPage = function UtilityPage() {
+  return React.createElement(
+    PageTemplate,
+    { header: React.createElement(Navbar, null), footer: React.createElement(Footer, null) },
+    React.createElement(Banner, { image: '/images/utilityBanner.png', size: '300px' }),
+    React.createElement(HorizontalRule, null),
+    React.createElement(AppList, {
+      apps: [{ src: '/images/gameOfLife.png', route: 'gameOfLife' }, { src: '/images/markdown.png', route: 'markdown' }, { src: '/images/simon.png', route: 'simon' }]
+    })
+  );
+};
+
+var _default = UtilityPage;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(UtilityPage, 'UtilityPage', '/home/ryan/dev/port/src/components/pages/UtilityPage/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/pages/UtilityPage/index.js');
+}();
+
+;

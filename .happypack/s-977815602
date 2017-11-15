@@ -1,0 +1,44 @@
+import axios from 'axios';
+
+// import proxyUrl from '../api'
+
+export var FETCH_FREE = 'FETCH_FREE';
+export var FETCH_STREAMS = 'FETCH_STREAMS';
+
+var clientId = 'aswjx355ya1e5y7vy3t5sg1hcwsaokn';
+
+export function fetchFreeCodeCamp() {
+  var url = 'https://api.twitch.tv/kraken/streams/freecodecamp?client_id=' + clientId;
+  // const reqUrl = `${proxyUrl}${url}`
+  var reqUrl = url;
+
+  var request = axios.get(reqUrl);
+  return { type: FETCH_FREE, payload: request };
+}
+
+export function fetchStreams() {
+  var url = 'https://api.twitch.tv/kraken/streams/featured?limit=9&client_id=' + clientId;
+  // const reqUrl = `${proxyUrl}${url}`
+  var reqUrl = url;
+  var request = axios.get(reqUrl);
+  return { type: FETCH_STREAMS, payload: request };
+}
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(FETCH_FREE, 'FETCH_FREE', '/home/ryan/dev/port/src/store/stream/action.js');
+
+  __REACT_HOT_LOADER__.register(FETCH_STREAMS, 'FETCH_STREAMS', '/home/ryan/dev/port/src/store/stream/action.js');
+
+  __REACT_HOT_LOADER__.register(clientId, 'clientId', '/home/ryan/dev/port/src/store/stream/action.js');
+
+  __REACT_HOT_LOADER__.register(fetchFreeCodeCamp, 'fetchFreeCodeCamp', '/home/ryan/dev/port/src/store/stream/action.js');
+
+  __REACT_HOT_LOADER__.register(fetchStreams, 'fetchStreams', '/home/ryan/dev/port/src/store/stream/action.js');
+}();
+
+;

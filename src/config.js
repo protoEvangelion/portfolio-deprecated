@@ -1,26 +1,21 @@
 const merge = require('lodash/merge')
 
-const browser = typeof window !== 'undefined'
-const ip = process.env.IP || 'localhost'
-const port = process.env.PORT || 3000
-const basename = `/${process.env.PUBLIC_PATH || ''}`.replace('//', '/')
-
 const config = {
   all: {
     env: process.env.NODE_ENV || 'development',
-    baseUrl: `http://${ip}:${port}${basename}`,
+    isDev: process.env.NODE_ENV !== 'production',
+    basename: process.env.PUBLIC_PATH,
+    host: process.env.HOST || 'localhost',
+    port: process.env.PORT || 3000,
+    isBrowser: typeof window !== 'undefined',
+    isServer: typeof window === 'undefined',
     apiUrl: 'https://jsonplaceholder.typicode.com',
-    basename,
-    browser,
-    ip,
-    port,
   },
   test: {},
   development: {},
   production: {
-    ip: process.env.IP || 'localhost',
+    host: process.env.HOST || 'localhost',
     port: process.env.PORT || 8080,
-    baseUrl: 'https://ryantg.herokuapp.com',
     apiUrl: 'https://jsonplaceholder.typicode.com',
   },
 }

@@ -1,0 +1,27 @@
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { font, palette } from 'styled-theme';
+
+var Paragraph = styled.p.withConfig({
+  displayName: 'Paragraph'
+})(['font-family:', ';color:', ';font-size:1rem;line-height:1.3;margin:1rem 0 0;'], font('primary'), palette('grayscale', 0));
+
+Paragraph.propTypes = {
+  reverse: PropTypes.bool
+};
+
+var _default = Paragraph;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Paragraph, 'Paragraph', '/home/ryan/dev/port/src/components/atoms/Paragraph/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/atoms/Paragraph/index.js');
+}();
+
+;

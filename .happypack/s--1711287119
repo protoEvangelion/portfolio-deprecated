@@ -1,0 +1,39 @@
+import axios from 'axios';
+
+// import proxyUrl from '../api'
+
+var API_KEY = '248f4ff9366b7a46104566e76bd7aa11';
+var ROOT_URL = 'http://api.openweathermap.org/data/2.5/forecast?appid=' + API_KEY;
+
+export var FETCH_WEATHER = 'FETCH_WEATHER';
+
+export function fetchWeather(city) {
+  var url = ROOT_URL + '&q=' + city + ',us';
+  // const reqUrl = `${proxyUrl}${url}`
+
+  var reqUrl = url;
+
+  var request = axios.get(reqUrl);
+
+  return {
+    type: FETCH_WEATHER,
+    payload: request
+  };
+}
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(API_KEY, 'API_KEY', '/home/ryan/dev/port/src/store/weather/action.js');
+
+  __REACT_HOT_LOADER__.register(ROOT_URL, 'ROOT_URL', '/home/ryan/dev/port/src/store/weather/action.js');
+
+  __REACT_HOT_LOADER__.register(FETCH_WEATHER, 'FETCH_WEATHER', '/home/ryan/dev/port/src/store/weather/action.js');
+
+  __REACT_HOT_LOADER__.register(fetchWeather, 'fetchWeather', '/home/ryan/dev/port/src/store/weather/action.js');
+}();
+
+;

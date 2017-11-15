@@ -1,0 +1,54 @@
+import { Heading } from 'components/atoms';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+
+var Wrapper = styled.div.withConfig({
+  displayName: 'Banner__Wrapper'
+})(['display:flex;flex-direction:column;align-items:center;padding-top:40px;padding-bottom:70px;']);
+
+var StyledImage = styled.img.withConfig({
+  displayName: 'Banner__StyledImage'
+})(['height:', ' margin-top:30px;'], function (props) {
+  return props.size;
+});
+
+var Banner = function Banner(_ref) {
+  var image = _ref.image,
+      size = _ref.size;
+  return React.createElement(
+    Wrapper,
+    null,
+    React.createElement(Heading, { header: 'Gaming & Utility MicroApps' }),
+    React.createElement(StyledImage, { src: image, size: size })
+  );
+};
+
+Banner.propTypes = {
+  image: PropTypes.string.isRequired,
+  size: PropTypes.string
+};
+
+Banner.defaultProps = {
+  size: '400px'
+};
+
+var _default = Banner;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Wrapper, 'Wrapper', '/home/ryan/dev/port/src/components/molecules/Banner/index.js');
+
+  __REACT_HOT_LOADER__.register(StyledImage, 'StyledImage', '/home/ryan/dev/port/src/components/molecules/Banner/index.js');
+
+  __REACT_HOT_LOADER__.register(Banner, 'Banner', '/home/ryan/dev/port/src/components/molecules/Banner/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/molecules/Banner/index.js');
+}();
+
+;

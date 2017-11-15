@@ -1,0 +1,32 @@
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { palette } from 'styled-theme';
+
+var HorizontalRule = styled.hr.withConfig({
+  displayName: 'HorizontalRule'
+})(['border:1px solid ', ';border-width:0 0 1px;width:100%;'], palette(1, true));
+
+HorizontalRule.propTypes = {
+  palette: PropTypes.string,
+  reverse: PropTypes.bool
+};
+
+HorizontalRule.defaultProps = {
+  palette: 'grayscale'
+};
+
+var _default = HorizontalRule;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(HorizontalRule, 'HorizontalRule', '/home/ryan/dev/port/src/components/atoms/HorizontalRule/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/atoms/HorizontalRule/index.js');
+}();
+
+;

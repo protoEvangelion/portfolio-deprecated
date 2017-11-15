@@ -1,0 +1,93 @@
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+import { Badge, Heading, Icon, Link, Paragraph } from 'components/atoms';
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+
+var Wrapper = styled.div.withConfig({
+  displayName: 'Feature__Wrapper'
+})(['position:relative;display:flex;padding:1rem;box-sizing:border-box;opacity:', ';'], function (props) {
+  return props.soon ? 0.4 : 1;
+});
+
+var StyledIcon = styled(Icon).withConfig({
+  displayName: 'Feature__StyledIcon'
+})(['flex:none;']);
+
+var Text = styled.div.withConfig({
+  displayName: 'Feature__Text'
+})(['margin-left:1rem;& >:first-child{margin:0;}']);
+
+var StyledBadge = styled(Badge).withConfig({
+  displayName: 'Feature__StyledBadge'
+})(['position:absolute;top:1rem;right:1rem;']);
+
+var Feature = function Feature(_ref) {
+  var icon = _ref.icon,
+      title = _ref.title,
+      link = _ref.link,
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ['icon', 'title', 'link', 'children']);
+
+  return React.createElement(
+    Wrapper,
+    props,
+    icon && React.createElement(StyledIcon, { icon: icon, height: 64 }),
+    React.createElement(
+      Text,
+      null,
+      React.createElement(
+        Heading,
+        { level: 2 },
+        link ? React.createElement(
+          Link,
+          { href: link },
+          title
+        ) : title
+      ),
+      React.createElement(
+        Paragraph,
+        null,
+        children
+      )
+    ),
+    props.soon && React.createElement(
+      StyledBadge,
+      { palette: 'grayscale' },
+      'soon'
+    )
+  );
+};
+
+Feature.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+  link: PropTypes.string,
+  soon: PropTypes.bool,
+  children: PropTypes.any
+};
+
+var _default = Feature;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Wrapper, 'Wrapper', '/home/ryan/dev/port/src/components/molecules/Feature/index.js');
+
+  __REACT_HOT_LOADER__.register(StyledIcon, 'StyledIcon', '/home/ryan/dev/port/src/components/molecules/Feature/index.js');
+
+  __REACT_HOT_LOADER__.register(Text, 'Text', '/home/ryan/dev/port/src/components/molecules/Feature/index.js');
+
+  __REACT_HOT_LOADER__.register(StyledBadge, 'StyledBadge', '/home/ryan/dev/port/src/components/molecules/Feature/index.js');
+
+  __REACT_HOT_LOADER__.register(Feature, 'Feature', '/home/ryan/dev/port/src/components/molecules/Feature/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/molecules/Feature/index.js');
+}();
+
+;

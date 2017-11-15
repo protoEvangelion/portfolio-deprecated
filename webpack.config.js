@@ -1,124 +1,140 @@
-const { css } = require('@webpack-blocks/assets')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+// https://github.com/diegohaz/arc/wiki/Webpack
 const path = require('path')
-const SimpleProgressWebpackPlugin = require('customized-progress-webpack-plugin')
-
-const webpack = require('webpack')
+const devServer = require('@webpack-blocks/dev-server2')
+const splitVendor = require('webpack-blocks-split-vendor')
+const happypack = require('webpack-blocks-happypack')
+const serverSourceMap = require('webpack-blocks-server-source-map')
+const nodeExternals = require('webpack-node-externals')
+const AssetsByTypePlugin = require('webpack-assets-by-type-plugin')
+const ChildConfigPlugin = require('webpack-child-config-plugin')
+const SpawnPlugin = require('webpack-spawn-plugin')
 
 const {
-  createConfig,
-  match,
-
-  // Feature Blocks
-  babel,
-  devServer,
-  file,
-
-  // Shorthand setters
   addPlugins,
-  defineConstants,
+  createConfig,
   entryPoint,
   env,
-  resolve,
   setOutput,
   sourceMaps,
-} = require('webpack-blocks')
+  defineConstants,
+  webpack,
+  group,
+} = require('@webpack-blocks/webpack2')
 
-const publicPath = `/${process.env.PUBLIC_PATH || ''}/`.replace('//', '/')
-
+const host = process.env.HOST || 'localhost'
+const port = +process.env.PORT + 1 || 3001
 const sourceDir = process.env.SOURCE || 'src'
+const publicPath = `/${process.env.PUBLIC_PATH || ''}/`.replace('//', '/')
 const sourcePath = path.join(process.cwd(), sourceDir)
-const outputPath = path.join(process.cwd(), 'dist')
+const outputPath = path.join(process.cwd(), 'dist/public')
+const assetsPath = path.join(process.cwd(), 'dist/assets.json')
+const clientEntryPath = path.join(sourcePath, 'client.js')
+const serverEntryPath = path.join(sourcePath, 'server.js')
+const devDomain = `http://${host}:${port}/`
 
-function sassLoader() {
-  return (context, { merge }) =>
-    merge({
-      module: {
-        rules: [
-          Object.assign(
-            {
-              test: /\.scss$/,
-              use: [
-                {
-                  loader: 'style-loader',
-                },
-                {
-                  loader: 'css-loader',
-                  options: {
-                    modules: true,
-                    localIdentName: '[local]-[hash:base64:5]',
-                  },
-                },
-                {
-                  loader: 'sass-loader',
-                  options: {
-                    includePaths: [sourcePath],
-                  },
-                },
-              ],
-            },
-            context.match,
-          ),
-        ],
+const babel = () => () => ({
+  module: {
+    rules: [
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
+    ],
+  },
+})
+
+const assets = () => () => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|svg|woff2?|ttf|eot)$/,
+        loader: 'url-loader?limit=8000',
       },
-    })
-}
+    ],
+  },
+})
 
-const config = createConfig([
-  entryPoint(sourcePath),
-  setOutput(`${outputPath}/app.js`),
+const resolveModules = modules => () => ({
+  resolve: {
+    modules: [].concat(modules, ['node_modules']),
+  },
+})
+
+const base = () =>
+  group([
+    setOutput({
+      filename: '[name].js',
+      path: outputPath,
+      publicPath,
+    }),
+    defineConstants({
+      'process.env.NODE_ENV': process.env.NODE_ENV,
+      'process.env.PUBLIC_PATH': publicPath.replace(/\/$/, ''),
+    }),
+    addPlugins([new webpack.ProgressPlugin()]),
+    happypack([babel()]),
+    assets(),
+    resolveModules(sourceDir),
+
+    env('development', [
+      setOutput({
+        publicPath: devDomain,
+      }),
+    ]),
+  ])
+
+const server = createConfig([
+  base(),
+  entryPoint({ server: serverEntryPath }),
+  setOutput({
+    filename: '../[name].js',
+    libraryTarget: 'commonjs2',
+  }),
   addPlugins([
-    new webpack.ProgressPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.join(process.cwd(), 'public/index.html'),
+    new webpack.BannerPlugin({
+      banner: 'global.assets = require("./assets.json");',
+      raw: true,
     }),
   ]),
-  defineConstants({
-    'process.env.NODE_ENV': process.env.NODE_ENV,
-    'process.env.PUBLIC_PATH': publicPath.replace(/\/$/, ''),
+  () => ({
+    target: 'node',
+    externals: [nodeExternals()],
+    stats: 'errors-only',
   }),
-  babel(),
-  sassLoader(),
-  css(),
-  match(
-    [
-      '*.gif',
-      '*.jpg',
-      '*.jpeg',
-      '*.png',
-      '*.webp',
-      '*svg',
-      '*woff2',
-      '*woff',
-      '*ttf',
-      '*eot',
-    ],
-    [file()],
-  ),
-  resolve({
-    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-  }),
+
+  env('development', [
+    serverSourceMap(),
+    addPlugins([new SpawnPlugin('npm', ['start'])]),
+    () => ({
+      watch: true,
+    }),
+  ]),
+])
+
+const client = createConfig([
+  base(),
+  entryPoint({ client: clientEntryPath }),
+  addPlugins([
+    new AssetsByTypePlugin({ path: assetsPath }),
+    new ChildConfigPlugin(server),
+  ]),
+
   env('development', [
     devServer({
-      historyApiFallback: true, // 404s fallback to index.html
-      hot: true,
-      port: 3000,
+      contentBase: 'public',
+      stats: 'errors-only',
+      historyApiFallback: { index: publicPath },
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      host,
+      port,
     }),
     sourceMaps(),
-    addPlugins([
-      new SimpleProgressWebpackPlugin(),
-      new webpack.NamedModulesPlugin(),
-    ]),
+    addPlugins([new webpack.NamedModulesPlugin()]),
   ]),
 
   env('production', [
+    splitVendor(),
     addPlugins([
-      new SimpleProgressWebpackPlugin(),
-      new webpack.LoaderOptionsPlugin({ minimize: true }),
       new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
     ]),
   ]),
 ])
 
-module.exports = config
+module.exports = client

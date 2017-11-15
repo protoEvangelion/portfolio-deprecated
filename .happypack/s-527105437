@@ -1,0 +1,91 @@
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+
+var Wrapper = styled.div.withConfig({
+  displayName: 'PageTemplate__Wrapper'
+})(['display:flex;flex-direction:column;min-height:100vh;box-sizing:border-box;']);
+
+var Header = styled.header.withConfig({
+  displayName: 'PageTemplate__Header'
+})(['top:0;width:100%;z-index:999;']);
+
+var Hero = styled.section.withConfig({
+  displayName: 'PageTemplate__Hero'
+})(['']);
+
+var Content = styled.section.withConfig({
+  displayName: 'PageTemplate__Content'
+})(['width:100%;']);
+
+var Footer = styled.footer.withConfig({
+  displayName: 'PageTemplate__Footer'
+})(['margin-top:auto;']);
+
+var PageTemplate = function PageTemplate(_ref) {
+  var header = _ref.header,
+      hero = _ref.hero,
+      children = _ref.children,
+      footer = _ref.footer,
+      props = _objectWithoutProperties(_ref, ['header', 'hero', 'children', 'footer']);
+
+  return React.createElement(
+    Wrapper,
+    props,
+    React.createElement(
+      Header,
+      null,
+      header
+    ),
+    hero && React.createElement(
+      Hero,
+      null,
+      hero
+    ),
+    React.createElement(
+      Content,
+      { id: 'content' },
+      children
+    ),
+    React.createElement(
+      Footer,
+      null,
+      footer
+    )
+  );
+};
+
+PageTemplate.propTypes = {
+  header: PropTypes.node.isRequired,
+  hero: PropTypes.node,
+  footer: PropTypes.node.isRequired,
+  children: PropTypes.any.isRequired
+};
+
+var _default = PageTemplate;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Wrapper, 'Wrapper', '/home/ryan/dev/port/src/components/templates/PageTemplate/index.js');
+
+  __REACT_HOT_LOADER__.register(Header, 'Header', '/home/ryan/dev/port/src/components/templates/PageTemplate/index.js');
+
+  __REACT_HOT_LOADER__.register(Hero, 'Hero', '/home/ryan/dev/port/src/components/templates/PageTemplate/index.js');
+
+  __REACT_HOT_LOADER__.register(Content, 'Content', '/home/ryan/dev/port/src/components/templates/PageTemplate/index.js');
+
+  __REACT_HOT_LOADER__.register(Footer, 'Footer', '/home/ryan/dev/port/src/components/templates/PageTemplate/index.js');
+
+  __REACT_HOT_LOADER__.register(PageTemplate, 'PageTemplate', '/home/ryan/dev/port/src/components/templates/PageTemplate/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/templates/PageTemplate/index.js');
+}();
+
+;

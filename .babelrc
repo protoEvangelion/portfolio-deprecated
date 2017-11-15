@@ -1,31 +1,32 @@
 {
-	"presets": [
-		[
-			"env",
-			{
-				"modules": false,
-				"targets": {
-					"browsers": [
-						"last 3 versions"
-					]
-				},
-				"debug": false
-			}
-		],
-		"react"
-	],
-	"plugins": [
-		"babel-plugin-styled-components",
-		"react-hot-loader/babel",
-		"transform-export-extensions",
-		"transform-object-rest-spread",
-		"transform-regenerator"
-	],
-	"env": {
-		"production": {
-			"presets": [
-				"react-optimize"
-			]
-		}
-	}
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": ["last 3 versions"]
+        },
+        "debug": false
+      }
+    ],
+    "react"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-export-extensions",
+    "transform-object-rest-spread",
+    "transform-regenerator",
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": true
+      }
+    ]
+  ],
+  "env": {
+    "production": {
+      "presets": ["react-optimize"]
+    }
+  }
 }

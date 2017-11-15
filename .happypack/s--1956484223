@@ -1,0 +1,61 @@
+import 'react-hot-loader/patch';
+import 'babel-polyfill';
+
+import App from 'components/App';
+import { basename } from 'config';
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { ServerStateProvider } from 'react-router-server';
+import configureStore from 'store/configure';
+
+var serverState = window.__SERVER_STATE__;
+var initialState = window.__INITIAL_STATE__;
+
+var store = configureStore(initialState);
+
+var renderApp = function renderApp() {
+  return React.createElement(
+    ServerStateProvider,
+    { state: serverState },
+    React.createElement(
+      Provider,
+      { store: store },
+      React.createElement(
+        BrowserRouter,
+        { basename: basename },
+        React.createElement(App, null)
+      )
+    )
+  );
+};
+
+var root = document.getElementById('app');
+render(renderApp(), root);
+
+if (module.hot) {
+  module.hot.accept('components/App', function () {
+    require('components/App');
+    render(renderApp(), root);
+  });
+}
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(serverState, 'serverState', '/home/ryan/dev/port/src/client.js');
+
+  __REACT_HOT_LOADER__.register(initialState, 'initialState', '/home/ryan/dev/port/src/client.js');
+
+  __REACT_HOT_LOADER__.register(store, 'store', '/home/ryan/dev/port/src/client.js');
+
+  __REACT_HOT_LOADER__.register(renderApp, 'renderApp', '/home/ryan/dev/port/src/client.js');
+
+  __REACT_HOT_LOADER__.register(root, 'root', '/home/ryan/dev/port/src/client.js');
+}();
+
+;

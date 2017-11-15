@@ -1,0 +1,127 @@
+/* eslint-disable no-console */
+import 'babel-polyfill';
+
+import path from 'path';
+
+import App from 'components/App';
+import Error from 'components/Error';
+import Html from 'components/Html';
+import { basename, host, port } from 'config';
+import express from 'express';
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { Provider } from 'react-redux';
+import { StaticRouter } from 'react-router';
+import { renderToString } from 'react-router-server';
+import serialize from 'serialize-javascript';
+import configureStore from 'store/configure';
+import { ServerStyleSheet } from 'styled-components';
+
+var renderApp = function renderApp(_ref) {
+  var store = _ref.store,
+      context = _ref.context,
+      location = _ref.location,
+      sheet = _ref.sheet;
+
+  var app = sheet.collectStyles(React.createElement(
+    Provider,
+    { store: store },
+    React.createElement(
+      StaticRouter,
+      { basename: basename, context: context, location: location },
+      React.createElement(App, null)
+    )
+  ));
+  return renderToString(app);
+};
+
+var renderHtml = function renderHtml(_ref2) {
+  var serverState = _ref2.serverState,
+      initialState = _ref2.initialState,
+      content = _ref2.content,
+      sheet = _ref2.sheet;
+
+  var styles = sheet.getStyleElement();
+  var _global = global,
+      assets = _global.assets;
+
+  var state = '\n    window.__SERVER_STATE__ = ' + serialize(serverState) + ';\n    window.__INITIAL_STATE__ = ' + serialize(initialState) + ';\n  ';
+  var props = {
+    styles: styles,
+    assets: assets,
+    state: state,
+    content: content
+  };
+  var html = React.createElement(Html, props);
+  return '<!doctype html>\n' + renderToStaticMarkup(html);
+};
+
+var app = express();
+
+app.use(basename, express.static(path.resolve(process.cwd(), 'dist/public')));
+
+app.use(function (req, res, next) {
+  var location = req.url;
+  var store = configureStore({});
+  var context = {};
+  var sheet = new ServerStyleSheet();
+
+  renderApp({
+    store: store,
+    context: context,
+    location: location,
+    sheet: sheet
+  }).then(function (_ref3) {
+    var serverState = _ref3.state,
+        content = _ref3.html;
+
+    if (context.status) {
+      res.status(context.status);
+    }
+    if (context.url) {
+      res.redirect(context.url);
+    } else {
+      var initialState = store.getState();
+      res.send(renderHtml({
+        serverState: serverState,
+        initialState: initialState,
+        content: content,
+        sheet: sheet
+      }));
+    }
+  }).catch(next);
+});
+
+app.use(function (err, req, res, next) {
+  var sheet = new ServerStyleSheet();
+  var content = renderToStaticMarkup(sheet.collectStyles(React.createElement(Error, null)));
+  res.status(500).send(renderHtml({ content: content, sheet: sheet }));
+  console.error(err);
+  next(err);
+});
+
+app.listen(port, function (error) {
+  var boldBlue = function boldBlue(text) {
+    return '\x1B[1m\x1B[34m' + text + '\x1B[39m\x1B[22m';
+  };
+  if (error) {
+    console.error(error);
+  } else {
+    console.info('Server is running at ' + boldBlue('http://' + host + ':' + port + basename + '/'));
+  }
+});
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(renderApp, 'renderApp', '/home/ryan/dev/port/src/server.js');
+
+  __REACT_HOT_LOADER__.register(renderHtml, 'renderHtml', '/home/ryan/dev/port/src/server.js');
+
+  __REACT_HOT_LOADER__.register(app, 'app', '/home/ryan/dev/port/src/server.js');
+}();
+
+;

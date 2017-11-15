@@ -1,5 +1,0 @@
-export formAction from './formAction'
-export quoteAction from './quoteAction'
-export streamAction from './streamAction'
-export weatherAction from './weatherAction'
-export wikiAction from './wikiAction'

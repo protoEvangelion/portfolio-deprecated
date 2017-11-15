@@ -20,3 +20,7 @@ This portfolio was built using modern web tools and best practices.  Here are so
   - 🤖 Optimised Webpack builds via `HappyPack`.
   - 👼 `ESlint` configuration.
   - ❤️ Continuous integration with `Travis-CI` and Heroku
+
+## License
+
+MIT © [Ryan Garant](https://github.com/protoEvangelion)

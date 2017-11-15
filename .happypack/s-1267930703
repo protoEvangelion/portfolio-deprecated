@@ -1,0 +1,57 @@
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+import { Box } from 'components/atoms';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+var breakpoints = function breakpoints(props) {
+  return {
+    xs: '@media screen and (max-width: ' + props.theme.breakpoints[0] + 'em)',
+    sm: '@media screen and (min-width: ' + props.theme.breakpoints[0] + 'em) and (max-width: ' + props.theme.breakpoints[1] + 'em)',
+    md: '@media screen and (min-width: ' + props.theme.breakpoints[1] + 'em) and (max-width: ' + props.theme.breakpoints[2] + 'em)',
+    lg: '@media screen and (min-width: ' + props.theme.breakpoints[2] + 'em) and (max-width: ' + props.theme.breakpoints[3] + 'em)',
+    xl: '@media screen and (min-width: ' + props.theme.breakpoints[3] + 'em)'
+  };
+};
+
+var hidden = function hidden(key) {
+  return function (props) {
+    return props[key] ? _defineProperty({}, breakpoints(props)[key], {
+      display: 'none'
+    }) : null;
+  };
+};
+
+var Hide = styled(Box).withConfig({
+  displayName: 'Hide'
+})(['', ' ', ' ', ' ', ' ', ';'], hidden('xs'), hidden('sm'), hidden('md'), hidden('lg'), hidden('xl'));
+
+Hide.propTypes = {
+  xs: PropTypes.bool,
+  sm: PropTypes.bool,
+  md: PropTypes.bool,
+  lg: PropTypes.bool,
+  xl: PropTypes.bool
+};
+
+Hide.displayName = 'Hide';
+
+var _default = Hide;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(breakpoints, 'breakpoints', '/home/ryan/dev/port/src/components/atoms/Hide/Hide.js');
+
+  __REACT_HOT_LOADER__.register(hidden, 'hidden', '/home/ryan/dev/port/src/components/atoms/Hide/Hide.js');
+
+  __REACT_HOT_LOADER__.register(Hide, 'Hide', '/home/ryan/dev/port/src/components/atoms/Hide/Hide.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/atoms/Hide/Hide.js');
+}();
+
+;

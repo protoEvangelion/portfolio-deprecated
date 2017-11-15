@@ -1,0 +1,59 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+import Helmet from 'react-helmet';
+
+var Html = function Html(_ref) {
+  var styles = _ref.styles,
+      assets = _ref.assets,
+      state = _ref.state,
+      content = _ref.content;
+
+  var helmet = Helmet.rewind();
+  var attrs = helmet.htmlAttributes.toComponent();
+
+  return React.createElement(
+    'html',
+    attrs,
+    React.createElement(
+      'head',
+      null,
+      helmet.title.toComponent(),
+      helmet.meta.toComponent(),
+      React.createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }),
+      helmet.link.toComponent(),
+      React.createElement('style', { dangerouslySetInnerHTML: { __html: styles } })
+    ),
+    React.createElement(
+      'body',
+      null,
+      React.createElement('main', { id: 'app', dangerouslySetInnerHTML: { __html: content } }),
+      React.createElement('script', { dangerouslySetInnerHTML: { __html: state } }),
+      Object.keys(assets.javascript).reverse().map(function (key) {
+        return React.createElement('script', { key: key, src: assets.javascript[key] });
+      })
+    )
+  );
+};
+
+Html.propTypes = {
+  styles: PropTypes.string.isRequired,
+  assets: PropTypes.object.isRequired,
+  state: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
+};
+
+var _default = Html;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Html, 'Html', '/home/ryan/dev/port/src/components/Html.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/Html.js');
+}();
+
+;

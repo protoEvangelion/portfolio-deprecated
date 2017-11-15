@@ -1,0 +1,44 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+import styled from 'styled-components';
+
+var Image = styled.img.withConfig({
+  displayName: 'Avatar__Image'
+})(['border-radius:50%;height:', 'px;padding:20px;'], function (props) {
+  return props.size;
+});
+
+var Avatar = function Avatar(_ref) {
+  var size = _ref.size,
+      src = _ref.src;
+
+  return React.createElement(Image, { size: size, src: src });
+};
+
+Avatar.defaultProps = {
+  size: '200px',
+  src: '/images/calc.png'
+};
+
+Avatar.propTypes = {
+  size: PropTypes.string,
+  src: PropTypes.string.isRequired
+};
+
+var _default = Avatar;
+export default _default;
+;
+
+var _temp = function () {
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
+
+  __REACT_HOT_LOADER__.register(Image, 'Image', '/home/ryan/dev/port/src/components/atoms/Avatar/index.js');
+
+  __REACT_HOT_LOADER__.register(Avatar, 'Avatar', '/home/ryan/dev/port/src/components/atoms/Avatar/index.js');
+
+  __REACT_HOT_LOADER__.register(_default, 'default', '/home/ryan/dev/port/src/components/atoms/Avatar/index.js');
+}();
+
+;
