@@ -1,5 +1,6 @@
+import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { storiesOf } from '@kadira/storybook'
-import { Footer } from 'components'
+
+import Footer from '.'
 
 storiesOf('Footer', module).add('default', () => <Footer />)

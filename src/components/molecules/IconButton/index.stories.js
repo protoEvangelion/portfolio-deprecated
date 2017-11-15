@@ -1,6 +1,7 @@
+import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { storiesOf } from '@kadira/storybook'
-import { IconButton } from 'components'
+
+import IconButton from '.'
 
 storiesOf('IconButton', module)
   .add('default', () => <IconButton icon="close">Hello</IconButton>)

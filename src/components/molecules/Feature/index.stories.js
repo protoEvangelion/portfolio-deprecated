@@ -1,6 +1,7 @@
+import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { storiesOf } from '@kadira/storybook'
-import { Feature } from 'components'
+
+import Feature from '.'
 
 storiesOf('Feature', module)
   .add('default', () => (

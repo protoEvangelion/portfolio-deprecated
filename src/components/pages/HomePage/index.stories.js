@@ -1,5 +1,6 @@
+import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { storiesOf } from '@kadira/storybook'
-import { HomePage } from 'components'
 
-storiesOf('HomePage', module).add('default', () => <HomePage />)
+import HomePage from '.'
+
+storiesOf('Home', module).add('default', () => <HomePage />)

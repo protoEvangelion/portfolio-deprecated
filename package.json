@@ -5,22 +5,25 @@
   "author": "Ryan Garant",
   "scripts": {
     "start": "npm run clean && npm run dev",
-    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config",
+    "build":
+      "cross-env NODE_ENV=production webpack --config webpack/webpack.config",
     "build:clean": "rimraf \"dist/!(.git*|Procfile)**\"",
     "build:copy": "copyfiles public/* public/**/* dist",
     "clean": "rimraf dist/*",
     "coverage": "npm test -- --coverage",
     "dev": "npm run env:dev && webpack-dev-server --colors --progress",
     "env:dev": "cross-env NODE_ENV=development",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "format": "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/**/*.js\" \"src/**/**/**/**/*.js\" \"_src/**/**/*.js\" \"_src/**/**/**/*.js\" \"_src/**/**/**/**/*.js\"",
+    "eslint-check":
+      "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "format":
+      "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/**/*.js\" \"src/**/**/**/**/*.js\" \"_src/**/**/*.js\" \"_src/**/**/**/*.js\" \"_src/**/**/**/**/*.js\"",
     "heroku-postbuild": "npm run build",
     "lint": "eslint src src-clean test .storybook webpack.config.js",
     "lint-staged": "lint-staged",
     "postcoverage": "opn coverage/lcov-report/index.html",
     "prebuild": "npm run build:clean && npm run build:copy",
     "sort": "import-sort --overwrite \"src\"",
-    "storybook": "start-storybook -p 9001 -c .storybook",
+    "story": "start-storybook -p 9001 -c private/storybook -s ./public",
     "test": "cross-env NODE_ENV=test jest"
   },
   "lint-staged": {
@@ -36,22 +39,19 @@
     }
   },
   "jest": {
-    "modulePathIgnorePatterns": [
-      "<rootDir>/src-clean"
-    ],
-    "moduleDirectories": [
-      "src",
-      "node_modules"
-    ],
+    "modulePathIgnorePatterns": ["<rootDir>/src-clean"],
+    "moduleDirectories": ["src", "node_modules"],
     "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/fileMock.js",
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/test/fileMock.js",
       "^(components|containers)$": "<rootDir>/test/componentsMock.js",
       "^(store|\\.\\.)\\/selectors$": "<rootDir>/test/selectorsMock.js",
       "^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js"
     }
   },
   "devDependencies": {
-    "@kadira/storybook": "^2.35.2",
+    "@storybook/addon-actions": "^3.2.15",
+    "@storybook/react": "3.2.15",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-jest": "^21.2.0",

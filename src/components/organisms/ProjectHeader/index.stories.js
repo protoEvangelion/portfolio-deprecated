@@ -1,15 +1,19 @@
-import { storiesOf } from '@kadira/storybook'
-import weather from '/public/projectimages/weather.png'
-import { ProjectHeader } from 'components'
+import { storiesOf } from '@storybook/react'
 import React from 'react'
+
+import ProjectHeader from '.'
 
 storiesOf('ProjectHeader', module)
   .add('default', () => (
-    <ProjectHeader image={weather} header="Hello" link="view my API projects" />
+    <ProjectHeader
+      image="/images/weather.png"
+      header="Hello"
+      link="view my API projects"
+    />
   ))
   .add('theme', () => (
     <ProjectHeader
-      image={weather}
+      image="/images/weather.png"
       header="Hello"
       background
       link="view my API projects"
@@ -17,7 +21,7 @@ storiesOf('ProjectHeader', module)
   ))
   .add('flipped', () => (
     <ProjectHeader
-      image={weather}
+      image="/images/weather.png"
       header="Hello"
       background
       flip

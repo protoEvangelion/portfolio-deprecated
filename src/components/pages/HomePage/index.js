@@ -1,7 +1,3 @@
-import force from '/public/projectimages/force.png'
-import gameOfLife from '/public/projectimages/gameOfLife.png'
-import tradeshow from '/public/projectimages/tradeshow.png'
-import weather from '/public/projectimages/weather.png'
 import {
   FeatureList,
   Footer,
@@ -17,7 +13,7 @@ const HomePage = () => {
     <PageTemplate header={<Navbar />} hero={<Hero />} footer={<Footer />}>
       <ProjectHeader
         id="tradeshowApp"
-        image={tradeshow}
+        image="/images/tradeshow.png"
         header="A fullstack MERN project built to help trade show teams consolidate their efforts and collaborate in real time..."
         link="View my Fullstack Tradeshow App"
         href="https://aoatradeshow.herokuapp.com"
@@ -25,7 +21,7 @@ const HomePage = () => {
       />
       <ProjectHeader
         id="utilityApps"
-        image={gameOfLife}
+        image="/images/gameOfLife.png"
         header="A cool collection consisting of simple game projects and utilities like a Markdown previewer..."
         link="View my Gaming & Utility Projects"
         to="utilityApps"
@@ -33,7 +29,7 @@ const HomePage = () => {
       />
       <ProjectHeader
         id="apiApps"
-        image={weather}
+        image="/images/weather.png"
         header="An interesting group of API projects that span from a  Pinterest recipe box to syndicating the coolest channels on Twitch..."
         link="View my API Projects"
         to="apiApps"
@@ -41,7 +37,7 @@ const HomePage = () => {
       />
       <ProjectHeader
         id="d3Apps"
-        image={force}
+        image="/images/force.png"
         header="A dynamic collection of D3 projects implementing cutting edge data visualization technology..."
         link="View my D3 Projects"
         to="d3Apps"

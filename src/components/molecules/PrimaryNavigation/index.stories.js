@@ -1,6 +1,7 @@
+import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { storiesOf } from '@kadira/storybook'
-import { PrimaryNavigation } from 'components'
+
+import PrimaryNavigation from '.'
 
 storiesOf('PrimaryNavigation', module)
   .add('default', () => <PrimaryNavigation />)

@@ -1,4 +1,3 @@
-// import headshot from '/public/projectimages/headshot.jpg'
 import { Avatar, Block, Paragraph } from 'components/atoms'
 import { SocialBtns } from 'components/molecules'
 import React from 'react'

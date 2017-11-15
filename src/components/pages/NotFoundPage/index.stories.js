@@ -1,5 +1,6 @@
+import { storiesOf } from '@storybook/react'
 import React from 'react'
-import { storiesOf } from '@kadira/storybook'
-import { NotFoundPage } from 'components'
+
+import NotFoundPage from '.'
 
 storiesOf('NotFoundPage', module).add('default', () => <NotFoundPage />)
