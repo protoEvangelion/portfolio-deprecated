@@ -1,39 +1,49 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-import { palette } from 'styled-theme'
-import { ifProp } from 'styled-tools'
+import { space } from 'styled-system'
+import { colors } from 'theme'
+import icons from 'theme/icons.json'
 
-export const fontSize = ({ height }) =>
-  height ? `${height / 16}rem` : '1.25em'
-
-const Wrapper = styled.span`
-  display: inline-block;
-  font-size: ${fontSize};
-  color: ${ifProp('palette', palette({ grayscale: 0 }, 1), 'currentcolor')};
-  width: 1em;
-  height: 1em;
-  margin: 0.1em;
-  box-sizing: border-box;
-
-  & > svg {
-    width: 100%;
-    height: 100%;
-    fill: currentcolor;
-    stroke: currentcolor;
-  }
+const StyledSvg = styled.svg`
+  display: block;
 `
 
-const Icon = ({ icon, ...props }) => {
-  const svg = require(`raw-loader!./icons/${icon}.svg`)
-  return <Wrapper {...props} dangerouslySetInnerHTML={{ __html: svg }} />
+const Base = ({ fill, name, size, ...props }) => {
+  const icon = icons[name]
+
+  if (!icon) return false
+
+  return (
+    <StyledSvg
+      {...props}
+      viewBox={icon.viewBox}
+      width={size}
+      height={size}
+      fill={colors[fill]}
+    >
+      <path d={icon.path} />
+    </StyledSvg>
+  )
 }
 
-Icon.propTypes = {
-  icon: PropTypes.string.isRequired,
-  height: PropTypes.number,
-  palette: PropTypes.string,
-  reverse: PropTypes.bool,
+const Icon = styled(Base)`
+  flex: none;
+  ${space};
+`
+
+Icon.displayName = 'Icon'
+
+Icon.defaultProps = {
+  fill: 'primary',
+  name: 'checkLight',
+  size: 24,
+}
+
+Base.propTypes = {
+  fill: PropTypes.string,
+  name: PropTypes.oneOf(Object.keys(icons)).isRequired,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default Icon

@@ -28,10 +28,10 @@ const Footer = styled.footer`
 const PageTemplate = ({ header, hero, children, footer, ...props }) => {
   return (
     <Wrapper {...props}>
-      <Header>{header}</Header>
+      {/* <Header>{header}</Header>
       {hero && <Hero>{hero}</Hero>}
       <Content id="content">{children}</Content>
-      <Footer>{footer}</Footer>
+      <Footer>{footer}</Footer> */}
     </Wrapper>
   )
 }
