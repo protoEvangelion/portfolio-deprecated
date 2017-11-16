@@ -6,13 +6,13 @@ import React from 'react'
 
 const UtilityPage = () => (
   <PageTemplate header={<Navbar />} footer={<Footer />}>
-    <Banner image="/images/utilityBanner.png" size="300px" />
+    <Banner image="/static/utilityBanner.png" size="300px" />
     <HorizontalRule />
     <AppList
       apps={[
-        { src: '/images/gameOfLife.png', route: 'gameOfLife' },
-        { src: '/images/markdown.png', route: 'markdown' },
-        { src: '/images/simon.png', route: 'simon' },
+        { src: '/static/gameOfLife.png', route: 'gameOfLife' },
+        { src: '/static/markdown.png', route: 'markdown' },
+        { src: '/static/simon.png', route: 'simon' },
       ]}
     />
   </PageTemplate>

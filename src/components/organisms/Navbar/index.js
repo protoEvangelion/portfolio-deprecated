@@ -1,4 +1,4 @@
-import { Block, MenuButton } from 'components/atoms'
+import { Aux, Block, MenuButton } from 'components/atoms'
 import { Hide } from 'components/atoms'
 import { IconLink, PrimaryNavigation } from 'components/molecules'
 import React from 'react'
@@ -66,7 +66,7 @@ const StyledSecondaryNavigation = styled(PrimaryNavigation)`
 
 const Navbar = props => {
   return (
-    <Hide md>
+    <Aux>
       <Wrapper opaque reverse {...props}>
         <MenuButton {...props} />
         <StyledIconLogo to="/" icon="whiteLogo" height={100} />
@@ -74,8 +74,22 @@ const Navbar = props => {
         <StyledIconLink to="/allApps" icon="briefcase" height={100} />
       </Wrapper>
       <StyledSecondaryNavigation reverse {...props} />
-    </Hide>
+    </Aux>
   )
 }
+
+// const Navbar = props => {
+//   return (
+//     <Hide md>
+//       <Wrapper opaque reverse {...props}>
+//         <MenuButton {...props} />
+//         <StyledIconLogo to="/" icon="whiteLogo" height={100} />
+//         <StyledPrimaryNavigation reverse {...props} />
+//         <StyledIconLink to="/allApps" icon="briefcase" height={100} />
+//       </Wrapper>
+//       <StyledSecondaryNavigation reverse {...props} />
+//     </Hide>
+//   )
+// }
 
 export default Navbar

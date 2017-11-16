@@ -18,7 +18,9 @@
       {
         "root": ["./"],
         "alias": {
-          "components": "./src/components"
+          "components": "./src/components",
+          "theme": "./src/theme",
+          "utils": "./src/utils"
         }
       }
     ],

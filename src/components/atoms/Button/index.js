@@ -1,94 +1,99 @@
 import PropTypes from 'prop-types'
-import React from 'react'
-import Link from 'react-router-dom/Link'
-import styled, { css } from 'styled-components'
-import { font, palette } from 'styled-theme'
-import { ifProp } from 'styled-tools'
+import styled from 'styled-components'
+import { color, space } from 'styled-system'
+import { colors, radii, radius } from 'theme'
+import { shade } from 'utils'
 
-const fontSize = ({ height }) => `${height / 40}rem`
-
-const backgroundColor = ({ transparent, disabled }) =>
-  transparent ? 'transparent' : palette(disabled ? 2 : 1)
-
-const foregroundColor = ({ transparent, disabled }) =>
-  transparent ? palette(disabled ? 2 : 1) : palette('grayscale', 0, true)
-
-const hoverBackgroundColor = ({ disabled, transparent }) =>
-  !disabled && !transparent && palette(0)
-const hoverForegroundColor = ({ disabled, transparent }) =>
-  !disabled && transparent && palette(0)
-
-const styles = css`
-  display: inline-flex;
-  font-family: ${font('primary')};
-  align-items: center;
-  white-space: nowrap;
-  font-size: ${fontSize};
-  border: 0.0625em solid ${ifProp('transparent', 'currentcolor', 'transparent')};
-  height: 2.5em;
-  justify-content: center;
+const Button = styled.button`
+  -webkit-font-smoothing: antialiased;
+  border-style: solid;
+  border-width: 0;
+  border-radius: ${props => (props.radius ? radii[props.radius] : radius)};
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  text-align: center;
   text-decoration: none;
-  cursor: ${ifProp('disabled', 'default', 'pointer')};
-  appearance: none;
-  padding: 0 1em;
-  border-radius: 0.125em;
-  box-sizing: border-box;
-  pointer-events: ${ifProp('disabled', 'none', 'auto')};
-  transition: background-color 250ms ease-out, color 250ms ease-out,
-    border-color 250ms ease-out;
-  background-color: ${backgroundColor};
-  color: ${foregroundColor};
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: ${hoverBackgroundColor};
-    color: ${hoverForegroundColor};
+  transition: background-color 0.5s;
+  vertical-align: middle;
+  &:disabled {
+    opacity: 0.25;
   }
-
-  &:focus {
-    outline: none;
+  &:hover {
+    background-color: ${props =>
+      props.disabled ? null : shade(props.bg, -0.25)};
   }
+  ${color} ${fullWidth} ${space} ${size};
 `
-
-const StyledLink = styled(
-  ({ disabled, transparent, reverse, palette, height, theme, ...props }) => (
-    <Link {...props} />
-  ),
-)`
-  ${styles};
-`
-const Anchor = styled.a`
-  ${styles};
-`
-const StyledButton = styled.button`
-  ${styles};
-`
-
-const Button = ({ type, ...props }) => {
-  if (props.to) {
-    return <StyledLink {...props} />
-  } else if (props.href) {
-    return <Anchor {...props} />
-  }
-  return <StyledButton {...props} type={type} />
-}
-
-Button.propTypes = {
-  disabled: PropTypes.bool,
-  palette: PropTypes.string,
-  transparent: PropTypes.bool,
-  reverse: PropTypes.bool,
-  height: PropTypes.number,
-  type: PropTypes.string,
-  to: PropTypes.string,
-  href: PropTypes.string,
-}
 
 Button.defaultProps = {
-  palette: 'primary',
-  type: 'button',
-  height: 40,
+  color: colors.white,
+  bg: colors.primary,
+  m: 3,
+  size: 'medium',
+}
+
+const numberStringOrArray = PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.string,
+  PropTypes.array,
+])
+
+Button.propTypes = {
+  /** Size */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  fullWidth: PropTypes.bool,
+  /** Margin */
+  m: numberStringOrArray,
+  mt: numberStringOrArray,
+  mr: numberStringOrArray,
+  mb: numberStringOrArray,
+  ml: numberStringOrArray,
+  mx: numberStringOrArray,
+  my: numberStringOrArray,
+  /** Padding */
+  p: numberStringOrArray,
+  pt: numberStringOrArray,
+  pr: numberStringOrArray,
+  pb: numberStringOrArray,
+  pl: numberStringOrArray,
+  px: numberStringOrArray,
+  py: numberStringOrArray,
+}
+
+Button.displayName = 'Button'
+
+function fullWidth(props) {
+  return props.fullWidth ? { width: '100%' } : null
+}
+
+function size(props) {
+  switch (props.size) {
+    case 'small':
+      return {
+        height: '32px',
+        fontSize: `${props.theme.fontSizes[0]}px`,
+        padding: '0 12px',
+      }
+    case 'medium':
+      return {
+        height: '40px',
+        fontSize: `${props.theme.fontSizes[1]}px`,
+        padding: '0 18px',
+      }
+    case 'large':
+      return {
+        height: '48px',
+        fontSize: `${props.theme.fontSizes[2]}px`,
+        padding: '0 22px',
+      }
+    default:
+      return {
+        height: '40px',
+        fontSize: `${props.theme.fontSizes[1]}px`,
+        padding: '0 18px',
+      }
+  }
 }
 
 export default Button

@@ -1,6 +1,6 @@
-const req = require.context('.', true, /\.\/[^/]+\/index\.js$/)
-
-req.keys().forEach(key => {
-  const componentName = key.replace(/^.+\/([^/]+)\/index\.js/, '$1')
-  module.exports[componentName] = req(key).default
-})
+export Banner from './Banner'
+export Feature from './Feature'
+export IconButton from './IconButton'
+export IconLink from './IconLink'
+export PrimaryNavigation from './PrimaryNavigation'
+export SocialBtns from './SocialBtns'
