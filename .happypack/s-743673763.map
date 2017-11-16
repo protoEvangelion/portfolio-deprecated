@@ -1,1 +1,0 @@
-{"version":3,"sources":["src/store/navbar/action.js"],"names":["OPEN_NAVBAR"],"mappings":"AAAA;AACA,OAAO,IAAMA,cAAc,aAApB;;;;;;;;gCAAMA,W","file":"action.js","sourceRoot":"/home/ryan/dev/port","sourcesContent":["// need to create action it got lost somewhere\nexport const OPEN_NAVBAR = 'OPEN_NAVBAR'\n"]}

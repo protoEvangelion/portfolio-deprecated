@@ -13,15 +13,22 @@
     "react"
   ],
   "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "components": "./src/components"
+        }
+      }
+    ],
     "react-hot-loader/babel",
     "transform-export-extensions",
     "transform-object-rest-spread",
     "transform-regenerator",
     [
-      "babel-plugin-styled-components",
-      {
-        "ssr": true
-      }
+      "styled-components",
+      { "ssr": true, "displayName": true, "preprocess": false }
     ]
   ],
   "env": {
