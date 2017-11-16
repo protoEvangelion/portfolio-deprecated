@@ -1,25 +1,27 @@
-import { Box } from 'components/atoms'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { breakpoints } from 'theme'
 
-const breakpoints = props => ({
-  xs: `@media screen and (max-width: ${props.theme.breakpoints[0]}em)`,
-  sm: `@media screen and (min-width: ${
-    props.theme.breakpoints[0]
-  }em) and (max-width: ${props.theme.breakpoints[1]}em)`,
-  md: `@media screen and (min-width: ${
-    props.theme.breakpoints[1]
-  }em) and (max-width: ${props.theme.breakpoints[2]}em)`,
-  lg: `@media screen and (min-width: ${
-    props.theme.breakpoints[2]
-  }em) and (max-width: ${props.theme.breakpoints[3]}em)`,
-  xl: `@media screen and (min-width: ${props.theme.breakpoints[3]}em)`,
+import Box from '../Box'
+
+const bps = () => ({
+  xs: `@media screen and (max-width: ${breakpoints[0]}em)`,
+  sm: `@media screen and (min-width: ${breakpoints[0]}em) and (max-width: ${
+    breakpoints[1]
+  }em)`,
+  md: `@media screen and (min-width: ${breakpoints[1]}em) and (max-width: ${
+    breakpoints[2]
+  }em)`,
+  lg: `@media screen and (min-width: ${breakpoints[2]}em) and (max-width: ${
+    breakpoints[3]
+  }em)`,
+  xl: `@media screen and (min-width: ${breakpoints[3]}em)`,
 })
 
 const hidden = key => props =>
   props[key]
     ? {
-        [breakpoints(props)[key]]: {
+        [bps(props)[key]]: {
           display: 'none',
         },
       }
