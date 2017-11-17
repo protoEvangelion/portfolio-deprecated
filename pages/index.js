@@ -11,9 +11,9 @@ import React from 'react'
 const HomePage = () => {
   return (
     <PageTemplate header={<Navbar />} hero={<Hero />} footer={<Footer />}>
-      {/* <ProjectHeader
+      <ProjectHeader
         id="tradeshowApp"
-        image="/static/tradeshow.png"
+        image="/static/images/tradeshow.png"
         header="A fullstack MERN project built to help trade show teams consolidate their efforts and collaborate in real time..."
         link="View my Fullstack Tradeshow App"
         href="https://aoatradeshow.herokuapp.com"
@@ -21,7 +21,7 @@ const HomePage = () => {
       />
       <ProjectHeader
         id="utilityApps"
-        image="/static/gameOfLife.png"
+        image="/static/images/gameOfLife.png"
         header="A cool collection consisting of simple game projects and utilities like a Markdown previewer..."
         link="View my Gaming & Utility Projects"
         to="utilityApps"
@@ -29,7 +29,7 @@ const HomePage = () => {
       />
       <ProjectHeader
         id="apiApps"
-        image="/static/weather.png"
+        image="/static/images/weather.png"
         header="An interesting group of API projects that span from a  Pinterest recipe box to syndicating the coolest channels on Twitch..."
         link="View my API Projects"
         to="apiApps"
@@ -37,13 +37,13 @@ const HomePage = () => {
       />
       <ProjectHeader
         id="d3Apps"
-        image="/static/force.png"
+        image="/static/images/force.png"
         header="A dynamic collection of D3 projects implementing cutting edge data visualization technology..."
         link="View my D3 Projects"
         to="d3Apps"
         flip
-      /> */}
-      {/* <FeatureList /> */}
+      />
+      <FeatureList />
     </PageTemplate>
   )
 }

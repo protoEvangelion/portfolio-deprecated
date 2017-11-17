@@ -12,3 +12,4 @@ dist
 npm-debug.log
 webpack/webpack-assets.json
 *.log
+.next

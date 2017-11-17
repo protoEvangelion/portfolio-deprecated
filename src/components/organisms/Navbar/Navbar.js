@@ -69,9 +69,9 @@ const Navbar = props => {
     <Aux>
       <Wrapper opaque reverse {...props}>
         <MenuButton {...props} />
-        <StyledIconLogo to="/" icon="whiteLogo" height={100} />
+        <StyledIconLogo href="/" icon="whiteLogo" height={100} />
         <StyledPrimaryNavigation reverse {...props} />
-        <StyledIconLink to="/allApps" icon="briefcase" height={100} />
+        <StyledIconLink href="/allApps" icon="briefcase" height={100} />
       </Wrapper>
       <StyledSecondaryNavigation reverse {...props} />
     </Aux>
