@@ -21,6 +21,10 @@ This portfolio was built using modern web tools and best practices.  Here are so
   - 👼 `ESlint` configuration.
   - ❤️ Continuous integration with `Travis-CI` and Heroku
 
+## Running Locally
+
+`yarn && yarn run dev`
+
 ## License
 
 MIT © [Ryan Garant](https://github.com/protoEvangelion)
