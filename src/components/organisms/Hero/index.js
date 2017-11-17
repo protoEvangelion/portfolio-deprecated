@@ -35,9 +35,9 @@ const Hero = props => {
       {/* {<Avatar size="250" src={headshot} />} */}
       <Avatar size="250" />
       <SocialBtns />
-      <Text>Ryan Garant</Text>
+      <Text>Filler P</Text>
       <Text>
-        <em>Full Stack JavaScript Web Developer</em>
+        <em>Filler 2nd</em>
       </Text>
     </Wrapper>
   )

@@ -1,4 +1,4 @@
-import { Link } from 'components/atoms'
+import Link from 'next/link'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -29,7 +29,7 @@ const AppList = ({ apps }) => {
   const renderAppIcons = () => {
     return apps.map(app => {
       return (
-        <Link key={app.route} to={app.route}>
+        <Link key={app.route} href={app.route}>
           <AppImage key={app.src} src={app.src} />
         </Link>
       )

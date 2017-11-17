@@ -27,7 +27,7 @@ const Footer = props => {
     <Wrapper {...props}>
       <Credits>
         Made with <Icon icon="heart" /> by{' '}
-        <Link href="https://github.com/protoEvangelion">Ryan Garant</Link>
+        <Link href="https://github.com/protoEvangelion">Filler P</Link>
       </Credits>
       <Credits>Copyright © 2017</Credits>
     </Wrapper>

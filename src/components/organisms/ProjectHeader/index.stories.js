@@ -6,14 +6,14 @@ import ProjectHeader from '.'
 storiesOf('ProjectHeader', module)
   .add('default', () => (
     <ProjectHeader
-      image="/static/weather.png"
+      image="/static/images/weather.png"
       header="Hello"
       link="view my API projects"
     />
   ))
   .add('theme', () => (
     <ProjectHeader
-      image="/static/weather.png"
+      image="/static/images/weather.png"
       header="Hello"
       background
       link="view my API projects"
@@ -21,7 +21,7 @@ storiesOf('ProjectHeader', module)
   ))
   .add('flipped', () => (
     <ProjectHeader
-      image="/static/weather.png"
+      image="/static/images/weather.png"
       header="Hello"
       background
       flip

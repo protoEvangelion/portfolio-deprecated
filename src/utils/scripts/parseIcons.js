@@ -5,7 +5,7 @@ const path = require('path')
 const SVGI = require('svgi')
 const camelCase = require('camelcase')
 
-const src = path.join(__dirname, '../../../static/images/icons')
+const src = path.join(__dirname, '../../../static/images/images/icons')
 const filepath = path.join(__dirname, '../../theme/icons.json')
 
 console.log('src', src, 'filepath', filepath)

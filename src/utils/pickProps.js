@@ -1,6 +1,6 @@
 import { pick } from 'lodash'
 
-const pickSpace = props => {
+const pickProps = props => {
   return pick(props, [
     'm',
     'mt',
@@ -19,4 +19,4 @@ const pickSpace = props => {
   ])
 }
 
-export default pickSpace
+export default pickProps

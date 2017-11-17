@@ -14,7 +14,7 @@ const Avatar = ({ size, src }) => {
 
 Avatar.defaultProps = {
   size: '200px',
-  src: '/static/calc.png',
+  src: '/static/images/calc.png',
 }
 
 Avatar.propTypes = {

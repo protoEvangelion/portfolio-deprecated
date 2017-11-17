@@ -24,7 +24,6 @@
         }
       }
     ],
-    "react-hot-loader/babel",
     "transform-export-extensions",
     "transform-object-rest-spread",
     "transform-regenerator",
