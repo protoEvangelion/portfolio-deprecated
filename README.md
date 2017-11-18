@@ -4,7 +4,7 @@
   <p align='center'>A modern universal SSR React application.</p>
 </p>
 
-## About
+# About
 
 This portfolio was built using modern web tools and best practices.  Here are some of the neat tools used below:
 
