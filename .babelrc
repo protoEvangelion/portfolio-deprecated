@@ -19,6 +19,7 @@
         "root": ["./"],
         "alias": {
           "components": "./src/components",
+          "styled": "./src/styled",
           "theme": "./src/theme",
           "utils": "./src/utils"
         }

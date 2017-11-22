@@ -1,6 +1,7 @@
 import { Heading, Link } from 'components/atoms'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { space } from 'styled'
 import styled, { css } from 'styled-components'
 import { palette } from 'styled-theme'
 import { ifProp } from 'styled-tools'
@@ -31,6 +32,7 @@ const Wrapper = styled.div`
     justify-content: center;
     height: auto;
   }
+  ${space};
 `
 
 const ProjectImage = styled.img`
@@ -56,7 +58,7 @@ const StyledLink = styled(Link)`
 `
 
 const ProjectHeader = ({ header, background, image, flip, link, to, href }) => (
-  <Wrapper background={background} flip={flip}>
+  <Wrapper background={background} flip={flip} m={0} py={6}>
     <ProjectImage src={image} />
     <HeadingCtn>
       <Heading background={background} header={header} />

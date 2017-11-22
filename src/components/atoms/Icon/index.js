@@ -36,7 +36,6 @@ Icon.displayName = 'Icon'
 
 Icon.defaultProps = {
   fill: 'primary',
-  name: 'checkLight',
   size: 24,
 }
 
