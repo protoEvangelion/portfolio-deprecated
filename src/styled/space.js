@@ -9,7 +9,7 @@ export default function(props) {
     .filter(key => REG.test(key))
     .sort()
 
-  const mediaQueries = breaks(props)
+  const mediaQueries = breaks()
 
   return keys
     .map(key => {

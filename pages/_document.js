@@ -4,8 +4,8 @@ import { ServerStyleSheet, injectGlobal } from 'styled-components'
 import reset from 'styled-reset'
 
 const baseStyles = () => injectGlobal`
+  margin: 0;
   ${reset}
-  /* other styles */
 `
 
 export default class MyDocument extends Document {

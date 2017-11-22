@@ -1,11 +1,12 @@
+import { colors } from 'theme'
+
 import { breaks, dec, get, media, merge } from './util'
 
 const REG = /^color|bg$/
 
 module.exports = props => {
   const keys = Object.keys(props).filter(key => REG.test(key))
-  const bp = breaks(props)
-  const palette = get(props, 'theme.colors', {})
+  const mediaQueries = breaks()
 
   return keys
     .map(key => {
@@ -14,14 +15,14 @@ module.exports = props => {
 
       if (!Array.isArray(val)) {
         return {
-          [prop]: cx(palette)(val),
+          [prop]: cx(colors)(val),
         }
       }
 
       return val
-        .map(cx(palette))
+        .map(cx(colors))
         .map(dec(prop))
-        .map(media(bp))
+        .map(media(mediaQueries))
         .reduce(merge, {})
     })
     .reduce(merge, {})
