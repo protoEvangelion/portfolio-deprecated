@@ -11,8 +11,10 @@
     "start": "next start",
     "env:dev": "cross-env NODE_ENV=development",
     "env:prod": "cross-env NODE_ENV=production",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "format": "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/**/*.js\" \"src/**/**/**/**/*.js\" \"_src/**/**/*.js\" \"_src/**/**/**/*.js\" \"_src/**/**/**/**/*.js\"",
+    "eslint-check":
+      "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "format":
+      "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/**/*.js\" \"src/**/**/**/**/*.js\" \"_src/**/**/*.js\" \"_src/**/**/**/*.js\" \"_src/**/**/**/**/*.js\"",
     "icons": "node src/utils/scripts/parseIcons",
     "story": "start-storybook -p 9001 -c private/storybook",
     "test": "cross-env NODE_ENV=test jest"
@@ -30,15 +32,11 @@
     }
   },
   "jest": {
-    "modulePathIgnorePatterns": [
-      "<rootDir>/src-clean"
-    ],
-    "moduleDirectories": [
-      "src",
-      "node_modules"
-    ],
+    "modulePathIgnorePatterns": ["<rootDir>/src-clean"],
+    "moduleDirectories": ["src", "node_modules"],
     "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/fileMock.js",
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/test/fileMock.js",
       "^(components|containers)$": "<rootDir>/test/componentsMock.js",
       "^(store|\\.\\.)\\/selectors$": "<rootDir>/test/selectorsMock.js",
       "^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js"

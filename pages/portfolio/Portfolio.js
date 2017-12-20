@@ -8,7 +8,7 @@ import {
 import { PageTemplate } from 'components/templates'
 import React from 'react'
 
-const HomePage = () => {
+const PortfolioPage = () => {
   return (
     <PageTemplate header={<Navbar />} hero={<Hero />} footer={<Footer />}>
       <ProjectHeader
@@ -48,4 +48,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default PortfolioPage
