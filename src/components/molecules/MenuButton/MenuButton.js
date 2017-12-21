@@ -1,3 +1,4 @@
+import { media } from '~/styled'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -10,9 +11,10 @@ const Wrapper = styled.div`
   margin-left: -5px;
   width: 48px;
   height: 28px;
-  @media (min-width: 700px) {
+
+  ${media.greaterThan('sm')`
     display: none;
-  }
+  `};
 `
 
 const Line1 = styled.span`

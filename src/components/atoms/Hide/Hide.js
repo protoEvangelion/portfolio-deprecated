@@ -1,6 +1,7 @@
+import { width } from '~/styled'
+import { breakpoints } from '~/theme'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { breakpoints } from '~/theme'
 
 import Box from '../Box'
 
@@ -31,6 +32,7 @@ const Hide = styled(Box)`
   ${hidden('xs')} ${hidden('sm')} ${hidden('md')} ${hidden('lg')} ${hidden(
       'xl',
     )};
+  ${width};
 `
 
 Hide.propTypes = {
@@ -39,6 +41,10 @@ Hide.propTypes = {
   md: PropTypes.bool,
   lg: PropTypes.bool,
   xl: PropTypes.bool,
+}
+
+Hide.defaultProps = {
+  width: 'auto',
 }
 
 Hide.displayName = 'Hide'

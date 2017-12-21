@@ -35,7 +35,7 @@ const Icon = styled(Base)`
 Icon.displayName = 'Icon'
 
 Icon.defaultProps = {
-  fill: 'primary',
+  fill: 'white',
   size: 24,
 }
 
