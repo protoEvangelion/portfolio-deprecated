@@ -1,5 +1,5 @@
-import { Heading, Link } from 'components/atoms'
-import { Feature } from 'components/molecules'
+import { Heading, Link } from '~/components/atoms'
+import { Feature } from '~/components/molecules'
 import React from 'react'
 import styled from 'styled-components'
 

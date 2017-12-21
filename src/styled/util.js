@@ -1,4 +1,4 @@
-import { breakpoints } from 'theme'
+import { breakpoints } from '~/theme'
 
 const mq = n => `@media screen and (min-width: ${em(n)})`
 

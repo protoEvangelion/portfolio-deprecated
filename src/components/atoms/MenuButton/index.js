@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   cursor: pointer;
   align-self: flex-start;
   position: relative;
-  margin-top: ${({ opened }) => (opened ? 5 : 2)}px;
+  margin-top: ${({ isOpen }) => (isOpen ? 5 : 2)}px;
   margin-left: -5px;
   width: 48px;
   height: 28px;
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 const Line1 = styled.span`
   top: 10px;
   transition: transform 0.4s;
-  transform: rotate(${({ opened }) => (opened ? 135 : 0)}deg);
+  transform: rotate(${({ isOpen }) => (isOpen ? 135 : 0)}deg);
   display: block;
   width: 17px;
   height: 1px;
@@ -30,10 +30,10 @@ const Line1 = styled.span`
 const Line2 = styled.span`
   top: 17px;
   transition: transform 0.4s;
-  transform: rotate(${({ opened }) => (opened ? 45 : 0)}deg)
+  transform: rotate(${({ isOpen }) => (isOpen ? 45 : 0)}deg)
     translate(
-      ${({ opened }) => (opened ? -4.2 : 0)}px,
-      ${({ opened }) => (opened ? -5.2 : 0)}px
+      ${({ isOpen }) => (isOpen ? -4.2 : 0)}px,
+      ${({ isOpen }) => (isOpen ? -5.2 : 0)}px
     );
   display: block;
   width: 17px;
@@ -44,18 +44,18 @@ const Line2 = styled.span`
   z-index: 1;
 `
 
-const MenuButton = ({ open, opened }) => {
+const MenuButton = ({ toggleNav, isOpen }) => {
   return (
-    <Wrapper opened={opened} onClick={() => open()}>
-      <Line1 opened={opened} />
-      <Line2 opened={opened} />
+    <Wrapper isOpen={isOpen} onClick={() => toggleNav()}>
+      <Line1 isOpen={isOpen} />
+      <Line2 isOpen={isOpen} />
     </Wrapper>
   )
 }
 
 MenuButton.propTypes = {
-  open: PropTypes.func.isRequired,
-  opened: PropTypes.bool.isRequired,
+  toggleNav: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 }
 
 export default MenuButton

@@ -4,8 +4,9 @@ import {
   Hero,
   Navbar,
   ProjectHeader,
-} from 'components/organisms'
-import { PageTemplate } from 'components/templates'
+} from '~/components/organisms'
+import { PageTemplate } from '~/components/templates'
+import { connectRedux } from '~/store'
 import React from 'react'
 
 const PortfolioPage = () => {
@@ -48,4 +49,6 @@ const PortfolioPage = () => {
   )
 }
 
-export default PortfolioPage
+const mapStateToProps = state => ({ isOpen: state.isOpen })
+
+export default connectRedux(mapStateToProps)(PortfolioPage)

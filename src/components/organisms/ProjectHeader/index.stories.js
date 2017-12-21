@@ -11,7 +11,7 @@ storiesOf('ProjectHeader', module)
       link="view my API projects"
     />
   ))
-  .add('theme', () => (
+  .add('~/theme', () => (
     <ProjectHeader
       image="/static/images/weather.png"
       header="Hello"

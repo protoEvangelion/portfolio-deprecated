@@ -14,15 +14,10 @@
   ],
   "plugins": [
     [
-      "module-resolver",
+      "babel-plugin-root-import",
       {
-        "root": ["./"],
-        "alias": {
-          "components": "./src/components",
-          "styled": "./src/styled",
-          "theme": "./src/theme",
-          "utils": "./src/utils"
-        }
+        "rootPathPrefix": "~",
+        "rootPathSuffix": "src"
       }
     ],
     "transform-export-extensions",

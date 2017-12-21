@@ -1,8 +1,8 @@
+import { colors, radii, radius } from '~/theme'
+import { shade } from '~/utils'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { color, space } from 'styled-system'
-import { colors, radii, radius } from 'theme'
-import { shade } from 'utils'
 
 const Button = styled.button`
   -webkit-font-smoothing: antialiased;

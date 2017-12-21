@@ -1,4 +1,4 @@
-import { colors } from 'theme'
+import { colors } from '~/theme'
 
 import { breaks, dec, get, media, merge } from './util'
 

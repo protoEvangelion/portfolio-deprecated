@@ -1,8 +1,8 @@
+import { HomePage, NotFoundPage, UtilityPage } from '~/components'
+import App from '~/components/App'
 import React from 'react'
-import { Switch } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
-import App from 'components/App'
-import { HomePage, UtilityPage, NotFoundPage } from 'components'
+import { Switch } from 'react-router-dom'
 
 // NOTE: Main site stuff
 // import Home from './components/Main/Home'

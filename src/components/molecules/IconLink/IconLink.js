@@ -1,4 +1,4 @@
-import { Icon, Link } from 'components/atoms'
+import { Icon, Link } from '~/components/atoms'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'

@@ -11,10 +11,8 @@
     "start": "next start",
     "env:dev": "cross-env NODE_ENV=development",
     "env:prod": "cross-env NODE_ENV=production",
-    "eslint-check":
-      "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "format":
-      "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/**/*.js\" \"src/**/**/**/**/*.js\" \"_src/**/**/*.js\" \"_src/**/**/**/*.js\" \"_src/**/**/**/**/*.js\"",
+    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "format": "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/**/*.js\" \"src/**/**/**/**/*.js\" \"_src/**/**/*.js\" \"_src/**/**/**/*.js\" \"_src/**/**/**/**/*.js\"",
     "icons": "node src/utils/scripts/parseIcons",
     "story": "start-storybook -p 9001 -c private/storybook",
     "test": "cross-env NODE_ENV=test jest"
@@ -32,11 +30,15 @@
     }
   },
   "jest": {
-    "modulePathIgnorePatterns": ["<rootDir>/src-clean"],
-    "moduleDirectories": ["src", "node_modules"],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/src-clean"
+    ],
+    "moduleDirectories": [
+      "src",
+      "node_modules"
+    ],
     "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-        "<rootDir>/test/fileMock.js",
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/fileMock.js",
       "^(components|containers)$": "<rootDir>/test/componentsMock.js",
       "^(store|\\.\\.)\\/selectors$": "<rootDir>/test/selectorsMock.js",
       "^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js"
@@ -51,7 +53,7 @@
     "babel-eslint": "^8.0.1",
     "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
-    "babel-plugin-module-resolver": "^3.0.0",
+    "babel-plugin-root-import": "^5.1.0",
     "babel-plugin-styled-components": "^1.3.0",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -137,6 +139,7 @@
     "month": "^2.0.1",
     "morgan": "^1.7.0",
     "next": "^4.1.4",
+    "next-redux-wrapper": "^1.3.5",
     "normalizr": "^3.0.1",
     "parseurl": "^1.3.1",
     "progress-bar-webpack-plugin": "^1.9.3",

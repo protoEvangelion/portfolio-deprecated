@@ -1,7 +1,7 @@
 import 'react-hot-loader/patch'
 import 'babel-polyfill'
 
-import App from 'components/App'
+import App from '~/components/App'
 import { basename } from 'config'
 import React from 'react'
 import { render } from 'react-dom'
@@ -29,8 +29,8 @@ const root = document.getElementById('app')
 render(renderApp(), root)
 
 if (module.hot) {
-  module.hot.accept('components/App', () => {
-    require('components/App')
+  module.hot.accept('~/components/App', () => {
+    require('~/components/App')
     render(renderApp(), root)
   })
 }

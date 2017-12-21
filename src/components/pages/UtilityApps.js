@@ -1,7 +1,7 @@
-import { HorizontalRule } from 'components/atoms'
-import { Banner } from 'components/molecules'
-import { AppList, Footer, Navbar } from 'components/organisms'
-import { PageTemplate } from 'components/templates'
+import { HorizontalRule } from '~/components/atoms'
+import { Banner } from '~/components/molecules'
+import { AppList, Footer, Navbar } from '~/components/organisms'
+import { PageTemplate } from '~/components/templates'
 import React from 'react'
 
 const UtilityPage = () => (

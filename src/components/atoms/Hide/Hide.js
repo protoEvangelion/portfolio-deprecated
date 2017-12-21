@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { breakpoints } from 'theme'
+import { breakpoints } from '~/theme'
 
 import Box from '../Box'
 

@@ -1,9 +1,9 @@
-import { HomePage, NotFoundPage } from 'components/pages'
+import { HomePage, NotFoundPage } from '~/components/pages'
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Route, Switch } from 'react-router-dom'
 import { ThemeProvider, injectGlobal } from 'styled-components'
-import theme from 'theme'
+import theme from '~/theme'
 
 injectGlobal`
   body {

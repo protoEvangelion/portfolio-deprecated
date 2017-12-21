@@ -3,9 +3,9 @@ import { addDecorator, configure } from '@storybook/react'
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
-import theme from 'theme'
+import theme from '~/theme'
 
-const req = require.context('components', true, /.stories.js$/)
+const req = require.context('~/components', true, /.stories.js$/)
 
 function loadStories() {
   req.keys().forEach(filename => req(filename))

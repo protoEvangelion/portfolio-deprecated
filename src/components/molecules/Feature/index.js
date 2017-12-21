@@ -1,4 +1,4 @@
-import { Badge, Heading, Icon, Link, Paragraph } from 'components/atoms'
+import { Badge, Heading, Icon, Link, Paragraph } from '~/components/atoms'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'

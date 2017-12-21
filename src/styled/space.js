@@ -1,6 +1,6 @@
 const { arr, px, neg, num, breaks, dec, media, merge } = require('./util')
 
-import { space } from 'theme'
+import { space } from '~/theme'
 
 const REG = /^[mp][trblxy]?$/
 

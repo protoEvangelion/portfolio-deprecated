@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import { space } from 'styled-system'
-import { colors } from 'theme'
-import icons from 'theme/icons.json'
+import { colors } from '~/theme'
+import icons from '~/theme/icons.json'
 
 const StyledSvg = styled.svg`
   display: block;

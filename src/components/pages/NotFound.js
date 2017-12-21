@@ -1,5 +1,5 @@
-import { Footer, Heading, ProjectHeader } from 'components/organisms'
-import { PageTemplate } from 'components/templates'
+import { Footer, Heading, ProjectHeader } from '~/components/organisms'
+import { PageTemplate } from '~/components/templates'
 import React from 'react'
 
 const NotFoundPage = () => {

@@ -1,4 +1,4 @@
-import { Icon, Link, Paragraph } from 'components/atoms'
+import { Icon, Link, Paragraph } from '~/components/atoms'
 import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
