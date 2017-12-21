@@ -7,21 +7,27 @@ import { color, space } from 'styled-system'
 import { ifProp } from 'styled-tools'
 
 // If you want to have a standard link like one that links to an
-//  outside page, then pass a string to the `href` prop
-// If you want a react router link then pass a string to the `route` prop
-// If you want to wrap it in a <li> tag, pass `li` as a boolean
+//  outside page, then pass true to the absolute prop
 
 export const A = styled(props => {
   return (
     <a
-      {...omitProps(props, ['absolute', 'block', 'li', 'padding', 'margin'])}
+      {...omitProps(props, [
+        'absolute',
+        'block',
+        'href',
+        'li',
+        'padding',
+        'margin',
+      ])}
     />
   )
 })`
+  cursor: pointer;
   display: ${ifProp('block', 'block', 'default')};
   text-decoration: none;
   &:hover {
-    color: ${props => (props.bg ? shade(props.bg, 0.1) : null)};
+    color: ${props => (props.color ? shade(props.color, 0.1) : null)};
   }
   ${color};
 `
@@ -45,14 +51,14 @@ const Link = props => {
     if (props.li) {
       return (
         <Li>
-          <RouteLink>
+          <RouteLink href={props.href}>
             <A {...props}>{props.children}</A>
           </RouteLink>
         </Li>
       )
     } else {
       return (
-        <RouteLink>
+        <RouteLink href={props.href}>
           <A {...props}>{props.children}</A>
         </RouteLink>
       )
@@ -73,7 +79,7 @@ Link.propTypes = {
 
 Link.defaultProps = {
   absolute: false,
-  bg: 'black',
+  bg: 'transparent',
   block: true,
   color: 'white',
   li: false,

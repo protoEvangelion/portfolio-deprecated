@@ -1,36 +1,35 @@
-import { MenuButton } from '~/components/molecules'
+import { MenuButton, PrimaryNav } from '~/components/molecules'
 import { toggleNav } from '~/store/navbar/action'
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { Icon, IconLogo, Link, MenuItem, Nav, Wrapper } from './styles'
+import { IconLogo, MenuItem, Nav, StyledIcon, Wrapper } from './styles'
 
 const Navbar = props => {
   return (
     <Wrapper opaque reverse {...props}>
       <MenuButton isOpen={props.isOpen} toggleNav={props.toggleNav} />
 
-      <IconLogo href="/" icon="whiteLogo" height={100} />
+      <IconLogo height={100} href="/portfolio" name="logo" />
 
-      <Nav reverse {...props}>
-        <Link href="/portfolio">
-          <img alt="Ryan's logo" />
-        </Link>
+      <PrimaryNav />
+      {/* <Nav reverse {...props}>
+        <ul>
+          <MenuItem href="/about" key="about">
+            About
+          </MenuItem>
 
-        <Link href="about">
-          <MenuItem key="about">About</MenuItem>
-        </Link>
+          <MenuItem href="/projects" key="projects">
+            Projects
+          </MenuItem>
 
-        <Link href="projects">
-          <MenuItem key="projects">Projects</MenuItem>
-        </Link>
+          <MenuItem href="/contact" key="contact">
+            Contact
+          </MenuItem>
+        </ul>
+      </Nav> */}
 
-        <Link href="contact">
-          <MenuItem key="contact">Contact</MenuItem>
-        </Link>
-      </Nav>
-
-      <Icon href="/allApps" icon="briefcase" height={100} />
+      <StyledIcon href="/allApps" icon="briefcase" height={100} />
     </Wrapper>
   )
 }

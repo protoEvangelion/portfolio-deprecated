@@ -1,6 +1,5 @@
-import { Block } from '~/components/atoms'
-import { IconLink, PrimaryNavigation } from '~/components/molecules'
-import NextLink from 'next/link'
+import { Block, Icon, Link } from '~/components/atoms'
+import { IconButton } from '~/components/molecules'
 import styled, { css } from 'styled-components'
 import { palette } from 'styled-theme'
 
@@ -22,14 +21,14 @@ export const Wrapper = styled(Block)`
   }
 `
 
-export const IconLogo = styled(IconLink)`
+export const IconLogo = styled(Icon)`
   margin-top: 5px;
   margin-left: 10px;
   display: inline-block;
   transform-origin: center;
 `
 
-export const Icon = styled(IconLink)`
+export const StyledIcon = styled(IconButton)`
   margin-top: -10px;
   margin-right: 10px;
   height: 20px;
@@ -64,29 +63,13 @@ export const Nav = styled.nav`
   }
 `
 
-export const Link = styled(NextLink)`
-  text-decoration: none;
-  user-select: none;
-  &:hover {
-    text-decoration: none;
-  }
-`
-
-export const MenuItem = styled.li`
+export const MenuItem = styled(Link)`
   cursor: pointer;
   height: 100%;
   padding: 23px 20px 29px 20px;
-  color: black;
   font-size: 20px;
   list-style: none;
-  background: white;
   transition: background 1.5s ease;
-  &:hover {
-    transition: background 1.5s ease;
-    background: #b3ffab;
-    background: webkit-linear-gradient(to left, #b3ffab, #12fff7);
-    background: linear-gradient(to left, #b3ffab, #12fff7);
-  }
 `
 
 export const Image = styled.img`
