@@ -1,20 +1,40 @@
-import { Aux, MenuButton } from '~/components/atoms'
+import { MenuButton } from '~/components/molecules'
+import { toggleNav } from '~/store/navbar/action'
 import React from 'react'
+import { connect } from 'react-redux'
 
-import { Icon, IconLogo, PrimaryNav, SecondaryNav, Wrapper } from './styles'
+import { Icon, IconLogo, Link, MenuItem, Nav, Wrapper } from './styles'
 
 const Navbar = props => {
   return (
-    <Aux>
-      <Wrapper opaque reverse {...props}>
-        <MenuButton {...props} />
-        <IconLogo href="/" icon="whiteLogo" height={100} />
-        <PrimaryNav reverse {...props} />
-        <Icon href="/allApps" icon="briefcase" height={100} />
-      </Wrapper>
-      <SecondaryNav reverse {...props} />
-    </Aux>
+    <Wrapper opaque reverse {...props}>
+      <MenuButton isOpen={props.isOpen} toggleNav={props.toggleNav} />
+
+      <IconLogo href="/" icon="whiteLogo" height={100} />
+
+      <Nav reverse {...props}>
+        <Link href="/portfolio">
+          <img alt="Ryan's logo" />
+        </Link>
+
+        <Link href="about">
+          <MenuItem key="about">About</MenuItem>
+        </Link>
+
+        <Link href="projects">
+          <MenuItem key="projects">Projects</MenuItem>
+        </Link>
+
+        <Link href="contact">
+          <MenuItem key="contact">Contact</MenuItem>
+        </Link>
+      </Nav>
+
+      <Icon href="/allApps" icon="briefcase" height={100} />
+    </Wrapper>
   )
 }
 
-export default Navbar
+const mapStateToProps = state => ({ isOpen: state.navbar.isOpen })
+
+export default connect(mapStateToProps, { toggleNav })(Navbar)

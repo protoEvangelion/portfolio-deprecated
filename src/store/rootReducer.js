@@ -8,12 +8,12 @@ import weatherReducer from './weather/reducer'
 import wikiReducer from './wiki/reducer'
 
 const reducers = {
-  formReducer,
-  navbarReducer,
-  quoteReducer,
-  streamReducer,
-  weatherReducer,
-  wikiReducer,
+  form: formReducer,
+  navbar: navbarReducer,
+  quote: quoteReducer,
+  stream: streamReducer,
+  weather: weatherReducer,
+  wiki: wikiReducer,
 }
 
 export default combineReducers(reducers)

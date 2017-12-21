@@ -46,7 +46,7 @@ const Line2 = styled.span`
 
 const MenuButton = ({ toggleNav, isOpen }) => {
   return (
-    <Wrapper isOpen={isOpen} onClick={() => toggleNav()}>
+    <Wrapper isOpen={isOpen} onClick={() => toggleNav(isOpen)}>
       <Line1 isOpen={isOpen} />
       <Line2 isOpen={isOpen} />
     </Wrapper>

@@ -1,9 +1,9 @@
-import { OPEN_NAVBAR } from './action'
+import { TOGGLE_NAV } from './action'
 
-const navReducer = (state = { opened: false }, action) => {
+const navReducer = (state = { isOpen: false }, action) => {
   switch (action.type) {
-    case OPEN_NAVBAR:
-      return { opened: !state.opened }
+    case TOGGLE_NAV:
+      return { isOpen: !state.isOpen }
     default:
       return state
   }

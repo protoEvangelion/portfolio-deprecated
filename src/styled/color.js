@@ -4,7 +4,7 @@ import { breaks, dec, get, media, merge } from './util'
 
 const REG = /^color|bg$/
 
-module.exports = props => {
+export default function(props) {
   const keys = Object.keys(props).filter(key => REG.test(key))
   const mediaQueries = breaks()
 

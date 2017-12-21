@@ -8,9 +8,7 @@ export const FETCH_STREAMS = 'FETCH_STREAMS'
 const clientId = 'aswjx355ya1e5y7vy3t5sg1hcwsaokn'
 
 export function fetchFreeCodeCamp() {
-  const url = `https://api.twitch.tv/kraken/streams/freecodecamp?client_id=${
-    clientId
-  }`
+  const url = `https://api.twitch.tv/kraken/streams/freecodecamp?client_id=${clientId}`
   // const reqUrl = `${proxyUrl}${url}`
   const reqUrl = url
 
@@ -19,9 +17,7 @@ export function fetchFreeCodeCamp() {
 }
 
 export function fetchStreams() {
-  const url = `https://api.twitch.tv/kraken/streams/featured?limit=9&client_id=${
-    clientId
-  }`
+  const url = `https://api.twitch.tv/kraken/streams/featured?limit=9&client_id=${clientId}`
   // const reqUrl = `${proxyUrl}${url}`
   const reqUrl = url
   const request = axios.get(reqUrl)
