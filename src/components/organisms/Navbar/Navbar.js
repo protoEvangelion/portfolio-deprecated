@@ -29,7 +29,7 @@ const Navbar = props => {
         </ul>
       </Nav> */}
 
-      <StyledIcon href="/allApps" icon="briefcase" height={100} />
+      <StyledIcon href="/allApps" name="briefcase" height={100} />
     </Wrapper>
   )
 }
