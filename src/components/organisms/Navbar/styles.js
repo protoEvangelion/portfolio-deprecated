@@ -21,13 +21,6 @@ export const Wrapper = styled(Block)`
   }
 `
 
-export const IconLogo = styled(Icon)`
-  margin-top: 5px;
-  margin-left: 10px;
-  display: inline-block;
-  transform-origin: center;
-`
-
 export const StyledIcon = styled(IconButton)`
   margin-top: -10px;
   margin-right: 10px;
@@ -61,18 +54,4 @@ export const Nav = styled.nav`
         }
       `};
   }
-`
-
-export const MenuItem = styled(Link)`
-  cursor: pointer;
-  height: 100%;
-  padding: 23px 20px 29px 20px;
-  font-size: 20px;
-  list-style: none;
-  transition: background 1.5s ease;
-`
-
-export const Image = styled.img`
-  width: 50px;
-  margin: 10px 20px 10px 15px;
 `

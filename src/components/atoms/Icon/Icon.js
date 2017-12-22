@@ -5,10 +5,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledSvg = styled.svg`
-  display: block;
-`
-
 const hasMultiplePaths = icon => icon.path.includes('|')
 
 const attachFillColor = path => {
@@ -31,6 +27,10 @@ const renderPaths = icon => {
     return <path {...attachFillColor(icon.path)} />
   }
 }
+
+const StyledSvg = styled.svg`
+  display: block;
+`
 
 const Base = ({ fill, name, size, ...props }) => {
   const icon = icons[name]

@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   align-self: flex-start;
   position: relative;
   margin-top: ${({ isOpen }) => (isOpen ? 5 : 2)}px;
-  margin-left: -5px;
   width: 48px;
   height: 28px;
 
@@ -26,7 +25,7 @@ const Line1 = styled.span`
   height: 1px;
   background: white;
   position: absolute;
-  left: 16px;
+  left: 0;
   z-index: 1;
 `
 const Line2 = styled.span`
@@ -42,7 +41,7 @@ const Line2 = styled.span`
   height: 1px;
   background: white;
   position: absolute;
-  left: 16px;
+  left: 0;
   z-index: 1;
 `
 
