@@ -6,17 +6,17 @@ import styled from 'styled-components'
 import Box from '../Box'
 
 const bps = () => ({
-  xs: `@media screen and (max-width: ${breakpoints[0]}em)`,
-  sm: `@media screen and (min-width: ${breakpoints[0]}em) and (max-width: ${
+  tiny: `@media screen and (max-width: ${breakpoints[0]}em)`,
+  small: `@media screen and (min-width: ${breakpoints[0]}em) and (max-width: ${
     breakpoints[1]
   }em)`,
-  md: `@media screen and (min-width: ${breakpoints[1]}em) and (max-width: ${
+  medium: `@media screen and (min-width: ${breakpoints[1]}em) and (max-width: ${
     breakpoints[2]
   }em)`,
-  lg: `@media screen and (min-width: ${breakpoints[2]}em) and (max-width: ${
+  large: `@media screen and (min-width: ${breakpoints[2]}em) and (max-width: ${
     breakpoints[3]
   }em)`,
-  xl: `@media screen and (min-width: ${breakpoints[3]}em)`,
+  huge: `@media screen and (min-width: ${breakpoints[3]}em)`,
 })
 
 const hidden = key => props =>
@@ -29,18 +29,18 @@ const hidden = key => props =>
     : null
 
 const Hide = styled(Box)`
-  ${hidden('xs')} ${hidden('sm')} ${hidden('md')} ${hidden('lg')} ${hidden(
-      'xl',
-    )};
+  ${hidden('tiny')} ${hidden('small')} ${hidden('medium')} ${hidden(
+      'large',
+    )} ${hidden('huge')};
   ${width};
 `
 
 Hide.propTypes = {
-  xs: PropTypes.bool,
-  sm: PropTypes.bool,
-  md: PropTypes.bool,
-  lg: PropTypes.bool,
-  xl: PropTypes.bool,
+  tiny: PropTypes.bool,
+  small: PropTypes.bool,
+  medium: PropTypes.bool,
+  large: PropTypes.bool,
+  huge: PropTypes.bool,
 }
 
 Hide.defaultProps = {

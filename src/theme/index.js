@@ -8,10 +8,10 @@ export const breakpoints = [32, 48, 64, 80]
 const units = 'em'
 
 export const queries = {
-  xs: breakpoints[0] + units,
-  sm: breakpoints[1] + units,
-  md: breakpoints[2] + units,
-  lg: breakpoints[3] + units,
+  tiny: breakpoints[0] + units,
+  small: breakpoints[1] + units,
+  medium: breakpoints[2] + units,
+  large: breakpoints[3] + units,
 }
 
 export const space = [0, 4, 8, 16, 32, 64, 128]

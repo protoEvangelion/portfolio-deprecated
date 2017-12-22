@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   width: 48px;
   height: 28px;
 
-  ${media.greaterThan('sm')`
+  ${media.greaterThan('small')`
     display: none;
   `};
 `

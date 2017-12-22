@@ -15,7 +15,7 @@ const Navbar = props => {
         <Icon name="logo" />
       </Link>
 
-      <Hide sm width="100%">
+      <Hide small width="100%">
         <Flex justify="space-around" width="100%">
           <Link m={0} href="/stack">
             Stack

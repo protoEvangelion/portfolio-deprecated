@@ -1,7 +1,8 @@
-import { Block, Icon, Link } from '~/components/atoms'
+import { Block } from '~/components/atoms'
 import { IconButton } from '~/components/molecules'
+import { media } from '~/styled'
+import { colors } from '~/theme'
 import styled, { css } from 'styled-components'
-import { palette } from 'styled-theme'
 
 export const Wrapper = styled(Block)`
   display: flex;
@@ -13,12 +14,12 @@ export const Wrapper = styled(Block)`
   & > :not(:first-child) {
     margin-left: 1rem;
   }
-  @media (max-width: 700px) {
+  ${media.lessThan('small')`
     align-items: flex-start;
-  }
-  @media (min-width: 700px) {
+  `};
+  ${media.greaterThan('small')`
     height: auto;
-  }
+  `};
 `
 
 export const StyledIcon = styled(IconButton)`
@@ -28,16 +29,17 @@ export const StyledIcon = styled(IconButton)`
   color: white;
   display: inline-block;
   transform-origin: center;
-  @media (max-width: 700px) {
+  ${media.lessThan('small')`
     margin-top: 2px;
-  }
+  `};
 `
 
 export const Nav = styled.nav`
   display: flex;
   flex: 1;
   justify-content: flex-start;
-  @media (max-width: 700px) {
+
+  ${media.lessThan('small')`
     display: none;
 
     ${props =>
@@ -50,8 +52,8 @@ export const Nav = styled.nav`
         left: 20px;
         > li {
           padding: 15px 0 15px 0;
-          border-bottom: 1px solid ${palette('grayscale', 1)};
+          border-bottom: 1px solid ${colors['gray4']};
         }
       `};
-  }
+  `};
 `
