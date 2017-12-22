@@ -3,17 +3,15 @@
 
 import palx from 'palx' // Color palette library
 
-// https://github.com/jxnblk/styled-system#breakpoints
-// Units are in ems below
 export const breakpoints = [32, 48, 64, 80]
 
 const units = 'em'
 
 export const queries = {
-  xs: `${breakpoints[0]}${units}`,
-  sm: `${breakpoints[1]}${units}`,
-  md: `${breakpoints[2]}${units}`,
-  lg: `${breakpoints[3]}${units}`,
+  xs: breakpoints[0] + units,
+  sm: breakpoints[1] + units,
+  md: breakpoints[2] + units,
+  lg: breakpoints[3] + units,
 }
 
 export const space = [0, 4, 8, 16, 32, 64, 128]

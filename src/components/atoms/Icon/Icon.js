@@ -9,6 +9,29 @@ const StyledSvg = styled.svg`
   display: block;
 `
 
+const hasMultiplePaths = icon => icon.path.includes('|')
+
+const attachFillColor = path => {
+  if (path.includes('#')) {
+    return {
+      d: path.split('#')[0],
+      key: path.slice(7),
+      fill: '#' + path.split('#')[1],
+    }
+  }
+  return { d: path }
+}
+
+const renderPaths = icon => {
+  if (hasMultiplePaths(icon)) {
+    const pathsArr = icon.path.split('|')
+    const paths = pathsArr.map(path => <path {...attachFillColor(path)} />)
+    return paths
+  } else {
+    return <path {...attachFillColor(icon.path)} />
+  }
+}
+
 const Base = ({ fill, name, size, ...props }) => {
   const icon = icons[name]
 
@@ -22,7 +45,7 @@ const Base = ({ fill, name, size, ...props }) => {
       height={size}
       fill={colors[fill]}
     >
-      <path d={icon.path} />
+      {renderPaths(icon)}
     </StyledSvg>
   )
 }

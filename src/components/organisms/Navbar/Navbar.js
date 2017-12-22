@@ -1,3 +1,4 @@
+import { Icon } from '~/components/atoms'
 import { MenuButton, PrimaryNav } from '~/components/molecules'
 import { toggleNav } from '~/store/navbar/action'
 import React from 'react'
@@ -10,7 +11,7 @@ const Navbar = props => {
     <Wrapper opaque reverse {...props}>
       <MenuButton isOpen={props.isOpen} toggleNav={props.toggleNav} />
 
-      <IconLogo height={100} href="/portfolio" name="logo" />
+      <Icon name="logo" />
 
       <PrimaryNav />
       {/* <Nav reverse {...props}>

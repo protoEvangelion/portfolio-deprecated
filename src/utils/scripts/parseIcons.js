@@ -46,12 +46,16 @@ const flattenChildren = (a, b) => {
   return [...a, b, ...children]
 }
 
-const getPath = nodes =>
-  nodes.children
+const getPath = nodes => {
+  return nodes.children
     .reduce(flattenChildren, [])
     .filter(child => child.type === 'path')
-    .map(child => child.properties.d)
-    .join(' ')
+    .map(child => {
+      let fill = child.properties.fill ? child.properties.fill : ''
+      return child.properties.d + fill
+    })
+    .join('|')
+}
 
 const getViewBox = nodes => nodes.properties.viewBox
 
