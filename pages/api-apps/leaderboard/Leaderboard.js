@@ -1,3 +1,4 @@
+import { Heading } from '~/components/atoms'
 import { connectRedux } from '~/store'
 import React from 'react'
 
@@ -18,7 +19,7 @@ const styles = {
 }
 
 const Leaderboard = () => {
-  return <h3 style={styles.text}>freeCodeCamp Super Cool People Leaderboard</h3>
+  return <Heading>freeCodeCamp Super Cool People Leaderboard</Heading>
 }
 
-export default connectRedux()(Leaderboard)
+export default connectRedux(null, null)(Leaderboard)

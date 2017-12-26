@@ -1,4 +1,4 @@
-import { Icon, Link, Paragraph } from '~/components/atoms'
+import { Icon, Link, Text } from '~/components/atoms'
 import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   }
 `
 
-const Credits = styled(Paragraph)`
+const Credits = styled(Text)`
   margin: 0;
   @media (max-width: 640px) {
     padding: 10px;

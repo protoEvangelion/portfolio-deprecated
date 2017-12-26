@@ -1,8 +1,7 @@
+import { color, fontSize, responsiveStyle, space } from '~/styled'
+import { bold as b, regular as reg } from '~/theme'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { color, fontSize, responsiveStyle, space } from 'styled-system'
-
-import theme from './theme'
 
 export const caps = props =>
   props.caps
@@ -11,11 +10,9 @@ export const caps = props =>
       }
     : null
 
-export const regular = props =>
-  props.regular ? { fontWeight: props.theme.regular } : null
+export const regular = props => (props.regular ? { fontWeight: reg } : null)
 
-export const bold = props =>
-  props.bold ? { fontWeight: props.theme.bold } : null
+export const bold = props => (props.bold ? { fontWeight: b } : null)
 
 export const italic = props => (props.italic ? { fontStyle: 'italic' } : null)
 
@@ -61,10 +58,6 @@ Text.propTypes = {
   pl: numberStringOrArray,
   px: numberStringOrArray,
   py: numberStringOrArray,
-}
-
-Text.defaultProps = {
-  theme: theme,
 }
 
 Text.span = Text.withComponent('span')

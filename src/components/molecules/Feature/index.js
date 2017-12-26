@@ -1,4 +1,4 @@
-import { Badge, Heading, Icon, Link, Paragraph } from '~/components/atoms'
+import { Badge, Heading, Icon, Link, Text } from '~/components/atoms'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -15,13 +15,6 @@ const StyledIcon = styled(Icon)`
   flex: none;
 `
 
-const Text = styled.div`
-  margin-left: 1rem;
-  & > :first-child {
-    margin: 0;
-  }
-`
-
 const StyledBadge = styled(Badge)`
   position: absolute;
   top: 1rem;
@@ -32,12 +25,10 @@ const Feature = ({ icon, title, link, children, ...props }) => {
   return (
     <Wrapper {...props}>
       {icon && <StyledIcon icon={icon} height={64} />}
-      <Text>
-        <Heading level={2}>
-          {link ? <Link href={link}>{title}</Link> : title}
-        </Heading>
-        <Paragraph>{children}</Paragraph>
-      </Text>
+      <Heading level={2}>
+        {link ? <Link href={link}>{title}</Link> : title}
+      </Heading>
+      <Text>{children}</Text>
       {props.soon && <StyledBadge palette="grayscale">soon</StyledBadge>}
     </Wrapper>
   )
