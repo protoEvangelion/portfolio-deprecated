@@ -8,7 +8,7 @@
 
 This portfolio was built using modern web tools and best practices.  Here are some of the neat tools used below:
 
-## Features
+### Features
 
   - 👀 `react` as the view.
   - 🔀 `react-router` v4 as the router.
