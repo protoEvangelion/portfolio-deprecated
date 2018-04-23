@@ -49,7 +49,7 @@
     "jsdom": "^9.11.0",
     "json-loader": "^0.5.4",
     "lodash": "^4.17.4",
-    "mailgun-js": "^0.11.3",
+    "mailgun-js": "^0.17.0",
     "markdown-it": "^8.2.2",
     "markdown-it-emoji": "^1.3.0",
     "markdown-it-prism": "^1.0.1",
