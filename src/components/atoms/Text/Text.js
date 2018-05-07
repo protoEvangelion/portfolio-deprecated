@@ -31,7 +31,7 @@ const numberStringOrArray = PropTypes.oneOfType([
 ])
 
 Text.defaultProps = {
-	color: 'white',
+	color: 'foreground',
 }
 
 Text.propTypes = {

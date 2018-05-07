@@ -1,4 +1,4 @@
-import { FeatureList, ProjectHeader } from 'components/organisms'
+import { ProjectHeader } from 'components/organisms'
 import React, { Fragment } from 'react'
 
 import forceImg from 'images/force.png'
@@ -38,8 +38,6 @@ const Index = () => (
 			href="d3Apps"
 			flip
 		/>
-
-		<FeatureList />
 	</Fragment>
 )
 

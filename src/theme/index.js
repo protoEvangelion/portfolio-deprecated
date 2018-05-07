@@ -32,7 +32,21 @@ export const font = `-apple-system, BlinkMacSystemFont, sans-serif`
 
 export const monospace = '"SF Mono", "Roboto Mono", Menlo, monospace'
 
+const draculaTheme = {
+	background: '#282a36',
+	foreground: '#f8f8f2',
+	comment: '#6272a4',
+	cyan: '#8be9fd',
+	green: '#50fa7b',
+	orange: '#ffb86c',
+	pink: '#ff79c6',
+	purple: '#bd93f9',
+	red: '#ff5555',
+	yellow: '#f1fa8c',
+}
+
 export const colors = {
+	...draculaTheme,
 	black: 'rgb(33, 33, 33)',
 	white: 'rgb(255, 255, 255)',
 	primary: 'rgb(23, 195, 169)',
@@ -101,7 +115,6 @@ export const colors = {
 	fuschia7: '#9500a2',
 	fuschia8: '#7b0087',
 	fuschia9: '#590061',
-	pink: '#cc0077',
 	pink0: '#fbeaf4',
 	pink1: '#f6d2e7',
 	pink2: '#f0b6d8',
@@ -112,7 +125,6 @@ export const colors = {
 	pink7: '#a2005f',
 	pink8: '#87004e',
 	pink9: '#610039',
-	red: '#cc0011',
 	red0: '#fbeaec',
 	red1: '#f6d3d6',
 	red2: '#f1b8bc',
@@ -123,7 +135,6 @@ export const colors = {
 	red7: '#a2000e',
 	red8: '#87000b',
 	red9: '#610008',
-	orange: '#cc5500',
 	orange0: '#faede4',
 	orange1: '#f4d9c7',
 	orange2: '#edc3a5',
@@ -134,7 +145,6 @@ export const colors = {
 	orange7: '#a14300',
 	orange8: '#853700',
 	orange9: '#5e2700',
-	yellow: '#ccbb00',
 	yellow0: '#f8f6de',
 	yellow1: '#f1edbb',
 	yellow2: '#eae294',
@@ -156,7 +166,6 @@ export const colors = {
 	lime7: '#5fa200',
 	lime8: '#4e8700',
 	lime9: '#396100',
-	green: '#11cc00',
 	green0: '#e6fae4',
 	green1: '#caf4c6',
 	green2: '#aaeda4',
@@ -178,7 +187,6 @@ export const colors = {
 	teal7: '#00a244',
 	teal8: '#008738',
 	teal9: '#006129',
-	cyan: '#00ccbb',
 	cyan0: '#e3f9f8',
 	cyan1: '#c4f3ef',
 	cyan2: '#a1ece6',

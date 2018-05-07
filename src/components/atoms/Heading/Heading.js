@@ -8,7 +8,7 @@ Heading.defaultProps = {
 	regular: true,
 	fontSize: 4,
 	m: 0,
-	color: 'white',
+	color: 'foreground',
 }
 
 Heading.h1 = Heading.withComponent('h1')

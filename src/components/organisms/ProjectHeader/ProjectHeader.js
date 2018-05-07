@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 	flex-direction: ${ifProp('flip', 'row-reverse', 'row')};
 	background: ${props =>
 		props.flip
-			? 'transparent'
+			? 'primary'
 			: `linear-gradient(
 			to left,
 			${props.theme.colors.fuschia4},
@@ -48,11 +48,9 @@ const ProjectHeader = ({ header, image, flip, linkText, ...props }) => (
 		<ProjectImage src={image} />
 
 		<HeadingCtn>
-			<Heading color={flip ? 'black' : 'white'}>{header}</Heading>
+			<Heading>{header}</Heading>
 
-			<Link color={flip ? 'black' : 'white'} {...props}>
-				{linkText}
-			</Link>
+			<Link {...props}>{linkText}</Link>
 		</HeadingCtn>
 	</Wrapper>
 )
