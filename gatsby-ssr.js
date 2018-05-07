@@ -1,16 +1,21 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
-import { ServerStyleSheet } from 'styled-components'
+import { ServerStyleSheet, ThemeProvider } from 'styled-components'
 
 import store from './src/store'
+import theme from './src/theme'
 
 exports.replaceRenderer = ({
 	bodyComponent,
 	replaceBodyHTMLString,
 	setHeadComponents,
 }) => {
-	const ConnectedBody = () => <Provider store={store}>{bodyComponent}</Provider>
+	const ConnectedBody = () => (
+		<Provider store={store}>
+			<ThemeProvider theme={theme}>{bodyComponent}</ThemeProvider>
+		</Provider>
+	)
 
 	// Add styled-components SSR
 	const sheet = new ServerStyleSheet()

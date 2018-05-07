@@ -16,7 +16,7 @@
       "children": [],
       "internal": {
         "type": "SitePage",
-        "contentDigest": "c599aa39482aab1a9e0d38cd96d3cf42",
+        "contentDigest": "341b457291ce024a7d142152b428c0c6",
         "description": "Plugin dev-404-page",
         "owner": "internal-data-bridge"
       }
@@ -428,7 +428,7 @@
       "resolve": "/home/ryan/dev/portfolio",
       "id": "Plugin default-site-plugin",
       "name": "default-site-plugin",
-      "version": "4eb825de5f981acebed15cfa58d18115",
+      "version": "a340c5badcb6f739fcbf0342e7bf35ef",
       "pluginOptions": {
         "plugins": []
       },
@@ -465,10 +465,6 @@
           {
             "name": "markdown-it-prism",
             "version": "^1.0.1"
-          },
-          {
-            "name": "palx",
-            "version": "^1.0.2"
           },
           {
             "name": "react-helmet",
@@ -612,7 +608,7 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "1362baa6aa2f57ab94b5fe7db5097859",
+        "contentDigest": "8a30e179110033d53e7d6349a101ebbf",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
@@ -625,12 +621,12 @@
       "host": "localhost",
       "pathPrefix": "",
       "polyfill": true,
-      "buildTime": "2018-05-07T00:53:37.832Z",
+      "buildTime": "2018-05-07T03:04:11.350Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "33f721e6d06c36314d347a485526dae3",
+        "contentDigest": "5f8031d3349d0e4df8e40cc9bfcd082a",
         "type": "Site",
         "owner": "internal-data-bridge"
       }
@@ -651,7 +647,7 @@
       "children": [],
       "internal": {
         "type": "SitePage",
-        "contentDigest": "5363f5ca9d7f55d349ef25f1a86fa3bf",
+        "contentDigest": "f42285b0b89f2215e97a10b57a5dc805",
         "description": "Plugin component-page-creator",
         "owner": "internal-data-bridge"
       }
@@ -659,7 +655,7 @@
   },
   "status": {
     "plugins": {},
-    "PLUGINS_HASH": "2346162d036650762bfae0471b88d6b5"
+    "PLUGINS_HASH": "93560bade2be71a1cf1467076c06386f"
   },
   "componentDataDependencies": {
     "nodes": {},

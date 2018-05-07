@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 export const caps = props =>
-  props.caps
-    ? {
-        textTransform: 'uppercase',
-      }
-    : null
+	props.caps
+		? {
+				textTransform: 'uppercase',
+		  }
+		: null
 
 export const regular = props => (props.regular ? { fontWeight: reg } : null)
 
@@ -25,39 +25,39 @@ const Text = styled.div`
 Text.displayName = 'Text'
 
 const numberStringOrArray = PropTypes.oneOfType([
-  PropTypes.number,
-  PropTypes.string,
-  PropTypes.array,
+	PropTypes.number,
+	PropTypes.string,
+	PropTypes.array,
 ])
 
+Text.defaultProps = {
+	color: 'white',
+}
+
 Text.propTypes = {
-  fontSize: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.array,
-  ]),
-  align: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
-  caps: PropTypes.bool,
-  regular: PropTypes.bool,
-  bold: PropTypes.bool,
-  italic: PropTypes.bool,
-  color: PropTypes.string,
-  /** Margin */
-  m: numberStringOrArray,
-  mt: numberStringOrArray,
-  mr: numberStringOrArray,
-  mb: numberStringOrArray,
-  ml: numberStringOrArray,
-  mx: numberStringOrArray,
-  my: numberStringOrArray,
-  /** Padding */
-  p: numberStringOrArray,
-  pt: numberStringOrArray,
-  pr: numberStringOrArray,
-  pb: numberStringOrArray,
-  pl: numberStringOrArray,
-  px: numberStringOrArray,
-  py: numberStringOrArray,
+	fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array]),
+	align: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
+	caps: PropTypes.bool,
+	regular: PropTypes.bool,
+	bold: PropTypes.bool,
+	italic: PropTypes.bool,
+	color: PropTypes.string,
+	/** Margin */
+	m: numberStringOrArray,
+	mt: numberStringOrArray,
+	mr: numberStringOrArray,
+	mb: numberStringOrArray,
+	ml: numberStringOrArray,
+	mx: numberStringOrArray,
+	my: numberStringOrArray,
+	/** Padding */
+	p: numberStringOrArray,
+	pt: numberStringOrArray,
+	pr: numberStringOrArray,
+	pb: numberStringOrArray,
+	pl: numberStringOrArray,
+	px: numberStringOrArray,
+	py: numberStringOrArray,
 }
 
 Text.span = Text.withComponent('span')

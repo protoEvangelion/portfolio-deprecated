@@ -6,14 +6,8 @@ import styled from 'styled-components'
 import { color, space } from 'styled-system'
 import { ifProp } from 'styled-tools'
 
-// If you want to have a standard link like one that links to an
-//  outside page, then pass true to the absolute prop
-
-export const A = styled(props => {
-	return (
-		<a {...omitProps(props, ['absolute', 'block', 'href', 'li', 'padding', 'margin'])} />
-	)
-})`
+/* eslint-disable jsx-a11y/anchor-has-content */
+const A = styled.a`
 	cursor: pointer;
 	display: ${ifProp('block', 'block', 'default')};
 	text-decoration: none;
@@ -21,50 +15,39 @@ export const A = styled(props => {
 		color: ${props => (props.color ? shade(props.color, 0.1) : null)};
 	}
 	${color};
+	${space};
 `
 
-const Li = styled.li`
+const StyledRouteLink = styled(RouteLink)`
+	cursor: pointer;
+	display: ${ifProp('block', 'block', 'default')};
+	text-decoration: none;
+	&:hover {
+		color: ${props => (props.color ? shade(props.color, 0.1) : null)};
+	}
+	${color};
 	${space};
 `
 
 const Link = props => {
 	if (props.absolute) {
-		if (props.li) {
-			return (
-				<Li>
-					<A {...props} />
-				</Li>
-			)
-		} else {
-			return <A {...props} />
-		}
-	} else {
-		if (props.li) {
-			return (
-				<Li>
-					<RouteLink href={props.href}>
-						<A {...props}>{props.children}</A>
-					</RouteLink>
-				</Li>
-			)
-		} else {
-			return (
-				<RouteLink href={props.href}>
-					<A {...props}>{props.children}</A>
-				</RouteLink>
-			)
-		}
+		return <A {...props} href={props.href} />
 	}
+	return (
+		<StyledRouteLink color={props.color} to={props.href}>
+			{props.children}
+		</StyledRouteLink>
+	)
 }
 
 Link.displayName = 'Link'
 
 Link.propTypes = {
 	absolute: PropTypes.bool,
+	bg: PropTypes.string,
 	block: PropTypes.bool,
 	color: PropTypes.string,
 	children: PropTypes.node,
-	li: PropTypes.bool,
 	href: PropTypes.string.isRequired,
 }
 
@@ -73,7 +56,6 @@ Link.defaultProps = {
 	bg: 'transparent',
 	block: true,
 	color: 'white',
-	li: false,
 }
 
 export default Link

@@ -9,7 +9,8 @@
 		"build": "gatsby build",
 		"deploy": "firebase deploy",
 		"eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-		"format": "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/**/*.js\" \"src/**/**/**/**/*.js\" \"_src/**/**/*.js\" \"_src/**/**/**/*.js\" \"_src/**/**/**/**/*.js\"",
+		"format":
+			"prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/**/*.js\" \"src/**/**/**/**/*.js\" \"_src/**/**/*.js\" \"_src/**/**/**/*.js\" \"_src/**/**/**/**/*.js\"",
 		"icons": "node src/utils/scripts/parseIcons",
 		"story": "start-storybook -p 9001 -c private/storybook",
 		"test": "cross-env NODE_ENV=test jest"
@@ -27,15 +28,11 @@
 		}
 	},
 	"jest": {
-		"modulePathIgnorePatterns": [
-			"<rootDir>/src-clean"
-		],
-		"moduleDirectories": [
-			"src",
-			"node_modules"
-		],
+		"modulePathIgnorePatterns": ["<rootDir>/src-clean"],
+		"moduleDirectories": ["src", "node_modules"],
 		"moduleNameMapper": {
-			"^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/fileMock.js",
+			"^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+				"<rootDir>/test/fileMock.js",
 			"^(components|containers)$": "<rootDir>/test/componentsMock.js",
 			"^(store|\\.\\.)\\/selectors$": "<rootDir>/test/selectorsMock.js",
 			"^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js"
@@ -72,7 +69,6 @@
 		"markdown-it": "^8.2.2",
 		"markdown-it-emoji": "^1.3.0",
 		"markdown-it-prism": "^1.0.1",
-		"palx": "^1.0.2",
 		"react-helmet": "^5.0.1",
 		"react-modal": "^1.6.5",
 		"react-redux": "^5.0.6",
