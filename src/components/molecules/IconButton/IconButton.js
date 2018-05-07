@@ -1,5 +1,5 @@
-import { Button, Icon } from '~/components/atoms'
-import icons from '~/theme/icons.json'
+import { Button, Icon } from 'components/atoms'
+import icons from 'theme/icons.json'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'

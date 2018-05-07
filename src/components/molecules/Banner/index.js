@@ -1,4 +1,4 @@
-import { Heading } from '~/components/atoms'
+import { Heading } from 'components/atoms'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'

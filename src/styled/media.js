@@ -1,6 +1,6 @@
 // Modified from https://github.com/morajabi/styled-media-query/
 
-import { queries } from '~/theme'
+import { queries } from 'theme'
 import { css } from 'styled-components'
 
 function getSizeFromBreakpoint(breakpointValue, breakpoints = {}) {

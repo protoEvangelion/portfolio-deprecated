@@ -1,4 +1,4 @@
-import { breakpoints } from '~/theme'
+import { breakpoints } from 'theme'
 
 export const px = n => (num(n) ? n + 'px' : n)
 export const em = n => (num(n) ? n + 'em' : n)

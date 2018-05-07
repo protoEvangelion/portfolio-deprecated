@@ -1,4 +1,4 @@
-import { space } from '~/theme'
+import { space } from 'theme'
 
 import { arr, breaks, dec, media, merge, neg, num, px } from './util'
 

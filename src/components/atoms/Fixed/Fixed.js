@@ -1,4 +1,4 @@
-import { color, space, width } from '~/styled'
+import { color, space, width } from 'styled'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 

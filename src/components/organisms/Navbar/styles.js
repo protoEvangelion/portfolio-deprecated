@@ -1,7 +1,7 @@
-import { Block } from '~/components/atoms'
-import { IconButton } from '~/components/molecules'
-import { media } from '~/styled'
-import { colors } from '~/theme'
+import { Block } from 'components/atoms'
+import { IconButton } from 'components/molecules'
+import { media } from 'styled'
+import { colors } from 'theme'
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled(Block)`

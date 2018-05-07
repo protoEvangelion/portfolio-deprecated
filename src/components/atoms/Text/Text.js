@@ -1,5 +1,5 @@
-import { color, fontSize, responsiveStyle, space } from '~/styled'
-import { bold as b, regular as reg } from '~/theme'
+import { color, fontSize, responsiveStyle, space } from 'styled'
+import { bold as b, regular as reg } from 'theme'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 

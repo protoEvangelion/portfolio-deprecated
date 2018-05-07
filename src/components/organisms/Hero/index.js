@@ -1,5 +1,5 @@
-import { Avatar, Block, Text as Paragraph } from '~/components/atoms'
-import { SocialBtns } from '~/components/molecules'
+import { Avatar, Block, Text as Paragraph } from 'components/atoms'
+import { SocialBtns } from 'components/molecules'
 import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'

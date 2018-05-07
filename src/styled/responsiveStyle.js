@@ -1,4 +1,4 @@
-import theme from '~/theme'
+import theme from 'theme'
 
 import { arr, breaks, dec, get, is, media, merge, px } from './util'
 
@@ -14,7 +14,7 @@ const responsiveStyles = (...args) => props => {
   if (!is(n)) return null
   const mediaQueries = breaks()
   props.theme = theme
-  const scale = get(props, ['~/theme', key || prop].join('.'), {})
+  const scale = get(props, ['theme', key || prop].join('.'), {})
   const sx = val => get(scale, '' + val, numberToPx ? px(val) : val)
 
   if (!Array.isArray(n)) {

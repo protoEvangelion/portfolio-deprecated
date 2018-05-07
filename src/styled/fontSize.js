@@ -1,4 +1,4 @@
-import { fontSizes } from '~/theme'
+import { fontSizes } from 'theme'
 
 import { breaks, dec, is, media, merge, num, px } from './util'
 

@@ -1,4 +1,3 @@
-export Aux from './Aux'
 export Avatar from './Avatar'
 export Badge from './Badge'
 export Block from './Block'

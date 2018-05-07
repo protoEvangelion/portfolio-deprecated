@@ -1,4 +1,4 @@
-import { radii } from '~/theme'
+import { radii } from 'theme'
 
 export default function borderRadius(props) {
   if (props.borderRadius) {

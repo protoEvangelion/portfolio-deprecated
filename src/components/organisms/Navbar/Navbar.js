@@ -1,6 +1,6 @@
-import { Flex, Hide, Icon, Link } from '~/components/atoms'
-import { MenuButton } from '~/components/molecules'
-import { toggleNav } from '~/store/navbar/action'
+import { Flex, Hide, Icon, Link } from 'components/atoms'
+import { MenuButton } from 'components/molecules'
+import { toggleNav } from 'store/navbar/action'
 import React from 'react'
 import { connect } from 'react-redux'
 
