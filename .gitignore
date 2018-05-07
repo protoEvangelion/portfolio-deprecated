@@ -1,17 +1,8 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# dependencies
-node_modules
-
-# env
-.env
-
-# misc
-.DS_Store
-dist
-npm-debug.log
-webpack/webpack-assets.json
-*.log
 .cache
+.DS_Store
+.env
+*.log
+dist
+node_modules
 public
 
