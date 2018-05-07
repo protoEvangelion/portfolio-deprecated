@@ -8,5 +8,17 @@
 		"process": true,
 		"window": true
 	},
-	"rules": {}
+	"rules": {
+		"import/no-extraneous-dependencies": 0,
+		"react/jsx-filename-extension": 0,
+		"react/jsx-indent": 0,
+		"react/jsx-indent-props": 0
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"paths": ["src"]
+			}
+		}
+	}
 }
