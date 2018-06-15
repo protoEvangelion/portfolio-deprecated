@@ -1,25 +1,29 @@
 {
-	"extends": ["airbnb", "plugin:prettier/recommended"],
-	"globals": {
-		"__dirname": true,
-		"document": true,
-		"exports": true,
-		"module": true,
-		"process": true,
-		"window": true
-	},
-	"rules": {
-		"import/no-extraneous-dependencies": 0,
-		"react/jsx-filename-extension": 0,
-		"react/jsx-indent": 0,
-		"react/jsx-indent-props": 0,
-		"react/require-default-props": 0
-	},
-	"settings": {
-		"import/resolver": {
-			"node": {
-				"paths": ["src"]
-			}
-		}
-	}
+  "extends": ["airbnb"],
+  "plugins": ["prettier"],
+  "globals": {
+    "__dirname": true,
+    "document": true,
+    "exports": true,
+    "module": true,
+    "process": true,
+    "window": true
+  },
+  "rules": {
+    "default-case": "off",
+    "prettier/prettier": "error",
+    "import/no-extraneous-dependencies": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-indent": 0,
+    "react/jsx-indent-props": 0,
+    "react/require-default-props": 0,
+    "semi": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
 }

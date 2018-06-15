@@ -1,83 +1,81 @@
 {
-	"author": "Ryan Garant",
-	"license": "MIT",
-	"name": "portfolio",
-	"repository": "https://github.com/protoEvangelion/portfolio",
-	"version": "2.0.0",
-	"scripts": {
-		"dev": "gatsby develop",
-		"build": "gatsby build",
-		"deploy": "firebase deploy",
-		"eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-		"format":
-			"prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/**/*.js\" \"src/**/**/**/**/*.js\" \"_src/**/**/*.js\" \"_src/**/**/**/*.js\" \"_src/**/**/**/**/*.js\"",
-		"icons": "node src/utils/scripts/parseIcons",
-		"story": "start-storybook -p 9001 -c private/storybook",
-		"test": "cross-env NODE_ENV=test jest"
-	},
-	"lint-staged": {
-		"*.{js,json,css}": [
-			"prettier-eslint --write --config .prettierrc --eslint-config-path .eslintrc ",
-			"git add"
-		]
-	},
-	"importSort": {
-		".js": {
-			"parser": "babylon",
-			"style": "module"
-		}
-	},
-	"jest": {
-		"modulePathIgnorePatterns": ["<rootDir>/src-clean"],
-		"moduleDirectories": ["src", "node_modules"],
-		"moduleNameMapper": {
-			"^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
-				"<rootDir>/test/fileMock.js",
-			"^(components|containers)$": "<rootDir>/test/componentsMock.js",
-			"^(store|\\.\\.)\\/selectors$": "<rootDir>/test/selectorsMock.js",
-			"^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js"
-		}
-	},
-	"devDependencies": {
-		"copyfiles": "^1.2.0",
-		"eslint": "^4.19.1",
-		"eslint-config-airbnb": "^16.1.0",
-		"eslint-config-prettier": "^2.9.0",
-		"eslint-plugin-import": "^2.11.0",
-		"eslint-plugin-jsx-a11y": "^6.0.3",
-		"eslint-plugin-prettier": "^2.6.0",
-		"eslint-plugin-react": "^7.7.0",
-		"gatsby": "^1.9.259",
-		"gatsby-link": "^1.6.44",
-		"gatsby-plugin-react-helmet": "^2.0.11",
-		"gatsby-plugin-react-next": "^1.0.11",
-		"gatsby-plugin-resolve-src": "^1.1.3",
-		"husky": "^0.14.3",
-		"lint-staged": "^4.3.0",
-		"prettier": "^1.12.1",
-		"prettier-eslint-cli": "^4.4.0",
-		"prop-types": "^15.6.0",
-		"redux-devtools-extension": "^2.13.2",
-		"stylelint": "^8.2.0",
-		"stylelint-config-standard": "^17.0.0",
-		"stylelint-config-styled-components": "^0.1.1",
-		"stylelint-processor-styled-components": "^1.0.0"
-	},
-	"dependencies": {
-		"axios": "^0.15.3",
-		"lodash": "^4.17.4",
-		"markdown-it": "^8.2.2",
-		"markdown-it-emoji": "^1.3.0",
-		"markdown-it-prism": "^1.0.1",
-		"react-helmet": "^5.0.1",
-		"react-modal": "^1.6.5",
-		"react-redux": "^5.0.6",
-		"redux": "^3.6.0",
-		"styled-components": "^2.2.3",
-		"styled-media-query": "^2.0.1",
-		"styled-reset": "^0.1.3",
-		"styled-system": "^1.0.8",
-		"styled-theme": "^0.3.3",
-		"styled-tools": "^0.2.2"
-	}
+  "author": "Ryan Garant",
+  "license": "MIT",
+  "name": "portfolio",
+  "repository": "https://github.com/protoEvangelion/portfolio",
+  "version": "2.0.0",
+  "scripts": {
+    "dev": "gatsby develop",
+    "build": "gatsby build",
+    "clean": "git clean -xfd .cache public/",
+    "deploy": "firebase deploy",
+    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "format":
+      "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/**/*.js\" \"src/**/**/**/**/*.js\" \"_src/**/**/*.js\" \"_src/**/**/**/*.js\" \"_src/**/**/**/**/*.js\"",
+    "icons": "node src/utils/scripts/parseIcons",
+    "story": "start-storybook -p 9001 -c private/storybook",
+    "test": "cross-env NODE_ENV=test jest"
+  },
+  "importSort": {
+    ".js": {
+      "parser": "babylon",
+      "style": "module"
+    }
+  },
+  "jest": {
+    "modulePathIgnorePatterns": ["<rootDir>/src-clean"],
+    "moduleDirectories": ["src", "node_modules"],
+    "moduleNameMapper": {
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+        "<rootDir>/test/fileMock.js",
+      "^(components|containers)$": "<rootDir>/test/componentsMock.js",
+      "^(store|\\.\\.)\\/selectors$": "<rootDir>/test/selectorsMock.js",
+      "^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js"
+    }
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^4.5.2",
+    "sass-loader": "^4.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "gatsby": "^1.9.271",
+    "gatsby-link": "^1.6.44",
+    "gatsby-plugin-react-helmet": "^2.0.11",
+    "gatsby-plugin-react-next": "^1.0.11",
+    "gatsby-plugin-resolve-src": "^1.1.3",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.3.0",
+    "prettier": "^1.12.1",
+    "prop-types": "^15.6.0",
+    "redux-devtools-extension": "^2.13.2",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.0.0"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "grommet": "^1.10.1",
+    "lodash": "^4.17.4",
+    "markdown-it": "^8.2.2",
+    "markdown-it-emoji": "^1.3.0",
+    "markdown-it-prism": "^1.0.1",
+    "react-helmet": "^5.0.1",
+    "react-modal": "^1.6.5",
+    "react-redux": "^5.0.6",
+    "redux": "^3.6.0",
+    "styled-components": "^2.2.3",
+    "styled-media-query": "^2.0.1",
+    "styled-reset": "^0.1.3",
+    "styled-system": "^1.0.8",
+    "styled-theme": "^0.3.3",
+    "styled-tools": "^0.2.2"
+  }
 }

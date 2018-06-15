@@ -16,7 +16,7 @@
       "children": [],
       "internal": {
         "type": "SitePage",
-        "contentDigest": "26330a357203ab51086278feb7db04a5",
+        "contentDigest": "42931d7f5181630559e49b194663186b",
         "description": "Plugin dev-404-page",
         "owner": "internal-data-bridge"
       }
@@ -52,45 +52,6 @@
       "children": [],
       "internal": {
         "contentDigest": "85b1133ced38df8fe435d9357d73c56c",
-        "type": "SitePlugin",
-        "owner": "internal-data-bridge"
-      }
-    },
-    "Plugin component-page-creator": {
-      "resolve": "/home/ryan/dev/portfolio/node_modules/gatsby/dist/internal-plugins/component-page-creator",
-      "id": "Plugin component-page-creator",
-      "name": "component-page-creator",
-      "version": "1.0.0",
-      "pluginOptions": {
-        "plugins": []
-      },
-      "nodeAPIs": [
-        "createPagesStatefully"
-      ],
-      "browserAPIs": [],
-      "ssrAPIs": [],
-      "pluginFilepath": "/home/ryan/dev/portfolio/node_modules/gatsby/dist/internal-plugins/component-page-creator",
-      "packageJson": {
-        "name": "component-page-creator",
-        "description": "An internal Gatsby plugin that creates pages from component files in src/pages",
-        "version": "1.0.0",
-        "main": "index.js",
-        "keywords": [
-          "gatsby",
-          "gatsby-plugin"
-        ],
-        "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-        "license": "MIT",
-        "dependencies": [],
-        "devDependencies": [],
-        "peerDependencies": [],
-        "optionalDependecies": [],
-        "bundledDependecies": []
-      },
-      "parent": "SOURCE",
-      "children": [],
-      "internal": {
-        "contentDigest": "9157878c4fb2133a7d2ebd213e26ad60",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
@@ -424,11 +385,43 @@
         "owner": "internal-data-bridge"
       }
     },
+    "Plugin custom-sass-loader": {
+      "resolve": "/home/ryan/dev/portfolio/plugins/custom-sass-loader",
+      "name": "custom-sass-loader",
+      "id": "Plugin custom-sass-loader",
+      "version": "8174d66fc957d76fa4d42b4e1cce5cb0",
+      "pluginOptions": {
+        "plugins": [],
+        "postCssPlugins": [
+          null
+        ]
+      },
+      "nodeAPIs": [
+        "modifyWebpackConfig"
+      ],
+      "browserAPIs": [],
+      "ssrAPIs": [],
+      "pluginFilepath": "/home/ryan/dev/portfolio/plugins/custom-sass-loader",
+      "packageJson": {
+        "dependencies": [],
+        "devDependencies": [],
+        "peerDependencies": [],
+        "optionalDependecies": [],
+        "bundledDependecies": []
+      },
+      "parent": "SOURCE",
+      "children": [],
+      "internal": {
+        "contentDigest": "761c7b37b226c0ca09fff657bc85f1c9",
+        "type": "SitePlugin",
+        "owner": "internal-data-bridge"
+      }
+    },
     "Plugin default-site-plugin": {
       "resolve": "/home/ryan/dev/portfolio",
       "id": "Plugin default-site-plugin",
       "name": "default-site-plugin",
-      "version": "a340c5badcb6f739fcbf0342e7bf35ef",
+      "version": "89f3602d57b85243ff4c1b295393332c",
       "pluginOptions": {
         "plugins": []
       },
@@ -449,6 +442,10 @@
           {
             "name": "axios",
             "version": "^0.15.3"
+          },
+          {
+            "name": "grommet",
+            "version": "^1.10.1"
           },
           {
             "name": "lodash",
@@ -509,8 +506,20 @@
         ],
         "devDependencies": [
           {
-            "name": "copyfiles",
-            "version": "^1.2.0"
+            "name": "autoprefixer",
+            "version": "^7.1.2"
+          },
+          {
+            "name": "extract-text-webpack-plugin",
+            "version": "^1.0.1"
+          },
+          {
+            "name": "node-sass",
+            "version": "^4.5.2"
+          },
+          {
+            "name": "sass-loader",
+            "version": "^4.1.1"
           },
           {
             "name": "eslint",
@@ -542,7 +551,7 @@
           },
           {
             "name": "gatsby",
-            "version": "^1.9.259"
+            "version": "^1.9.271"
           },
           {
             "name": "gatsby-link",
@@ -571,10 +580,6 @@
           {
             "name": "prettier",
             "version": "^1.12.1"
-          },
-          {
-            "name": "prettier-eslint-cli",
-            "version": "^4.4.0"
           },
           {
             "name": "prop-types",
@@ -608,7 +613,86 @@
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "8a30e179110033d53e7d6349a101ebbf",
+        "contentDigest": "8995adda5e4fc0cb9370d0e627b9dc97",
+        "type": "SitePlugin",
+        "owner": "internal-data-bridge"
+      }
+    },
+    "Plugin gatsby-plugin-page-creator": {
+      "resolve": "/home/ryan/dev/portfolio/node_modules/gatsby-plugin-page-creator",
+      "id": "Plugin gatsby-plugin-page-creator",
+      "name": "gatsby-plugin-page-creator",
+      "version": "1.0.1",
+      "pluginOptions": {
+        "plugins": [],
+        "path": "/home/ryan/dev/portfolio/src/pages",
+        "pathCheck": false
+      },
+      "nodeAPIs": [
+        "createPagesStatefully"
+      ],
+      "browserAPIs": [],
+      "ssrAPIs": [],
+      "pluginFilepath": "/home/ryan/dev/portfolio/node_modules/gatsby-plugin-page-creator",
+      "packageJson": {
+        "name": "gatsby-plugin-page-creator",
+        "description": "Gatsby plugin that automatically creates pages from React components in specified directories",
+        "version": "1.0.1",
+        "main": "index.js",
+        "keywords": [
+          "gatsby",
+          "gatsby-plugin"
+        ],
+        "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+        "license": "MIT",
+        "dependencies": [
+          {
+            "name": "babel-runtime",
+            "version": "^6.26.0"
+          },
+          {
+            "name": "bluebird",
+            "version": "^3.5.0"
+          },
+          {
+            "name": "chokidar",
+            "version": "^1.7.0"
+          },
+          {
+            "name": "glob",
+            "version": "^7.1.1"
+          },
+          {
+            "name": "lodash",
+            "version": "^4.17.4"
+          },
+          {
+            "name": "parse-filepath",
+            "version": "^1.0.1"
+          },
+          {
+            "name": "slash",
+            "version": "^1.0.0"
+          }
+        ],
+        "devDependencies": [
+          {
+            "name": "babel-cli",
+            "version": "^6.26.0"
+          },
+          {
+            "name": "cross-env",
+            "version": "^5.0.5"
+          }
+        ],
+        "peerDependencies": [],
+        "optionalDependecies": [],
+        "bundledDependecies": []
+      },
+      "parent": "SOURCE",
+      "children": [],
+      "internal": {
+        "contentDigest": "22805746f9bb120672ca46d78af8ea2f",
         "type": "SitePlugin",
         "owner": "internal-data-bridge"
       }
@@ -621,12 +705,12 @@
       "host": "localhost",
       "pathPrefix": "",
       "polyfill": true,
-      "buildTime": "2018-05-07T03:56:25.776Z",
+      "buildTime": "2018-06-15T05:42:15.167Z",
       "id": "Site",
       "parent": "SOURCE",
       "children": [],
       "internal": {
-        "contentDigest": "76dce9706b68da27238097fbb4402cad",
+        "contentDigest": "cba5ce99c2c56aa2e9a18e54fd352e70",
         "type": "Site",
         "owner": "internal-data-bridge"
       }
@@ -639,23 +723,65 @@
       "component": "/home/ryan/dev/portfolio/src/pages/index.js",
       "componentChunkName": "component---src-pages-index-js",
       "context": {},
-      "pluginCreator___NODE": "Plugin component-page-creator",
-      "pluginCreatorId": "Plugin component-page-creator",
+      "pluginCreator___NODE": "Plugin gatsby-plugin-page-creator",
+      "pluginCreatorId": "Plugin gatsby-plugin-page-creator",
       "componentPath": "/home/ryan/dev/portfolio/src/pages/index.js",
       "id": "SitePage /",
       "parent": "SOURCE",
       "children": [],
       "internal": {
         "type": "SitePage",
-        "contentDigest": "dae095ef985d72b6bf46218a1a894d7f",
-        "description": "Plugin component-page-creator",
+        "contentDigest": "df6cb38422b8cf6e6a70b308fec9e750",
+        "description": "Plugin gatsby-plugin-page-creator",
+        "owner": "internal-data-bridge"
+      }
+    },
+    "SitePage /404/": {
+      "layout": "index",
+      "jsonName": "404.json",
+      "internalComponentName": "Component404",
+      "path": "/404/",
+      "component": "/home/ryan/dev/portfolio/src/pages/404.js",
+      "componentChunkName": "component---src-pages-404-js",
+      "context": {},
+      "pluginCreator___NODE": "Plugin gatsby-plugin-page-creator",
+      "pluginCreatorId": "Plugin gatsby-plugin-page-creator",
+      "componentPath": "/home/ryan/dev/portfolio/src/pages/404.js",
+      "id": "SitePage /404/",
+      "parent": "SOURCE",
+      "children": [],
+      "internal": {
+        "type": "SitePage",
+        "contentDigest": "4ce07e1d9d63defd55395a4f00df452d",
+        "description": "Plugin gatsby-plugin-page-creator",
+        "owner": "internal-data-bridge"
+      }
+    },
+    "SitePage /404.html": {
+      "layout": "index",
+      "jsonName": "404-html.json",
+      "internalComponentName": "Component404Html",
+      "path": "/404.html",
+      "component": "/home/ryan/dev/portfolio/src/pages/404.js",
+      "componentChunkName": "component---src-pages-404-js",
+      "context": {},
+      "pluginCreator___NODE": "Plugin prod-404",
+      "pluginCreatorId": "Plugin prod-404",
+      "componentPath": "/home/ryan/dev/portfolio/src/pages/404.js",
+      "id": "SitePage /404.html",
+      "parent": "SOURCE",
+      "children": [],
+      "internal": {
+        "type": "SitePage",
+        "contentDigest": "e74e82b264baa23b70449a569d4d6abc",
+        "description": "Plugin prod-404",
         "owner": "internal-data-bridge"
       }
     }
   },
   "status": {
     "plugins": {},
-    "PLUGINS_HASH": "93560bade2be71a1cf1467076c06386f"
+    "PLUGINS_HASH": "b89efedb04c57305b7590442861fa2cb"
   },
   "componentDataDependencies": {
     "nodes": {},
