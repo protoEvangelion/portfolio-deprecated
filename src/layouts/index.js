@@ -6,40 +6,34 @@ import { Footer, Navbar } from 'components/organisms'
 import './global.css'
 import './ihover.css'
 
-const BaseLayout = props => {
-	return (
-		<Fragment>
-			<Helmet
-				title="Interactive Floor Plan"
-				meta={[
-					{
-						name: 'description',
-						content: 'My portfolio',
-					},
-					{
-						name: 'keywords',
-						content: 'gatsby, firebase, react, redux, es6, serverless',
-					},
-				]}
-			>
-				<link
-					href="https://fonts.googleapis.com/css?family=Open+Sans:400,600"
-					rel="stylesheet"
-				/>
-			</Helmet>
+const BaseLayout = props => (
+  <Fragment>
+    <Helmet
+      title="Interactive Floor Plan"
+      meta={[
+        {
+          name: 'description',
+          content: 'My portfolio',
+        },
+        {
+          name: 'keywords',
+          content: 'gatsby, firebase, react, redux, es6, serverless',
+        },
+      ]}
+    >
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
+    </Helmet>
 
-			<Navbar />
+    <Navbar />
 
-			{props.children()}
+    {props.children()}
 
-			<Footer />
-		</Fragment>
-	)
-}
+    <Footer />
+  </Fragment>
+)
 
 BaseLayout.propTypes = {
-	location: PropTypes.object,
-	children: PropTypes.any,
+  children: PropTypes.any,
 }
 
 export default BaseLayout

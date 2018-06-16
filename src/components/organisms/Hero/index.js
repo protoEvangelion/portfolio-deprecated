@@ -3,22 +3,10 @@ import { SocialBtns } from 'components/molecules'
 import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
-
-const Wrapper = styled(Block)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 30px 0;
-  padding: 2rem 6rem;
-  box-sizing: border-box;
-  text-align: center;
-  @media screen and (max-width: 640px) {
-    padding: 1rem;
-  }
-`
+import Box from 'grommet/components/Box'
 
 const Text = styled(Paragraph)`
-  color: ${palette('grayscale', 0)}
+  color: ${palette('grayscale', 0)};
   max-width: 800px;
   font-weight: 300;
   font-size: 1.35rem;
@@ -28,19 +16,25 @@ const Text = styled(Paragraph)`
     font-size: 1rem;
   }
 `
+const Hero = ({ resolutions }) => (
+  <Box
+    a11yTitle="Main Header With Avatar and Description"
+    align="center"
+    direction="column"
+    margin={{ top: 'medium' }}
+    pad="large"
+    size="full"
+    textAlign="center"
+  >
+    <Avatar resolutions={resolutions} />
 
-const Hero = props => {
-  return (
-    <Wrapper {...props}>
-      {/* {<Avatar size="250" src={headshot} />} */}
-      <Avatar size="250" />
-      <SocialBtns />
-      <Text>Filler P</Text>
-      <Text>
-        <em>Filler 2nd</em>
-      </Text>
-    </Wrapper>
-  )
-}
+    {/* <SocialBtns /> */}
+
+    <Text>Filler P</Text>
+    <Text>
+      <em>Filler 2nd</em>
+    </Text>
+  </Box>
+)
 
 export default Hero

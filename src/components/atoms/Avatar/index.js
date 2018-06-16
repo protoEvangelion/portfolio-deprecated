@@ -1,25 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 
-const Image = styled.img`
-  border-radius: 50%;
-  height: ${props => props.size}px;
-  padding: 20px;
-`
-
-const Avatar = ({ size, src }) => {
-  return <Image size={size} src={src} />
-}
-
-Avatar.defaultProps = {
-  size: '200px',
-  src: '/static/images/calc.png',
-}
+const Avatar = ({ resolutions }) => <Img resolutions={resolutions} />
 
 Avatar.propTypes = {
-  size: PropTypes.string,
-  src: PropTypes.string.isRequired,
+  resolutions: PropTypes.object,
 }
 
 export default Avatar

@@ -5,6 +5,7 @@
     "__dirname": true,
     "document": true,
     "exports": true,
+    "graphql": true,
     "module": true,
     "process": true,
     "window": true
