@@ -10,6 +10,7 @@ module.exports = {
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
