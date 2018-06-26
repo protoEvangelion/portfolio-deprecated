@@ -9,9 +9,13 @@
     "noEmitOnError": false,
     "strict": true,
     "strictNullChecks": true,
-    "noImplicitAny": true,
     "noImplicitThis": true,
-    "lib": ["dom", "es2015", "es2017", "dom.iterable", "scripthost"]
+    "lib": ["dom", "es2015", "es2017", "dom.iterable", "scripthost"],
+    "baseUrl": ".",
+    "paths": {
+      "images": ["src/images"],
+      "components/*": ["components/*"]
+    }
   },
   "include": ["./src/**/*"]
 }
