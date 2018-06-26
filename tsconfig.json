@@ -1,21 +1,28 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "esnext",
+    "alwaysStrict": true,
+    "downlevelIteration": true,
+    "importHelpers": false,
+    "inlineSourceMap": true,
     "jsx": "react",
-    "noEmitOnError": false,
-    "strict": true,
-    "strictNullChecks": true,
+    "module": "commonjs",
+    "noImplicitReturns": true,
     "noImplicitThis": true,
-    "lib": ["dom", "es2015", "es2017", "dom.iterable", "scripthost"],
-    "baseUrl": ".",
+    "skipLibCheck": true,
+    "strictFunctionTypes": true,
+    "target": "es5",
+    "lib": [
+      "es6",
+      "dom",
+      "scripthost"
+    ],
+    "baseUrl": "./src",
     "paths": {
-      "images": ["src/images"],
-      "components/*": ["components/*"]
+      "@components/*": ["components/*"],
+      "@images/*": ["images/*"]
     }
   },
-  "include": ["./src/**/*"]
+  "exclude": [
+    "node_modules"
+  ]
 }

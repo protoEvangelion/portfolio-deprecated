@@ -1,14 +1,14 @@
-import { Hero, ProjectHeader } from 'components/organisms'
+import { Hero } from '@components/organisms'
 import * as React from 'react'
 
-import forceImg from 'images/force.png'
-import tradeshowImg from 'images/tradeshow.png'
-import weatherImg from 'images/weather.png'
-import gameOfLifeImg from 'images/gameOfLife.png'
+// import { forceImg } from '@images/force.png'
+// import tradeshowImg from '@images/tradeshow.png'
+// import weatherImg from '@images/weather.png'
+// import gameOfLifeImg from '@images/gameOfLife.png'
 
 const Index = ({ data }) => (
   <React.Fragment>
-    {/* <Hero resolutions={data.headshot.resolutions} /> */}
+    <Hero resolutions={data.headshot.resolutions} />
     <div>hello</div>
     {/* <ProjectHeader
       absolute
