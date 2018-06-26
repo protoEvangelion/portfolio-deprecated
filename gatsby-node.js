@@ -1,6 +1,13 @@
 const path = require('path')
 
-exports.modifyWebpackConfig = ({ config }) => {
+exports.modifyWebpackConfig = ({ config, stage }) => {
+  if (stage === 'build-javascript') {
+    config.loader('typescript', {
+      test: /\.tsx?$/,
+      loaders: [`babel-loader?${JSON.stringify({ presets: ['babel-preset-env'] })}`, 'ts-loader'],
+    })
+  }
+
   const newConfig = config
 
   newConfig._config.resolve.alias = {

@@ -1,28 +1,19 @@
 {
   "compilerOptions": {
     "alwaysStrict": true,
-    "downlevelIteration": true,
-    "importHelpers": false,
-    "inlineSourceMap": true,
+    "sourceMap": true,
     "jsx": "react",
     "module": "commonjs",
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "skipLibCheck": true,
+    "outDir": "./dist/",
     "strictFunctionTypes": true,
-    "target": "es5",
-    "lib": [
-      "es6",
-      "dom",
-      "scripthost"
-    ],
+    "target": "esnext",
+    "lib": ["esnext", "dom", "scripthost"],
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["components/*"],
-      "@images/*": ["images/*"]
+      "@images/*": ["images/*"],
+      "@store/*": ["store/*"]
     }
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

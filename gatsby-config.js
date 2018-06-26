@@ -2,6 +2,7 @@ const autoprefixer = require('autoprefixer')
 
 module.exports = {
   siteMetadata: {
+    googleVerification: 'abcdefz',
     title: "Ryan's Personal Portfolio",
   },
   plugins: [

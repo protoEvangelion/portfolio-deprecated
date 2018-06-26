@@ -6,7 +6,7 @@ import * as React from 'react'
 // import weatherImg from '@images/weather.png'
 // import gameOfLifeImg from '@images/gameOfLife.png'
 
-const Index = ({ data }) => (
+const Index: React.SFC = ({ data, ...props }) => (
   <React.Fragment>
     <Hero resolutions={data.headshot.resolutions} />
     <div>hello</div>
