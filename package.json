@@ -15,36 +15,17 @@
     "story": "start-storybook -p 9001 -c private/storybook",
     "test": "cross-env NODE_ENV=test jest"
   },
-  "importSort": {
-    ".js": {
-      "parser": "babylon",
-      "style": "module"
-    }
-  },
-  "jest": {
-    "modulePathIgnorePatterns": [
-      "<rootDir>/src-clean"
-    ],
-    "moduleDirectories": [
-      "src",
-      "node_modules"
-    ],
-    "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/fileMock.js",
-      "^(components|containers)$": "<rootDir>/test/componentsMock.js",
-      "^(store|\\.\\.)\\/selectors$": "<rootDir>/test/selectorsMock.js",
-      "^(store|\\.\\.)\\/actions$": "<rootDir>/test/actionsMock.js"
-    }
-  },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.2.14",
-    "@storybook/addon-knobs": "^3.2.14",
-    "@storybook/addon-notes": "^3.2.10",
-    "@storybook/addon-options": "^3.2.14",
-    "@storybook/react": "^3.2.14",
     "@types/enzyme": "^2.8.9",
     "@types/jest": "^19.2.2",
+    "@types/lodash": "^4.14.63",
     "@types/node": "^7.0.15",
+    "@types/react": "^16.0.20",
+    "@types/react-dom": "^16.0.2",
+    "@types/react-helmet": "5.0.0",
+    "@types/react-redux": "^5.0.9",
+    "@types/react-router": "^4.0.14",
+    "@types/react-router-dom": "^4.0.8",
     "@types/react-test-renderer": "^16.0.0",
     "@types/storybook__addon-actions": "^3.0.1",
     "@types/storybook__addon-knobs": "^3.2.0",
@@ -52,14 +33,8 @@
     "@types/storybook__addon-options": "^3.2.0",
     "@types/storybook__react": "^3.0.5",
     "@types/webpack-env": "^1.13.1",
-    "@types/lodash": "^4.14.63",
-    "@types/react": "^16.0.20",
-    "@types/react-dom": "^16.0.2",
-    "@types/react-helmet": "5.0.0",
-    "@types/react-redux": "^5.0.9",
-    "@types/react-router": "^4.0.14",
-    "@types/react-router-dom": "^4.0.8",
     "babel-eslint": "^7.2.1",
+    "babel-loader": "7.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -74,6 +49,7 @@
     "gatsby-plugin-react-next": "^1.0.11",
     "gatsby-plugin-resolve-src": "^1.1.3",
     "gatsby-plugin-sharp": "^1.6.47",
+    "gatsby-plugin-typescript": "^1.4.20",
     "gatsby-source-filesystem": "^1.5.38",
     "gatsby-transformer-sharp": "^1.6.26",
     "husky": "^0.14.3",
@@ -90,7 +66,6 @@
   "dependencies": {
     "axios": "^0.15.3",
     "gatsby-image": "^1.0.53",
-    "gatsby-plugin-typescript": "^1.4.20",
     "lodash": "^4.17.4",
     "markdown-it": "^8.2.2",
     "markdown-it-emoji": "^1.3.0",

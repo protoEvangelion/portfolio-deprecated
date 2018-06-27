@@ -1,6 +1,6 @@
 import { Badge, Heading, Icon, Link, Text } from 'components/atoms'
 import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -21,13 +21,11 @@ const StyledBadge = styled(Badge)`
   right: 1rem;
 `
 
-const Feature = ({ icon, title, link, children, ...props }) => {
+export const Feature = ({ icon, title, link, children, ...props }) => {
   return (
     <Wrapper {...props}>
       {icon && <StyledIcon icon={icon} height={64} />}
-      <Heading level={2}>
-        {link ? <Link href={link}>{title}</Link> : title}
-      </Heading>
+      <Heading level={2}>{link ? <Link href={link}>{title}</Link> : title}</Heading>
       <Text>{children}</Text>
       {props.soon && <StyledBadge palette="grayscale">soon</StyledBadge>}
     </Wrapper>
@@ -41,5 +39,3 @@ Feature.propTypes = {
   soon: PropTypes.bool,
   children: PropTypes.any,
 }
-
-export default Feature

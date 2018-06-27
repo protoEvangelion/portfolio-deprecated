@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
 
@@ -16,26 +16,16 @@ const Icon = styled.i`
   }
 `
 
-const SocialBtns = () => (
+export const SocialBtns = () => (
   <IconCtn>
     <a href="http://stackoverflow.com/users/story/6502003">
-      <Icon
-        key="stackoverflowBtn"
-        className="fa fa-stack-overflow fa-2x"
-        aria-hidden="true"
-      />
+      <Icon key="stackoverflowBtn" className="fa fa-stack-overflow fa-2x" aria-hidden="true" />
     </a>
     <a href="https://github.com/protoEvangelion">
       <Icon key="githubBtn" className="fa fa-github fa-2x" aria-hidden="true" />
     </a>
     <a href="https://www.freecodecamp.com/protoevangelion">
-      <Icon
-        key="freecodecampBtn"
-        className="fa fa-free-code-camp fa-2x"
-        aria-hidden="true"
-      />
+      <Icon key="freecodecampBtn" className="fa fa-free-code-camp fa-2x" aria-hidden="true" />
     </a>
   </IconCtn>
 )
-
-export default SocialBtns

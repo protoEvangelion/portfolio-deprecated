@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { font, palette } from 'styled-theme'
 
-const Badge = styled.span`
+export const Badge = styled.span`
   font-family: ${font('primary')};
   font-size: 0.75rem;
   line-height: 1.5em;
@@ -12,13 +12,11 @@ const Badge = styled.span`
   border-radius: 0.16667em;
 `
 
-Badge.propTypes = {
-  palette: PropTypes.string,
-  reverse: PropTypes.bool,
-}
+// Badge.propTypes = {
+//   palette: PropTypes.string,
+//   reverse: PropTypes.bool,
+// }
 
 Badge.defaultProps = {
   palette: 'primary',
 }
-
-export default Badge

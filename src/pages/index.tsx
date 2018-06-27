@@ -1,4 +1,5 @@
-import { Hero } from '@components/organisms'
+import { Button } from 'components/atoms'
+import { Hero } from 'components/organisms'
 import * as React from 'react'
 
 // import { forceImg } from '@images/force.png'
@@ -6,11 +7,14 @@ import * as React from 'react'
 // import weatherImg from '@images/weather.png'
 // import gameOfLifeImg from '@images/gameOfLife.png'
 
-const Index: React.SFC = ({ data, ...props }) => (
-  <React.Fragment>
-    <Hero resolutions={data.headshot.resolutions} />
-    <div>hello</div>
-    {/* <ProjectHeader
+// const Index: React.SFC = ({ data, ...props }) => (
+//   <React.Fragment>
+{
+  /* <Hero resolutions={data.headshot.resolutions} /> */
+}
+// <div>hello</div>
+{
+  /* <ProjectHeader
       absolute
       image={tradeshowImg}
       header="A blazingly fast static site built upon stable modern technologies like React and Firebase with a goal to simplify the trade show management process"
@@ -39,9 +43,10 @@ const Index: React.SFC = ({ data, ...props }) => (
       linkText="D3 Projects"
       href="d3Apps"
       flip
-    /> */}
-  </React.Fragment>
-)
+    /> */
+}
+//   </React.Fragment>
+// )
 
 // export const query = graphql`
 //   query TracedSVGQuery {
@@ -52,4 +57,4 @@ const Index: React.SFC = ({ data, ...props }) => (
 //     }
 //   }
 // `
-export default Index
+export default () => <Button>hello</Button>

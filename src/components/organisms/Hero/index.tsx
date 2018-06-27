@@ -1,9 +1,8 @@
-import { Avatar, Block, Text as Paragraph } from 'components/atoms'
-import { SocialBtns } from 'components/molecules'
-import React from 'react'
+import { Avatar, Block, Text as Paragraph } from 'components'
+import { SocialBtns } from 'components'
+import * as React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styled-theme'
-import Box from 'grommet/components/Box'
 
 const Text = styled(Paragraph)`
   color: ${palette('grayscale', 0)};
@@ -16,16 +15,9 @@ const Text = styled(Paragraph)`
     font-size: 1rem;
   }
 `
-const Hero = ({ resolutions }) => (
-  <Box
-    a11yTitle="Main Header With Avatar and Description"
-    align="center"
-    direction="column"
-    margin={{ top: 'medium' }}
-    pad="large"
-    size="full"
-    textAlign="center"
-  >
+
+export const Hero = ({ resolutions }) => (
+  <div>
     <Avatar resolutions={resolutions} />
 
     {/* <SocialBtns /> */}
@@ -34,7 +26,5 @@ const Hero = ({ resolutions }) => (
     <Text>
       <em>Filler 2nd</em>
     </Text>
-  </Box>
+  </div>
 )
-
-export default Hero

@@ -1,5 +1,3 @@
-const autoprefixer = require('autoprefixer')
-
 module.exports = {
   siteMetadata: {
     googleVerification: 'abcdefz',
@@ -17,16 +15,6 @@ module.exports = {
       options: {
         name: 'images',
         path: `${__dirname}/src/images/`,
-      },
-    },
-    {
-      resolve: 'custom-sass-loader',
-      options: {
-        postCssPlugins: [
-          autoprefixer({
-            browsers: ['last 2 versions'],
-          }),
-        ],
       },
     },
   ],

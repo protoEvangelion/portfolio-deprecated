@@ -1,6 +1,6 @@
 import { Heading } from 'components/atoms'
 import PropTypes from 'prop-types'
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -16,7 +16,7 @@ const StyledImage = styled.img`
   margin-top: 30px;
 `
 
-const Banner = ({ image, size }) => (
+export const Banner = ({ image, size }) => (
   <Wrapper>
     <Heading header="Gaming & Utility MicroApps" />
     <StyledImage src={image} size={size} />
@@ -31,5 +31,3 @@ Banner.propTypes = {
 Banner.defaultProps = {
   size: '400px',
 }
-
-export default Banner
