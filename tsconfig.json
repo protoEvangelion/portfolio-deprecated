@@ -10,10 +10,16 @@
     "lib": ["esnext", "dom", "scripthost"],
     "baseUrl": "./src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@images/*": ["images/*"],
-      "@store/*": ["store/*"]
-    }
+      "components/*": ["components/*"],
+      "images/*": ["images/*"],
+      "theme/*": ["theme/*"],
+      "store/*": ["store/*"]
+    },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
   },
   "exclude": ["node_modules"]
 }

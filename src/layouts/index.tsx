@@ -1,9 +1,9 @@
-import { Footer, Navbar } from 'components/organisms'
+// import { Footer, Navbar } from 'components/organisms'
 import * as React from 'react'
 import Helmet from 'react-helmet'
 import { Provider } from 'react-redux'
 import store from '../store'
-console.log('Footer', Footer)
+
 import '../css/global.css'
 import '../css/ihover.css'
 import '../css/responsive.css'
@@ -36,11 +36,11 @@ class DefaultLayout extends React.PureComponent<IDefaultLayoutProps, {}> {
           <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
         </Helmet>
 
-        <Navbar />
+        {/* <Navbar /> */}
 
         {this.props.children()}
 
-        <Footer />
+        {/* <Footer /> */}
       </Provider>
     )
   }

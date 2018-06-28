@@ -6,20 +6,20 @@
 
 ## About
 
-This portfolio was built using modern web tools and best practices.  Here are some of the neat tools used below:
+This portfolio was built using modern web tools and best practices. Here are some of the neat tools used below:
 
 ## Features
 
-  - 👀 `react` as the view.
-  - 🔀 `react-router` v4 as the router.
-  - 🚄 `express` with `Node.js` as the server.
-  - 🖌  Styling: `CSS`, `Radium`, `Styled Components`
-  - 📦 All source is bundled using `Webpack v2`.
-  - 🚀 ES6 Javascript
-  - 🔥  Hot reloading with `react-hot-loader`
-  - 🤖 Optimised Webpack builds via `HappyPack`.
-  - 👼 `ESlint` configuration.
-  - ❤️ Continuous integration with `Travis-CI` and Heroku
+- 👀 `react` as the view.
+- 🔀 `react-router` v4 as the router.
+- 🚄 `express` with `Node.js` as the server.
+- 🖌 Styling: `CSS`, `Radium`, `Styled Components`
+- 📦 All source is bundled using `Webpack v2`.
+- 🚀 ES6 Javascript
+- 🔥 Hot reloading with `react-hot-loader`
+- 🤖 Optimised Webpack builds via `HappyPack`.
+- 👼 `ESlint` configuration.
+- ❤️ Continuous integration with `Travis-CI` and Heroku
 
 ## Running Locally
 

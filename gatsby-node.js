@@ -13,6 +13,7 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
   newConfig._config.resolve.alias = {
     ...config._config.resolve.alias,
     components: path.join(__dirname, 'src/components'),
+    theme: path.join(__dirname, 'src/theme'),
     images: path.join(__dirname, 'src/images'),
   }
 

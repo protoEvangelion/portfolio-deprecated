@@ -61,7 +61,8 @@
     "stylelint-config-standard": "^16.0.0",
     "ts-loader": "^2.3.7",
     "tslint": "^5.10.0",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "typescript-styled-plugin": "^0.7.0"
   },
   "dependencies": {
     "axios": "^0.15.3",
