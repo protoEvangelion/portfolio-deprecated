@@ -1,31 +1,16 @@
-import { color, space, width } from 'styled-system'
+import { ISpaceProps, IWidthProps } from 'interfaces'
+import { color, responsiveStyle, space, width } from 'styled-system'
 import styled, { theme } from 'theme'
 
-interface IBox {
+const align = responsiveStyle('text-align', 'align')
+
+interface IBoxProps extends ISpaceProps, IWidthProps {
   color: string
   bg: string
-  width: number | string[]
-  w: number | string[]
-  /** Margin */
-  m: number | string[]
-  mt: number | string[]
-  mr: number | string[]
-  mb: number | string[]
-  ml: number | string[]
-  mx: number | string[]
-  my: number | string[]
-  /** Padding */
-  p: number | string[]
-  pt: number | string[]
-  pr: number | string[]
-  pb: number | string[]
-  pl: number | string[]
-  px: number | string[]
-  py: number | string[]
 }
 
-export const Box = styled<IBox, any>('div')`
-  ${space} ${width} ${color};
+export const Box = styled<IBoxProps, any>('div')`
+  ${space} ${width} ${color} ${align};
 `
 
 Box.displayName = 'Box'

@@ -1,4 +1,4 @@
-const path = require('path')
+// const path = require('path')
 
 exports.modifyWebpackConfig = ({ config, stage }) => {
   const newConfig = config
@@ -8,13 +8,6 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
       test: /\.tsx?$/,
       loaders: [`babel-loader?${JSON.stringify({ presets: ['babel-preset-env'] })}`, 'ts-loader'],
     })
-  }
-
-  newConfig._config.resolve.alias = {
-    ...config._config.resolve.alias,
-    components: path.join(__dirname, 'src/components'),
-    theme: path.join(__dirname, 'src/theme'),
-    images: path.join(__dirname, 'src/images'),
   }
 
   return newConfig

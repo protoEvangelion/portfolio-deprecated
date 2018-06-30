@@ -8,8 +8,9 @@ module.exports = {
     'gatsby-plugin-react-next',
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
+    'gatsby-plugin-styled-components',
     'gatsby-plugin-typescript',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-source-filesystem',
       options: {

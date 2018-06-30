@@ -7,7 +7,7 @@ import weatherReducer from './weather/reducer'
 import wikiReducer from './wiki/reducer'
 
 const reducers = {
-  navbar: navbarReducer,
+  ui: navbarReducer,
   // quote: quoteReducer,
   // stream: streamReducer,
   // weather: weatherReducer,

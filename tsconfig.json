@@ -1,20 +1,30 @@
 {
+  "include": ["./src/**/*"],
   "compilerOptions": {
-    "alwaysStrict": true,
-    "sourceMap": true,
-    "jsx": "react",
-    "module": "commonjs",
-    "outDir": "./dist/",
-    "strictFunctionTypes": true,
+    /* Gatsby Recommended */
     "target": "esnext",
-    "lib": ["esnext", "dom", "scripthost"],
-    "baseUrl": "./src",
-    "paths": {
-      "components/*": ["components/*"],
-      "images/*": ["images/*"],
-      "theme/*": ["theme/*"],
-      "store/*": ["store/*"]
-    },
+    "module": "commonjs",
+    "lib": ["es2017", "dom"],
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+
+    // "alwaysStrict": true,
+    // "sourceMap": true,
+    // "inlineSources": true,
+    // "outDir": "./dist/",
+    // "strictFunctionTypes": true,
+    // "baseUrl": "./src",
+    // "paths": {
+    //   "components/*": ["components/*"],
+    //   "images/*": ["images/*"],
+    //   "theme/*": ["theme/*"],
+    //   "store/*": ["store/*"]
+    // },
     "plugins": [
       {
         "name": "typescript-styled-plugin"

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { ServerStyleSheet, ThemeProvider } from 'styled-components'
 
 import store from './src/store'
-import theme from './src/theme'
+import { theme } from './src/theme'
 
 exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) => {
   const ConnectedBody = () => (
