@@ -18,13 +18,13 @@
     // "inlineSources": true,
     // "outDir": "./dist/",
     // "strictFunctionTypes": true,
-    // "baseUrl": "./src",
-    // "paths": {
-    //   "components/*": ["components/*"],
-    //   "images/*": ["images/*"],
-    //   "theme/*": ["theme/*"],
-    //   "store/*": ["store/*"]
-    // },
+    "baseUrl": "./src",
+    "paths": {
+      "components/*": ["components/*"],
+      "images/*": ["images/*"],
+      "theme/*": ["theme/*"],
+      "store/*": ["store/*"]
+    },
     "plugins": [
       {
         "name": "typescript-styled-plugin"

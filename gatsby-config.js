@@ -1,14 +1,13 @@
 module.exports = {
   siteMetadata: {
-    googleVerification: 'abcdefz',
     title: "Ryan's Personal Portfolio",
+    description: 'Personal Portfolio that includes projects',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-react-next',
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-styled-components',
     'gatsby-plugin-typescript',
     'gatsby-transformer-sharp',
     {
