@@ -1,6 +1,11 @@
 // This theme file is based on the styled-components styled system
 // https://github.com/jxnblk/styled-system
-import styled, { css, injectGlobal, keyframes, ThemeProvider } from 'styled-components'
+import styled, {
+  css,
+  injectGlobal,
+  keyframes,
+  ThemeProvider,
+} from 'styled-components'
 import styledTypes from 'styled-components-ts'
 
 interface IThemeInterface {

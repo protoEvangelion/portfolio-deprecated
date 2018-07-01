@@ -1,6 +1,13 @@
 import { IBoxProps } from 'interfaces'
-import { color, responsiveStyle, space, width } from 'styled-system'
-import theme, { styled, styledTypes } from 'theme'
+import {
+  color,
+  responsiveStyle,
+  space,
+  styled,
+  styledTypes,
+  width,
+} from 'styled'
+import theme from 'theme'
 
 const align = responsiveStyle('text-align', 'align')
 

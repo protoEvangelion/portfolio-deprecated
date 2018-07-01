@@ -1,6 +1,16 @@
 import { IFlexProps } from 'interfaces'
-import { alignItems, color, flexDirection, flexWrap, justifyContent, space, width } from 'styled-system'
-import theme, { styled, styledTypes } from 'theme'
+import {
+  alignItems,
+  color,
+  flexDirection,
+  flexWrap,
+  justifyContent,
+  space,
+  styled,
+  styledTypes,
+  width,
+} from 'styled'
+import theme from 'theme'
 
 export const Flex = styledTypes<IFlexProps>(styled.div)`
   display: flex;
