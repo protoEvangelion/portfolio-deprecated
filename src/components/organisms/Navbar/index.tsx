@@ -6,6 +6,17 @@ import { connect } from 'react-redux'
 import ReactSVG from 'react-svg'
 import { toggleNav } from 'store/navbar/action'
 import { Wrapper } from './styles'
+import { Icon } from 'semantic-ui-react'
+import { color, styled } from 'styled'
+import { Logo } from './logo'
+
+const StyledLink = styled(Link)`
+  ${color};
+`
+
+StyledLink.defaultProps = {
+  color: 'foreground',
+}
 
 const BaseNavbar: React.SFC<{ isOpen: boolean }> = ({ isOpen }) => {
   return (
@@ -13,18 +24,18 @@ const BaseNavbar: React.SFC<{ isOpen: boolean }> = ({ isOpen }) => {
       {/* <MenuButton isOpen={props.isOpen} toggleNav={props.toggleNav} /> */}
 
       <Link to="/portfolio">
-        <ReactSVG path="logo.svg" />
+        <Logo />
       </Link>
 
-      <Flex align="space-around" width={1}>
-        <Link to="/stack">Stack</Link>
-        <Link to="/allApps">MicroApps</Link>
-        <Link to="/apiApps">APIs</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
+      <Flex color="white" justify="space-around" width={1}>
+        <StyledLink to="/stack">Stack</StyledLink>
+        <StyledLink to="/allApps">MicroApps</StyledLink>
+        <StyledLink to="/apiApps">APIs</StyledLink>
+        <StyledLink to="/about">About</StyledLink>
+        <StyledLink to="/contact">Contact</StyledLink>
       </Flex>
 
-      {/* <StyledIcon href="/allApps" name="briefcase" height={100} /> */}
+      <Icon color="grey" name="briefcase" />
     </Wrapper>
   )
 }
