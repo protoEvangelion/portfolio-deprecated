@@ -7,7 +7,7 @@ https://www.gatsbyjs.org/docs/browser-apis/
 import * as React from 'react'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
-import { ThemeProvider } from './src/theme'
+import { ThemeProvider } from 'styled-components'
 
 import store from './src/store'
 import theme from './src/theme'
