@@ -1,9 +1,14 @@
 import { Flex } from 'components/atoms'
+import { IFlexProps } from 'interfaces'
 // import { media } from 'styled-system'
-import styled from 'theme'
+import { styledTypes } from 'theme'
+
+interface IWrapperProps extends IFlexProps {
+  isOpen: boolean
+}
 
 // export const Wrapper = styled<>(Flex)`
-export const Wrapper = styled<{ isOpen: boolean }>(Flex)`
+export const Wrapper = styledTypes<IWrapperProps>(Flex.extend)`
   opacity: ${({ isOpen }) => (isOpen ? 1 : 0.9)};
   height: ${({ isOpen }) => (isOpen ? '100vh' : 'auto')};
   & > :not(:first-child) {

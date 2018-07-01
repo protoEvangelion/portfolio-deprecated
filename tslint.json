@@ -1,21 +1,21 @@
 {
-  "defaultSeverity": "error",
-  "extends": "tslint:recommended",
-  "jsRules": {},
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "extends": ["tslint-eslint-rules", "tslint-config-blvd/react", "tslint-config-prettier"],
   "rules": {
-    "arrow-parens": false,
-    "max-line-length": false,
-    "member-access": [true, "no-public"],
-    "no-arg": true,
-    "no-bitwise": true,
-    "no-conditional-assignment": true,
-    "no-consecutive-blank-lines": false,
-    "no-console": {
-      "severity": "warning",
-      "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
-    },
-    "semicolon": false,
-    "trailing-comma": false,
-    "quotemark": false
+    "prettier": true
+    // "arrow-parens": false,
+    // "max-line-length": false,
+    // "member-access": [true, "no-public"],
+    // "no-arg": true,
+    // "no-bitwise": true,
+    // "no-conditional-assignment": true,
+    // "no-consecutive-blank-lines": false,
+    // "no-console": {
+    //   "severity": "warning",
+    //   "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+    // },
+    // "semicolon": false,
+    // "trailing-comma": false,
+    // "quotemark": false
   }
 }

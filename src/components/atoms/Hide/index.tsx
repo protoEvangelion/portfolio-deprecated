@@ -1,5 +1,5 @@
 import { Box } from 'components/atoms'
-import styled, { theme } from 'theme'
+import theme, { styled } from 'theme'
 
 const getMaxWidth = em => em - 0.01
 

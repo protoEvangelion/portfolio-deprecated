@@ -1,7 +1,7 @@
 // This theme file is based on the styled-components styled system
 // https://github.com/jxnblk/styled-system
-import * as styledComponents from 'styled-components'
-import { ThemedStyledComponentsModule } from 'styled-components'
+import styled, { css, injectGlobal, keyframes, ThemeProvider } from 'styled-components'
+import styledTypes from 'styled-components-ts'
 
 interface IThemeInterface {
   bold: number
@@ -106,14 +106,14 @@ theme = {
   space,
 }
 
-const {
-  default: styled,
-  css,
-  injectGlobal,
-  keyframes,
-  ThemeProvider,
-} = styledComponents as ThemedStyledComponentsModule<IThemeInterface>
+// const {
+//   default: styled,
+//   css,
+//   injectGlobal,
+//   keyframes,
+//   ThemeProvider,
+// } = styledComponents as ThemedStyledComponentsModule<IThemeInterface>
 
-export { css, injectGlobal, keyframes, ThemeProvider, theme }
+export { css, injectGlobal, keyframes, styled, styledTypes, ThemeProvider }
 
-export default styled
+export default theme

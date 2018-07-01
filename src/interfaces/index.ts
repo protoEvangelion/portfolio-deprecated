@@ -1,6 +1,18 @@
+export interface IBoxProps extends ISpaceProps, IWidthProps {
+  color: string
+  bg: string
+}
+
 export interface IColorProps {
   color?: string
   bg?: string
+}
+
+export interface IFlexProps extends IColorProps, ISpaceProps, IWidthProps {
+  align?: string | string[]
+  justify?: string | string[]
+  flexDirection?: string | string[]
+  flexWrap?: string | string[]
 }
 
 export interface ISpaceProps {

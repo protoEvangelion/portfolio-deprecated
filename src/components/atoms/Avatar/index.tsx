@@ -1,6 +1,6 @@
 import Img from 'gatsby-image'
 import * as React from 'react'
-import styled from 'theme'
+import { styled } from 'theme'
 
 export const Avatar = styled(Img)`
   border-radius: 50%;

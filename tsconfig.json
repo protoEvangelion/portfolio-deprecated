@@ -1,10 +1,9 @@
 {
   "include": ["./src/**/*"],
   "compilerOptions": {
-    /* Gatsby Recommended */
     "target": "esnext",
     "module": "commonjs",
-    "lib": ["es2017", "dom"],
+    "lib": ["es2015", "es2017", "dom"],
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
@@ -12,6 +11,7 @@
     "emitDecoratorMetadata": true,
     "noEmit": true,
     "skipLibCheck": true,
+    "sourceMap": true,
 
     // "alwaysStrict": true,
     // "sourceMap": true,

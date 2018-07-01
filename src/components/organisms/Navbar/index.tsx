@@ -5,25 +5,18 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import ReactSVG from 'react-svg'
 import { toggleNav } from 'store/navbar/action'
-
 import { Wrapper } from './styles'
-
-interface ITestProps {
-  do: string | string[]
-}
-
-const Test: React.SFC<ITestProps> = () => <div>hi</div>
 
 const BaseNavbar: React.SFC<{ isOpen: boolean }> = ({ isOpen }) => {
   return (
     <Wrapper align={['flex-start', 'center']} bg="black" p={3} isOpen={isOpen}>
       {/* <MenuButton isOpen={props.isOpen} toggleNav={props.toggleNav} /> */}
 
-      {/* <Link to="/portfolio">
+      <Link to="/portfolio">
         <ReactSVG path="logo.svg" />
-      </Link> */}
+      </Link>
 
-      <Flex sfsdflk="space-around" width="100%">
+      <Flex align="space-around" width={1}>
         <Link to="/stack">Stack</Link>
         <Link to="/allApps">MicroApps</Link>
         <Link to="/apiApps">APIs</Link>
