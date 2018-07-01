@@ -1,5 +1,6 @@
 {
   "include": ["./src/**/*"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
@@ -12,12 +13,6 @@
     "noEmit": true,
     "skipLibCheck": true,
     "sourceMap": true,
-
-    // "alwaysStrict": true,
-    // "sourceMap": true,
-    // "inlineSources": true,
-    // "outDir": "./dist/",
-    // "strictFunctionTypes": true,
     "baseUrl": "./src",
     "paths": {
       "components/*": ["components/*"],
@@ -30,6 +25,5 @@
         "name": "typescript-styled-plugin"
       }
     ]
-  },
-  "exclude": ["node_modules"]
+  }
 }

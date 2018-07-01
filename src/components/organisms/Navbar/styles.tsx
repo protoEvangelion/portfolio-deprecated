@@ -1,7 +1,7 @@
 import { Flex } from 'components/atoms'
 import { IFlexProps } from 'interfaces'
 // import { media } from 'styled-system'
-import { styledTypes } from 'theme'
+import { styledTypes } from 'styled'
 
 interface IWrapperProps extends IFlexProps {
   isOpen: boolean

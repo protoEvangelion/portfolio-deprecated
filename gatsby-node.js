@@ -13,6 +13,7 @@ exports.onCreateBabelConfig = ({ stage, actions }, pluginOptions) => {
     stage,
     options: {
       ...pluginOptions,
+      displayName: true,
       ssr: stage === 'build-html',
     },
   })
